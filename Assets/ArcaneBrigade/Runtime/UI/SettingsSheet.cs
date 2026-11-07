@@ -248,14 +248,13 @@ namespace ArcaneBrigade
         /// <summary>A round walnut step button with its sign centred on the disc.</summary>
         private static bool Step(Rect r, string sign)
         {
-            bool pressed = Hit(r);
             Rect at = Shift(r);
-            Sprite plate = ArcadeSkin.KitSprite("Buttons/RoundWalnut");
-            if (plate != null && !ArcadeSkin.Crafted) RunHud.Sprite(at, plate); else ArcadeSkin.CodePlate(at, CodeTone.Walnut);
+            bool over = !RunUIHints.Phone && GUI.enabled && at.Contains(Event.current.mousePosition);
+            ArcadeSkin.RoundArt(at, KitRound.Walnut, !GUI.enabled ? 3 : over ? (GUIUtility.hotControl != 0 ? 2 : 1) : 0);
             stepStyle ??= new GUIStyle(ArcadeTypography.Style(32, true)) { alignment = TextAnchor.MiddleCenter };
             stepStyle.normal.textColor = ArcadeSkin.KitCream;
             LocalizedGUI.Label(ArcadeSkin.RoundFace(at, KitRound.Walnut), sign, stepStyle);
-            return pressed;
+            return Hit(r);
         }
         private static void Volume(Action<Rect, string> label, ref float y, string caption, float value, Action<float> setter)
         {
@@ -263,6 +262,7 @@ namespace ArcaneBrigade
             // the slider is the control; a small round step button sits at each end of it (keys and pads step by 10%), never the
             // wide flat-ended plates that crowded the row (review 4/11/2026)
             float changed = GUI.HorizontalSlider(Shift(new Rect(500, y + 7, 625, 36)), value, 0, 1);
+            TouchTargets.DrawHover(Shift(new Rect(500, y + 7, 625, 36)));
             if (Step(new Rect(430, y - 3, 56, 56), "−")) changed = Mathf.Max(0, value - 0.1f);
             if (Step(new Rect(1139, y - 3, 56, 56), "+")) changed = Mathf.Min(1, value + 0.1f);
             y += RowStep;

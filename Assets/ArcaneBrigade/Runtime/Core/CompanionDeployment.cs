@@ -39,7 +39,8 @@ namespace ArcaneBrigade
 
     public sealed partial class RunSession
     {
-        public List<RosterEntry> ActiveRoster => CompanionDeployment.Select(State.Roster);
+        private List<RosterEntry> compilingRoster;
+        public List<RosterEntry> ActiveRoster => compilingRoster ?? CompanionDeployment.Select(State.Roster);
         public bool AbsorbsRecruitCopies => OctoberAbsorbs;
         private bool resolvingStoredCopies;
 

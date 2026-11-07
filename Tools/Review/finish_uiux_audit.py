@@ -1,11 +1,12 @@
 """Targeted flow checks using in-process virtual activation only, never OS input."""
 import json
+import os
 import time
 import sys
 from pathlib import Path
 from uiux_audit import ROOT, send
 
-OUT = ROOT / 'PreviewExports/UIUXAuditSynthetic'
+OUT = ROOT / os.environ.get('BRIGADE_AUDIT_OUTPUT', 'PreviewExports/UIUXAuditSynthetic')
 
 
 def action(op, **kwargs):

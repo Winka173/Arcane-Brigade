@@ -1,6 +1,10 @@
 {
   "entries": [
     {
+      "source": " (chosen)",
+      "target": " (đang chọn)"
+    },
+    {
       "source": "\"Art of Food\" Roshi",
       "target": "\"Nghệ thuật ẩm thực\" Roshi"
     },
@@ -169,8 +173,144 @@
       "target": "% sát thương vũ khí cho mỗi người bạn trong lữ đoàn."
     },
     {
+      "source": "'Alone: the gauge fills 30% faster, transformations last 3s longer.'",
+      "target": "'Một mình: thanh đo đầy nhanh hơn 30%, quá trình biến đổi kéo dài hơn 3 giây.'"
+    },
+    {
+      "source": "'CURIO / COMMON / STACKABLE",
+      "target": "'CURIO / CHUNG / CÓ THỂ XẾP CHỒNG"
+    },
+    {
+      "source": "'CURIO / MYTHIC / STACKABLE",
+      "target": "'CURIO / THUYỀN THOẠI / CÓ THỂ XẾP CHỒNG"
+    },
+    {
+      "source": "'CURIO / MYTHIC / UNIQUE",
+      "target": "'CURIO / THUYỀN THOẠI / ĐỘC ĐÁO"
+    },
+    {
+      "source": "'CURIO / PRISMATIC / UNIQUE",
+      "target": "'CURIO / PRISMATIC / ĐỘC ĐÁO"
+    },
+    {
+      "source": "'CURIO / RARE / STACKABLE",
+      "target": "'CURIO / HIẾM / CÓ THỂ XẾP CHỒNG"
+    },
+    {
+      "source": "'CURIO / RARE / UNIQUE",
+      "target": "'CURIO / HIẾM / ĐỘC ĐÁO"
+    },
+    {
+      "source": "'CURIO / UNCOMMON / STACKABLE",
+      "target": "'CURIO / KHÔNG PHỔ BIẾN / CÓ THỂ XẾP CHỒNG"
+    },
+    {
+      "source": "'CURIO / UNCOMMON / UNIQUE",
+      "target": "'CURIO / KHÔNG PHỔ BIẾN / ĐỘC ĐÁO"
+    },
+    {
+      "source": "'Charges, then rests. Evolved: leaves hot coals.'",
+      "target": "'Sạc xong thì nghỉ. Tiến hóa: để lại than nóng.'"
+    },
+    {
+      "source": "'Connected relics: Coin Compass, Wandering Map. No hidden set bonus.'",
+      "target": "'Các di tích được kết nối: La bàn tiền xu, Bản đồ lang thang. Không có phần thưởng ẩn.'"
+    },
+    {
+      "source": "'Connected relics: Harvest Receipt, Carbon Ribbon. No hidden set",
+      "target": "'Các di tích được kết nối: Biên lai thu hoạch, Ruy băng carbon. Không có bộ ẩn"
+    },
+    {
+      "source": "'Connected relics: Key Oil, Clock Spring. No hidden set bonus.'",
+      "target": "'Các di vật liên quan: Chìa Khóa Dầu, Đồng Hồ Xuân. Không có phần thưởng ẩn.'"
+    },
+    {
+      "source": "'Connected relics: Piggy Mail, Coupon Book. No hidden set bonus.'",
+      "target": "'Các di tích được kết nối: Thư Piggy, Sách phiếu giảm giá. Không có phần thưởng ẩn.'"
+    },
+    {
+      "source": "'Connected relics: Reflective Ink, Office Lens, Carbon Ribbon. No",
+      "target": "'Các di tích được kết nối: Mực phản chiếu, Ống kính văn phòng, Ruy băng carbon. Không"
+    },
+    {
+      "source": "'Connected relics: Treasure Whisper, Chest Thunder. No hidden set",
+      "target": "'Các di tích được kết nối: Lời thì thầm kho báu, Sấm rương. Không có bộ ẩn"
+    },
+    {
+      "source": "'DRINK / COMMON / STACKABLE",
+      "target": "'UỐNG / CHUNG / CÓ THỂ Xếp chồng lên nhau"
+    },
+    {
+      "source": "'DRINK / MYTHIC / UNIQUE",
+      "target": "'UỐNG / THUYỀN THOẠI / ĐỘC ĐÁO"
+    },
+    {
+      "source": "'DRINK / RARE / STACKABLE",
+      "target": "'UỐNG/Hiếm/Xếp chồng lên nhau"
+    },
+    {
+      "source": "'DRINK / UNCOMMON / STACKABLE",
+      "target": "'UỐNG / KHÔNG PHỔ BIẾN / CÓ THỂ XẾP CHỒNG"
+    },
+    {
+      "source": "'Every 10s raises a carousel round the thickest crowd: its horses",
+      "target": "'Cứ 10 giây lại có một vòng quay vòng quanh đám đông dày đặc nhất: những con ngựa của nó"
+    },
+    {
+      "source": "'Every 3rd attack copies that blow onto 2 nearby enemies. Every enemy",
+      "target": "'Mỗi đòn tấn công thứ 3 sao chép vào 2 kẻ địch ở gần. Mỗi kẻ thù"
+    },
+    {
+      "source": "'Every 6s spins a ball on its nose: enemies within 3.5 units turn",
+      "target": "'Cứ 6 giây lại quay một quả bóng trên mũi: kẻ địch trong phạm vi 3,5 đơn vị lần lượt"
+    },
+    {
+      "source": "'FOOD / COMMON / STACKABLE",
+      "target": "'THỰC PHẨM / CHUNG / CÓ THỂ XẾP CHỒNG"
+    },
+    {
+      "source": "'FOOD / MYTHIC / STACKABLE",
+      "target": "'THỰC PHẨM / HUYỀN THOẠI / CÓ THỂ XẾP CHỒNG"
+    },
+    {
+      "source": "'FOOD / RARE / STACKABLE",
+      "target": "'THỰC PHẨM / HIẾM / CÓ THỂ XẾP CHỒNG"
+    },
+    {
+      "source": "'FOOD / UNCOMMON / STACKABLE",
+      "target": "'THỰC PHẨM / KHÔNG PHỔ BIẾN / CÓ THỂ XẾP CHỒNG"
+    },
+    {
+      "source": "'Fanfare: the first attack of every friend each wave fires one extra",
+      "target": "'Fanfare: đòn tấn công đầu tiên của mỗi người bạn, mỗi đợt sẽ bắn thêm một đòn"
+    },
+    {
       "source": "'It's addressed to you. It always was.' Postscript has an empty envelope of its own now, for somebody it wants to write to. Its route no longer ends at your story. Ask it who, some time.",
       "target": "'Nó được gửi tới bạn. Luôn luôn như vậy.” Postscript hiện có một phong bì trống dành cho ai đó mà nó muốn viết. Lộ trình của nó không còn kết thúc ở câu chuyện của bạn nữa. Hãy hỏi ai, một lúc nào đó."
+    },
+    {
+      "source": "'Its hits arc on twice: to the nearest other enemy, then the next",
+      "target": "'Nó tấn công hai lần: vào kẻ địch khác gần nhất, rồi đến kẻ địch tiếp theo"
+    },
+    {
+      "source": "'Once a wave under 30% health: +60% damage and attack speed for",
+      "target": "'Khi một đợt sóng dưới 30% máu: +60% sát thương và tốc độ tấn công trong"
+    },
+    {
+      "source": "'Rolled up: an enemy that bumps into it is stunned for 0.3s (once",
+      "target": "'Cuộn lại: kẻ địch va vào nó sẽ bị choáng trong 0,3 giây (một lần"
+    },
+    {
+      "source": "'Throws an ink thread: 30% slower until you get 5 paces away.'",
+      "target": "'Ném một sợi mực: chậm hơn 30% cho đến khi bạn đi được 5 bước.'"
+    },
+    {
+      "source": "'Unfolds a seat ring under you. Still inside when it snaps: pinned",
+      "target": "'Mở vòng ghế ngồi bên dưới bạn. Vẫn ở bên trong khi nó gãy: được ghim"
+    },
+    {
+      "source": "'With 2 friends or fewer: one more shot that pierces one more.'",
+      "target": "'Với 2 người bạn trở xuống: thêm một phát bắn xuyên qua một người nữa.'\nChỉ số của"
     },
     {
       "source": "'s stats · melee 20% slower",
@@ -1074,7 +1214,7 @@
     },
     {
       "source": "A bonus for this run.",
-      "target": "Phần thưởng cho lần chạy này."
+      "target": "Một bonus dành cho lượt chơi này."
     },
     {
       "source": "A borrowed voice is still worth hearing.",
@@ -1609,6 +1749,10 @@
       "target": "Một con diệc đã chép từng giọt mưa của đầm lầy vào một cuốn sổ để đầm lầy không bao giờ bị lãng quên. Cuốn sổ đã vượt qua đầm lầy. Họ mang theo bất cứ loại vũ khí nào họ được giao, bởi vì cuốn sổ đã dạy họ cách nhận."
     },
     {
+      "source": "A heron who copies the rain into its notebook and takes any weapon",
+      "target": "Một con diệc chép mưa vào sổ và lấy bất kỳ vũ khí nào"
+    },
+    {
       "source": "A heron who copies the rain into its notebook and takes any weapon offered.",
       "target": "Một con diệc sao chép mưa vào sổ tay của nó và lấy bất kỳ vũ khí nào được đưa ra."
     },
@@ -1635,6 +1779,10 @@
     {
       "source": "A keepsake from a secret room",
       "target": "Kỷ vật từ căn phòng bí mật"
+    },
+    {
+      "source": "A keyblade-bearing pioneer. Travel to charge a lantern pulse; build",
+      "target": "Người tiên phong sử dụng keyblade. Du lịch để sạc xung đèn lồng; xây dựng"
     },
     {
       "source": "A keyblade-bearing pioneer. Travel to charge a lantern pulse; build a bustling brigade.",
@@ -1849,6 +1997,10 @@
       "target": "Việc hợp nhất thành một người bạn ba sao sẽ mang lại một bản sao một sao miễn phí."
     },
     {
+      "source": "A moth wearing a little leather saddle. Hero contact damage +3; +2%",
+      "target": "Một con bướm đeo yên da nhỏ. Sát thương khi tiếp xúc anh hùng +3; +2%"
+    },
+    {
       "source": "A moth wearing a little leather saddle. Hero contact damage +3; +2% damage per friend.",
       "target": "Một con bướm đeo yên da nhỏ. Sát thương khi tiếp xúc anh hùng +3; +2% sát thương cho mỗi người bạn."
     },
@@ -1895,6 +2047,10 @@
     {
       "source": "A one-eyed watchkeeper dismissed for reporting footsteps behind the official patrol. Following them led to a missing resident. They want a watch that treats listening as part of seeing.",
       "target": "Người canh gác chột mắt bị cách chức vì báo cáo có bước chân đi sau đội tuần tra chính thức. Theo sau họ dẫn đến một cư dân mất tích. Họ muốn một chiếc đồng hồ coi việc nghe như một phần của việc nhìn."
+    },
+    {
+      "source": "A pangolin of patched leather scales. Every 4s heals the hero; hero",
+      "target": "Một con tê tê có vảy da vá. Cứ sau 4 giây sẽ chữa lành vết thương cho anh hùng; anh hùng"
     },
     {
       "source": "A pangolin of patched leather scales. Every 4s heals the hero; hero regeneration +0.3.",
@@ -1947,6 +2103,10 @@
     {
       "source": "A pigeon from a rooftop post office where letters were folded into planes so they could fly the last street alone. One plane never landed. They follow every new flight to see where kindness actually arrives.",
       "target": "Một chú chim bồ câu từ bưu điện trên sân thượng, nơi những lá thư được gấp thành máy bay để chúng có thể một mình bay trên con phố cuối cùng. Một chiếc máy bay không bao giờ hạ cánh. Họ theo dõi mỗi chuyến bay mới để xem lòng tốt thực sự đến ở đâu."
+    },
+    {
+      "source": "A pigeon who folds the post into paper planes and lets them chase",
+      "target": "Chim bồ câu gấp cột thành máy bay giấy để chúng đuổi theo"
     },
     {
       "source": "A pigeon who folds the post into paper planes and lets them chase the trouble.",
@@ -2202,7 +2362,7 @@
     },
     {
       "source": "A shop that takes dreamsand or HP instead of gold. HP prices lower your max HP for the rest of the run.",
-      "target": "Một cửa hàng lấy ước mơ và HP thay vì vàng. Giá HP làm giảm lượng HP tối đa của bạn trong suốt thời gian còn lại."
+      "target": "Cửa hàng dùng cát mơ hoặc máu thay cho vàng. Mua bằng máu làm giảm máu tối đa đến hết lượt chơi."
     },
     {
       "source": "A six-barrel sorter replaces your mailbox: a homing parcel every 0.2s, round the stamped addresses first; attack speed +40%.",
@@ -2215,6 +2375,10 @@
     {
       "source": "A sky fisher whose safety line was tied to the wrong shore. A keeper called the tightening tether protection. They carry their own spool now and search for the crew on the other side.",
       "target": "Một tay câu cá trên bầu trời bị buộc dây an toàn vào nhầm bờ. Một thủ môn gọi là bảo vệ dây buộc chặt. Bây giờ họ mang theo ống chỉ của riêng mình và tìm kiếm thủy thủ đoàn ở phía bên kia."
+    },
+    {
+      "source": "A sleepy tuning-bell oracle. Stand still to chill nearby threats and",
+      "target": "Một lời tiên tri về chuông điều chỉnh buồn ngủ. Đứng yên để làm dịu các mối đe dọa gần đó và"
     },
     {
       "source": "A sleepy tuning-bell oracle. Stand still to chill nearby threats and erase a few hostile bullets.",
@@ -2409,6 +2573,10 @@
       "target": "Một người sống sót mang theo dư ảnh của một quận bị xóa khỏi bản đồ. Chúng không chỉ là bằng chứng của một thảm họa. Họ tìm kiếm những người sống sót khác để khám phá xem mỗi người muốn gì tiếp theo."
     },
     {
+      "source": "A tadpole in a milk-tea cup who sips, then spits pearls in swaying",
+      "target": "Con nòng nọc trong cốc trà sữa nhấp từng ngụm rồi nhả trân châu lắc lư"
+    },
+    {
       "source": "A tadpole in a milk-tea cup who sips, then spits pearls in swaying waves.",
       "target": "Con nòng nọc trong cốc trà sữa nhấp từng ngụm rồi nhổ trân châu theo từng đợt lắc lư."
     },
@@ -2525,6 +2693,10 @@
       "target": "Một điệu valse, rất chậm, kim gần như ngủ quên."
     },
     {
+      "source": "A wandering parcel launcher. Collected gold charges automatic express",
+      "target": "Máy phóng bưu kiện lang thang. Thu phí vàng tự động chuyển phát nhanh"
+    },
+    {
       "source": "A wandering parcel launcher. Collected gold charges automatic express volleys.",
       "target": "Máy phóng bưu kiện lang thang. Thu thập phí vàng tự động chuyển phát nhanh."
     },
@@ -2621,12 +2793,20 @@
       "target": "NGUỒN THỰC TẾ TRONG CHẠY NÀY"
     },
     {
+      "source": "ADVANCE",
+      "target": "TIẾN CÔNG"
+    },
+    {
       "source": "AFTERSHOCK STITCH",
       "target": "ĐƯỜNG SAU SỐC"
     },
     {
       "source": "AGREE",
       "target": "ĐỒNG Ý"
+    },
+    {
+      "source": "AIMED GLASS",
+      "target": "NGẮM KÍNH"
     },
     {
       "source": "AIR MAIL!",
@@ -2674,11 +2854,11 @@
     },
     {
       "source": "APPROACH",
-      "target": "TIẾP CẬN"
+      "target": "CÁCH ĐÁNH"
     },
     {
       "source": "APPROACH: tap one",
-      "target": "TIẾP CẬN: chạm vào một"
+      "target": "Cách đánh: chọn một"
     },
     {
       "source": "ARCANE BRIGADE",
@@ -2695,6 +2875,10 @@
     {
       "source": "ARENA",
       "target": "ĐẤU TRƯỜNG"
+    },
+    {
+      "source": "AROUND THE TABLE",
+      "target": "QUANH BÀN"
     },
     {
       "source": "ARRIVAL",
@@ -2805,6 +2989,10 @@
       "target": "Thêm hiệu ứng bị động"
     },
     {
+      "source": "Advance",
+      "target": "Tiến công"
+    },
+    {
       "source": "Advance|Fan out|Hold ground",
       "target": "Tiến lên|Tấn công|Giữ vững"
     },
@@ -2859,6 +3047,10 @@
     {
       "source": "Ah. You made it.|quiet relief, a breath out first",
       "target": "À. Bạn đã làm được.| Yên tĩnh nhẹ nhõm, thở ra trước"
+    },
+    {
+      "source": "Aimed glass",
+      "target": "Ngắm kính"
     },
     {
       "source": "Aimed glass|Return to sender|Prism ring",
@@ -3261,6 +3453,10 @@
       "target": "Giáp"
     },
     {
+      "source": "Around the table",
+      "target": "Quanh bàn"
+    },
+    {
       "source": "Arrival flag not saved:",
       "target": "Cờ đến không được lưu:"
     },
@@ -3493,6 +3689,10 @@
       "target": "Tấn công bằng chuông điều chỉnh và hồi máu định kỳ. Di chuyển chậm hơn, nhưng có nhiều sức khỏe hơn để chịu đựng."
     },
     {
+      "source": "Attacks/s",
+      "target": "Đòn/giây"
+    },
+    {
       "source": "Attractive Witch",
       "target": "Phù thủy hấp dẫn"
     },
@@ -3565,12 +3765,20 @@
       "target": "SAO LƯU VÀ BẮT ĐẦU"
     },
     {
+      "source": "BANANA SPLIT",
+      "target": "KEM CHUỐI"
+    },
+    {
       "source": "BEAT A BOSS",
       "target": "ĐÁNH BOSS"
     },
     {
       "source": "BEST RELIC",
       "target": "DI TRÍ TỐT NHẤT"
+    },
+    {
+      "source": "BITE",
+      "target": "CẮN"
     },
     {
       "source": "BLAZE!",
@@ -3582,7 +3790,7 @@
     },
     {
       "source": "BLOOM",
-      "target": "HOA"
+      "target": "NỞ HOA"
     },
     {
       "source": "BLOOM! SPROING!",
@@ -3607,6 +3815,10 @@
     {
       "source": "BOARD",
       "target": "BAN"
+    },
+    {
+      "source": "BOIL",
+      "target": "ĐUN SÔI"
     },
     {
       "source": "BOING! HONK!",
@@ -3634,7 +3846,7 @@
     },
     {
       "source": "BONDS",
-      "target": "TRÁI PHIẾU"
+      "target": "LIÊN KẾT"
     },
     {
       "source": "BONK!",
@@ -3697,8 +3909,12 @@
       "target": "BỘ PHẬN DỄ VỠ\nSide tấn công các cơ quan bên mục tiêu. Các đòn đánh dọc nhắm vào trung tâm."
     },
     {
+      "source": "BREAKER",
+      "target": "PHÁ GIÁP"
+    },
+    {
       "source": "BRIGADE",
-      "target": "Lữ đoàn"
+      "target": "LỮ ĐOÀN"
     },
     {
       "source": "BRIGADE FALLEN",
@@ -3707,6 +3923,14 @@
     {
       "source": "BRING THEM ACROSS",
       "target": "ĐƯA HỌ QUA"
+    },
+    {
+      "source": "BROAD SEAM",
+      "target": "ĐƯỜNG MAY RỘNG"
+    },
+    {
+      "source": "BROKEN MIRROR",
+      "target": "GƯƠNG VỠ"
     },
     {
       "source": "BROKEN!",
@@ -3723,6 +3947,10 @@
     {
       "source": "BRRR! SCOOP!",
       "target": "BRRR! MỠ!"
+    },
+    {
+      "source": "BUBBLE",
+      "target": "BONG BÓNG"
     },
     {
       "source": "BUBBLE CALLIGRAPHY",
@@ -3803,6 +4031,10 @@
     {
       "source": "Balloon Mallet",
       "target": "Vồ bóng bay"
+    },
+    {
+      "source": "Banana split",
+      "target": "Kem chuối"
     },
     {
       "source": "Banana split: the same scoops at normal weight; each splat hits and freezes up to 5 enemies.",
@@ -4106,7 +4338,7 @@
     },
     {
       "source": "Bigger shots that are easier to land.",
-      "target": "Cú đánh lớn hơn, dễ tiếp đất hơn."
+      "target": "Đạn lớn hơn nên dễ trúng mục tiêu hơn."
     },
     {
       "source": "Bigger steps. Same mismatched pair.",
@@ -4131,6 +4363,10 @@
     {
       "source": "Birthday Candle",
       "target": "Nến Sinh Nhật"
+    },
+    {
+      "source": "Bite",
+      "target": "Cắn"
     },
     {
       "source": "Bite|Glands|Threadwork",
@@ -4186,7 +4422,7 @@
     },
     {
       "source": "Bloom",
-      "target": "Hoa nở"
+      "target": "Nở hoa"
     },
     {
       "source": "Bloom Shell",
@@ -4227,6 +4463,10 @@
     {
       "source": "Body size",
       "target": "Kích thước cơ thể"
+    },
+    {
+      "source": "Boil",
+      "target": "Đun sôi"
     },
     {
       "source": "Bond",
@@ -4377,6 +4617,10 @@
       "target": "Cúi đầu"
     },
     {
+      "source": "Bow + Ribbon gains a short chest window, healing without a set.",
+      "target": "Cung + Ruy băng có cửa sổ rương ngắn, hồi máu mà không cần đặt."
+    },
+    {
       "source": "Bow + Ribbon gains a short chest window, healing without a set. Receipt connects separate coin pickups to bell cadence.",
       "target": "Cung + Ruy băng có cửa sổ rương ngắn, hồi máu mà không cần đặt. Biên nhận kết nối việc nhận tiền xu riêng biệt với nhịp chuông."
     },
@@ -4427,6 +4671,10 @@
     {
       "source": "Break the Customer's contract. Find who keeps renewing your name.",
       "target": "Phá vỡ hợp đồng của Khách hàng. Tìm người tiếp tục đổi mới tên của bạn."
+    },
+    {
+      "source": "Breaker",
+      "target": "Phá giáp"
     },
     {
       "source": "Breakfast is better when everyone arrives.",
@@ -4521,12 +4769,20 @@
       "target": "Lông Imp"
     },
     {
+      "source": "Broad seam",
+      "target": "Đường may rộng"
+    },
+    {
       "source": "Broken",
       "target": "Bị hỏng"
     },
     {
       "source": "Broken Measure",
       "target": "Thước đo bị hỏng"
+    },
+    {
+      "source": "Broken mirror",
+      "target": "Gương vỡ"
     },
     {
       "source": "Broom Skater",
@@ -4797,6 +5053,10 @@
       "target": "ĐÓNG"
     },
     {
+      "source": "CLOSE CIRCLE",
+      "target": "VÒNG ÁP SÁT"
+    },
+    {
       "source": "CLOSE JOURNAL",
       "target": "ĐÓNG NHẬT KÝ"
     },
@@ -4809,12 +5069,24 @@
       "target": "ĐÓNG CỬA HÀNG"
     },
     {
+      "source": "CLOSED ORBIT",
+      "target": "QUỸ ĐẠO KHÉP KÍN"
+    },
+    {
+      "source": "CLOSED WEAVE",
+      "target": "DỆT KÍN"
+    },
+    {
       "source": "COAST / VERIFIED ROUTE",
       "target": "BỜ BIỂN / TUYẾN ĐÃ ĐƯỢC XÁC MINH"
     },
     {
       "source": "COLLECTION",
       "target": "BỘ SƯU TẬP"
+    },
+    {
+      "source": "COLLECTORS",
+      "target": "THU NỢ"
     },
     {
       "source": "COMBOS",
@@ -4865,6 +5137,14 @@
       "target": "CHI PHÍ"
     },
     {
+      "source": "COURT",
+      "target": "TRIỀU ĐÌNH"
+    },
+    {
+      "source": "COURT SEAL",
+      "target": "ẤN TRIỀU ĐÌNH"
+    },
+    {
       "source": "CPU Main Thread Frame Time",
       "target": "Thời gian khung của luồng chính CPU"
     },
@@ -4885,12 +5165,28 @@
       "target": "TIÊU CHUẨN!"
     },
     {
+      "source": "CROSSCUT",
+      "target": "CHÉM CHÉO"
+    },
+    {
+      "source": "CROSSED RECEIPT",
+      "target": "BIÊN LAI CHÉO"
+    },
+    {
+      "source": "CROSSING SHADOW",
+      "target": "BÓNG GIAO NHAU"
+    },
+    {
+      "source": "CROWN",
+      "target": "VƯƠNG MIỆN"
+    },
+    {
       "source": "CUCKOO! WHIRR!",
       "target": "CUCKOO! RẦM!"
     },
     {
       "source": "CURIO",
-      "target": "CURIO"
+      "target": "DI VẬT"
     },
     {
       "source": "CURIO / COMMON / STACKABLE\n\nWHILE OWNED / per copy\nChampion / Armor: +0.15\n\nOwned effective copies: 1. Values apply before combat limits.",
@@ -5545,8 +5841,20 @@
       "target": "CURIO / ĐỘC ĐÁO / ĐỘC ĐÁO\n\nKHI SỞ HỮU / mỗi bản\nĐội/Tốc độ di chuyển: -2%\n\nSỨC MẠNH VŨ KHÍ\nCác vệt đạn trà có bán kính lớn hơn 40% nhưng gây sát thương cho vệt đường ít hơn 20%. hiệu ứng hiện diện; các bản sao bổ sung không nhân lên kích thước đường mòn nữa.\n\nSở hữu bản sao hiệu quả: 1. Giới hạn cộng dồn: 1. Giá trị áp dụng trước giới hạn chiến đấu."
     },
     {
+      "source": "CURIOS",
+      "target": "DI VẬT"
+    },
+    {
+      "source": "CURRENT",
+      "target": "DÒNG CHẢY"
+    },
+    {
       "source": "CURRENT CARRIERS",
       "target": "CÁC NHÀ VẬN CHUYỂN HIỆN TẠI"
+    },
+    {
+      "source": "CURRENT EDITION",
+      "target": "BẢN HIỆN HÀNH"
     },
     {
       "source": "CURRENT HALL (not settled)",
@@ -5765,24 +6073,28 @@
       "target": "Dạng vô địch"
     },
     {
+      "source": "ChampionModifiers: []",
+      "target": "Công cụ sửa đổi tướng: []"
+    },
+    {
       "source": "Chance 0–100%, up to 8 chance-based bounces; lifetime is not reset.",
       "target": "Cơ hội 0–100%, tối đa 8 lần nảy dựa trên cơ hội; trọn đời không được thiết lập lại."
     },
     {
       "source": "Chance for a friend's hit to jump to one more enemy.",
-      "target": "Cơ hội để đòn đánh của một người bạn nhảy sang một kẻ thù khác."
+      "target": "Tỉ lệ đòn đánh của đồng hành lan sang thêm một kẻ địch."
     },
     {
       "source": "Chance for a hit to land twice as hard.",
-      "target": "Cơ hội trúng đòn mạnh gấp đôi."
+      "target": "Tỉ lệ một đòn đánh gây sát thương gấp đôi."
     },
     {
       "source": "Chance for a shot to bounce on to another enemy.",
-      "target": "Cơ hội để một phát bắn trúng kẻ địch khác."
+      "target": "Tỉ lệ đạn nảy sang một kẻ địch khác."
     },
     {
       "source": "Chance to take no damage from a hit (max 60%).",
-      "target": "Cơ hội không nhận sát thương từ một đòn đánh (tối đa 60%)."
+      "target": "Tỉ lệ né hoàn toàn sát thương của một đòn đánh, tối đa 60%."
     },
     {
       "source": "Chandelier Crawler",
@@ -5790,7 +6102,7 @@
     },
     {
       "source": "Change the approach in the shop",
-      "target": "Thay đổi cách tiếp cận trong cửa hàng"
+      "target": "Đổi cách đánh tại cửa hàng"
     },
     {
       "source": "Changing travel direction by at least 55 degrees while moving leaves a bubble, at most once per 1.2s. Bubbles pop after a short warning, slowing or gently pushing ordinary enemies. Three recent turns form a larger pattern. Choose a ribbon, a fountain, or a round bubble.",
@@ -6125,6 +6437,10 @@
       "target": "Đóng"
     },
     {
+      "source": "Close circle",
+      "target": "Vòng áp sát"
+    },
+    {
       "source": "Close is all right. Someone else is keeping watch.",
       "target": "Đóng lại là được. Có người khác đang canh chừng."
     },
@@ -6147,6 +6463,14 @@
     {
       "source": "Closed market",
       "target": "Thị trường đóng cửa"
+    },
+    {
+      "source": "Closed orbit",
+      "target": "Quỹ đạo khép kín"
+    },
+    {
+      "source": "Closed weave",
+      "target": "Dệt kín"
     },
     {
       "source": "Closed weave|Pull stitch|Broad seam",
@@ -6273,6 +6597,10 @@
       "target": "Thu thập 3 và cửa hàng tiếp theo sẽ tặng bạn món quà cầu vồng. Kẻ thù ưu tú và chiến thắng bí mật đánh rơi chúng."
     },
     {
+      "source": "Collect 6 gold to burst nearby enemies. High luck and critical chance;",
+      "target": "Thu thập 6 vàng để tiêu diệt kẻ thù ở gần. May mắn cao và cơ hội quan trọng;"
+    },
+    {
       "source": "Collect 6 gold to burst nearby enemies. High luck and critical chance; low health.",
       "target": "Thu thập 6 vàng để tiêu diệt kẻ thù ở gần. May mắn cao và cơ hội quan trọng; sức khỏe thấp."
     },
@@ -6315,6 +6643,10 @@
     {
       "source": "Collector",
       "target": "Nhà sưu tập"
+    },
+    {
+      "source": "Collectors",
+      "target": "Thu nợ"
     },
     {
       "source": "Collision",
@@ -6549,6 +6881,10 @@
       "target": "Sát thương khi tiếp xúc +40. Đánh lạc hướng kẻ thù bình thường ở gần trong 2 giây cứ sau 6 giây. Các ông chủ phớt lờ mồi nhử."
     },
     {
+      "source": "Contacts/s",
+      "target": "Va chạm/giây"
+    },
+    {
       "source": "Continue",
       "target": "Tiếp tục"
     },
@@ -6661,8 +6997,16 @@
       "target": "Người chuyển phát có thể mở bất kỳ hộp thư nào. Postscript dùng bàn tay giấy rút những chiếc đinh ra khỏi người bạn và tìm thấy câu trả lời đã được khâu kín: Thứ năm, cửa trước, bạn không cần mang theo gì cả. Nó giữ lá thư trong khi bạn đọc."
     },
     {
+      "source": "Court",
+      "target": "Triều đình"
+    },
+    {
       "source": "Court Herald",
       "target": "Tòa án Herald"
+    },
+    {
+      "source": "Court seal",
+      "target": "Ấn triều đình"
     },
     {
       "source": "Courtesy: from the second purchase on, each shop's goods cost 10% less.",
@@ -6817,8 +7161,20 @@
       "target": "Tám vẹo"
     },
     {
+      "source": "Crosscut",
+      "target": "Chém chéo"
+    },
+    {
+      "source": "Crossed receipt",
+      "target": "Biên lai chéo"
+    },
+    {
       "source": "Crossing Knights",
       "target": "Hiệp sĩ vượt qua"
+    },
+    {
+      "source": "Crossing shadow",
+      "target": "Bóng giao nhau"
     },
     {
       "source": "Crown",
@@ -6866,11 +7222,15 @@
     },
     {
       "source": "Curio",
-      "target": "Đồ cổ"
+      "target": "Di vật"
     },
     {
       "source": "Curio pulse",
       "target": "Xung Curio"
+    },
+    {
+      "source": "Curios",
+      "target": "Di vật"
     },
     {
       "source": "Curios|Drinks|Food",
@@ -6881,8 +7241,16 @@
       "target": "Cuộn tròn lại. Chờ đợi. Cởi ra. Lặp lại."
     },
     {
+      "source": "Current",
+      "target": "Dòng chảy"
+    },
+    {
       "source": "Current HP",
       "target": "HP hiện tại"
+    },
+    {
+      "source": "Current edition",
+      "target": "Bản hiện hành"
     },
     {
       "source": "Current edition|Preserve|New specimens",
@@ -6954,7 +7322,7 @@
     },
     {
       "source": "Cuts every hit you take: 15 armor halves it, 30 takes two thirds. At least a quarter of a hit always lands, so stacking armor never makes you untouchable.",
-      "target": "Giảm mỗi đòn đánh bạn nhận: 15 giáp giảm một nửa, 30 giáp giảm 2/3. Ít nhất một phần tư cú đánh luôn hạ cánh, vì vậy việc xếp chồng áo giáp không bao giờ khiến bạn trở thành bất khả xâm phạm."
+      "target": "Giảm sát thương nhận vào: 15 giáp giảm một nửa, 30 giáp giảm hai phần ba. Bạn luôn nhận ít nhất một phần tư sát thương; cộng dồn giáp không giúp miễn nhiễm hoàn toàn."
     },
     {
       "source": "Cyan",
@@ -6991,6 +7359,10 @@
     {
       "source": "DECREE! GAVEL!",
       "target": "NGHỊ ĐỊNH! BÚT!"
+    },
+    {
+      "source": "DEEP STRIKE",
+      "target": "ĐỘT KÍCH SÂU"
     },
     {
       "source": "DEEP_DIVE!",
@@ -7185,8 +7557,20 @@
       "target": "UỐNG / KHÔNG PHỔ BIẾN / CÓ THỂ Xếp chồng lên nhau\nKHI MUA: được tính là 1 đồ uống cho các anh hùng, bạn đồng hành và di tích phản ứng với đồ uống. Không có hành động sử dụng riêng biệt; món đồ vẫn thuộc quyền sở hữu của bạn.\n\nKHI SỞ HỮU / mỗi bản\nĐội/Tốc độ di chuyển: +20%\nSát thương cận chiến đồng đội / đồng đội: +5\nTướng / Máu tối đa: -10\n\nSở hữu các bản sao hiệu quả: 1. Giới hạn cộng dồn: 8. Giá trị áp dụng trước giới hạn chiến đấu."
     },
     {
+      "source": "DRINKS",
+      "target": "THỨC UỐNG"
+    },
+    {
       "source": "DRIVEN BACK INTO THE DARK",
       "target": "LÁI TRỞ LẠI VÀO BÓNG TỐI"
+    },
+    {
+      "source": "DUET",
+      "target": "SONG TẤU"
+    },
+    {
+      "source": "DUMPLINGS",
+      "target": "BÁNH HẤP"
     },
     {
       "source": "Daily Dream",
@@ -7206,7 +7590,7 @@
     },
     {
       "source": "Damage dealt just by touching enemies.",
-      "target": "Sát thương gây ra chỉ bằng cách chạm vào kẻ thù."
+      "target": "Sát thương gây ra khi chạm vào kẻ địch."
     },
     {
       "source": "Damage numbers",
@@ -7321,6 +7705,10 @@
       "target": "Rễ sâu: trần lãi +2."
     },
     {
+      "source": "Deep strike",
+      "target": "Đột kích sâu"
+    },
+    {
       "source": "Deep strike: the bell's ram (every 0.35s, radius 0.75 ahead) and its depth charges strike 15% harder, at most 3 enemies each.",
       "target": "Đòn tấn công sâu: đòn tấn công của chuông (cứ sau 0,35 giây, bán kính 0,75 phía trước) và điện tích độ sâu của nó tấn công mạnh hơn 15%, tối đa 3 kẻ địch mỗi chiếc."
     },
@@ -7347,6 +7735,10 @@
     {
       "source": "Defeat to unlock",
       "target": "Đánh bại để mở khóa"
+    },
+    {
+      "source": "Defeating a recorded species splits off a little slime that fights",
+      "target": "Đánh bại một loài được ghi nhận sẽ tách ra một ít chất nhờn chiến đấu"
     },
     {
       "source": "Defeating a recorded species splits off a little slime that fights beside it (at most 2 a fight).",
@@ -7773,6 +8165,10 @@
       "target": "Uống di vật: tăng +"
     },
     {
+      "source": "Drinks",
+      "target": "Thức uống"
+    },
+    {
       "source": "Drinks cost 25% less.",
       "target": "Giá đồ uống giảm 25%."
     },
@@ -7813,8 +8209,12 @@
       "target": "Ruy băng của Duelist"
     },
     {
+      "source": "Duet",
+      "target": "Song tấu"
+    },
+    {
       "source": "Dumplings",
-      "target": "Bánh bao"
+      "target": "Bánh hấp"
     },
     {
       "source": "Dumplings|Pepper|Sorbet",
@@ -7849,6 +8249,10 @@
       "target": "Bụi đọng trên bờ vai bao năm không xê dịch."
     },
     {
+      "source": "EARLY SETTLEMENT",
+      "target": "TẤT TOÁN SỚM"
+    },
+    {
       "source": "ECLIPSE",
       "target": "NHẬT LIỆU"
     },
@@ -7858,7 +8262,7 @@
     },
     {
       "source": "ENCORE",
-      "target": "KIỂM SOÁT"
+      "target": "DIỄN THÊM"
     },
     {
       "source": "ENCORE!",
@@ -7897,6 +8301,14 @@
       "target": "LỖI"
     },
     {
+      "source": "ESCORT",
+      "target": "HỘ TỐNG"
+    },
+    {
+      "source": "EVERGREEN",
+      "target": "THƯỜNG XANH"
+    },
+    {
       "source": "EVIDENCE",
       "target": "BẰNG CHỨNG"
     },
@@ -7907,6 +8319,10 @@
     {
       "source": "EXIT",
       "target": "THOÁT"
+    },
+    {
+      "source": "EXPRESS",
+      "target": "CHUYỂN PHÁT NHANH"
     },
     {
       "source": "Each Carousel Pony grants this friend 30% damage and 5 contact damage, up to 3 ponies.",
@@ -8209,6 +8625,10 @@
       "target": "Thị trường sớm"
     },
     {
+      "source": "Early settlement",
+      "target": "Tất toán sớm"
+    },
+    {
       "source": "Earned in the Wardrobe by playing this hero.",
       "target": "Kiếm được trong Tủ quần áo khi chơi anh hùng này."
     },
@@ -8334,7 +8754,7 @@
     },
     {
       "source": "Encore",
-      "target": "Encore"
+      "target": "Diễn thêm"
     },
     {
       "source": "Encore review requires an isolated diagnostic boss",
@@ -8561,12 +8981,20 @@
       "target": "Thoát khỏi Thimble"
     },
     {
+      "source": "Escort",
+      "target": "Hộ tống"
+    },
+    {
       "source": "Escort|Procession|Close circle",
       "target": "Hộ tống|Rước|Đóng vòng tròn"
     },
     {
       "source": "Even the smallest root can break a nightmare.",
       "target": "Ngay cả một cái rễ nhỏ nhất cũng có thể phá tan cơn ác mộng."
+    },
+    {
+      "source": "Evergreen",
+      "target": "Thường xanh"
     },
     {
       "source": "Evergreen: the garden stands 1.5s longer and heals you 1 HP every 2s; the hand strikes 15% lighter.",
@@ -8753,6 +9181,10 @@
       "target": "Cứ sau 6 giây lại quay một quả bóng trên mũi của nó: kẻ địch trong phạm vi 3,5 đơn vị sẽ bật quả bóng đó trong 1,5 giây."
     },
     {
+      "source": "Every 6s sprays a column of water on the enemy nearest the hero, soaking",
+      "target": "Cứ 6 giây lại phun một cột nước vào kẻ địch gần tướng nhất, ngâm mình"
+    },
+    {
       "source": "Every 6s sprays a column of water on the enemy nearest the hero, soaking the ones around and pushing them back.",
       "target": "Cứ sau 6 giây lại phun một cột nước vào kẻ địch gần anh hùng nhất, làm ướt những kẻ xung quanh và đẩy chúng lùi lại."
     },
@@ -8761,12 +9193,20 @@
       "target": "Cứ sau 7 giây lại có một tiếng còi băng giá: một luồng gió lạnh phía trước sẽ đóng băng 3 kẻ địch đầu tiên trong đó trong 1 giây."
     },
     {
+      "source": "Every 7s sets a teapot ahead; it whistles, then bursts in scalding",
+      "target": "Cứ 7 giây lại đặt một ấm trà về phía trước; nó rít lên rồi bùng cháy dữ dội"
+    },
+    {
       "source": "Every 7s sets a teapot ahead; it whistles, then bursts in scalding steam that spreads to the enemies beside it.",
       "target": "Cứ 7 giây lại đặt một ấm trà về phía trước; nó huýt sáo, sau đó bùng lên hơi nước nóng lan sang kẻ thù bên cạnh."
     },
     {
       "source": "Every 8s an undertow from the front line pushes the 5 enemies nearest the hero back 2 units and soaks them.",
       "target": "Cứ sau 8 giây, một đợt tấn công từ tiền tuyến đẩy 5 kẻ thù gần anh hùng nhất lùi lại 2 đơn vị và nhấn chìm chúng."
+    },
+    {
+      "source": "Every 8s grows a thorn hedge ahead that stops enemies for 3s; each",
+      "target": "Cứ sau 8 giây lại mọc ra một hàng rào gai phía trước ngăn chặn kẻ thù trong 3 giây; mỗi"
     },
     {
       "source": "Every 8s grows a thorn hedge ahead that stops enemies for 3s; each fight a sapling sprouts to fight beside it.",
@@ -8795,6 +9235,10 @@
     {
       "source": "Every blow is a loan: 35% of a personal basic that does not finish its target is deferred, up to three times your weapon damage. The debt is collected from that same enemy after 4s, 2.5s, or 5s depending on your approach, with interest: 320%, 260% or 320% of the bank. Choose a focused payment, early settlement, or frost instalments. Bosses keep moving; debt cannot recursively bank itself.",
       "target": "Mỗi đòn đánh là một khoản cho vay: 35% lượng cơ bản cá nhân không hoàn thành mục tiêu sẽ bị hoãn lại, tối đa gấp ba lần sát thương vũ khí của bạn. Khoản nợ sẽ được thu từ chính kẻ thù đó sau 4 giây, 2,5 giây hoặc 5 giây tùy theo cách tiếp cận của bạn, với lãi suất: 320%, 260% hoặc 320% ngân hàng. Chọn một khoản thanh toán tập trung, thanh toán sớm hoặc trả góp đóng băng. Các ông chủ tiếp tục di chuyển; nợ không thể tự gửi vào ngân hàng một cách đệ quy."
+    },
+    {
+      "source": "Every blow leaves a puddle of cream; an enemy that stands in it for",
+      "target": "Mỗi cú đánh đều để lại một vũng kem; một kẻ thù đứng trong đó vì"
     },
     {
       "source": "Every blow leaves a puddle of cream; an enemy that stands in it for 2s freezes for 1s.",
@@ -8878,7 +9322,7 @@
     },
     {
       "source": "Every friend fights with its own weapon, by itself.",
-      "target": "Mỗi người bạn chiến đấu bằng chính vũ khí của mình."
+      "target": "Mỗi đồng hành tự chiến đấu bằng vũ khí riêng."
     },
     {
       "source": "Every friend may appear in your shop. Monsters +30% and +60% health, rising 5% and 10% more each wave. Rerolls cost 3 less gold.",
@@ -9113,6 +9557,10 @@
       "target": "Vụ nổ"
     },
     {
+      "source": "Express",
+      "target": "Chuyển phát nhanh"
+    },
+    {
       "source": "Express Delivery",
       "target": "Chuyển phát nhanh"
     },
@@ -9130,15 +9578,15 @@
     },
     {
       "source": "Extra HP from every heart you pick up.",
-      "target": "Thêm HP từ mỗi trái tim bạn nhặt được."
+      "target": "Tăng lượng máu hồi khi nhặt tim."
     },
     {
       "source": "Extra damage on every close hit.",
-      "target": "Tăng thêm sát thương cho mỗi lần đánh gần."
+      "target": "Tăng sát thương cho mỗi đòn cận chiến."
     },
     {
       "source": "Extra damage on every shot.",
-      "target": "Tăng thêm sát thương trên mỗi phát bắn."
+      "target": "Tăng sát thương cho mỗi viên đạn."
     },
     {
       "source": "Extra loot from kills",
@@ -9169,8 +9617,16 @@
       "target": "GIA ĐÌNH ·"
     },
     {
+      "source": "FAN OUT",
+      "target": "TỎA RỘNG"
+    },
+    {
       "source": "FAVOUR",
       "target": "ƯU ĐÃI"
+    },
+    {
+      "source": "FEATURED ACT",
+      "target": "TIẾT MỤC CHÍNH"
     },
     {
       "source": "FELL TO",
@@ -9277,8 +9733,20 @@
       "target": "LÀO"
     },
     {
+      "source": "FORKED LIGHTNING",
+      "target": "SÉT PHÂN NHÁNH"
+    },
+    {
       "source": "FORM UP:",
       "target": "HÌNH THỨC:"
+    },
+    {
+      "source": "FOUNTAIN",
+      "target": "ĐÀI PHUN"
+    },
+    {
+      "source": "FRAGILE",
+      "target": "HÀNG DỄ VỠ"
     },
     {
       "source": "FREE THE COURIER",
@@ -9302,11 +9770,19 @@
     },
     {
       "source": "FRIENDS",
-      "target": "BẠN BÈ"
+      "target": "ĐỒNG HÀNH"
     },
     {
       "source": "FULL MOON",
       "target": "TRĂNG TRĂNG"
+    },
+    {
+      "source": "FULL PAYMENT",
+      "target": "THANH TOÁN ĐỦ"
+    },
+    {
+      "source": "FULL TROUPE",
+      "target": "CẢ ĐOÀN"
     },
     {
       "source": "FULL_SAIL!",
@@ -9385,6 +9861,10 @@
       "target": "Gia đình"
     },
     {
+      "source": "Fan out",
+      "target": "Tỏa rộng"
+    },
+    {
       "source": "Fanfare: the first attack of every friend each wave fires one extra shot.",
       "target": "Phô trương: đòn tấn công đầu tiên của mỗi người bạn, mỗi đợt sẽ bắn thêm một phát."
     },
@@ -9427,6 +9907,10 @@
     {
       "source": "Featured",
       "target": "Nổi bật"
+    },
+    {
+      "source": "Featured act",
+      "target": "Tiết mục chính"
     },
     {
       "source": "Featured act|Duet|Wide stage",
@@ -9730,11 +10214,15 @@
     },
     {
       "source": "Flies out and comes back to its owner.",
-      "target": "Bay ra ngoài và trở về với chủ nhân của nó."
+      "target": "Bay ra rồi quay về với người sử dụng."
     },
     {
       "source": "Flies out, then returns after the first hit or 0.7 seconds on a miss. The return path can hit other targets; each target takes only one hit per throw, without doubled return damage.",
       "target": "Bay ra ngoài, sau đó quay lại sau cú đánh đầu tiên hoặc 0,7 giây nếu bắn trượt. Đường quay về có thể bắn trúng các mục tiêu khác; mỗi mục tiêu chỉ nhận một đòn mỗi lần ném, không có sát thương phản hồi gấp đôi."
+    },
+    {
+      "source": "Flies over the fight; every 5s sweeps a cutting band of wind across",
+      "target": "Bay qua cuộc chiến; cứ 5 giây lại quét một dải gió cắt ngang"
     },
     {
       "source": "Flies over the fight; every 5s sweeps a cutting band of wind across the field ahead.",
@@ -9811,6 +10299,10 @@
     {
       "source": "Follow the warm lights. I shall keep one for you.",
       "target": "Đi theo ánh đèn ấm áp. Tôi sẽ giữ một cái cho bạn."
+    },
+    {
+      "source": "Food",
+      "target": "Thức ăn"
     },
     {
       "source": "Food costs 15% less.",
@@ -9909,6 +10401,10 @@
       "target": "Cây đinh ba ngã ba"
     },
     {
+      "source": "Forked lightning",
+      "target": "Sét phân nhánh"
+    },
+    {
       "source": "Form",
       "target": "Mẫu"
     },
@@ -9953,6 +10449,10 @@
       "target": "Tìm thấy mọi combo"
     },
     {
+      "source": "Fountain",
+      "target": "Đài phun"
+    },
+    {
       "source": "Four lamps, four corners. Shall I light them?",
       "target": "Bốn đèn, bốn góc. Tôi thắp chúng nhé?"
     },
@@ -9983,6 +10483,10 @@
     {
       "source": "Four-Leaf Clover",
       "target": "Cỏ Bốn Lá"
+    },
+    {
+      "source": "Fragile",
+      "target": "Hàng dễ vỡ"
     },
     {
       "source": "Frame probe",
@@ -10162,15 +10666,15 @@
     },
     {
       "source": "Friends cannot be hurt; only your hero can.",
-      "target": "Bạn bè không thể bị tổn thương; chỉ có anh hùng của bạn mới có thể."
+      "target": "Đồng hành không bị thương; chỉ anh hùng nhận sát thương."
     },
     {
       "source": "Friends catch enemy shots that would hit you.",
-      "target": "Bạn bè bắt được những phát đạn của kẻ thù sẽ bắn trúng bạn."
+      "target": "Đồng hành chặn các viên đạn địch đang bay về phía bạn."
     },
     {
       "source": "Friends cost less gold.",
-      "target": "Bạn bè tốn ít vàng hơn."
+      "target": "Giảm giá tuyển đồng hành bằng vàng."
     },
     {
       "source": "Friends deal +10% damage to the bounty.",
@@ -10230,11 +10734,11 @@
     },
     {
       "source": "Friends get bigger.",
-      "target": "Tình bạn ngày càng lớn hơn."
+      "target": "Tăng kích thước đồng hành."
     },
     {
       "source": "Friends hit harder against kinds of enemy you have already met this run.",
-      "target": "Bạn bè tấn công mạnh mẽ hơn vào các loại kẻ thù mà bạn đã gặp trong lần chạy này."
+      "target": "Đồng hành gây thêm sát thương lên các loại địch bạn đã gặp trong lượt chơi này."
     },
     {
       "source": "Friends never attack on their own: on each of your critical attacks, every ready friend has a 50% chance to use its equipped weapon at 180% damage, with its own windup, cooldown and star effects. Your shots cannot split. +10% crit, 2 projectiles.",
@@ -10250,7 +10754,7 @@
     },
     {
       "source": "Friends of the same family together unlock a bonus; the card shows how many you need.",
-      "target": "Bạn bè cùng gia đình cùng nhau mở khóa phần thưởng; thẻ cho biết bạn cần bao nhiêu."
+      "target": "Đồng hành cùng gia tộc kích hoạt bonus liên kết; thẻ ghi rõ số lượng cần có."
     },
     {
       "source": "Friends of this theme join this hero's shop more often.",
@@ -10445,12 +10949,20 @@
       "target": "Giao hàng đầy đủ!"
     },
     {
+      "source": "Full payment",
+      "target": "Thanh toán đủ"
+    },
+    {
       "source": "Full payment|Early settlement|Winter instalments",
       "target": "Thanh toán đầy đủ|Thanh toán sớm|Trả góp mùa đông"
     },
     {
       "source": "Full steam ahead!",
       "target": "Hết sức tiến về phía trước!"
+    },
+    {
+      "source": "Full troupe",
+      "target": "Cả đoàn"
     },
     {
       "source": "Full troupe: the opening balls land a little wider apart, on up to five different enemies at normal weight.",
@@ -10513,6 +11025,10 @@
       "target": "CHO"
     },
     {
+      "source": "GLANDS",
+      "target": "TUYẾN"
+    },
+    {
       "source": "GO THROUGH",
       "target": "ĐI QUA"
     },
@@ -10551,6 +11067,18 @@
     {
       "source": "GRAND TAPESTRY",
       "target": "Tấm thảm LỚN"
+    },
+    {
+      "source": "GUARD NURSERY",
+      "target": "VƯỜN HỘ VỆ"
+    },
+    {
+      "source": "GUARD SWEEP",
+      "target": "QUÉT PHÒNG THỦ"
+    },
+    {
+      "source": "GUIDE NURSERY",
+      "target": "VƯỜN DẪN ĐƯỜNG"
     },
     {
       "source": "GULP!",
@@ -10657,6 +11185,10 @@
       "target": "Cho tôi một ốc vít và nửa phút đầy hy vọng."
     },
     {
+      "source": "Glands",
+      "target": "Tuyến"
+    },
+    {
       "source": "Glass",
       "target": "Kính"
     },
@@ -10742,7 +11274,7 @@
     },
     {
       "source": "Gold prices in the shop go down (up to half).",
-      "target": "Giá vàng trong shop giảm (tới một nửa)."
+      "target": "Giảm giá mua bằng vàng trong cửa hàng, tối đa 50%."
     },
     {
       "source": "Gold root",
@@ -10750,11 +11282,11 @@
     },
     {
       "source": "Gold you get after each wave.",
-      "target": "Vàng bạn nhận được sau mỗi đợt."
+      "target": "Lượng vàng nhận được sau mỗi đợt."
     },
     {
       "source": "Gold you keep earns extra gold after each wave; this raises the most it can earn.",
-      "target": "Vàng bạn giữ sẽ kiếm thêm vàng sau mỗi đợt; điều này làm tăng nhiều nhất nó có thể kiếm được."
+      "target": "Vàng giữ lại sinh lãi sau mỗi đợt; chỉ số này tăng giới hạn vàng lãi."
     },
     {
       "source": "Gold-Plated Ring",
@@ -10885,6 +11417,10 @@
       "target": "Hãy lớn lên nào các bạn nhỏ!"
     },
     {
+      "source": "Guard nursery",
+      "target": "Vườn hộ vệ"
+    },
+    {
       "source": "Guard nursery|Striker nursery|Guide nursery",
       "target": "Vườn ươm bảo vệ|Vườn ươm tiền đạo|Vườn ươm hướng dẫn"
     },
@@ -10893,12 +11429,20 @@
       "target": "Cánh hoa bảo vệ"
     },
     {
+      "source": "Guard sweep",
+      "target": "Quét phòng thủ"
+    },
+    {
       "source": "Guard: stands in front and pushes back.",
       "target": "Bảo vệ: đứng trước đẩy sau."
     },
     {
       "source": "Guardian Canopy",
       "target": "Mái che bảo vệ"
+    },
+    {
+      "source": "Guide nursery",
+      "target": "Vườn dẫn đường"
     },
     {
       "source": "Guiding Lamp",
@@ -10923,6 +11467,10 @@
     {
       "source": "HARDENED · -",
       "target": "CỨNG · -"
+    },
+    {
+      "source": "HARVEST",
+      "target": "THU HOẠCH"
     },
     {
       "source": "HE NEVER USES THE COUNTER",
@@ -10973,6 +11521,10 @@
       "target": "HOB VẪN NGỒI"
     },
     {
+      "source": "HOLD GROUND",
+      "target": "GIỮ VỊ TRÍ"
+    },
+    {
       "source": "HOME RUN!",
       "target": "CHẠY NHÀ!"
     },
@@ -10998,7 +11550,7 @@
     },
     {
       "source": "HP you get back every second.",
-      "target": "HP bạn nhận lại sau mỗi giây."
+      "target": "Lượng máu tự hồi mỗi giây."
     },
     {
       "source": "HP/s and +",
@@ -11058,7 +11610,7 @@
     },
     {
       "source": "Happens by itself; nothing to press.",
-      "target": "Tự xảy ra; không có gì để nhấn."
+      "target": "Tự động có hiệu lực, không cần bấm nút."
     },
     {
       "source": "Harbor Whale",
@@ -11087,6 +11639,10 @@
     {
       "source": "Harpoon",
       "target": "Cây lao móc"
+    },
+    {
+      "source": "Harvest",
+      "target": "Thu hoạch"
     },
     {
       "source": "Harvest Receipt",
@@ -11358,7 +11914,7 @@
     },
     {
       "source": "Hero & friends",
-      "target": "Anh hùng và những người bạn"
+      "target": "Anh hùng và đồng hành"
     },
     {
       "source": "Hero & friends damage +20% and speed +10%. Enemies move 10% faster.",
@@ -11455,6 +12011,10 @@
     {
       "source": "Hero basic hits poison the target for 4s. Each second the poison deals damage equal to your wave income (at least 1). A new hit restarts the 4s; poisons do not stack.",
       "target": "Các đòn đánh cơ bản của anh hùng đầu độc mục tiêu trong 4 giây. Mỗi giây chất độc gây sát thương bằng với thu nhập sóng của bạn (ít nhất là 1). Một cú đánh mới khởi động lại 4s; chất độc không xếp chồng lên nhau."
+    },
+    {
+      "source": "Hero contact damage",
+      "target": "Sát thương va chạm của anh hùng"
     },
     {
       "source": "Hero contact damage gains 50% of the positive hero flat melee bonus, per copy.",
@@ -11658,7 +12218,7 @@
     },
     {
       "source": "Hits push enemies farther back.",
-      "target": "Cú đánh đẩy kẻ địch lùi xa hơn."
+      "target": "Đòn đánh đẩy lùi kẻ địch xa hơn."
     },
     {
       "source": "Hm. Again.|stoic",
@@ -11703,6 +12263,10 @@
     {
       "source": "Hobble",
       "target": "Hobble"
+    },
+    {
+      "source": "Hold ground",
+      "target": "Giữ vị trí"
     },
     {
       "source": "Hold it by the handle.|practical advice",
@@ -11878,47 +12442,47 @@
     },
     {
       "source": "How close you must walk to open a chest.",
-      "target": "Bạn phải đi gần đến mức nào để mở rương."
+      "target": "Khoảng cách cần tới gần để mở rương."
     },
     {
       "source": "How far attacks reach.",
-      "target": "Các cuộc tấn công có phạm vi bao xa."
+      "target": "Tầm với của đòn đánh."
     },
     {
       "source": "How far away coins, dreamsand and hearts start flying to you.",
-      "target": "Bao nhiêu đồng xu, ước mơ và trái tim bắt đầu bay về phía bạn."
+      "target": "Khoảng cách tự hút vàng, cát mơ và tim hồi máu."
     },
     {
       "source": "How far friends wander from you to fight.",
-      "target": "Bạn bè rời xa bạn để chiến đấu bao xa."
+      "target": "Khoảng cách đồng hành có thể rời bạn để chiến đấu."
     },
     {
       "source": "How fast enemies move.",
-      "target": "Tốc độ di chuyển của kẻ thù."
+      "target": "Tốc độ di chuyển của kẻ địch."
     },
     {
       "source": "How fast you walk.",
-      "target": "Bạn đi bộ nhanh như thế nào."
+      "target": "Tốc độ di chuyển của bạn."
     },
     {
       "source": "How hard every hit lands, in percent.",
-      "target": "Độ khó của mỗi cú đánh, tính bằng phần trăm."
+      "target": "Mức tăng sát thương mỗi đòn đánh, tính theo phần trăm."
     },
     {
       "source": "How hard every hit lands.",
-      "target": "Mỗi lần chạm đất đều khó khăn biết bao."
+      "target": "Lượng sát thương gây ra trong mỗi đòn đánh."
     },
     {
       "source": "How many enemies come each wave.",
-      "target": "Mỗi đợt có bao nhiêu kẻ địch đến."
+      "target": "Số kẻ địch xuất hiện trong mỗi đợt."
     },
     {
       "source": "How much HP enemies have.",
-      "target": "Kẻ địch có bao nhiêu HP."
+      "target": "Lượng máu của kẻ địch."
     },
     {
       "source": "How often attacks come; higher means less waiting between hits.",
-      "target": "Tần suất các cuộc tấn công xảy ra; cao hơn có nghĩa là ít chờ đợi hơn giữa các lần truy cập."
+      "target": "Tốc độ tấn công; chỉ số càng cao, thời gian chờ giữa hai đòn càng ngắn."
     },
     {
       "source": "How the Night Works",
@@ -13566,7 +14130,7 @@
     },
     {
       "source": "Keep going after dawn with the same brigade; every wave is harder.",
-      "target": "Tiếp tục đi sau bình minh với cùng lữ đoàn; mọi đợt sóng đều khó khăn hơn."
+      "target": "Tiếp tục cùng lữ đoàn sau bình minh; mỗi đợt sẽ khó hơn."
     },
     {
       "source": "Keep it, then. Keep the voice.|yawning away",
@@ -13845,12 +14409,20 @@
       "target": "CÂY ĐÈN"
     },
     {
+      "source": "LANCES",
+      "target": "THƯƠNG"
+    },
+    {
       "source": "LANTERN STRIDE",
       "target": "sải bước đèn lồng"
     },
     {
       "source": "LANTERN STRIDE: travel 12 units to charge a melee pulse within 2.4 units; deals 65% weapon damage, minimum once every 4s. Holds one pulse until an enemy is nearby. No charge in shops or while paused.",
       "target": "sải bước đèn lồng: di chuyển 12 đơn vị để tích một xung cận chiến trong phạm vi 2,4 đơn vị; gây 65% ​​sát thương vũ khí, tối thiểu 4 giây một lần. Giữ một xung cho đến khi kẻ địch ở gần. Không tính phí tại các cửa hàng hoặc trong khi tạm dừng."
+    },
+    {
+      "source": "LARGE ACCOUNTS",
+      "target": "KHOẢN LỚN"
     },
     {
       "source": "LATER",
@@ -13889,6 +14461,10 @@
       "target": "ĐỂ NÓ RỒI"
     },
     {
+      "source": "LID",
+      "target": "NẮP"
+    },
+    {
       "source": "LIFE IN THE WAITING REALM",
       "target": "CUỘC SỐNG TRONG CHỜ CHỜ"
     },
@@ -13909,8 +14485,20 @@
       "target": "CÂY SỐNG"
     },
     {
+      "source": "LOCAL ACCOUNTS",
+      "target": "KHOẢN LÂN CẬN"
+    },
+    {
       "source": "LOCKED",
       "target": "ĐÃ KHÓA"
+    },
+    {
+      "source": "LONG DIVE",
+      "target": "LẶN SÂU"
+    },
+    {
+      "source": "LONG VOYAGE",
+      "target": "HẢI TRÌNH DÀI"
     },
     {
       "source": "LOOK",
@@ -13922,7 +14510,7 @@
     },
     {
       "source": "LUCID",
-      "target": "LUÔN"
+      "target": "SÁNG SUỐT"
     },
     {
       "source": "LUCID ALTAR",
@@ -13997,8 +14585,16 @@
       "target": "Lance"
     },
     {
+      "source": "Lances",
+      "target": "Thương"
+    },
+    {
       "source": "Lances|Crown|Crossed receipt",
       "target": "Lances|Vương miện|Biên lai chéo"
+    },
+    {
+      "source": "Lands beside you and knocks three times; each knock sends a wave,",
+      "target": "Tiếp đất bên cạnh bạn và gõ ba lần; mỗi tiếng gõ sẽ tạo ra một làn sóng,"
     },
     {
       "source": "Lands beside you and knocks three times; each knock sends a wave, the third the widest.",
@@ -14067,6 +14663,10 @@
     {
       "source": "Lantern stride",
       "target": "Sải bước đèn lồng"
+    },
+    {
+      "source": "Large accounts",
+      "target": "Khoản lớn"
     },
     {
       "source": "Large enemies and leaders drop dreamsand.",
@@ -14138,7 +14738,7 @@
     },
     {
       "source": "Lasts until the run ends.",
-      "target": "Kéo dài cho đến khi kết thúc lượt chạy."
+      "target": "Có hiệu lực đến hết lượt chơi."
     },
     {
       "source": "Latch",
@@ -14513,6 +15113,10 @@
       "target": "Mặt nạ nói dối"
     },
     {
+      "source": "Lid",
+      "target": "Nắp"
+    },
+    {
       "source": "Lid: stand still for 0.5s and the lid catches one hostile shot (every 4s).",
       "target": "Nắp: đứng yên trong 0,5 giây và nắp bắt được một phát đạn thù địch (cứ sau 4 giây)."
     },
@@ -14701,6 +15305,10 @@
       "target": "Ném một bó pháo từ từ theo hình vòng cung cao. Nó tiếp đất mục tiêu và bùng nổ 170% trên diện rộng, đẩy kẻ địch lùi lại."
     },
     {
+      "source": "Local accounts",
+      "target": "Khoản lân cận"
+    },
+    {
       "source": "Local accounts|Collectors|Large accounts",
       "target": "Tài khoản địa phương|Người sưu tập|Tài khoản lớn"
     },
@@ -14757,6 +15365,10 @@
       "target": "Tay dài"
     },
     {
+      "source": "Long dive",
+      "target": "Lặn sâu"
+    },
+    {
       "source": "Long dive: the dive lasts 1.5s longer and heals you 1 HP every 2s; the ram and charges strike 15% lighter.",
       "target": "Lặn lâu: lần lặn kéo dài hơn 1,5 giây và hồi cho bạn 1 HP sau mỗi 2 giây; ram và sạc nhẹ hơn 15%."
     },
@@ -14775,6 +15387,10 @@
     {
       "source": "Long shots",
       "target": "Cú sút xa"
+    },
+    {
+      "source": "Long voyage",
+      "target": "Hải trình dài"
     },
     {
       "source": "Long voyage: shots split in two as in the tight formation; the fleet flies 1.5s longer and you heal 1 HP every 2s while it flies.",
@@ -14885,6 +15501,10 @@
       "target": "Viên ngậm"
     },
     {
+      "source": "Lucid",
+      "target": "Sáng suốt"
+    },
+    {
       "source": "Lucid light",
       "target": "Ánh sáng trong suốt"
     },
@@ -14987,6 +15607,10 @@
     {
       "source": "MISSING MATERIALS",
       "target": "THIẾU VẬT LIỆU"
+    },
+    {
+      "source": "MIST",
+      "target": "SƯƠNG MÙ"
     },
     {
       "source": "MITOSIS",
@@ -15477,6 +16101,10 @@
       "target": "Nhật ký khám phá biến thể bị thiếu"
     },
     {
+      "source": "Mist",
+      "target": "Sương mù"
+    },
+    {
       "source": "Molten Broadside",
       "target": "Bề rộng nóng chảy"
     },
@@ -15538,7 +16166,7 @@
     },
     {
       "source": "More copies add more of the same bonus.",
-      "target": "Nhiều bản sao hơn sẽ thêm nhiều phần thưởng giống nhau."
+      "target": "Sở hữu thêm bản sao sẽ cộng thêm bonus cùng loại."
     },
     {
       "source": "More friends increase attack",
@@ -15546,11 +16174,11 @@
     },
     {
       "source": "More gold in every chest.",
-      "target": "Nhiều vàng hơn trong mỗi rương."
+      "target": "Tăng lượng vàng trong mỗi rương."
     },
     {
       "source": "More loot and rarer shop offers.",
-      "target": "Nhiều chiến lợi phẩm hơn và các ưu đãi hiếm hơn trong cửa hàng."
+      "target": "Tăng vật phẩm rơi ra và cơ hội gặp hàng hiếm trong cửa hàng."
     },
     {
       "source": "More of me. I can still be one.",
@@ -15578,7 +16206,7 @@
     },
     {
       "source": "More shots in every volley.",
-      "target": "Nhiều cú sút hơn trong mỗi cú vô lê."
+      "target": "Tăng số viên đạn trong mỗi loạt bắn."
     },
     {
       "source": "Morning Bells",
@@ -15682,27 +16310,27 @@
     },
     {
       "source": "Multiplies a stat after every other bonus to it.",
-      "target": "Nhân một chỉ số sau mỗi phần thưởng khác cho nó."
+      "target": "Nhân chỉ số sau khi đã áp dụng các bonus khác."
     },
     {
       "source": "Multiplies armor after every other armor bonus.",
-      "target": "Nhân giáp sau mỗi lần thưởng giáp khác."
+      "target": "Nhân giáp sau khi đã cộng các bonus giáp khác."
     },
     {
       "source": "Multiplies damage after every other damage bonus.",
-      "target": "Nhân sát thương sau mỗi lần sát thương cộng thêm khác."
+      "target": "Nhân sát thương sau khi đã cộng các bonus sát thương khác."
     },
     {
       "source": "Multiplies move speed after every other speed bonus.",
-      "target": "Nhân tốc độ di chuyển sau mỗi phần thưởng tốc độ khác."
+      "target": "Nhân tốc độ di chuyển sau khi đã cộng các bonus tốc độ khác."
     },
     {
       "source": "Multiplies your HP regen.",
-      "target": "Nhân số lần hồi HP của bạn."
+      "target": "Nhân lượng máu tự hồi."
     },
     {
       "source": "Multiplies your max HP after every other HP bonus.",
-      "target": "Nhân HP tối đa của bạn sau mỗi lần thưởng HP khác."
+      "target": "Nhân máu tối đa sau khi đã cộng các bonus máu khác."
     },
     {
       "source": "Mummy",
@@ -15727,6 +16355,10 @@
     {
       "source": "Music Box",
       "target": "Hộp Nhạc"
+    },
+    {
+      "source": "Music Box + Record echoes every third note. Music extends live marks;",
+      "target": "Hộp nhạc + Bản ghi vang vọng đến từng nốt thứ ba. Âm nhạc mở rộng dấu ấn sống động;"
     },
     {
       "source": "Music Box + Record echoes every third note. Music extends live marks; Carbon bell exposes targets. Each echo ends, never echoes itself.",
@@ -15841,6 +16473,10 @@
       "target": "GẦN ĐÓ"
     },
     {
+      "source": "NEEDLEWORK",
+      "target": "KHÂU KIM"
+    },
+    {
       "source": "NEW",
       "target": "MỚI"
     },
@@ -15867,6 +16503,10 @@
     {
       "source": "NEW RUN",
       "target": "LƯỢT CHƠI MỚI"
+    },
+    {
+      "source": "NEW SPECIMENS",
+      "target": "MẪU VẬT MỚI"
     },
     {
       "source": "NEXT",
@@ -15985,6 +16625,10 @@
       "target": "Mục tiêu kim"
     },
     {
+      "source": "Needlework",
+      "target": "Khâu kim"
+    },
+    {
       "source": "Needlework|Broken mirror|Sheltering stitch",
       "target": "May vá|Gương vỡ|Khâu che chắn"
     },
@@ -16043,6 +16687,10 @@
     {
       "source": "New shelf. Same shop.|wry, patient",
       "target": "Kệ mới. Cùng một cửa hàng.|cằn nhằn, kiên nhẫn"
+    },
+    {
+      "source": "New specimens",
+      "target": "Mẫu vật mới"
     },
     {
       "source": "New stock! The old stock has gone for a nap.",
@@ -17489,6 +18137,10 @@
       "target": "THANH TOÁN"
     },
     {
+      "source": "PEPPER",
+      "target": "RẮC TIÊU"
+    },
+    {
       "source": "PERFORM",
       "target": "THỰC HIỆN"
     },
@@ -17565,6 +18217,10 @@
       "target": "ĐĂNG KÝ"
     },
     {
+      "source": "PRESERVE",
+      "target": "BẢO TỒN"
+    },
+    {
       "source": "PRESSURE COOKER",
       "target": "NỒI ÁP SUẤT"
     },
@@ -17581,6 +18237,10 @@
       "target": "PRISM"
     },
     {
+      "source": "PRISM RING",
+      "target": "VÒNG LĂNG KÍNH"
+    },
+    {
       "source": "PRISM SHARDS",
       "target": "MẢNH LĨNH VỰC"
     },
@@ -17593,8 +18253,20 @@
       "target": "ĐÃ XỬ LÝ!"
     },
     {
+      "source": "PROCESSION",
+      "target": "DIỄU HÀNH"
+    },
+    {
+      "source": "PRUNED HAND",
+      "target": "TAY CẮT TỈA"
+    },
+    {
       "source": "PSSHH! FSSST!",
       "target": "PSSHH! FSSST!"
+    },
+    {
+      "source": "PULL STITCH",
+      "target": "MŨI KHÂU KÉO"
     },
     {
       "source": "PULLING",
@@ -17822,7 +18494,7 @@
     },
     {
       "source": "Pay gold for new offers in the shop.",
-      "target": "Trả vàng cho các ưu đãi mới trong cửa hàng."
+      "target": "Trả vàng để đổi các món hàng trong cửa hàng."
     },
     {
       "source": "Pay gold, trade a relic or fight the owner for a rare relic.",
@@ -17879,6 +18551,10 @@
     {
       "source": "Penny Broker",
       "target": "Nhà môi giới xu"
+    },
+    {
+      "source": "Pepper",
+      "target": "Rắc tiêu"
     },
     {
       "source": "Perfume",
@@ -17962,7 +18638,7 @@
     },
     {
       "source": "Picked up in fights and earned after each wave; spend it in the shop.",
-      "target": "Có được trong các trận chiến và kiếm được sau mỗi đợt; tiêu nó trong cửa hàng."
+      "target": "Nhặt khi chiến đấu hoặc nhận sau mỗi đợt; dùng mua hàng trong cửa hàng."
     },
     {
       "source": "Picking up gold strikes a random foe. Scales with luck.",
@@ -18321,6 +18997,10 @@
       "target": "Bản trình bày yêu cầu chế độ chụp riêng biệt"
     },
     {
+      "source": "Preserve",
+      "target": "Bảo tồn"
+    },
+    {
       "source": "Press Space once. Reach for Hob; the others will help.",
       "target": "Nhấn Space một lần. Tiếp cận Hob; những người khác sẽ giúp đỡ."
     },
@@ -18365,12 +19045,20 @@
       "target": "Bản ghi lăng kính"
     },
     {
+      "source": "Prism ring",
+      "target": "Vòng lăng kính"
+    },
+    {
       "source": "Prizefighters",
       "target": "Người đoạt giải"
     },
     {
       "source": "Proc",
       "target": "Quá trình"
+    },
+    {
+      "source": "Procession",
+      "target": "Diễu hành"
     },
     {
       "source": "Profile save rejected:",
@@ -18421,6 +19109,10 @@
       "target": "Tỉa một chút, gió một chút, đợi một chút."
     },
     {
+      "source": "Pruned hand",
+      "target": "Tay cắt tỉa"
+    },
+    {
       "source": "Pruned hand: the bonsai's hand ticks every 0.5s, a 2.6-unit line that strikes 15% harder and hits at most 3 enemies, slowing them 1s.",
       "target": "Cắt tỉa bàn tay: bàn tay của cây cảnh tích tắc cứ sau 0,5 giây, một đường dài 2,6 đơn vị tấn công mạnh hơn 15% và đánh tối đa 3 kẻ thù, làm chậm chúng 1 giây."
     },
@@ -18439,6 +19131,10 @@
     {
       "source": "Puffer chain",
       "target": "Dây chuyền cá nóc"
+    },
+    {
+      "source": "Pull stitch",
+      "target": "Mũi khâu kéo"
     },
     {
       "source": "Pull them up. All of them.|a last order, its true one",
@@ -18493,6 +19189,10 @@
       "target": "Đặt chúng xuống... nhẹ nhàng.|gập xuống, cẩn thận đến cùng"
     },
     {
+      "source": "QUICKDRAW",
+      "target": "RÚT NHANH"
+    },
+    {
       "source": "QUIT",
       "target": "THOÁT"
     },
@@ -18507,6 +19207,10 @@
     {
       "source": "Quick jabs (90%), each flicking a star shard forward (40%).",
       "target": "Những cú đâm nhanh (90%), mỗi cú ném một mảnh sao về phía trước (40%)."
+    },
+    {
+      "source": "Quickdraw",
+      "target": "Rút nhanh"
     },
     {
       "source": "Quickdraw|Forked lightning|Crosscut",
@@ -18569,6 +19273,10 @@
       "target": "BÁN KÍNH"
     },
     {
+      "source": "RAIN",
+      "target": "MƯA"
+    },
+    {
       "source": "RANK",
       "target": "THỨ HẠNG"
     },
@@ -18595,6 +19303,10 @@
     {
       "source": "READY",
       "target": "SẴN SÀNG"
+    },
+    {
+      "source": "REAR CUT",
+      "target": "CHÉM SAU LƯNG"
     },
     {
       "source": "REAR STRIKE READY",
@@ -18637,6 +19349,10 @@
       "target": "HOÀN TIỀN"
     },
     {
+      "source": "RELAY",
+      "target": "TIẾP SỨC"
+    },
+    {
       "source": "RELIC",
       "target": "DI TRÍ"
     },
@@ -18646,7 +19362,7 @@
     },
     {
       "source": "RELICS",
-      "target": "TIN TỨC"
+      "target": "DI VẬT"
     },
     {
       "source": "RELIGHT",
@@ -18686,7 +19402,7 @@
     },
     {
       "source": "RETURN TO SENDER",
-      "target": "TRẢ LẠI CHO NGƯỜI GỬI"
+      "target": "TRẢ NGƯỜI GỬI"
     },
     {
       "source": "RETURN TO THE SHOP",
@@ -18695,6 +19411,10 @@
     {
       "source": "REWIND · BACK TO WAVE",
       "target": "TÚI LẠI · TRỞ LẠI SÓNG"
+    },
+    {
+      "source": "RIBBON",
+      "target": "DẢI RUY BĂNG"
     },
     {
       "source": "RICOCHET ×",
@@ -18838,7 +19558,7 @@
     },
     {
       "source": "Rarer friends and relics in the shop.",
-      "target": "Bạn bè và di vật hiếm hơn trong cửa hàng."
+      "target": "Tăng cơ hội gặp đồng hành và di vật hiếm trong cửa hàng."
     },
     {
       "source": "Rarer offers",
@@ -18951,6 +19671,10 @@
     {
       "source": "Realtime recording requires actual1920x1080 and timeScale1",
       "target": "Ghi theo thời gian thực yêu cầu thực tế1920x1080 và timeScale1"
+    },
+    {
+      "source": "Rear cut",
+      "target": "Chém sau lưng"
     },
     {
       "source": "Rear cut|Side crescent|Crossing shadow",
@@ -19145,6 +19869,10 @@
       "target": "Cửa hàng thường xuyên:"
     },
     {
+      "source": "Relay",
+      "target": "Tiếp sức"
+    },
+    {
       "source": "Release",
       "target": "Phát hành"
     },
@@ -19194,7 +19922,7 @@
     },
     {
       "source": "Relics cost less gold.",
-      "target": "Di vật có giá ít vàng hơn."
+      "target": "Giảm giá mua di vật bằng vàng."
     },
     {
       "source": "Relics give bonuses for the rest of the run.",
@@ -19341,6 +20069,10 @@
       "target": "Trả lại cho người gửi"
     },
     {
+      "source": "Return to sender",
+      "target": "Trả người gửi"
+    },
+    {
       "source": "Return to sender. All of you.",
       "target": "Trả lại cho người gửi. Tất cả các bạn."
     },
@@ -19374,7 +20106,7 @@
     },
     {
       "source": "Ribbon",
-      "target": "Ruy băng"
+      "target": "Dải ruy băng"
     },
     {
       "source": "Ribbon Harp",
@@ -19630,7 +20362,7 @@
     },
     {
       "source": "Run upgrade. Cannot sell, swap or remove items here.",
-      "target": "Chạy nâng cấp. Không thể bán, trao đổi hoặc loại bỏ các mặt hàng ở đây."
+      "target": "Hiệu lực suốt lượt chơi. Không thể bán, đổi hoặc bỏ di vật tại đây."
     },
     {
       "source": "Run ·",
@@ -19657,6 +20389,10 @@
       "target": "Lượt chạy đã thắng:"
     },
     {
+      "source": "SALUTE",
+      "target": "CHÀO ĐỘI HÌNH"
+    },
+    {
       "source": "SAU →",
       "target": "SAU →"
     },
@@ -19667,6 +20403,10 @@
     {
       "source": "SAVE FAILED",
       "target": "LƯU KHÔNG THẤT BẠI"
+    },
+    {
+      "source": "SECOND MOUTH",
+      "target": "MIỆNG THỨ HAI"
     },
     {
       "source": "SECRET AGREEMENTS",
@@ -19693,6 +20433,10 @@
       "target": "GỬI"
     },
     {
+      "source": "SENTENCE",
+      "target": "KẾT ÁN"
+    },
+    {
       "source": "SERVED!",
       "target": "PHỤC VỤ!"
     },
@@ -19705,8 +20449,16 @@
       "target": "SFX"
     },
     {
+      "source": "SHELTER",
+      "target": "CHE CHỞ"
+    },
+    {
       "source": "SHELTER STITCH",
       "target": "MẶT TRỜI"
+    },
+    {
+      "source": "SHELTERING STITCH",
+      "target": "MŨI KHÂU CHE CHỞ"
     },
     {
       "source": "SHH! SWISH!",
@@ -19737,8 +20489,16 @@
       "target": "CỬA HÀNG"
     },
     {
+      "source": "SHORE",
+      "target": "BỜ BIỂN"
+    },
+    {
       "source": "SHOWTIME",
       "target": "THỜI GIAN CHIA SẺ"
+    },
+    {
+      "source": "SIDE CRESCENT",
+      "target": "TRĂNG LƯỠI LIỀM NGANG"
     },
     {
       "source": "SIGN",
@@ -19747,6 +20507,10 @@
     {
       "source": "SIGNED DELIVERY",
       "target": "KÝ GIAO HÀNG"
+    },
+    {
+      "source": "SINGLE SCOOP",
+      "target": "MỘT VIÊN KEM"
     },
     {
       "source": "SIT DOWN",
@@ -19781,6 +20545,10 @@
       "target": "CHẬM"
     },
     {
+      "source": "SLOW MELT",
+      "target": "TAN CHẬM"
+    },
+    {
       "source": "SLURP!",
       "target": "CÚP LÊN!"
     },
@@ -19793,8 +20561,20 @@
       "target": "Đã bán!"
     },
     {
+      "source": "SOLO",
+      "target": "ĐƠN TẤU"
+    },
+    {
+      "source": "SOLO ACT",
+      "target": "ĐỘC DIỄN"
+    },
+    {
       "source": "SOMEONE IS WAITING",
       "target": "CÓ NGƯỜI ĐANG CHỜ"
+    },
+    {
+      "source": "SORBET",
+      "target": "KEM TRÁI CÂY"
     },
     {
       "source": "SORTING GATLING",
@@ -19803,6 +20583,10 @@
     {
       "source": "SOURCES READY",
       "target": "NGUỒN SẴN SÀNG"
+    },
+    {
+      "source": "SPEAR",
+      "target": "GIÁO"
     },
     {
       "source": "SPECIAL DELIVERY!",
@@ -19819,6 +20603,10 @@
     {
       "source": "SPLISH! DRIP!",
       "target": "TUYỆT VỜI! nhỏ giọt!"
+    },
+    {
+      "source": "SPLIT BET",
+      "target": "CƯỢC CHIA"
     },
     {
       "source": "SPLORCH! GLORP!",
@@ -19874,7 +20662,7 @@
     },
     {
       "source": "STATS",
-      "target": "THỐNG KÊ"
+      "target": "CHỈ SỐ"
     },
     {
       "source": "STAY",
@@ -19901,8 +20689,20 @@
       "target": "CỬA HÀNG CHƯA SẴN SÀNG"
     },
     {
+      "source": "STORM",
+      "target": "BÃO"
+    },
+    {
+      "source": "STRAIGHT BET",
+      "target": "CƯỢC THẲNG"
+    },
+    {
       "source": "STRIKE!",
       "target": "TUYỆT VỜI!"
+    },
+    {
+      "source": "STRIKER NURSERY",
+      "target": "VƯỜN XUNG KÍCH"
     },
     {
       "source": "SUNDAE STORM",
@@ -19963,6 +20763,10 @@
     {
       "source": "Salt appears on the destination board. They return from the coast because they choose to bring its map.",
       "target": "Muối xuất hiện trên bảng đích. Họ trở về từ bờ biển vì họ chọn mang theo bản đồ của nó."
+    },
+    {
+      "source": "Salute",
+      "target": "Chào đội hình"
     },
     {
       "source": "Same deck. Every passenger keeps a say in the destination.",
@@ -20141,6 +20945,10 @@
       "target": "Thói quen thứ hai: bạn bè +5% sát thương."
     },
     {
+      "source": "Second mouth",
+      "target": "Miệng thứ hai"
+    },
+    {
       "source": "Secondary",
       "target": "Trung học"
     },
@@ -20239,6 +21047,10 @@
     {
       "source": "Send it now; it arrives later, a little heavier.",
       "target": "Gửi ngay bây giờ; nó đến muộn hơn, nặng hơn một chút."
+    },
+    {
+      "source": "Sentence",
+      "target": "Kết án"
     },
     {
       "source": "Sentence: gone!",
@@ -20409,8 +21221,16 @@
       "target": "Người đưa thư vỏ sò"
     },
     {
+      "source": "Shelter",
+      "target": "Che chở"
+    },
+    {
       "source": "Shelter / damage tradeoff",
       "target": "Đánh đổi nơi trú ẩn / thiệt hại"
+    },
+    {
+      "source": "Sheltering stitch",
+      "target": "Mũi khâu che chở"
     },
     {
       "source": "Shelter|Thorns|Harvest",
@@ -20513,6 +21333,10 @@
       "target": "Cửa hàng tặng bạn đồng hành kỷ niệm. Mua một cái sẽ hấp thụ đặc điểm hỗ trợ của nó thay vì thêm phần thân; hai ký ức cuối cùng của bạn chiến đấu bên cạnh bạn như những vật trưng bày trên giấy. Mỗi bộ nhớ khiến kẻ thù cứng rắn hơn 2% (tối đa 12%). Những người sửa đổi cá nhân tích cực của bạn mạnh hơn 25%."
     },
     {
+      "source": "Shore",
+      "target": "Bờ biển"
+    },
+    {
       "source": "Short a coin or two.|kind, matter-of-fact",
       "target": "Bán một hoặc hai xu.|tốt, thực tế"
     },
@@ -20538,7 +21362,7 @@
     },
     {
       "source": "Shots burst into small shots when they hit.",
-      "target": "Các phát bắn thành từng phát nhỏ khi trúng đích."
+      "target": "Đạn tách thành các viên nhỏ khi trúng mục tiêu."
     },
     {
       "source": "Shots come back · +15% ranged damage",
@@ -20546,15 +21370,15 @@
     },
     {
       "source": "Shots fly farther.",
-      "target": "Cú bắn bay xa hơn."
+      "target": "Đạn bay xa hơn."
     },
     {
       "source": "Shots fly faster.",
-      "target": "Cú bắn bay nhanh hơn."
+      "target": "Đạn bay nhanh hơn."
     },
     {
       "source": "Shots go through this many more enemies.",
-      "target": "Những phát bắn xuyên qua nhiều kẻ thù hơn."
+      "target": "Số kẻ địch bổ sung mà mỗi viên đạn có thể xuyên qua."
     },
     {
       "source": "Shots pierce 1 more, ranged damage +3.",
@@ -20603,6 +21427,10 @@
     {
       "source": "Side",
       "target": "Bên"
+    },
+    {
+      "source": "Side crescent",
+      "target": "Trăng lưỡi liềm ngang"
     },
     {
       "source": "Sign Here, Not There",
@@ -20667,6 +21495,10 @@
     {
       "source": "Single Ticket",
       "target": "Vé một lần"
+    },
+    {
+      "source": "Single scoop",
+      "target": "Một viên kem"
     },
     {
       "source": "Single scoop: every 0.45s a scoop lands on an enemy, 15% heavier; each splat (radius 0.8) hits and freezes at most 3 enemies.",
@@ -20865,6 +21697,10 @@
       "target": "Khung hình chậm"
     },
     {
+      "source": "Slow melt",
+      "target": "Tan chậm"
+    },
+    {
       "source": "Slow melt: the storm lasts 1.5s longer and heals you 1 HP every 2s; scoops are 15% lighter and hit at most 3 enemies.",
       "target": "Tan chậm: cơn bão kéo dài hơn 1,5 giây và hồi cho bạn 1 HP sau mỗi 2 giây; muỗng nhẹ hơn 15% và đánh trúng tối đa 3 kẻ thù."
     },
@@ -21001,8 +21837,16 @@
       "target": "Đã bán. Một cái gì đó quen thuộc để đưa vào bóng tối."
     },
     {
+      "source": "Solo",
+      "target": "Đơn tấu"
+    },
+    {
       "source": "Solo Overture",
       "target": "Khúc dạo đầu solo"
+    },
+    {
+      "source": "Solo act",
+      "target": "Độc diễn"
     },
     {
       "source": "Solo act: the five opening balls and the crit ball strike 15% harder; each ball hits a single enemy.",
@@ -21153,6 +21997,10 @@
       "target": "Bài hát"
     },
     {
+      "source": "Sorbet",
+      "target": "Kem trái cây"
+    },
+    {
       "source": "Sorrow Lantern",
       "target": "Đèn Lồng Nỗi Buồn"
     },
@@ -21202,7 +22050,7 @@
     },
     {
       "source": "Spear",
-      "target": "Ngọn giáo"
+      "target": "Giáo"
     },
     {
       "source": "Spear|Volley|Court",
@@ -21258,7 +22106,7 @@
     },
     {
       "source": "Spend it in the dream shop.",
-      "target": "Hãy tiêu nó trong cửa hàng mơ ước."
+      "target": "Dùng mua hàng trong cửa hàng giấc mơ."
     },
     {
       "source": "Spend lamp oil on the room's stations",
@@ -21325,6 +22173,10 @@
       "target": "Tách và ép!"
     },
     {
+      "source": "Split bet",
+      "target": "Cược chia"
+    },
+    {
       "source": "Split shots",
       "target": "Chia ảnh"
     },
@@ -21379,6 +22231,10 @@
     {
       "source": "Spring",
       "target": "Mùa xuân"
+    },
+    {
+      "source": "Spring + arena props charges automatically; Coupon turns prop kills",
+      "target": "Tự động tính phí đạo cụ mùa xuân + đấu trường; Phiếu giảm giá quay prop giết chết"
     },
     {
       "source": "Spring + arena props charges automatically; Coupon turns prop kills into capped healing. Swept cart cannot hit twice.",
@@ -21481,6 +22337,10 @@
       "target": "Lượt truy cập tem kéo đồng xu gần đó về phía bạn; tiếng chuông khiến kẻ thù lộ diện (chúng chịu nhiều sát thương hơn)."
     },
     {
+      "source": "Stamps PAID on an ally (its next hit taken is halved) and CLOSED ink",
+      "target": "Đóng dấu TRẢ TIỀN cho một đồng minh (lần đánh tiếp theo của đồng minh bị giảm một nửa) và mực ĐÓNG"
+    },
+    {
       "source": "Stamps PAID on an ally (its next hit taken is halved) and CLOSED ink that slows you 25%.",
       "target": "Đóng dấu TRẢ TIỀN cho một đồng minh (đòn đánh tiếp theo của đồng minh bị giảm một nửa) và mực ĐÓNG khiến bạn chậm 25%."
     },
@@ -21515,6 +22375,10 @@
     {
       "source": "Stand still for 0.5s and your next attack deals +30%.",
       "target": "Đứng yên trong 0,5 giây và đòn tấn công tiếp theo của bạn gây +30%."
+    },
+    {
+      "source": "Stand still for 2 seconds to reflect up to 3 nearby bullets. Moving",
+      "target": "Đứng yên trong 2 giây để phản lại tối đa 3 viên đạn gần đó. Di chuyển"
     },
     {
       "source": "Stand still for 2 seconds to reflect up to 3 nearby bullets. Moving resets charge.",
@@ -21717,6 +22581,10 @@
       "target": "Đứng yên trong trận chiến; đi dạo trong các cửa hàng. Nhận hàng trên toàn đấu trường, giảm giá 30% tại cửa hàng, không né tránh và -100% phát hiện kho báu."
     },
     {
+      "source": "Stationary in combat. Whole-arena pickup and a slowing ward. Walks",
+      "target": "Đứng yên trong chiến đấu. Xe bán tải toàn đấu trường và một phường làm chậm. đi bộ"
+    },
+    {
       "source": "Stationary in combat. Whole-arena pickup and a slowing ward. Walks in shops.",
       "target": "Đứng yên trong chiến đấu. Xe bán tải toàn đấu trường và một phường làm chậm. Đi dạo trong các cửa hàng."
     },
@@ -21901,6 +22769,10 @@
       "target": "Cò III"
     },
     {
+      "source": "Storm",
+      "target": "Bão"
+    },
+    {
       "source": "Storm Dryer",
       "target": "Máy sấy bão"
     },
@@ -21945,6 +22817,10 @@
       "target": "Trái tim kiên cường"
     },
     {
+      "source": "Straight bet",
+      "target": "Cược thẳng"
+    },
+    {
       "source": "Straight bet|Split bet|Around the table",
       "target": "Cược thẳng|Cược chia|Xung quanh bàn"
     },
@@ -21967,6 +22843,10 @@
     {
       "source": "Strike it from the record!|scratching quill",
       "target": "Hãy phá kỷ lục!|cào bút lông"
+    },
+    {
+      "source": "Striker nursery",
+      "target": "Vườn xung kích"
     },
     {
       "source": "Striker: hits hard up close.",
@@ -22737,12 +23617,28 @@
       "target": "TƯƠNG LAI ĐƯỢC CHỌN CỦA HỌ\nTuyến đường này đã hoàn tất. Quyết định của họ vẫn còn trong phòng và phần kết."
     },
     {
+      "source": "THORN LATTICE",
+      "target": "LƯỚI GAI"
+    },
+    {
       "source": "THORN THRONE",
       "target": "NGAI ĐAI"
     },
     {
       "source": "THORNED!",
       "target": "CÓ Gai!"
+    },
+    {
+      "source": "THORNS",
+      "target": "GAI"
+    },
+    {
+      "source": "THREADWORK",
+      "target": "ĐAN CHỈ"
+    },
+    {
+      "source": "THRUST",
+      "target": "ĐÂM"
     },
     {
       "source": "THUD!",
@@ -22783,6 +23679,10 @@
     {
       "source": "TIER",
       "target": "CẤP"
+    },
+    {
+      "source": "TIGHT FORMATION",
+      "target": "ĐỘI HÌNH CHẶT"
     },
     {
       "source": "TIMBER!",
@@ -22833,6 +23733,10 @@
       "target": "CHẠM!"
     },
     {
+      "source": "TRAIL",
+      "target": "VỆT ĐƯỜNG"
+    },
+    {
       "source": "TRANSFORM!",
       "target": "BIẾN ĐỔI!"
     },
@@ -22853,6 +23757,10 @@
       "target": "THỬ VŨ KHÍ ĐÃ KHÁM PHÁ · không có phần thưởng hoặc thay đổi khi chạy đã lưu"
     },
     {
+      "source": "TUTTI",
+      "target": "HÒA TẤU"
+    },
+    {
       "source": "TV Head",
       "target": "Đầu TV"
     },
@@ -22863,6 +23771,10 @@
     {
       "source": "TWANG! SPLASH!",
       "target": "TANG! TUYỆT VỜI!"
+    },
+    {
+      "source": "TWIN TAILS",
+      "target": "ĐUÔI KÉP"
     },
     {
       "source": "Ta-da!",
@@ -22946,7 +23858,7 @@
     },
     {
       "source": "Takes a bite out of every hit you take.",
-      "target": "Gây thiệt hại cho mỗi cú đánh của bạn."
+      "target": "Giảm sát thương nhận vào từ mỗi đòn đánh."
     },
     {
       "source": "Taking damage grants 3 gold. at most once every 2s.",
@@ -23027,6 +23939,10 @@
     {
       "source": "Tea",
       "target": "Trà"
+    },
+    {
+      "source": "Tea + Hammer works via burning targets and third-hit steam; Coaster",
+      "target": "Trà + Búa hoạt động thông qua việc đốt cháy mục tiêu và hơi nước trúng đòn thứ ba; tàu lượn"
     },
     {
       "source": "Tea + Hammer works via burning targets and third-hit steam; Coaster widens weaker tea; Thermal links marks to heat with cooldown.",
@@ -24606,7 +25522,7 @@
     },
     {
       "source": "The one you move. If your hero falls, the run ends.",
-      "target": "Người bạn di chuyển. Nếu anh hùng của bạn ngã, cuộc chạy kết thúc."
+      "target": "Nhân vật bạn điều khiển. Anh hùng gục ngã thì lượt chơi kết thúc."
     },
     {
       "source": "The orbit is smaller than it was a moment ago.",
@@ -25266,7 +26182,7 @@
     },
     {
       "source": "They follow you and fight by themselves. They never fall.",
-      "target": "Họ đi theo bạn và tự mình chiến đấu. Họ không bao giờ rơi."
+      "target": "Họ đi theo bạn, tự chiến đấu và không thể gục ngã."
     },
     {
       "source": "They glow like a lantern now.",
@@ -25477,8 +26393,16 @@
       "target": "Thủ quỹ Thorn: mua di vật này cũng cố gắng chiêu mộ Bristle Ball, tùy thuộc vào các biến thể vũ khí không sử dụng."
     },
     {
+      "source": "Thorn lattice",
+      "target": "Lưới gai"
+    },
+    {
       "source": "Thorn root",
       "target": "Rễ gai"
+    },
+    {
+      "source": "Thorns",
+      "target": "Gai"
     },
     {
       "source": "Thorns answer the blows you take (once per second).",
@@ -25495,6 +26419,10 @@
     {
       "source": "Threads through dreams",
       "target": "Xâu chuỗi những giấc mơ"
+    },
+    {
+      "source": "Threadwork",
+      "target": "Đan chỉ"
     },
     {
       "source": "Three cases, labelled for three different towns. None of them yours, yet.",
@@ -25582,7 +26510,7 @@
     },
     {
       "source": "Three of the same friend at the same stars become one friend with one more star (two of three show half a star more).",
-      "target": "Ba người bạn giống nhau ở cùng một ngôi sao trở thành một người bạn với thêm một ngôi sao (hai trong số ba người hiển thị nhiều hơn nửa ngôi sao)."
+      "target": "Ba đồng hành giống nhau và cùng số sao hợp thành một đồng hành thêm một sao; có hai bản sẽ hiển thị thêm nửa sao."
     },
     {
       "source": "Three of the same friend became one, with a new star.",
@@ -25674,7 +26602,7 @@
     },
     {
       "source": "Thrust",
-      "target": "Lực đẩy"
+      "target": "Đâm"
     },
     {
       "source": "Thrust|Guard sweep|Salute",
@@ -25751,6 +26679,10 @@
     {
       "source": "Tier 3: the burst throws 3 bomblets.",
       "target": "Cấp 3: nổ ném 3 quả bom."
+    },
+    {
+      "source": "Tight formation",
+      "target": "Đội hình chặt"
     },
     {
       "source": "Tight formation: each escorted friend's shot splits into two shots 8 degrees apart, both at full damage. Your own hits beyond 4 units keep their +15%.",
@@ -25870,7 +26802,7 @@
     },
     {
       "source": "Touch damage hits more often.",
-      "target": "Sát thương khi chạm xảy ra thường xuyên hơn."
+      "target": "Sát thương va chạm được kích hoạt thường xuyên hơn."
     },
     {
       "source": "Touch hit rate",
@@ -25913,6 +26845,10 @@
       "target": "Được đổi lấy"
     },
     {
+      "source": "Trail",
+      "target": "Vệt đường"
+    },
+    {
       "source": "Trail|Twin tails|Closed orbit",
       "target": "Đường mòn|Đôi đuôi|Quỹ đạo kín"
     },
@@ -25953,6 +26889,10 @@
       "target": "Di chuyển 10 đơn vị để rời khỏi các vòng vật lý bán kính-1,1 tại các điểm đường dẫn gần đây. Tất cả các vòng chia sẻ 160% W; không giống như Trail, những chiếc nhẫn này không phải là những cuộc tấn công bằng than hồng. Thời gian hồi chiêu 3 giây."
     },
     {
+      "source": "Travel 10 units to release a slowing pulse. Moving charges it; shops",
+      "target": "Di chuyển 10 đơn vị để giải phóng xung chậm. Di chuyển phí nó; cửa hàng"
+    },
+    {
       "source": "Travel 10 units to release a slowing pulse. Moving charges it; shops do not.",
       "target": "Đi 10 đơn vị để giải phóng mạch chậm. Di chuyển phí nó; cửa hàng thì không."
     },
@@ -25987,6 +26927,10 @@
     {
       "source": "Travels with you; it does not fight",
       "target": "Đi cùng bạn; nó không chiến đấu"
+    },
+    {
+      "source": "Travels without roster companions; absorbs purchased companions' traits.",
+      "target": "Du lịch mà không có người đi cùng; hấp thụ các đặc điểm của bạn đồng hành đã mua."
     },
     {
       "source": "Travels without roster companions; absorbs purchased companions' traits. Strong attacks and natural recovery support relic-focused builds.",
@@ -26053,6 +26997,10 @@
       "target": "Cờ hướng dẫn chưa được lưu:"
     },
     {
+      "source": "Tutti",
+      "target": "Hòa tấu"
+    },
+    {
       "source": "Twelve heartbeats. Spend them kindly.",
       "target": "Mười hai nhịp tim. Hãy chi tiêu chúng một cách tử tế."
     },
@@ -26083,6 +27031,10 @@
     {
       "source": "Twin petals: buying a relic you already own refunds 3 gold (grows by wave).",
       "target": "Cánh hoa đôi: mua di vật bạn đã sở hữu sẽ hoàn lại 3 vàng (tăng theo từng đợt)."
+    },
+    {
+      "source": "Twin tails",
+      "target": "Đuôi kép"
     },
     {
       "source": "Twin-Flame Furnace",
@@ -26369,8 +27321,16 @@
       "target": "Sử dụng vũ khí được trang bị bình thường. Một nửa May mắn tích cực cũng gây sát thương cho anh hùng và bạn bè, lên tới 50%. Trái tim thu thập thêm chạy May mắn."
     },
     {
+      "source": "VERDICT",
+      "target": "PHÁN QUYẾT"
+    },
+    {
       "source": "VISITOR",
       "target": "KHÁCH THAM QUAN"
+    },
+    {
+      "source": "VOLLEY",
+      "target": "LOẠT BẮN"
     },
     {
       "source": "VSync",
@@ -26509,6 +27469,10 @@
       "target": "Doubloon vô hiệu"
     },
     {
+      "source": "Volley",
+      "target": "Loạt bắn"
+    },
+    {
       "source": "Volt Eel",
       "target": "Lươn Vôn"
     },
@@ -26551,6 +27515,10 @@
     {
       "source": "WALK ON",
       "target": "BƯỚC ĐI"
+    },
+    {
+      "source": "WANDERING",
+      "target": "LANG THANG"
     },
     {
       "source": "WASD / arrows on PC. Drag the lower-left area on touch.\nPrototype: no shop, merge, final balance or complete content yet.",
@@ -26602,11 +27570,15 @@
     },
     {
       "source": "WHILE YOU HAVE IT",
-      "target": "KHI BẠN CÓ NÓ"
+      "target": "KHI ĐANG SỞ HỮU"
     },
     {
       "source": "WHIRR! TICK!",
       "target": "RẦM! TICK!"
+    },
+    {
+      "source": "WHISTLE",
+      "target": "HUÝT SÁO"
     },
     {
       "source": "WHOOSH! KA-BOOM!",
@@ -26615,6 +27587,26 @@
     {
       "source": "WHUMP! HUSH!",
       "target": "PHÚC! Im đi!"
+    },
+    {
+      "source": "WIDE CANOPY",
+      "target": "TÁN RỘNG"
+    },
+    {
+      "source": "WIDE FORMATION",
+      "target": "ĐỘI HÌNH RỘNG"
+    },
+    {
+      "source": "WIDE JAW",
+      "target": "HÀM RỘNG"
+    },
+    {
+      "source": "WIDE SONAR",
+      "target": "SÓNG DÒ RỘNG"
+    },
+    {
+      "source": "WIDE STAGE",
+      "target": "SÂN KHẤU RỘNG"
     },
     {
       "source": "WIN A RUN",
@@ -26627,6 +27619,14 @@
     {
       "source": "WIN WITH A HERO",
       "target": "CHIẾN THẮNG VỚI MỘT ANH HÙNG"
+    },
+    {
+      "source": "WINTER",
+      "target": "MÙA ĐÔNG"
+    },
+    {
+      "source": "WINTER INSTALMENTS",
+      "target": "TRẢ GÓP MÙA ĐÔNG"
     },
     {
       "source": "WIPEOUT!",
@@ -27129,6 +28129,14 @@
       "target": "Trong khi bạn đang"
     },
     {
+      "source": "While you have it",
+      "target": "Khi đang sở hữu"
+    },
+    {
+      "source": "While you have it (×",
+      "target": "Khi đang sở hữu (×"
+    },
+    {
       "source": "While you hold at least 6 HP, friends deal +6% damage.",
       "target": "Khi bạn có ít nhất 6 HP, bạn bè sẽ gây +6% sát thương."
     },
@@ -27139,6 +28147,10 @@
     {
       "source": "Whisper",
       "target": "Thì thầm"
+    },
+    {
+      "source": "Whistle",
+      "target": "Huýt sáo"
     },
     {
       "source": "Who Steps Through Tonight?",
@@ -27189,16 +28201,36 @@
       "target": "Sợi bấc"
     },
     {
+      "source": "Wide canopy",
+      "target": "Tán rộng"
+    },
+    {
       "source": "Wide canopy: the same ticking hand hits up to 5 enemies on its line; friends within 2.6 units of the bonsai still gain +40% attack speed.",
       "target": "Tán rộng: cùng một bàn tay tích tắc đánh tối đa 5 kẻ thù trên đường của nó; bạn bè trong phạm vi 2,6 đơn vị cây cảnh vẫn nhận được +40% tốc độ tấn công."
+    },
+    {
+      "source": "Wide formation",
+      "target": "Đội hình rộng"
     },
     {
       "source": "Wide formation: each escorted friend's shot splits into three, 16 degrees apart; the two outer shots carry 60% of its damage.",
       "target": "Đội hình rộng: phát bắn của mỗi người bạn được hộ tống chia thành ba, cách nhau 16 độ; hai phát bắn bên ngoài gây 60% sát thương."
     },
     {
+      "source": "Wide jaw",
+      "target": "Hàm rộng"
+    },
+    {
+      "source": "Wide sonar",
+      "target": "Sóng dò rộng"
+    },
+    {
       "source": "Wide sonar: the ram and the depth charges reach up to 5 enemies each; everything the ram strikes is probed for 3s.",
       "target": "Sonar rộng: ram và mìn sâu tiếp cận tối đa 5 kẻ thù mỗi chiếc; mọi thứ mà ram tấn công đều được thăm dò trong 3 giây."
+    },
+    {
+      "source": "Wide stage",
+      "target": "Sân khấu rộng"
     },
     {
       "source": "Wide stall",
@@ -27309,8 +28341,16 @@
       "target": "Thắng với"
     },
     {
+      "source": "Winter",
+      "target": "Mùa đông"
+    },
+    {
       "source": "Winter Feast",
       "target": "Lễ hội mùa đông"
+    },
+    {
+      "source": "Winter instalments",
+      "target": "Trả góp mùa đông"
     },
     {
       "source": "Wise",
@@ -27590,7 +28630,7 @@
     },
     {
       "source": "You get bigger, which also makes you easier to hit.",
-      "target": "Bạn trở nên to lớn hơn, điều này cũng khiến bạn dễ bị đánh hơn."
+      "target": "Cơ thể bạn lớn hơn, đồng thời cũng dễ bị đánh trúng hơn."
     },
     {
       "source": "You have a journey in progress.\nStarting a new one puts it safely aside first; your records and your Waiting Room stay as they are.",
@@ -27698,7 +28738,7 @@
     },
     {
       "source": "You means your hero, Friends means your brigade, no label means everyone.",
-      "target": "Bạn có nghĩa là anh hùng của bạn, Bạn bè có nghĩa là lữ đoàn của bạn, không có nhãn hiệu có nghĩa là tất cả mọi người."
+      "target": "Bạn chỉ anh hùng; Đồng hành chỉ các thành viên đi cùng; không ghi đối tượng thì áp dụng cho tất cả."
     },
     {
       "source": "You need me.|insistent",
@@ -28030,7 +29070,7 @@
     },
     {
       "source": "Your hero's health. At 0 the run ends.",
-      "target": "Sức khỏe anh hùng của bạn. Lúc 0 thì cuộc chạy kết thúc."
+      "target": "Máu của anh hùng. Về 0 thì lượt chơi kết thúc."
     },
     {
       "source": "Your highest-star friend also fires your hero's weapon.",
@@ -28118,7 +29158,7 @@
     },
     {
       "source": "Your most HP; buying with HP lowers it.",
-      "target": "HP cao nhất của bạn; mua với HP làm giảm nó."
+      "target": "Máu tối đa. Mua hàng bằng máu sẽ làm giảm chỉ số này."
     },
     {
       "source": "Your name and mine, one announcement.",
@@ -28190,7 +29230,7 @@
     },
     {
       "source": "Your score at the end is multiplied.",
-      "target": "Điểm của bạn khi kết thúc sẽ được nhân lên."
+      "target": "Nhân điểm số khi kết thúc lượt chơi."
     },
     {
       "source": "Your shadow is borrowed, not sold. We remember the difference.",
@@ -28675,6 +29715,10 @@
     {
       "source": "comes back with +25% stats",
       "target": "trở lại với số liệu thống kê +25%"
+    },
+    {
+      "source": "common",
+      "target": "thường"
     },
     {
       "source": "companions",
@@ -29294,7 +30338,7 @@
     },
     {
       "source": "health",
-      "target": "sức khỏe"
+      "target": "máu"
     },
     {
       "source": "health · ×",
@@ -29311,6 +30355,10 @@
     {
       "source": "hero",
       "target": "anh hùng"
+    },
+    {
+      "source": "hero & friends",
+      "target": "anh hùng và đồng hành"
     },
     {
       "source": "hero:a portrait",
@@ -29985,8 +31033,12 @@
       "target": "tiền hoàn trả"
     },
     {
+      "source": "per contact",
+      "target": "mỗi lần va chạm"
+    },
+    {
       "source": "per hit",
-      "target": "mỗi lần truy cập"
+      "target": "mỗi đòn"
     },
     {
       "source": "phase",
@@ -30370,7 +31422,7 @@
     },
     {
       "source": "stackable",
-      "target": "có thể xếp chồng lên nhau"
+      "target": "cộng dồn"
     },
     {
       "source": "stamp",

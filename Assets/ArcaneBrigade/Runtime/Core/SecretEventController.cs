@@ -10,12 +10,12 @@ namespace ArcaneBrigade
         {
             if (PresentationPaused || TransitionPending || HallExitPending) return false;
             RunSnapshot before = MergeReveal.Capture(session.State);
-            var previousStats = before.Phase == SessionPhase.Shop ? RunBuildReadModel.Capture(session,runCatalog,before.Health).ShopStats : null;
+            var previousStats = before.Phase == SessionPhase.Shop ? RunBuildReadModel.CaptureShopStats(session,runCatalog) : null;
             if (!operation()) return false;
             try { session.Validate(session.State); }
             catch { session.Restore(before); throw; }
             if (!PersistBoundary()) { session.Restore(before); return false; }
-            if (previousStats != null && session.State.Phase == SessionPhase.Shop) session.PublishShopStatChanges(previousStats,RunBuildReadModel.Capture(session,runCatalog,session.State.Health).ShopStats);
+            if (previousStats != null && session.State.Phase == SessionPhase.Shop) session.PublishShopStatChanges(previousStats,RunBuildReadModel.CaptureShopStats(session,runCatalog));
             bool battle = session.State.Phase == SessionPhase.Combat;
             if (battle) Begin(); else Begin(true);
             CheckpointAudio.PlayInterfaceId(battle ? "ui.cutin.boss" : "ui.confirm");

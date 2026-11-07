@@ -19,6 +19,7 @@ BUILDER = '''using System; using System.IO; using System.Linq; using UnityEditor
 namespace ArcaneBrigade.Editor { public static class UIUXAuditBuild {
 [Serializable] private sealed class Result { public string result; public int errors, warnings; }
 public static void Run() {
+PerformanceReviewChecks.MeasureLocalization(); UIUXPerformanceChecks.Run();
 Directory.CreateDirectory("Builds/UIUXAudit"); var report=BuildPipeline.BuildPlayer(new BuildPlayerOptions {
 scenes=EditorBuildSettings.scenes.Where(s=>s.enabled).Select(s=>s.path).ToArray(), target=BuildTarget.StandaloneWindows64,
 locationPathName="Builds/UIUXAudit/ArcaneBrigade.exe", options=BuildOptions.None });
@@ -52,8 +53,8 @@ def prepare():
         'Assets/ArcaneBrigade/Runtime/UI/ArcadeSkinKit.cs': (
             'private static int State(Rect r, bool enabled)\n        {', 'private static int State(Rect r, bool enabled)\n        {\n            UIUXAuditProbe.ApplyPointer();'),
         'Assets/ArcaneBrigade/Runtime/UI/LocalizedGUI.cs': (
-            'GUI.Label(bounds, FitContent(bounds, translated, fitted), fitted);',
-            'UIUXAuditProbe.Record(bounds, FitContent(bounds, translated, fitted), fitted, true);\n            GUI.Label(bounds, FitContent(bounds, translated, fitted), fitted);')
+            'GUI.Label(bounds, shown, fitted);',
+            'UIUXAuditProbe.Record(bounds, shown, fitted, true);\n            GUI.Label(bounds, shown, fitted);')
     }
     backup = {}
     for name, (old, new) in substitutions.items():

@@ -1,0 +1,31 @@
+PASS Localization
+PASS UI UX and optimized data paths
+FAIL Core run, shop, save and combat: System.InvalidOperationException: Full run check failed: Duplicate identity save rejected
+  at ArcaneBrigade.Editor.FullRunChecks.Check (System.Boolean condition, System.String label, System.Collections.Generic.List`1[T] results) [0x00025] in C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Assets\ArcaneBrigade\Editor\FullRunChecks.cs:303
+  at ArcaneBrigade.Editor.FullRunChecks.Run (ArcaneBrigade.RunCatalog catalog) [0x00aa7] in C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Assets\ArcaneBrigade\Editor\FullRunChecks.cs:104
+  at ArcaneBrigade.Editor.UIUXPerformanceChecks+<>c.<Regressions>b__1_1 () [0x00000] in C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Assets\ArcaneBrigade\Editor\UIUXPerformanceChecks.cs:102
+  at ArcaneBrigade.Editor.UIUXPerformanceChecks.<Regressions>g__Suite|1_0 (System.String name, System.Action run, ArcaneBrigade.Editor.UIUXPerformanceChecks+<>c__DisplayClass1_0& ) [0x00000] in C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Assets\ArcaneBrigade\Editor\UIUXPerformanceChecks.cs:88
+BASELINE MATCH: existing failure reproduced using the untouched HEAD runtime; suite remains failing.
+FAIL Companion deployment and merges: System.InvalidOperationException: K6: Difficulty 0 explicit HP, authored trait and budget (56 vs 68)
+  at ArcaneBrigade.Editor.K6Checks+<>c__DisplayClass3_0.<Run>b__0 (System.Boolean condition, System.String name) [0x0002a] in C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Assets\ArcaneBrigade\Editor\K6Checks.cs:16
+  at ArcaneBrigade.Editor.K6Checks.Run () [0x008a1] in C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Assets\ArcaneBrigade\Editor\K6Checks.cs:79
+  at ArcaneBrigade.Editor.CompanionDeploymentChecks.Run () [0x012df] in C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Assets\ArcaneBrigade\Editor\CompanionDeploymentChecks.cs:175
+  at ArcaneBrigade.Editor.UIUXPerformanceChecks.<Regressions>g__Suite|1_0 (System.String name, System.Action run, ArcaneBrigade.Editor.UIUXPerformanceChecks+<>c__DisplayClass1_0& ) [0x00000] in C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Assets\ArcaneBrigade\Editor\UIUXPerformanceChecks.cs:88
+BASELINE MATCH: existing failure reproduced using the untouched HEAD runtime; suite remains failing.
+FAIL Hero identities: System.InvalidOperationException: Hero identity: Identity row does not overwrite stat summaries LanternKnight / 0
+  at ArcaneBrigade.Editor.HeroIdentityChecks.Check (System.Boolean valid, System.String label) [0x00057] in C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Assets\ArcaneBrigade\Editor\HeroIdentityChecks.cs:17
+  at ArcaneBrigade.Editor.HeroIdentityChecks.Exercise (ArcaneBrigade.RunCatalog c, ArcaneBrigade.UnitDefinition hero, System.Int32 approach) [0x000d5] in C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Assets\ArcaneBrigade\Editor\HeroIdentityChecks.cs:39
+  at ArcaneBrigade.Editor.HeroIdentityChecks.Run () [0x000e5] in C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Assets\ArcaneBrigade\Editor\HeroIdentityChecks.cs:24
+  at ArcaneBrigade.Editor.UIUXPerformanceChecks.<Regressions>g__Suite|1_0 (System.String name, System.Action run, ArcaneBrigade.Editor.UIUXPerformanceChecks+<>c__DisplayClass1_0& ) [0x00000] in C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Assets\ArcaneBrigade\Editor\UIUXPerformanceChecks.cs:88
+BASELINE MATCH: existing failure reproduced using the untouched HEAD runtime; suite remains failing.
+FAIL Relic mechanics: System.InvalidOperationException: K26 Alternative currency does not inflate by wave
+  at ArcaneBrigade.Editor.K26RelicChecks+<>c__DisplayClass1_0.<Run>g__Check|0 (System.Boolean valid, System.String caption) [0x0002a] in C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Assets\ArcaneBrigade\Editor\K26RelicChecks.cs:18
+  at ArcaneBrigade.Editor.K26RelicChecks.Run () [0x0061f] in C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Assets\ArcaneBrigade\Editor\K26RelicChecks.cs:71
+  at ArcaneBrigade.Editor.UIUXPerformanceChecks.<Regressions>g__Suite|1_0 (System.String name, System.Action run, ArcaneBrigade.Editor.UIUXPerformanceChecks+<>c__DisplayClass1_0& ) [0x00000] in C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Assets\ArcaneBrigade\Editor\UIUXPerformanceChecks.cs:88
+BASELINE MATCH: existing failure reproduced using the untouched HEAD runtime; suite remains failing.
+PASS Stat compilation
+FAIL Settings and save compatibility: System.InvalidOperationException: K7: Profile2 upgrades audio/readability defaults without touching progression
+  at ArcaneBrigade.Editor.K7Checks+<>c__DisplayClass0_0.<Run>b__0 (System.Boolean condition, System.String name) [0x0002a] in C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Assets\ArcaneBrigade\Editor\K7Checks.cs:15
+  at ArcaneBrigade.Editor.K7Checks.Run () [0x00078] in C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Assets\ArcaneBrigade\Editor\K7Checks.cs:19
+  at ArcaneBrigade.Editor.UIUXPerformanceChecks.<Regressions>g__Suite|1_0 (System.String name, System.Action run, ArcaneBrigade.Editor.UIUXPerformanceChecks+<>c__DisplayClass1_0& ) [0x00000] in C:\Users\Winka\OneDrive\Documents\Arcane-Brigade\Assets\ArcaneBrigade\Editor\UIUXPerformanceChecks.cs:88
+BASELINE MATCH: existing failure reproduced using the untouched HEAD runtime; suite remains failing.

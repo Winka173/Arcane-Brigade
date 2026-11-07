@@ -461,6 +461,8 @@ namespace ArcaneBrigade
         }
         public void ToggleDetails()
         {
+            ReadableTooltip.Clear();
+            GlossaryUI.Close();
             if (session == null) return;
             if (details.Open) details.Close();
             else details.Show(session, runCatalog, session.State.Phase == SessionPhase.Combat ? simulation.Champion.Health : session.State.Health, session.State.Phase == SessionPhase.Combat ? simulation : null);
@@ -645,10 +647,10 @@ namespace ArcaneBrigade
         {
             if (PresentationPaused || TransitionPending) return false;
             RunSnapshot before = MergeReveal.Capture(session.State);
-            var previousStats = RunBuildReadModel.Capture(session,runCatalog,before.Health).ShopStats;
+            var previousStats = RunBuildReadModel.CaptureShopStats(session,runCatalog);
             if (!session.ClaimOutsideStageReward(index)) return false;
             if (!PersistBoundary()) { session.Restore(before); return false; }
-            session.PublishShopStatChanges(previousStats,RunBuildReadModel.Capture(session,runCatalog,session.State.Health).ShopStats);
+            session.PublishShopStatChanges(previousStats,RunBuildReadModel.CaptureShopStats(session,runCatalog));
             Begin(true); return true;
         }
         public void RestartRun()

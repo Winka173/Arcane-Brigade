@@ -1,0 +1,3 @@
+Cold ms: 48.4051
+Retained managed bytes: 2732032
+10000 dynamic labels ms: 20.8519

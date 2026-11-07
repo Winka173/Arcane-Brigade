@@ -185,7 +185,9 @@ namespace ArcaneBrigade
                         else Put(menu, "scroll", new Vector2(0, c.y)); break;
                     case "pause": owner.TogglePause(); break;
                     case "pause-page": Put(Get(owner, "runHud"), "pausePage", c.number); break;
-                    case "details": owner.ToggleDetails(); break;
+                    case "details":
+                        var clock = System.Diagnostics.Stopwatch.StartNew(); owner.ToggleDetails(); clock.Stop();
+                        File.AppendAllText(Path.Combine(output, "book-open-ms.txt"), clock.Elapsed.TotalMilliseconds.ToString("F4", System.Globalization.CultureInfo.InvariantCulture) + "\n"); break;
                     case "tab": owner.Details.SelectTab(c.number); break;
                     case "shop-focus":
                         var station = owner.Shop.Stations.FirstOrDefault(s => s.Offer != null && (c.number < 0 || s.Offer.Kind == (OfferKind)c.number));
@@ -220,13 +222,29 @@ namespace ArcaneBrigade
                         session.State.Offers.Add(new ShopOffer { Token = ++session.State.NextOffer, Id = catalog.Items[0].Id, Kind = OfferKind.Item, Price = 10 });
                         session.State.Offers.Add(new ShopOffer { Token = ++session.State.NextOffer, Id = catalog.Items[1].Id, Kind = OfferKind.Item, Price = 50 });
                     }
-                    foreach (var item in catalog.Items.Take(8)) session.State.Items.Add(new ItemStack { Id = item.Id, Count = 1 });
+                    foreach (var item in catalog.Items.Take(c.value == "expanded" ? 24 : 8)) session.State.Items.Add(new ItemStack { Id = item.Id, Count = c.value == "expanded" ? 2 : 1 });
+                    if (c.value == "expanded")
+                        for (int i = 1; i < 10; i++) session.State.Roster.Add(new RosterEntry { UnitId = catalog.Companions[i].Id, WeaponId = catalog.Companions[i].Weapon.Id, Tier = 2 });
                     storage.SaveRun(session.State);
                 }
                 RunLaunch.Resume = true; SceneManager.LoadScene("RunArena");
                 yield return new WaitForSecondsRealtime(4);
             }
             yield return new WaitForSecondsRealtime(.65f);
+            if (c.op == "profile" && error == null)
+            {
+                owner = FindAnyObjectByType<ArenaController>();
+                int cap = Application.targetFrameRate, sync = QualitySettings.vSyncCount;
+                Application.targetFrameRate = -1; QualitySettings.vSyncCount = 0;
+                using (var metrics = new K7NativeMetrics())
+                {
+                    for (int warm = 0; warm < 60; warm++) yield return null;
+                    metrics.Begin();
+                    for (int frame = 0; frame < Mathf.Max(300, c.number); frame++) { yield return null; metrics.Record(owner.Simulation); }
+                    metrics.Write(output, c.value);
+                }
+                Application.targetFrameRate = cap; QualitySettings.vSyncCount = sync;
+            }
             if (c.op == "sweep" && error == null)
             {
                 SetVirtualPointer(1, Screen.height - 1); yield return new WaitForSecondsRealtime(.3f);

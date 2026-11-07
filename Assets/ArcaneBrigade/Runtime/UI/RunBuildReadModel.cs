@@ -17,15 +17,27 @@ namespace ArcaneBrigade
 
         /// <summary>True when only the first page (Stats) was read (requirement 5/11/2026: the book reads its first page as it opens).</summary>
         public bool Partial;
-        public static RunBuildReadModel Capture(RunSession session, RunCatalog catalog, float health, CombatSimulation simulation = null, bool statsOnly = false)
+        public int CompanionCount, RelicCount, LinkCount;
+        public static ShopStatSnapshot CaptureShopStats(RunSession session, RunCatalog catalog)
+        {
+            using var read = new RunSession(catalog);
+            read.Restore(session.State);
+            return ShopStatSnapshot.Capture(read, catalog, read.PrepareCombat());
+        }
+        public static RunBuildReadModel Capture(RunSession session, RunCatalog catalog, float health, CombatSimulation simulation = null, bool statsOnly = false, bool presentationOnly = false, bool transactionOnly = false)
         {
             var model = new RunBuildReadModel();
-            using var readSession = new RunSession(catalog);
-            readSession.Restore(session.State);
-            CheckpointCatalog compiled = readSession.PrepareCombat();
+            // The live combat definition already contains exactly the applied stats shown by the brigade book.
+            // Transaction callers retain their independent, validated read session and complete stat snapshot.
+            using var readSession = presentationOnly && simulation != null && session.CombatCatalog != null ? null : new RunSession(catalog);
+            if (readSession != null) readSession.Restore(session.State);
+            CheckpointCatalog compiled = readSession != null ? readSession.PrepareCombat() : session.CombatCatalog;
+            model.CompanionCount = session.ActiveRoster.Count + (compiled.StoryCompanions?.Length ?? 0);
+            model.RelicCount = session.State.Items.Count;
+            model.LinkCount = BuildMorphs.All.Length + (catalog.BuildLinks?.Length ?? 0) + catalog.Bonds.Length;
             UnitDefinition champion = catalog.Unit(session.State.ChampionId);
             WeaponDefinition weapon = champion.Weapon;
-            model.ShopStats = ShopStatSnapshot.Capture(readSession, catalog, compiled);
+            if (!presentationOnly) model.ShopStats = ShopStatSnapshot.Capture(readSession, catalog, compiled);
             model.Stat("Hero health", Mathf.CeilToInt(health) + " / " + Mathf.CeilToInt(compiled.Champion.Health), "Maximum health includes base HP, run bonuses and health correction, minimum 1. The Waiting Room's Lantern adds a little. Every cleared wave restores full HP.");
             model.Stat("Hero damage", compiled.Champion.Weapon.Damage.ToString("0"), "Weapon base " + FriendlyWeaponBalance.BaseDamage(weapon).ToString("0.0") + "; hero power x" + PlayerBuildBalance.HeroPower(champion.Id).ToString("0.0") + "; includes melee balance, damage bonuses and roster-based passive. Excludes critical hits, target armor and elemental reactions.");
             model.Stat("Hero attack cycle", compiled.Champion.Weapon.Cooldown.ToString("0.00") + " s", "Base cycle " + weapon.Cooldown.ToString("0.00") + " seconds; every attack is automatic.");
@@ -46,7 +58,15 @@ namespace ArcaneBrigade
                 model.Stat("Luck", session.Bonus(ItemEffect.Luck).ToString("0.###"), "Increases dreamsand/heart drops and chest rewards. Does not change combat or shop RNG outcomes.");
                 model.Stat("Treasure detection", session.Bonus(ItemEffect.TreasureDetection).ToString("0.###"), "Makes chests appear sooner, at least 4 seconds apart. Approach to open; no skill button required.");
             }
-            if (statsOnly) { model.Partial = true; return model; }
+            if (statsOnly)
+            {
+                if (catalog.StatRevision > 0) K10BuildReadModel.Append(model, session, catalog, health, compiled);
+                BuildMorphReadModel.Append(model, session, catalog, compiled, statsOnly: true);
+                if (HeroIdentities.For(champion.Id) != null) model.Stats.Insert(0, new Row { Name = HeroIdentities.For(champion.Id).Name,
+                    Summary = simulation != null && simulation.HeroIdentityEnabled ? simulation.HeroIdentityStatus : session.HeroIdentityShopSummary,
+                    Explanation = HeroIdentities.Describe(champion.Id), Icon = champion.Body });
+                model.Partial = true; return model;
+            }
             int companionIndex = 0;
             foreach (RosterEntry entry in session.ActiveRoster)
             {
@@ -83,6 +103,12 @@ namespace ArcaneBrigade
             foreach (Row row in model.Companions) if (row.UnitId != null && session.Stranger(row.UnitId) && row.Name == "???") row.Explanation = "You no longer remember who they are. You sold that memory to the Last Customer. They still walk with you, and they do not count toward bonds.\n\n" + row.Explanation;
             if (catalog.StatRevision > 0) K10BuildReadModel.Append(model, session, catalog, health, compiled);
             BuildMorphReadModel.Append(model, session, catalog, compiled);
+            if (transactionOnly)
+            {
+                if (HeroIdentities.For(champion.Id) != null) model.Stats.Insert(0, new Row { Name = HeroIdentities.For(champion.Id).Name,
+                    Summary = session.HeroIdentityShopSummary, Explanation = HeroIdentities.Describe(champion.Id), Icon = champion.Body });
+                return model;
+            }
             foreach (ItemStack stack in session.State.Items)
             {
                 ItemDefinition item = catalog.Item(stack.Id);

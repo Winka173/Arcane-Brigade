@@ -1,0 +1,163 @@
+{
+    "tag": "baseline",
+    "items": 223,
+    "units": 96,
+    "weapons": 117,
+    "samples": [
+        {
+            "name": "catalog-load",
+            "milliseconds": 373.16900000000006,
+            "allocatedBytes": 0
+        },
+        {
+            "name": "starter/session-constructor",
+            "milliseconds": 3.7567000000000005,
+            "allocatedBytes": 0
+        },
+        {
+            "name": "starter/start",
+            "milliseconds": 20.498900000000004,
+            "allocatedBytes": 0
+        },
+        {
+            "name": "starter/book-stats-0",
+            "milliseconds": 73.3005,
+            "allocatedBytes": 0
+        },
+        {
+            "name": "starter/book-full-0",
+            "milliseconds": 15.9205,
+            "allocatedBytes": 0
+        },
+        {
+            "name": "starter/book-stats-1",
+            "milliseconds": 1.476,
+            "allocatedBytes": 0
+        },
+        {
+            "name": "starter/book-full-1",
+            "milliseconds": 3.3874,
+            "allocatedBytes": 0
+        },
+        {
+            "name": "starter/book-stats-2",
+            "milliseconds": 1.4454,
+            "allocatedBytes": 0
+        },
+        {
+            "name": "starter/book-full-2",
+            "milliseconds": 1.8383,
+            "allocatedBytes": 0
+        },
+        {
+            "name": "starter/read-session-constructor",
+            "milliseconds": 0.5782,
+            "allocatedBytes": 0
+        },
+        {
+            "name": "starter/restore",
+            "milliseconds": 0.1872,
+            "allocatedBytes": 0
+        },
+        {
+            "name": "starter/prepare-combat",
+            "milliseconds": 0.5374,
+            "allocatedBytes": 0
+        },
+        {
+            "name": "starter/shop-stat-capture",
+            "milliseconds": 0.1537,
+            "allocatedBytes": 0
+        },
+        {
+            "name": "starter/simulation-start",
+            "milliseconds": 18.5299,
+            "allocatedBytes": 0
+        },
+        {
+            "name": "starter/simulation-600-steps",
+            "milliseconds": 88.1481,
+            "allocatedBytes": 0
+        },
+        {
+            "name": "starter/catalog-lookups-10000",
+            "milliseconds": 8.7242,
+            "allocatedBytes": 0
+        },
+        {
+            "name": "expanded/session-constructor",
+            "milliseconds": 0.5479,
+            "allocatedBytes": 0
+        },
+        {
+            "name": "expanded/start",
+            "milliseconds": 0.0548,
+            "allocatedBytes": 0
+        },
+        {
+            "name": "expanded/book-stats-0",
+            "milliseconds": 28.2633,
+            "allocatedBytes": 0
+        },
+        {
+            "name": "expanded/book-full-0",
+            "milliseconds": 26.711000000000003,
+            "allocatedBytes": 0
+        },
+        {
+            "name": "expanded/book-stats-1",
+            "milliseconds": 19.645500000000003,
+            "allocatedBytes": 0
+        },
+        {
+            "name": "expanded/book-full-1",
+            "milliseconds": 26.9004,
+            "allocatedBytes": 0
+        },
+        {
+            "name": "expanded/book-stats-2",
+            "milliseconds": 17.4681,
+            "allocatedBytes": 0
+        },
+        {
+            "name": "expanded/book-full-2",
+            "milliseconds": 21.0711,
+            "allocatedBytes": 0
+        },
+        {
+            "name": "expanded/read-session-constructor",
+            "milliseconds": 0.5017,
+            "allocatedBytes": 0
+        },
+        {
+            "name": "expanded/restore",
+            "milliseconds": 0.29200000000000006,
+            "allocatedBytes": 0
+        },
+        {
+            "name": "expanded/prepare-combat",
+            "milliseconds": 16.624000000000004,
+            "allocatedBytes": 0
+        },
+        {
+            "name": "expanded/shop-stat-capture",
+            "milliseconds": 3.6065,
+            "allocatedBytes": 0
+        },
+        {
+            "name": "expanded/simulation-start",
+            "milliseconds": 0.894,
+            "allocatedBytes": 0
+        },
+        {
+            "name": "expanded/simulation-600-steps",
+            "milliseconds": 73.4467,
+            "allocatedBytes": 0
+        },
+        {
+            "name": "expanded/catalog-lookups-10000",
+            "milliseconds": 6.5431,
+            "allocatedBytes": 0
+        }
+    ]
+}

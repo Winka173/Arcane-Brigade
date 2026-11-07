@@ -362,6 +362,9 @@ namespace ArcaneBrigade
             DisposeAssets();
             RecountBonds();
             BeginRelicWave();
+            compilingRoster = CompanionDeployment.Select(State.Roster);
+            try
+            {
             CombatCatalog = Clone(catalog.Arena);
             CombatCatalog.EnableHeroMechanics = catalog.HeroRevision > 0;
             CombatCatalog.ArenaSize = catalog.WorldSize;
@@ -536,6 +539,8 @@ namespace ArcaneBrigade
             // the arena's fixed props (none in secret rooms): toys and spectacles keep off them
             CombatCatalog.Scenery = SecretRoomOpen ? (ArenaScenery?)null : ArenaScenery.For(State, CombatCatalog.ArenaSize);
             return CombatCatalog;
+            }
+            finally { compilingRoster = null; }
         }
 
         private void ApplyEnemyDifficultyRelief()

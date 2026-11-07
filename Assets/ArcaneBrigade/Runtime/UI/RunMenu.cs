@@ -115,7 +115,9 @@ namespace ArcaneBrigade
         public void Configure(RunCatalog definition) { catalog = definition; }
         public void ShowPage(Page page)
         {
+            ReadableTooltip.Clear();
             pactPickerAt = -1; // a page change closes hero select's Night Pact list
+            difficultyPickerAt = -1;
             if (page != Page.Museum) museum.Close();
             if (page == Page.WeaponSandbox) { OpenWeaponSandbox(); return; }
             if (CurrentPage == Page.WeaponSandbox && sandbox != null) sandbox.Dispose();

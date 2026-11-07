@@ -14,16 +14,14 @@ namespace ArcaneBrigade
         public static int Revision { get; private set; }
         [Serializable] public sealed class Entry { public string source; public string target; }
         [Serializable] public sealed class Table { public Entry[] entries; }
-        private sealed class Node
-        {
-            public readonly Dictionary<char, Node> Children = new Dictionary<char, Node>();
-            public string Translation;
-        }
-        private static Node root;
+        private static bool loaded;
+        // Four-character prefix buckets retain longest-fragment matching without a dictionary object for every character.
+        private static readonly Dictionary<ulong, List<Entry>> fragments = new Dictionary<ulong, List<Entry>>();
         private static readonly Dictionary<string, string> exact = new Dictionary<string, string>(StringComparer.Ordinal);
         private static readonly Dictionary<string, string> cache = new Dictionary<string, string>(StringComparer.Ordinal);
         private static readonly HashSet<string> translated = new HashSet<string>(StringComparer.Ordinal);
-        private static readonly System.Text.RegularExpressions.Regex markup = new System.Text.RegularExpressions.Regex(@"\{(?:mark|stat:[^{}]*|bonus:[^{}]*)\}");
+        private static readonly char[] identifierBreaks = { ' ', '\n', '\r', '\t', '<' }, identifierMarks = { '-', '/', '\\' };
+        private static readonly System.Text.RegularExpressions.Regex markup = new System.Text.RegularExpressions.Regex(@"\{(?:mark|gives|costs|stat:[^{}]*|bonus:[^{}]*|tag:[^{}]*)\}");
         public static string NormalizeLanguage(string language) => language == Vietnamese ? Vietnamese : English;
 
         public static void SetLanguage(string language)
@@ -35,8 +33,8 @@ namespace ArcaneBrigade
 
         private static void Load()
         {
-            if (root != null) return;
-            root = new Node();
+            if (loaded) return;
+            loaded = true;
             TextAsset asset = Resources.Load<TextAsset>("Localization/vi");
             if (asset == null) { Debug.LogError("Missing Vietnamese translation table"); return; }
             Table table = JsonUtility.FromJson<Table>(asset.text);
@@ -45,16 +43,20 @@ namespace ArcaneBrigade
                 string source = entry.source, target = entry.target;
                 if (string.IsNullOrEmpty(source) || string.IsNullOrEmpty(target)) continue;
                 exact[source] = target;
-                // Longest authored fragment wins for sentences assembled from numbers, names and UI copy.
-                Node node = root;
-                foreach (char c in source)
-                {
-                    if (!node.Children.TryGetValue(c, out Node child)) node.Children[c] = child = new Node();
-                    node = child;
-                }
-                node.Translation = target;
+                ulong key = Prefix(source, 0);
+                if (!fragments.TryGetValue(key, out var bucket)) fragments[key] = bucket = new List<Entry>();
+                bucket.Add(entry);
             }
+            foreach (var bucket in fragments.Values) bucket.Sort((a, b) => b.source.Length.CompareTo(a.source.Length));
         }
+        private static ulong Prefix(string text, int start)
+        {
+            ulong key = text[start];
+            if (!char.IsLetterOrDigit(text[start])) return key;
+            for (int i = 1; i < 4 && start + i < text.Length && char.IsLetterOrDigit(text[start + i]); i++) key |= (ulong)text[start + i] << (16 * i);
+            return key;
+        }
+        public static void Warmup() { if (IsVietnamese) Load(); }
 
         public static string Text(string source)
         {
@@ -81,7 +83,7 @@ namespace ArcaneBrigade
             else if (!exact.TryGetValue(source, out result))
             {
                 // Unknown IDs and resource paths are indivisible, even if they contain an English word.
-                bool identifier = source.IndexOfAny(new[] { ' ', '\n', '\r', '\t', '<' }) < 0 && source.IndexOfAny(new[] { '-', '/', '\\' }) >= 0;
+                bool identifier = source.IndexOfAny(identifierBreaks) < 0 && source.IndexOfAny(identifierMarks) >= 0;
                 if (identifier) return source;
                 var output = new StringBuilder(source.Length);
                 for (int start = 0; start < source.Length;)
@@ -92,11 +94,14 @@ namespace ArcaneBrigade
                         int end = source.IndexOf('>', start);
                         if (end >= 0) { output.Append(source, start, end - start + 1); start = end + 1; continue; }
                     }
-                    Node node = root; string match = null; int next = start;
-                    if (start == 0 || !char.IsLetterOrDigit(source[start - 1]))
-                        for (int i = start; i < source.Length && node.Children.TryGetValue(source[i], out node); i++)
-                            if (node.Translation != null && (i + 1 == source.Length || !char.IsLetterOrDigit(source[i + 1])))
-                            { match = node.Translation; next = i + 1; }
+                    string match = null; int next = start;
+                    if ((start == 0 || !char.IsLetterOrDigit(source[start - 1])) && fragments.TryGetValue(Prefix(source, start), out var bucket))
+                        foreach (Entry entry in bucket)
+                        {
+                            int end = start + entry.source.Length;
+                            if (end <= source.Length && (end == source.Length || !char.IsLetterOrDigit(source[end])) && string.CompareOrdinal(source, start, entry.source, 0, entry.source.Length) == 0)
+                            { match = entry.target; next = end; break; }
+                        }
                     if (match != null) { output.Append(match); start = next; }
                     else output.Append(source[start++]);
                 }

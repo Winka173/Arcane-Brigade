@@ -1,0 +1,1 @@
+book-before-cull: frames=600; wall=13.39s; fps=44.8; frame_p50=21.802ms; p95=25.433ms; p99=39.463ms; cpu_p95=25.421ms; gpu_p95=0.448ms; gc_valid=False; gc_mean=NAbytes/frame; gc_peak=NA; memory_peak=307.9MiB; units_peak=45; projectiles_peak=43

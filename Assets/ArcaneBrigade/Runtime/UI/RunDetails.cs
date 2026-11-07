@@ -22,6 +22,9 @@ namespace ArcaneBrigade
         private float selectedAt;
         private readonly HeroIdentityOptions heroOptions = new HeroIdentityOptions();
         private GUIStyle rarityStyle;
+        private RunBuildReadModel explainedModel;
+        private int explainedTab = -1, explainedSelection = -1;
+        private string explainedText;
         public bool Open => model != null || pendingCapture != null;
         public int Tab => tab;
         public bool HeroSelected => Open && tab == 0 && selection == 0;
@@ -31,13 +34,12 @@ namespace ArcaneBrigade
             bool fresh = !Open;
             if (fresh) CheckpointAudio.PlayInterfaceId("ui.open");
             // the first page only as the book opens; the rest is read once it is open, or when another tab is chosen
-            completeCapture = () => { int keepTab = tab, keepSelection = selection; Vector2 keepScroll = scroll; model = RunBuildReadModel.Capture(session, catalog, health, simulation); tab = keepTab; selection = keepSelection; scroll = keepScroll; };
-            void Capture() { model = RunBuildReadModel.Capture(session, catalog, health, simulation, statsOnly: tab == 0 && fresh); selection = 0; scroll = explanationScroll = Vector2.zero; openedAt = selectedAt = Time.unscaledTime; if (pendingBond != null) { string bond = pendingBond; pendingBond = null; SelectBond(bond); } }
+            completeCapture = () => { int keepTab = tab, keepSelection = selection; Vector2 keepScroll = scroll; model = RunBuildReadModel.Capture(session, catalog, health, simulation, presentationOnly: true); tab = keepTab; selection = keepSelection; scroll = keepScroll; };
+            void Capture() { model = RunBuildReadModel.Capture(session, catalog, health, simulation, statsOnly: tab == 0 && fresh, presentationOnly: true); selection = 0; scroll = explanationScroll = Vector2.zero; openedAt = selectedAt = Time.unscaledTime; if (pendingBond != null) { string bond = pendingBond; pendingBond = null; SelectBond(bond); } }
             // opened fresh, the book first appears closed and its pages turn while the brigade is read (requirement 5/11/2026:
             // the panel froze about two seconds on phones before anything showed); already open, it refreshes at once
             // the opening animation is set aside for now (requirement 5/11/2026): the book opens at once on its first page
-            if (true) { pendingCapture = null; introAt = -1; Capture(); return; }
-            model = null; pendingCapture = Capture; introAt = Time.unscaledTime; flipAt = -1; warmed = false; introFrames = 0;
+            pendingCapture = null; introAt = -1; Capture();
         }
         private System.Action pendingCapture, completeCapture;
         /// <summary>Reads the pages the opening left out (cheap, about 20 ms).</summary>
@@ -264,7 +266,7 @@ namespace ArcaneBrigade
             // requirement 24/10/2026 ("FRIENDS 3, RELICS 0, LINK 55 - nobody understands"): each tab has an icon and a plain name, its
             // count in a little bubble
             string[] names = { "STATS", "FRIENDS", "RELICS", "BONDS" };
-            int[] counts = { -1, model.Companions.Count, model.Relics.Count, model.Links.Count };
+            int[] counts = { -1, model.CompanionCount, model.RelicCount, model.LinkCount };
             if (tabStyle == null) { tabStyle = ArcadeTypography.Style(ArcadeTypography.SizeNote, true); tabStyle.alignment = TextAnchor.MiddleCenter; }
             for (int index = 0; index < names.Length; index++)
             {
@@ -297,6 +299,7 @@ namespace ArcaneBrigade
             {
                 RunBuildReadModel.Row row = rows[index];
                 Rect tile = new Rect(5 + index % cols * (tileW + tileGap), 5 + index / cols * (tileH + tileGap), tileW, tileH);
+                if (!tile.Overlaps(ScrollPanel.Visible)) continue;
                 RunHud.Fill(tile, index == selection ? ArcadeSkin.CardLit : ArcadeSkin.Card);
                 // requirement 25/10/2026: every friend and relic says its rarity in words (the border colour alone was hard to read)
                 ItemRarity? shownRarity = tab == 2 ? row.Rarity : tab == 1 && !string.IsNullOrEmpty(row.UnitId) ? owner.Content.Unit(row.UnitId)?.Rarity : null;
@@ -329,6 +332,7 @@ namespace ArcaneBrigade
             {
                 RunBuildReadModel.Row row = rows[index];
                 Rect card = new Rect(5, index * rowHeight + 5, 990, rowHeight - 12);
+                if (!card.Overlaps(ScrollPanel.Visible)) continue;
                 RunHud.Fill(card, index == selection ? ArcadeSkin.CardLit : ArcadeSkin.Card);
                 if (index == selection) ArcadeSkin.Line(new Rect(card.x + 2, card.y + 2, 4, card.height - 4), ArcadeSkin.Accent);
                 if (tab == 2)
@@ -370,9 +374,15 @@ namespace ArcaneBrigade
                     quoteHeight += 12;
                 }
             }
-            if (tab == 2) explanation += "\nRECENT RECEIPTS\n\n" + (string.IsNullOrEmpty(model.Receipts) ? "No saved transactions yet." : model.Receipts);
             bool heroSelected = tab == 0 && selection == 0 && owner.Session.HeroIdentityDefinition != null;
-            if (heroSelected) explanation += "\n\n" + HeroIdentityOptions.Details(owner); // one scroll for the whole column
+            if (explainedModel != model || explainedTab != tab || explainedSelection != selection)
+            {
+                explainedModel = model; explainedTab = tab; explainedSelection = selection;
+                if (tab == 2) explanation += "\nRECENT RECEIPTS\n\n" + (string.IsNullOrEmpty(model.Receipts) ? "No saved transactions yet." : model.Receipts);
+                if (heroSelected) explanation += "\n\n" + HeroIdentityOptions.Details(owner);
+                explainedText = explanation;
+            }
+            explanation = explainedText;
             float explanationHeight = Mathf.Max(620, GlossaryUI.Height(explanation, text, 570) + 30);
             explanationScroll = ScrollPanel.Begin(new Rect(1180, (tab == 2 ? 445 : 325) + quoteHeight, 625, (heroSelected ? 430 : tab == 2 ? 490 : 610) - quoteHeight), explanationScroll, new Rect(0, 0, 585, explanationHeight));
             GlossaryUI.Text(new Rect(5, 5, 570, explanationHeight), explanation, text);

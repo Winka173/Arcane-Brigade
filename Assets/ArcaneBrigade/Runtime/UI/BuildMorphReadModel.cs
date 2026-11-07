@@ -5,12 +5,13 @@ namespace ArcaneBrigade
 {
     public static class BuildMorphReadModel
     {
-        public static void Append(RunBuildReadModel model, RunSession session, RunCatalog catalog, CheckpointCatalog compiled)
+        public static void Append(RunBuildReadModel model, RunSession session, RunCatalog catalog, CheckpointCatalog compiled, bool statsOnly = false)
         {
             BuildMorphArtwork art = Resources.Load<BuildMorphArtwork>("BuildMorphArtwork");
             BuildMorphProfile main = session.MorphProfile(catalog.Unit(session.State.ChampionId).Weapon, 1, false);
             if (main.Kind != BuildMorphKind.None)
                 model.Stats.Add(new RunBuildReadModel.Row { Name = "Champion form", Icon = art == null ? null : art.Charm(main.Kind), Summary = main.Summary, Explanation = main.Explanation });
+            if (statsOnly) return;
             for (int i = 0; i < model.Companions.Count && i < session.ActiveRoster.Count; i++)
             {
                 RosterEntry entry = session.ActiveRoster[i];

@@ -5,7 +5,7 @@ namespace ArcaneBrigade
 {
     public sealed class ArcadeNavigation
     {
-        private struct Control { public bool Enabled; public Rect Bounds; }
+        private struct Control { public bool Enabled; public Rect Bounds; public int ScrollId; }
         private readonly List<Control> controls = new List<Control>();
         private int selected;
         private bool submit;
@@ -41,6 +41,7 @@ namespace ArcaneBrigade
                 if (controls[selected].Enabled) break;
             }
             if (selected != previousSelection) CheckpointAudio.PlayInterfaceId("ui.hover");
+            if (controls[selected].ScrollId != 0) ScrollPanel.Reveal(controls[selected].ScrollId, controls[selected].Bounds);
         }
         public void Reset() { selected = 0; submit = false; controls.Clear(); keyboardFocus = false; }
         public void QueueSubmit() { submit = true; keyboardFocus = true; }
@@ -58,7 +59,7 @@ namespace ArcaneBrigade
         public bool Button(Rect bounds, string caption, GUIStyle style)
         {
             int index = controls.Count;
-            controls.Add(new Control { Enabled = GUI.enabled, Bounds = bounds });
+            controls.Add(new Control { Enabled = GUI.enabled, Bounds = bounds, ScrollId = ScrollPanel.CurrentId });
             // a phone has no hover: its last tap is not a pointer resting on the button (it kept the last button lit and moved)
             bool focused = GUI.enabled && (!RunUIHints.Phone && bounds.Contains(Event.current.mousePosition) || keyboardFocus && selected == index);
             string identity = index + ":" + caption;

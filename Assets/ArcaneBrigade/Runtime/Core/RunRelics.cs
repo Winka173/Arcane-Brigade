@@ -49,11 +49,18 @@ namespace ArcaneBrigade
             // requirement 22/10/2026 (broken-item scan): the hoard counts gold at its wave-1 value and stops at +40% a copy; luck to
             // health stops at +80 HP a copy; damage to income at +20 a copy
             if (effect == ItemEffect.Damage && target != ModifierScope.Run) value += MechanicStacks(RelicMechanic.HoardPower) * HoardBonus(State.Gold, GoldScale);
-            if (effect == ItemEffect.Health) value += MechanicStacks(RelicMechanic.LuckToHealth) * Mathf.Min(80, Mathf.Max(0, Bonus(ItemEffect.Luck)) * 100);
+            if (effect == ItemEffect.Health && MechanicStacks(RelicMechanic.LuckToHealth) is int luckHealth && luckHealth > 0)
+                value += luckHealth * Mathf.Min(80, Mathf.Max(0, Bonus(ItemEffect.Luck)) * 100);
             if (effect == ItemEffect.CollisionDamage && target == ModifierScope.Champion)
-                value += MechanicStacks(RelicMechanic.MeleeToCollision) * Mathf.Max(0, Bonus(ItemEffect.MeleeDamage, target)) * .5f + MechanicStacks(RelicMechanic.CollisionOnly) * Mathf.Max(0, Bonus(ItemEffect.Armor)) * 10;
-            if (effect == ItemEffect.Armor) value += MechanicStacks(RelicMechanic.SlowToArmor) * Mathf.Max(0, -Bonus(ItemEffect.MoveSpeed, ModifierScope.Champion));
-            if (effect == ItemEffect.Income) value += MechanicStacks(RelicMechanic.DamageToIncome) * Mathf.Min(20, Mathf.Floor(Mathf.Max(0, Bonus(ItemEffect.Damage, ModifierScope.Champion)) / .04f));
+            {
+                int melee = MechanicStacks(RelicMechanic.MeleeToCollision), collision = MechanicStacks(RelicMechanic.CollisionOnly);
+                if (melee > 0) value += melee * Mathf.Max(0, Bonus(ItemEffect.MeleeDamage, target)) * .5f;
+                if (collision > 0) value += collision * Mathf.Max(0, Bonus(ItemEffect.Armor)) * 10;
+            }
+            if (effect == ItemEffect.Armor && MechanicStacks(RelicMechanic.SlowToArmor) is int slowArmor && slowArmor > 0)
+                value += slowArmor * Mathf.Max(0, -Bonus(ItemEffect.MoveSpeed, ModifierScope.Champion));
+            if (effect == ItemEffect.Income && MechanicStacks(RelicMechanic.DamageToIncome) is int damageIncome && damageIncome > 0)
+                value += damageIncome * Mathf.Min(20, Mathf.Floor(Mathf.Max(0, Bonus(ItemEffect.Damage, ModifierScope.Champion)) / .04f));
             if (effect == ItemEffect.Discount && State.RelicDiscountWave == State.Wave) value += .3f;
             if (effect == ItemEffect.Discount && State.PromiseDiscountWave == State.Wave) value += .15f; // a promise kept
             if (effect == ItemEffect.AttackSpeed && target != ModifierScope.Run && MechanicStacks(RelicMechanic.ClockworkHeart) > 0) value += Mathf.Min(.3f, State.HeartWinds * .03f);

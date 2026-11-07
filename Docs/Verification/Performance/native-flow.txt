@@ -1,0 +1,7 @@
+PASS reviewed Vietnamese glossary description rendered
+PASS painted close control activated; glossary description removed
+PASS settings navigation moves the viewport to Comfort controls; selected=31
+PASS all four brigade tabs rendered and hover sweeps completed
+PASS native runtime error collection empty
+Method: isolated fixture, virtual GUI pointer/activation and direct navigation; no OS input or focus control.
+Profiler samples are separate commands without screenshot logging; hardware/touch behaviour is not certified.

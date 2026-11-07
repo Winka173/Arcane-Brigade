@@ -1,0 +1,116 @@
+PASS F01 functional tab names retain gameplay meaning
+PASS F08 uppercase item category keeps the authored translation
+PASS F08 approach names in sentence and upper case
+PASS F08 all three authored approaches localized: LanternKnight
+PASS F08 all three authored approaches localized: Postmaster
+PASS F08 all three authored approaches localized: DrowsySeer
+PASS F08 all three authored approaches localized: RootOracle
+PASS F08 all three authored approaches localized: LoneJelly
+PASS F08 all three authored approaches localized: GlassDice
+PASS F08 all three authored approaches localized: TideSinger
+PASS F08 all three authored approaches localized: CometRunner
+PASS F08 all three authored approaches localized: MirrorKeeper
+PASS F08 all three authored approaches localized: TreasureAcorn
+PASS F08 all three authored approaches localized: VerdantMatron
+PASS F08 all three authored approaches localized: CopperCauldron
+PASS F08 all three authored approaches localized: ChinaMarionette
+PASS F08 all three authored approaches localized: SoapSkater
+PASS F08 all three authored approaches localized: VelvetRegent
+PASS F08 all three authored approaches localized: ButtonCavalier
+PASS F08 all three authored approaches localized: NightMaw
+PASS F08 all three authored approaches localized: ThornTreasurer
+PASS F08 all three authored approaches localized: CitrusMarshal
+PASS F08 all three authored approaches localized: IvorySovereign
+PASS F08 all three authored approaches localized: PetalCitadel
+PASS F08 all three authored approaches localized: PatchworkHost
+PASS F08 all three authored approaches localized: ArchiveCurator
+PASS F08 all three authored approaches localized: PennyBroker
+PASS F08 all three authored approaches localized: StormFencer
+PASS F08 all three authored approaches localized: TinVirtuoso
+PASS F08 all three authored approaches localized: MoonProwler
+PASS F08 all three authored approaches localized: SupperMortar
+PASS F08 all three authored approaches localized: LanternWeaver
+PASS F08 all three authored approaches localized: HourglassStag
+PASS F08 all three authored approaches localized: RainArchivist
+PASS F08 all three authored approaches localized: KiteAdmiral
+PASS F08 all three authored approaches localized: SundaeDuchess
+PASS F08 all three authored approaches localized: BonsaiClocksmith
+PASS F08 all three authored approaches localized: JugglingJester
+PASS F08 all three authored approaches localized: BellDiver
+PASS F08 dynamic owned-item heading localizes
+PASS F06 translated prose resolves to the stable glossary entry
+PASS F06 translated health alias
+PASS F08 glossary damage explains damage rather than landing on the ground
+PASS F07 presentation token preserved: {mark}
+PASS F07 presentation token preserved: {gives}
+PASS F07 presentation token preserved: {costs}
+PASS F07 presentation token preserved: {tag:COMMON}
+PASS F07 presentation token preserved: {bonus:Health|Health|+5}
+PASS F07 presentation token preserved: {stat:Health}
+PASS F07 text translates around multiple stable tokens
+PASS Stable GUI content reused without per-draw allocation
+PASS GUI content cache invalidates when switching language
+PASS F04 offscreen control scrolls into the viewport
+PASS F04 backward navigation scrolls up
+PASS F04 already visible control does not move the viewport
+PASS Opening the live brigade never changes game state or wave rewards
+PASS F02 first-page badges agree with the fully loaded tabs
+PASS F02 owned content never displays a false zero
+PASS Live brigade stat matches independent compiler: THE GUIDING LAMP
+PASS Live brigade stat matches independent compiler: Hero health
+PASS Live brigade stat matches independent compiler: Hero damage
+PASS Live brigade stat matches independent compiler: Hero attack cycle
+PASS Live brigade stat matches independent compiler: Movement speed
+PASS Live brigade stat matches independent compiler: Hero critical chance
+PASS Live brigade stat matches independent compiler: Hero projectile count
+PASS Live brigade stat matches independent compiler: Hero armor
+PASS Live brigade stat matches independent compiler: Passive regeneration
+PASS Live brigade stat matches independent compiler: Pickup radius
+PASS Live brigade stat matches independent compiler: Friend roaming range
+PASS Live brigade stat matches independent compiler: Friend bullet interception
+PASS Live brigade stat matches independent compiler: Next shop interest
+PASS Live brigade stat matches independent compiler: Next reroll cost
+PASS Live brigade stat matches independent compiler: Next dream shop
+PASS Live brigade stat matches independent compiler: Luck
+PASS Live brigade stat matches independent compiler: Treasure detection
+PASS Live brigade stat matches independent compiler: Score
+PASS Live brigade stat matches independent compiler: Touch damage
+PASS Live brigade stat matches independent compiler: Melee damage
+PASS Live brigade stat matches independent compiler: Ranged damage
+PASS Live brigade stat matches independent compiler: Attack range
+PASS Live brigade stat matches independent compiler: Dodge
+PASS Live brigade stat matches independent compiler: Gold per wave
+PASS Live brigade stat matches independent compiler: Pierce
+PASS Live brigade stat matches independent compiler: Split shots
+PASS Live brigade stat matches independent compiler: Bounce chance
+PASS Live brigade stat matches independent compiler: Shot size
+PASS Live brigade stat matches independent compiler: Shot speed
+PASS Live brigade stat matches independent compiler: Shot range
+PASS Live brigade stat matches independent compiler: Knockback
+PASS Live brigade stat matches independent compiler: Hero size
+PASS Live brigade stat matches independent compiler: Friend size
+PASS Live brigade stat matches independent compiler: Enemy count
+PASS Live brigade stat matches independent compiler: Enemy HP
+PASS Live brigade stat matches independent compiler: Enemy speed
+PASS Live brigade stat matches independent compiler: Heart healing
+PASS Live brigade stat matches independent compiler: Chest gold
+PASS Live brigade stat matches independent compiler: Friend discount
+PASS Live brigade stat matches independent compiler: Relic discount
+PASS Live brigade stat matches independent compiler: Rarer offers
+PASS Live brigade stat matches independent compiler: Final max HP
+PASS Live brigade stat matches independent compiler: Final damage
+PASS Live brigade stat matches independent compiler: Final move speed
+PASS Live brigade stat matches independent compiler: Final armor
+PASS Live brigade stat matches independent compiler: Final healing
+PASS Live brigade stat matches independent compiler: Touch hit rate
+PASS Live brigade stat matches independent compiler: Chest open range
+PASS Live brigade stat matches independent compiler: Chain chance
+PASS Live brigade stat matches independent compiler: Damage vs known kinds
+PASS Live brigade stat matches independent compiler: Champion form
+PASS Fast transaction capture preserves every receipt stat
+PASS Fast transaction capture preserves companion combat values
+PASS Indexed catalog resolves authored item
+PASS Indexed catalog handles in-place array replacement
+PASS Indexed catalog handles renamed definitions
+PASS Legacy modifiers reuse a stable read array
+PASS Legacy modifier cache follows authored value edits

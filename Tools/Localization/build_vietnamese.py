@@ -11,6 +11,7 @@ import re
 import time
 import urllib.parse
 import urllib.request
+import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 OUTPUT = ROOT / 'Assets/ArcaneBrigade/Resources/Localization/vi.json'
@@ -77,12 +78,21 @@ def candidates():
             continue
         for match in TOKEN.finditer(path.read_text(encoding='utf-8-sig')):
             if match[0].startswith(('"', '@"')):
-                add(literal(match[0]))
+                value = literal(match[0])
+                add(value)
+                # Hero approach names are authored as a pipe-separated list and rendered individually.
+                if '|' in value and 2 <= len(value.split('|')) <= 4 and '\n' not in value and all(len(part) < 40 for part in value.split('|')):
+                    for fragment in value.split('|'):
+                        add(fragment)
     for path in (ROOT / 'Assets/ArcaneBrigade').rglob('*.asset'):
         text = path.read_text(encoding='utf-8-sig')
         for value in unity_copy(text):
             add(value)
     overrides = json.loads(OVERRIDES.read_text(encoding='utf-8'))
+    approaches = json.loads(OVERRIDES.with_name('vi_approaches.json').read_text(encoding='utf-8'))
+    for source, target in approaches.items():
+        overrides[source] = target
+        overrides[source.upper()] = target.upper()
     found.update(overrides)
     return sorted(found), overrides
 
@@ -120,7 +130,15 @@ def translate(batch):
 def main():
     source, overrides = candidates()
     cache = json.loads(CACHE.read_text(encoding='utf-8')) if CACHE.exists() else {}
+    if OUTPUT.exists():
+        cache.update({entry['source']: entry['target'] for entry in json.loads(OUTPUT.read_text(encoding='utf-8'))['entries']})
     pending = [text for text in source if text not in cache and text not in overrides]
+    if '--offline' in sys.argv:
+        cache.update(overrides)
+        entries = [{'source': text, 'target': cache[text]} for text in sorted(set(source) | set(cache)) if text in cache]
+        OUTPUT.write_text(json.dumps({'entries': entries}, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+        print(f'Wrote {len(entries)} offline entries; {len(pending)} unseeded source strings retain the normal English fallback', flush=True)
+        return
     batches, batch, size = [], [], 0
     for text in pending:
         if batch and (size + len(text) > 2700 or len(batch) >= 24):

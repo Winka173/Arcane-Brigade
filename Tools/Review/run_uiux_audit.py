@@ -1,10 +1,11 @@
 """Capture actual native control hover states; commands marked fixture set up review data, not flow passes."""
 import json
+import os
 import pathlib
 import time
 from uiux_audit import ROOT, send
 
-OUT = ROOT / 'PreviewExports/UIUXAuditSynthetic'
+OUT = ROOT / os.environ.get('BRIGADE_AUDIT_OUTPUT', 'PreviewExports/UIUXAuditSynthetic')
 STEPS = json.loads((OUT / 'steps.json').read_text(encoding='utf-8')) if (OUT / 'steps.json').exists() else []
 POSITION = 0
 

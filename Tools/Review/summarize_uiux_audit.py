@@ -1,11 +1,12 @@
 """Summarize synthetic native hover observations, without controlling any device input."""
 import json
+import os
 from pathlib import Path
 from PIL import Image, ImageChops, ImageStat
 
 ROOT = Path(__file__).resolve().parents[2]
-SOURCE = ROOT / 'PreviewExports/UIUXAuditSynthetic'
-OUT = ROOT / 'Docs/Verification/UIUXAuditMetrics.json'
+SOURCE = ROOT / os.environ.get('BRIGADE_AUDIT_OUTPUT', 'PreviewExports/UIUXAuditSynthetic')
+OUT = ROOT / os.environ.get('BRIGADE_AUDIT_METRICS', 'Docs/Verification/UIUXAuditMetrics.json')
 
 
 def main():

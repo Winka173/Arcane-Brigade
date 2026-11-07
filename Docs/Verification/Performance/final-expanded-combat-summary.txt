@@ -1,0 +1,1 @@
+final-expanded-combat: frames=600; wall=3.05s; fps=196.4; frame_p50=4.962ms; p95=6.789ms; p99=7.694ms; cpu_p95=6.828ms; gpu_p95=0.209ms; gc_valid=False; gc_mean=NAbytes/frame; gc_peak=NA; memory_peak=299.1MiB; units_peak=46; projectiles_peak=78

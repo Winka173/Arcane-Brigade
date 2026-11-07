@@ -33,4 +33,4 @@ PASS Vietnamese glyph coverage: Fraunces-Display
 PASS Vietnamese glyph coverage: Caveat-Hand
 PASS Vietnamese glyph coverage: AlegreyaSans-Numbers
 PASS Localization never mutates gameplay assets
-Entries: 7754
+Entries: 8017

@@ -11,7 +11,23 @@ namespace ArcaneBrigade
     {
         private sealed class Drag { public bool Down, Dragging; public Vector2 Start, Last; public float Velocity, LastTime; }
         private static readonly Dictionary<int, Drag> drags = new Dictionary<int, Drag>();
-        private static readonly Stack<(Rect view, float max, float y, Color shade)> open = new Stack<(Rect, float, float, Color)>();
+        private static readonly Stack<(Rect view, float max, float y, Color shade, int id)> open = new Stack<(Rect, float, float, Color, int)>();
+        private static readonly Dictionary<int, (float y, float height)> viewports = new Dictionary<int, (float, float)>();
+        private static readonly Dictionary<int, float> reveal = new Dictionary<int, float>();
+        public static int CurrentId => open.Count > 0 ? open.Peek().id : 0;
+        public static void Reveal(int id, Rect control)
+        {
+            if (!viewports.TryGetValue(id, out var viewport)) return;
+            float offset = RevealOffset(viewport.y, viewport.height, control);
+            if (reveal.Count >= 256) reveal.Clear();
+            if (offset != viewport.y) reveal[id] = offset;
+        }
+        public static float RevealOffset(float current, float height, Rect control)
+        {
+            if (control.yMin < current + 8) return Mathf.Max(0, control.yMin - 8);
+            if (control.yMax > current + height - 8) return control.yMax - height + 8;
+            return current;
+        }
         private static Texture2D ramp;
         private const float DragSlop = 12, WheelStep = 42;
         public static readonly Color DefaultShade = new Color(0.02f, 0.02f, 0.04f, 0.55f);
@@ -25,6 +41,7 @@ namespace ArcaneBrigade
             int id = GUIUtility.GetControlID(FocusType.Passive);
             if (!drags.TryGetValue(id, out Drag drag)) drags[id] = drag = new Drag();
             float max = Mathf.Max(0, content.height - view.height);
+            if (reveal.TryGetValue(id, out float requested)) { scroll.y = Mathf.Clamp(requested, 0, max); reveal.Remove(id); }
             Event e = Event.current;
             bool over = view.Contains(e.mousePosition);
             if (max > 0)
@@ -58,7 +75,9 @@ namespace ArcaneBrigade
             }
             else drag.Velocity = 0;
             scroll.x = 0; scroll.y = Mathf.Clamp(scroll.y, 0, max);
-            open.Push((view, max, scroll.y, shade));
+            if (viewports.Count > 256) viewports.Clear();
+            viewports[id] = (scroll.y, view.height);
+            open.Push((view, max, scroll.y, shade, id));
             return GUI.BeginScrollView(view, scroll, new Rect(0, 0, Mathf.Min(content.width, view.width), Mathf.Max(content.height, view.height)), false, false, GUIStyle.none, GUIStyle.none);
         }
 
@@ -66,7 +85,7 @@ namespace ArcaneBrigade
         {
             GUI.EndScrollView();
             if (open.Count == 0) return;
-            var (view, max, y, shade) = open.Pop();
+            var (view, max, y, shade, _) = open.Pop();
             if (max <= 0 || Event.current.type != EventType.Repaint) return;
             if (ramp == null)
             {

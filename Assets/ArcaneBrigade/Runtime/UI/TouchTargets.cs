@@ -20,6 +20,7 @@ namespace ArcaneBrigade
         public static bool Button(Rect bounds, string caption) => Button(bounds, LocalizedGUI.Content(caption), GUI.skin.button);
         public static bool Button(Rect bounds, GUIContent content, GUIStyle style)
         {
+            if (style == GUIStyle.none) DrawHover(bounds);
             if (!RunUIHints.Phone) return LocalizedGUI.Button(bounds, content, style);
             Rect screen = ToScreen(bounds);
             Event e = Event.current;
@@ -37,6 +38,12 @@ namespace ArcaneBrigade
             bool clicked = LocalizedGUI.Button(bounds, content, style);
             if (e.type != EventType.Used) e.mousePosition = keep;
             return clicked;
+        }
+        /// <summary>Painted controls with an invisible hit button still need visible pointer feedback.</summary>
+        public static void DrawHover(Rect bounds)
+        {
+            if (!RunUIHints.Phone && GUI.enabled && Event.current.type == EventType.Repaint && bounds.Contains(Event.current.mousePosition))
+                ArcadeSkin.Focus(bounds);
         }
 
         /// <summary>The button last drawn nearest the point within reach, or none when the point is on a button's own shape (that

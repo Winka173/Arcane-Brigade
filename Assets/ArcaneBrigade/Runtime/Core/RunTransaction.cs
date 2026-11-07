@@ -25,10 +25,10 @@ namespace ArcaneBrigade
             {
                 if (before.Phase != SessionPhase.Shop) return false;
                 if (before.NextReceipt == int.MaxValue) throw new InvalidOperationException("Transaction counter exhausted");
-                RunBuildReadModel previous = RunBuildReadModel.Capture(session, catalog, before.Health);
+                RunBuildReadModel previous = RunBuildReadModel.Capture(session, catalog, before.Health, transactionOnly: true);
                 if (!operation()) { session.Restore(before); return false; }
                 session.Validate(session.State);
-                RunBuildReadModel current = RunBuildReadModel.Capture(session, catalog, session.State.Health);
+                RunBuildReadModel current = RunBuildReadModel.Capture(session, catalog, session.State.Health, transactionOnly: true);
                 var receipt = new RunTransactionReceipt { Id = ++session.State.NextReceipt, Hall = session.State.Wave, Title = title };
                 Change(receipt, "Gold", before.Gold.ToString(), session.State.Gold.ToString());
                 Change(receipt, "Eggs", before.Eggs.ToString(), session.State.Eggs.ToString());

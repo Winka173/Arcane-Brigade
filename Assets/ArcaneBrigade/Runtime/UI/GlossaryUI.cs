@@ -10,7 +10,9 @@ namespace ArcaneBrigade
     {
         public sealed class Entry { public string Name; public string Description; public ItemEffect Effect; }
         private static readonly Dictionary<string, Entry> entries = Build();
-        private static readonly Regex tokens = new Regex("(\\{mark\\}|\\{gives\\}|\\{costs\\}|\\{tag:[^}]+\\}|\\{bonus:[^}]+\\}|[+−-]\\d+(?:\\.\\d+)?%?|(?<!\\p{L})\\d+(?:\\.\\d+)?(?:%|s)?|(?<!\\p{L})(?:" + string.Join("|", entries.Keys.OrderByDescending(key => key.Length).Select(Regex.Escape)) + ")(?!\\p{L})[.,:;!?)]*|\\r?\\n|[^\\S\\r\\n]+|[^\\s]+)", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+        private static Regex TokensFor(IEnumerable<string> terms) => new Regex("(\\{mark\\}|\\{gives\\}|\\{costs\\}|\\{tag:[^}]+\\}|\\{bonus:[^}]+\\}|[+−-]\\d+(?:\\.\\d+)?%?|(?<!\\p{L})\\d+(?:\\.\\d+)?(?:%|s)?|(?<!\\p{L})(?:" + string.Join("|", terms.OrderByDescending(key => key.Length).Select(Regex.Escape)) + ")(?!\\p{L})[.,:;!?)]*|\\r?\\n|[^\\S\\r\\n]+|[^\\s]+)", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+        private static Regex tokens = TokensFor(entries.Keys);
+        private static readonly Dictionary<string, Entry> localizedEntries = new Dictionary<string, Entry>(StringComparer.OrdinalIgnoreCase);
         private static readonly Regex signedValue = new Regex("^[+−-]\\d+(?:\\.\\d+)?%?$", RegexOptions.CultureInvariant);
         public static string Modifier(ItemEffect effect, ModifierScope scope, float number) => "{bonus:" + effect + "|" + RunModifierRules.WhoFor(effect, scope) + RunModifierRules.ModifierName(effect) + "|" + RunModifierRules.ValueText(effect, number) + "}";
         private static ItemEffect NearbyEffect(MatchCollection all, int index)
@@ -32,7 +34,14 @@ namespace ArcaneBrigade
         private static readonly Dictionary<GUIStyle, GUIStyle> wordStyles = new Dictionary<GUIStyle, GUIStyle>();
         public static bool Open => selected != null;
         public static void Close() { if (selected != null) CheckpointAudio.PlayInterfaceId("ui.close"); selected = null; }
-        public static Entry Find(string term) => entries.TryGetValue(term.Trim().TrimEnd('.', ',', ':', ';', '!', '?', ')'), out Entry entry) ? entry : null;
+        public static Entry Find(string term)
+        {
+            if (string.IsNullOrWhiteSpace(term)) return null;
+            EnsureLanguage();
+            term = term.Trim().TrimEnd('.', ',', ':', ';', '!', '?', ')');
+            if (entries.TryGetValue(term, out Entry entry)) return entry;
+            return localizedEntries.TryGetValue(term, out entry) ? entry : null;
+        }
         public static bool Show(string term)
         {
             var next = Find(term);
@@ -42,8 +51,8 @@ namespace ArcaneBrigade
         public static void BlockUnderlying(Vector2 viewport)
         {
             if (selected == null) return;
-            float width = Mathf.Min(620, viewport.x - 60);
-            Rect panel = new Rect(viewport.x - width - 35, 150, width, 285);
+            GUIStyle body = ArcadeTypography.Style(ArcadeTypography.SizeNote);
+            Rect panel = PanelBounds(viewport, body);
             Event current = Event.current;
             if (!panel.Contains(current.mousePosition) || current.type != EventType.MouseDown && current.type != EventType.MouseUp && current.type != EventType.ScrollWheel && current.type != EventType.MouseDrag) return;
             if (current.type == EventType.MouseUp)
@@ -165,6 +174,17 @@ namespace ArcaneBrigade
             if (languageRevision == GameLocalization.Revision) return;
             languageRevision = GameLocalization.Revision;
             heights.Clear(); tokenCache.Clear(); widths.Clear();
+            localizedEntries.Clear();
+            if (GameLocalization.IsVietnamese)
+                foreach (var pair in entries)
+                {
+                    foreach (string source in new[] { pair.Key, pair.Value.Name, char.ToUpperInvariant(pair.Key[0]) + pair.Key.Substring(1) })
+                    {
+                        string label = GameLocalization.Text(source);
+                        if (!localizedEntries.ContainsKey(label)) localizedEntries.Add(label, pair.Value);
+                    }
+                }
+            tokens = TokensFor(entries.Keys.Concat(localizedEntries.Keys).Distinct(StringComparer.OrdinalIgnoreCase));
         }
         public static float Height(string text, GUIStyle style, float width)
         {
@@ -348,16 +368,22 @@ namespace ArcaneBrigade
             GUIStyle body = ArcadeTypography.Style(ArcadeTypography.SizeNote); body.normal.textColor = ArcadeSkin.Cream;
             // below the bond list in the top-right corner (drawn later, it used to cover the card's right half) and as tall as its words
             float words = body.CalcHeight(LocalizedGUI.Content(selected.Description), width - 50);
-            Rect panel = new Rect(viewport.x - width - 35, 340, width, Mathf.Max(160, 95 + words + 24));
+            Rect panel = PanelBounds(viewport, body);
             Matrix4x4 keepMatrix = GUI.matrix; Color keepColour = GUI.color;
             LivingUI.Pop(Time.unscaledTime - openedAt, panel.center);
             ArcadeSkin.Ticket(panel, ArcadeSkin.Ink, ArcadeSkin.Teal);
             StatGlyph.Draw(new Rect(panel.x + 20, panel.y + 18, 36, 36), selected.Effect);
             LocalizedGUI.Label(new Rect(panel.x + 68, panel.y + 20, width - 125, 40), selected.Name, heading);
-            if (TouchTargets.Button(new Rect(panel.xMax - 55, panel.y + 15, 40, 40), "×")) Close();
+            if (ArcadeSkin.Medallion(new Rect(panel.xMax - 55, panel.y + 15, 40, 40), KitMedallion.Close)) Close();
             if (selected != null) LocalizedGUI.Label(new Rect(panel.x + 25, panel.y + 75, width - 50, words + 8), selected.Description, body);
             GUI.matrix = keepMatrix; GUI.color = keepColour;
             if (Time.unscaledTime - openedAt > 30) Close();
+        }
+        private static Rect PanelBounds(Vector2 viewport, GUIStyle body)
+        {
+            float width = Mathf.Min(620, viewport.x - 60);
+            float words = body.CalcHeight(LocalizedGUI.Content(selected.Description), width - 50);
+            return new Rect(viewport.x - width - 35, 340, width, Mathf.Max(160, 95 + words + 24));
         }
     }
 }

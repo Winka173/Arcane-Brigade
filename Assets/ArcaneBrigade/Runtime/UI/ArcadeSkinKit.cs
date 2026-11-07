@@ -65,25 +65,26 @@ namespace ArcaneBrigade
             if (b.x + b.z + C > 0) k = Mathf.Min(k, dest.width / (b.x + b.z + C));
             if (b.y + b.w > 0) k = Mathf.Min(k, dest.height / (b.y + b.w));
             // columns: left cap, stretch, [fixed centre, stretch], right cap
-            var xs = new List<float>(6); var us = new List<float>(6);
-            xs.Add(dest.x); us.Add(0);
-            xs.Add(dest.x + b.x * k); us.Add(b.x / W);
+            System.Span<float> xs = stackalloc float[6]; System.Span<float> us = stackalloc float[6];
+            xs[0] = dest.x; us[0] = 0;
+            xs[1] = dest.x + b.x * k; us[1] = b.x / W;
+            int count = 2;
             if (C > 0)
             {
-                xs.Add(dest.center.x - C * k * .5f); us.Add((W - C) * .5f / W);
-                xs.Add(dest.center.x + C * k * .5f); us.Add((W + C) * .5f / W);
+                xs[count] = dest.center.x - C * k * .5f; us[count++] = (W - C) * .5f / W;
+                xs[count] = dest.center.x + C * k * .5f; us[count++] = (W + C) * .5f / W;
             }
-            xs.Add(dest.xMax - b.z * k); us.Add((W - b.z) / W);
-            xs.Add(dest.xMax); us.Add(1);
-            float[] ys = { dest.y, dest.y + b.w * k, dest.yMax - b.y * k, dest.yMax };
-            float[] vs = { 1, 1 - b.w / H, b.y / H, 0 };
-            for (int i = 0; i + 1 < xs.Count; i++)
+            xs[count] = dest.xMax - b.z * k; us[count++] = (W - b.z) / W;
+            xs[count] = dest.xMax; us[count++] = 1;
+            System.Span<float> ys = stackalloc float[] { dest.y, dest.y + b.w * k, dest.yMax - b.y * k, dest.yMax };
+            System.Span<float> vs = stackalloc float[] { 1, 1 - b.w / H, b.y / H, 0 };
+            for (int i = 0; i + 1 < count; i++)
                 for (int j = 0; j < 3; j++)
                 {
                     Rect part = new Rect(xs[i], ys[j], xs[i + 1] - xs[i], ys[j + 1] - ys[j]);
                     if (part.width <= .01f || part.height <= .01f) continue;
                     // overlap the next patch a little: at fractional positions a hairline gap showed the background through
-                    if (i + 2 < xs.Count) part.width += .75f;
+                    if (i + 2 < count) part.width += .75f;
                     if (j < 2) part.height += .75f;
                     GUI.DrawTextureWithTexCoords(part, texture, new Rect(us[i], vs[j + 1], us[i + 1] - us[i], vs[j] - vs[j + 1]), true);
                 }

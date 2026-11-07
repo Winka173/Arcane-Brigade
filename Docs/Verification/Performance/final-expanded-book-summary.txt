@@ -1,0 +1,1 @@
+final-expanded-book: frames=600; wall=6.89s; fps=87.0; frame_p50=11.430ms; p95=13.457ms; p99=15.596ms; cpu_p95=13.449ms; gpu_p95=0.239ms; gc_valid=False; gc_mean=NAbytes/frame; gc_peak=NA; memory_peak=303.3MiB; units_peak=45; projectiles_peak=46

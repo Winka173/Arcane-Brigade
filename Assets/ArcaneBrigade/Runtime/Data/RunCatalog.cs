@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace ArcaneBrigade
 {
@@ -57,7 +58,13 @@ namespace ArcaneBrigade
         {
             get
             {
-                StatModifier[] authored = Modifiers != null && Modifiers.Length > 0 ? Modifiers : new[] { new StatModifier { Effect = Effect, Scope = RunModifierRules.DefaultScope(Effect), Value = Value } };
+                if (Modifiers == null || Modifiers.Length == 0)
+                {
+                    ModifierScope scope = RunModifierRules.DefaultScope(Effect);
+                    if (legacy == null || legacy[0].Effect != Effect || legacy[0].Scope != scope || legacy[0].Value != Value)
+                        legacy = new[] { new StatModifier { Effect = Effect, Scope = scope, Value = Value } };
+                }
+                StatModifier[] authored = Modifiers != null && Modifiers.Length > 0 ? Modifiers : legacy;
                 if (Rarity != ItemRarity.Rainbow) return authored;
                 // requirement 22/10/2026: the rainbow gifts felt weak; their positive power bonuses are worth 1.5x (counts like projectiles stay)
                 if (rainbow != null && rainbowFrom == authored) return rainbow;
@@ -71,7 +78,7 @@ namespace ArcaneBrigade
             }
         }
         public const float RainbowPower = 1.5f;
-        [System.NonSerialized] private StatModifier[] rainbow, rainbowFrom;
+        [System.NonSerialized] private StatModifier[] rainbow, rainbowFrom, legacy;
         private static bool RainbowScaled(ItemEffect e) => e is ItemEffect.Damage or ItemEffect.AttackSpeed or ItemEffect.Health or ItemEffect.Heal or ItemEffect.Crit
             or ItemEffect.ChampionDamage or ItemEffect.CompanionDamage or ItemEffect.CompanionAttackSpeed or ItemEffect.MeleeDamage or ItemEffect.RangedDamage
             or ItemEffect.CollisionDamage or ItemEffect.Knockback or ItemEffect.AttackRange or ItemEffect.Luck;
@@ -191,14 +198,62 @@ namespace ArcaneBrigade
         public float TierDamageMultiplier = 3.6f;
         public float TierSupportMultiplier = 3f;
 
+        private UnitDefinition[] indexedHeroes, indexedFriends;
+        private WeaponDefinition[] indexedWeapons;
+        private ItemDefinition[] indexedItems;
+        private readonly Dictionary<string, (UnitDefinition value, UnitDefinition[] array, int slot)> unitIndex = new Dictionary<string, (UnitDefinition, UnitDefinition[], int)>(System.StringComparer.Ordinal);
+        private readonly Dictionary<string, (WeaponDefinition value, int slot)> weaponIndex = new Dictionary<string, (WeaponDefinition, int)>(System.StringComparer.Ordinal);
+        private readonly Dictionary<string, (ItemDefinition value, int slot)> itemIndex = new Dictionary<string, (ItemDefinition, int)>(System.StringComparer.Ordinal);
+        private void EnsureIndexes()
+        {
+            if (indexedHeroes == Champions && indexedFriends == Companions && indexedWeapons == Weapons && indexedItems == Items) return;
+            indexedHeroes = Champions; indexedFriends = Companions; indexedWeapons = Weapons; indexedItems = Items;
+            unitIndex.Clear(); weaponIndex.Clear(); itemIndex.Clear();
+            foreach (var array in new[] { Champions, Companions })
+                for (int i = 0; i < array.Length; i++)
+                    if (array[i] != null && !string.IsNullOrEmpty(array[i].Id) && !unitIndex.ContainsKey(array[i].Id)) unitIndex.Add(array[i].Id, (array[i], array, i));
+            for (int i = 0; i < Weapons.Length; i++) if (Weapons[i] != null && !string.IsNullOrEmpty(Weapons[i].Id) && !weaponIndex.ContainsKey(Weapons[i].Id)) weaponIndex.Add(Weapons[i].Id, (Weapons[i], i));
+            for (int i = 0; i < Items.Length; i++) if (Items[i] != null && !string.IsNullOrEmpty(Items[i].Id) && !itemIndex.ContainsKey(Items[i].Id)) itemIndex.Add(Items[i].Id, (Items[i], i));
+        }
+        private void Reindex() { indexedHeroes = null; EnsureIndexes(); }
         public UnitDefinition Unit(string id)
         {
-            foreach (UnitDefinition unit in Champions) if (unit.Id == id) return unit;
-            foreach (UnitDefinition unit in Companions) if (unit.Id == id) return unit;
+            if (id == null) return null;
+            EnsureIndexes();
+            if (unitIndex.TryGetValue(id, out var found) && found.value != null && found.value.Id == id)
+            {
+                if (found.array[found.slot] == found.value) return found.value;
+                Reindex(); return Unit(id);
+            }
+            foreach (var array in new[] { Champions, Companions })
+                for (int i = 0; i < array.Length; i++) if (array[i].Id == id) { unitIndex[id] = (array[i], array, i); return array[i]; }
             return null;
         }
-        public WeaponDefinition Weapon(string id) { foreach (WeaponDefinition weapon in Weapons) if (weapon.Id == id) return weapon; return null; }
-        public ItemDefinition Item(string id) { foreach (ItemDefinition item in Items) if (item.Id == id) return item; return ActOneCanon.StoryItem(id) ?? WiseHeroItems.For(this, id) ?? StarlightThreadItem.For(id); }
+        public WeaponDefinition Weapon(string id)
+        {
+            if (id == null) return null;
+            EnsureIndexes();
+            if (weaponIndex.TryGetValue(id, out var found) && found.value != null && found.value.Id == id)
+            {
+                if (Weapons[found.slot] == found.value) return found.value;
+                Reindex(); return Weapon(id);
+            }
+            for (int i = 0; i < Weapons.Length; i++) if (Weapons[i].Id == id) { weaponIndex[id] = (Weapons[i], i); return Weapons[i]; }
+            return null;
+        }
+        public ItemDefinition Item(string id)
+        {
+            if (id == null) return null;
+            EnsureIndexes();
+            if (itemIndex.TryGetValue(id, out var found) && found.value != null && found.value.Id == id)
+            {
+                if (Items[found.slot] == found.value) return found.value;
+                Reindex(); return Item(id);
+            }
+            for (int i = 0; i < Items.Length; i++) if (Items[i].Id == id) { itemIndex[id] = (Items[i], i); return Items[i]; }
+            return ActOneCanon.StoryItem(id) ?? WiseHeroItems.For(this, id) ?? StarlightThreadItem.For(id);
+        }
+
     }
 
     [System.Serializable]

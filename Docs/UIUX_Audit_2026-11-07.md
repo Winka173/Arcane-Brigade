@@ -1,5 +1,7 @@
 # Rà soát UI, UX và luồng thao tác — 07/11/2026
 
+> Cập nhật: F01–F08 đã được xử lý trong lượt tiếp theo. Xem [báo cáo sửa lỗi và hiệu năng](UIUX_Performance_2026-11-07.md) cùng bằng chứng mới. Phần bên dưới giữ nguyên kết quả tại thời điểm audit trước khi sửa.
+
 Kết quả: **chưa đạt để coi là UI/UX hoàn thiện**. Có lỗi dịch làm sai tên chức năng, số đếm chưa phản ánh dữ liệu, nhóm điều khiển thiếu hover và vấn đề với focus/tooltip. Bản sửa trong lượt này **chỉ vẽ lại nút sách** theo yêu cầu; các lỗi dưới đây được báo để xử lý tiếp, không tự thay đổi gameplay hay các luồng khác.
 
 ## Cách kiểm tra
