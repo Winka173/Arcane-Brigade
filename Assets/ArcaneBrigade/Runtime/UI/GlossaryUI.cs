@@ -159,8 +159,17 @@ namespace ArcaneBrigade
         private static readonly Dictionary<(string, GUIStyle, float, int), float> heights = new Dictionary<(string, GUIStyle, float, int), float>();
         private static readonly Dictionary<string, MatchCollection> tokenCache = new Dictionary<string, MatchCollection>();
         private static readonly Dictionary<(string, Font, int, FontStyle), float> widths = new Dictionary<(string, Font, int, FontStyle), float>();
+        private static int languageRevision = -1;
+        private static void EnsureLanguage()
+        {
+            if (languageRevision == GameLocalization.Revision) return;
+            languageRevision = GameLocalization.Revision;
+            heights.Clear(); tokenCache.Clear(); widths.Clear();
+        }
         public static float Height(string text, GUIStyle style, float width)
         {
+            EnsureLanguage();
+            text = GameLocalization.Text(text);
             var key = (text ?? "", style, width, style.fontSize);
             if (heights.TryGetValue(key, out float known)) return known;
             if (heights.Count > 512) heights.Clear();
@@ -179,11 +188,13 @@ namespace ArcaneBrigade
             var key = (word, style.font, style.fontSize, style.fontStyle);
             if (widths.TryGetValue(key, out float known)) return known;
             if (widths.Count > 4096) widths.Clear();
-            return widths[key] = style.CalcSize(new GUIContent(word)).x;
+            return widths[key] = style.CalcSize(LocalizedGUI.Content(word)).x;
         }
         public static void Text(Rect bounds, string text, GUIStyle style) { Layout(bounds, text, style, true); }
         private static float Layout(Rect bounds, string text, GUIStyle style, bool draw)
         {
+            EnsureLanguage();
+            text = GameLocalization.Text(text);
             if (!wordStyles.TryGetValue(style, out GUIStyle words))
             {
                 if (wordStyles.Count > 32) wordStyles.Clear();
@@ -229,7 +240,7 @@ namespace ArcaneBrigade
                         ArcadeSkin.Line(r, new Color(.45f, .31f, .1f, .95f));
                         int size = words.fontSize; words.fontSize = Mathf.RoundToInt(size * .8f);
                         Color prior = GUI.color; GUI.color *= new Color(1f, .93f, .72f);
-                        words.alignment = TextAnchor.MiddleCenter; GUI.Label(r, caption, words); words.alignment = TextAnchor.UpperLeft;
+                        words.alignment = TextAnchor.MiddleCenter; LocalizedGUI.Label(r, caption, words); words.alignment = TextAnchor.UpperLeft;
                         GUI.color = prior; words.fontSize = size;
                     }
                     words.fontStyle = keptTag;
@@ -273,11 +284,11 @@ namespace ArcaneBrigade
                     {
                         Rect target = new Rect(bounds.x + horizontal, bounds.y + vertical, size, line);
                         StatGlyph.Draw(new Rect(target.x, target.y, glyph, line), effect);
-                        GUI.Label(new Rect(target.x + glyph + 3, target.y, size - glyph, line), bonus[1], words);
+                        LocalizedGUI.Label(new Rect(target.x + glyph + 3, target.y, size - glyph, line), bonus[1], words);
                         float offset = glyph + 3 + Measure(words, bonus[1] + " ");
                         Color prior = GUI.color; GUI.color *= ShopDescriptionCard.BenefitColor(effect, bonus[2].StartsWith("-") || bonus[2].StartsWith("−") || bonus[2].StartsWith("×0") ? -1 : 1);
                         FontStyle previousStyle = words.fontStyle; words.fontStyle = FontStyle.Bold;
-                        GUI.Label(new Rect(target.x + offset, target.y, size - offset + 8, line), bonus[2], words); words.fontStyle = previousStyle; GUI.color = prior;
+                        LocalizedGUI.Label(new Rect(target.x + offset, target.y, size - offset + 8, line), bonus[2], words); words.fontStyle = previousStyle; GUI.color = prior;
                         if (TouchTargets.Button(target, GUIContent.none, GUIStyle.none)) Show(RunModifierRules.ModifierName(effect));
                     }
                     words.fontSize = keepSize;
@@ -298,7 +309,7 @@ namespace ArcaneBrigade
                         StatGlyph.Draw(new Rect(target.x, target.y, icon, line), entry.Effect);
                         Color previous = GUI.color; GUI.color *= ArcadeSkin.Teal;
                         Rect caption = new Rect(target.x + icon, target.y, width - icon, line);
-                        GUI.Label(caption, word, words);
+                        LocalizedGUI.Label(caption, word, words);
                         if (TouchTargets.Button(caption, GUIContent.none, GUIStyle.none)) Show(word);
                         GUI.color = previous;
                         if (target.Contains(Event.current.mousePosition)) ArcadeSkin.Line(new Rect(target.x + icon, target.yMax - 2, width - icon, 2), new Color(ArcadeSkin.Accent.r, ArcadeSkin.Accent.g, ArcadeSkin.Accent.b, 0.8f));
@@ -310,7 +321,7 @@ namespace ArcaneBrigade
                         else if (char.IsDigit(word[0])) GUI.color *= ArcadeSkin.Gold;
                         FontStyle previousStyle = words.fontStyle;
                         if (signedValue.IsMatch(word) || char.IsDigit(word[0])) words.fontStyle = FontStyle.Bold;
-                        GUI.Label(target, word, words); words.fontStyle = previousStyle; GUI.color = previous;
+                        LocalizedGUI.Label(target, word, words); words.fontStyle = previousStyle; GUI.color = previous;
                     }
                 }
                 horizontal += width;
@@ -325,7 +336,7 @@ namespace ArcaneBrigade
             int size = words.fontSize; FontStyle style = words.fontStyle; TextAnchor align = words.alignment;
             words.fontSize = Mathf.RoundToInt(size * .8f); words.fontStyle = FontStyle.Bold; words.alignment = TextAnchor.MiddleCenter;
             Color prior = GUI.color; GUI.color *= gives ? new Color(.75f, 1f, .78f) : new Color(1f, .8f, .76f);
-            GUI.Label(r, gives ? "GIVES" : "COSTS", words);
+            LocalizedGUI.Label(r, gives ? "GIVES" : "COSTS", words);
             GUI.color = prior; words.fontSize = size; words.fontStyle = style; words.alignment = align;
         }
         public static void Draw(Vector2 viewport)
@@ -336,15 +347,15 @@ namespace ArcaneBrigade
             GUIStyle heading = ArcadeTypography.Style(ArcadeTypography.SizeBody, true); heading.normal.textColor = ArcadeSkin.Cream;
             GUIStyle body = ArcadeTypography.Style(ArcadeTypography.SizeNote); body.normal.textColor = ArcadeSkin.Cream;
             // below the bond list in the top-right corner (drawn later, it used to cover the card's right half) and as tall as its words
-            float words = body.CalcHeight(new GUIContent(selected.Description), width - 50);
+            float words = body.CalcHeight(LocalizedGUI.Content(selected.Description), width - 50);
             Rect panel = new Rect(viewport.x - width - 35, 340, width, Mathf.Max(160, 95 + words + 24));
             Matrix4x4 keepMatrix = GUI.matrix; Color keepColour = GUI.color;
             LivingUI.Pop(Time.unscaledTime - openedAt, panel.center);
             ArcadeSkin.Ticket(panel, ArcadeSkin.Ink, ArcadeSkin.Teal);
             StatGlyph.Draw(new Rect(panel.x + 20, panel.y + 18, 36, 36), selected.Effect);
-            GUI.Label(new Rect(panel.x + 68, panel.y + 20, width - 125, 40), selected.Name, heading);
+            LocalizedGUI.Label(new Rect(panel.x + 68, panel.y + 20, width - 125, 40), selected.Name, heading);
             if (TouchTargets.Button(new Rect(panel.xMax - 55, panel.y + 15, 40, 40), "×")) Close();
-            if (selected != null) GUI.Label(new Rect(panel.x + 25, panel.y + 75, width - 50, words + 8), selected.Description, body);
+            if (selected != null) LocalizedGUI.Label(new Rect(panel.x + 25, panel.y + 75, width - 50, words + 8), selected.Description, body);
             GUI.matrix = keepMatrix; GUI.color = keepColour;
             if (Time.unscaledTime - openedAt > 30) Close();
         }

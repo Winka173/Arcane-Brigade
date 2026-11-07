@@ -229,7 +229,7 @@ namespace ArcaneBrigade
             if (by != null)
             {
                 bool figure = by.Title == "THE LAST CUSTOMER" || by.Key == "Shopkeeper";
-                string plain = by.Body; int stop = plain.IndexOf(". ", StringComparison.Ordinal); if (stop > 0 && stop < 110) plain = plain.Substring(0, stop + 1);
+                string plain = GameLocalization.Text(by.Body); int stop = plain.IndexOf(". ", StringComparison.Ordinal); if (stop > 0 && stop < 110) plain = plain.Substring(0, stop + 1);
                 if (ShopPrompt.Draw(by.Title, plain, figure ? "TALK" : "LOOK", Time.unscaledTime - focusedAt))
                 { open = by; offerScroll = Vector2.zero; openedFor = owner.Simulation.Champion.Position; Speak(by); }
             }
@@ -253,9 +253,9 @@ namespace ArcaneBrigade
                 if (ArcadeSkin.HasKit) ArcadeSkin.Frame(card, KitFrame.Dialogue, .55f);
                 else { ArcadeSkin.Panel(card, ArcadeSkin.CardLit); ArcadeSkin.Line(new Rect(card.x, card.y, card.width, 3), ArcadeSkin.Accent); }
                 float y = card.y + 18, width = card.width - 40;
-                title.normal.textColor = ArcadeSkin.Gold; float h = title.CalcHeight(new GUIContent(open.Title), width); GUI.Label(new Rect(card.x + 20, y, width, h), open.Title, title); y += h + 8;
-                body.normal.textColor = ArcadeSkin.Cream; h = body.CalcHeight(new GUIContent(open.Body), width); GUI.Label(new Rect(card.x + 20, y, width, h), open.Body, body); y += h + 12;
-                hint.normal.textColor = ArcadeSkin.Teal; h = hint.CalcHeight(new GUIContent(open.Use), width); GUI.Label(new Rect(card.x + 20, y, width, h), open.Use, hint);
+                title.normal.textColor = ArcadeSkin.Gold; float h = title.CalcHeight(LocalizedGUI.Content(open.Title), width); LocalizedGUI.Label(new Rect(card.x + 20, y, width, h), open.Title, title); y += h + 8;
+                body.normal.textColor = ArcadeSkin.Cream; h = body.CalcHeight(LocalizedGUI.Content(open.Body), width); LocalizedGUI.Label(new Rect(card.x + 20, y, width, h), open.Body, body); y += h + 12;
+                hint.normal.textColor = ArcadeSkin.Teal; h = hint.CalcHeight(LocalizedGUI.Content(open.Use), width); LocalizedGUI.Label(new Rect(card.x + 20, y, width, h), open.Use, hint);
             }
             GUI.matrix = previous; GUI.color = tint;
         }
@@ -265,7 +265,7 @@ namespace ArcaneBrigade
             const float width = 560;
             float inner = width - 40;
             title ??= ArcadeTypography.Style(ArcadeTypography.SizeBody, true); body ??= ArcadeTypography.Style(ArcadeTypography.SizeNote); hint ??= ArcadeTypography.Style(24);
-            float height = 18 + title.CalcHeight(new GUIContent(entry.Title), inner) + 8 + body.CalcHeight(new GUIContent(entry.Body), inner) + 12 + hint.CalcHeight(new GUIContent(entry.Use), inner) + 20;
+            float height = 18 + title.CalcHeight(LocalizedGUI.Content(entry.Title), inner) + 8 + body.CalcHeight(LocalizedGUI.Content(entry.Body), inner) + 12 + hint.CalcHeight(LocalizedGUI.Content(entry.Use), inner) + 20;
             Rect box = Screen(entry.World, camera);
             float x = box.center.x < 960 ? box.xMax + 24 : box.xMin - 24 - width; // beside the thing, toward the middle of the room
             return new Rect(Mathf.Clamp(x, 16, 1904 - width), Mathf.Clamp(box.center.y - height * 0.5f, 190, 990 - height), width, height);
@@ -278,8 +278,8 @@ namespace ArcaneBrigade
             RarityDescriptionFrame.Backdrop(new Rect(card.x + 36, card.y + 20, 42, 42), offerCard.Rarity, owner.PresentationClock);
             ShopDescriptionCard.DrawSprite(new Rect(card.x + 36, card.y + 20, 42, 42), offerCard.Portrait); // inside the frame's padding
             title.normal.textColor = RunModifierRules.RarityColor(offerCard.Rarity);
-            GUI.Label(new Rect(card.x + 90, card.y + 16, 760, 37), open.Title, title);
-            hint.normal.textColor = ArcadeSkin.Teal; GUI.Label(new Rect(card.x + 90, card.y + 52, 760, 24), offerCard.Identity, hint);
+            LocalizedGUI.Label(new Rect(card.x + 90, card.y + 16, 760, 37), open.Title, title);
+            hint.normal.textColor = ArcadeSkin.Teal; LocalizedGUI.Label(new Rect(card.x + 90, card.y + 52, 760, 24), offerCard.Identity, hint);
             if (ArcadeSkin.Medallion(new Rect(card.xMax - 74, card.y + 6, 64, 64), KitMedallion.Close)) { Close(); return; } // painted close medallion, a full tap target
             float header = offerCard.HeaderHeight;
             offerCard.DrawHeader(new Rect(card.x + 36, card.y + 86, card.width - 72, header), owner.PresentationClock);

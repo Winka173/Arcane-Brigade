@@ -39,6 +39,7 @@ namespace ArcaneBrigade
         }
         public static void Apply(PlayerProfile profile)
         {
+            GameLocalization.SetLanguage(profile.Language);
             MusicVolume = profile.MusicVolume; SfxVolume = profile.SfxVolume; VoiceVolume = profile.VoiceVolume;
             ReducedAudio = profile.ReducedAudio; ReducedMotion = profile.ReducedMotion;
             DamageNumbers = profile.ShowDamageNumbers; LootIndicators = profile.ShowLootIndicators;

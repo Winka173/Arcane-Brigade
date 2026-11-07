@@ -79,15 +79,15 @@ namespace ArcaneBrigade
             head.fontSize = Mathf.RoundToInt(48 * scale); body.fontSize = Mathf.RoundToInt(31 * scale); pop.fontSize = Mathf.RoundToInt(30 * scale);
             head.normal.textColor = Color.Lerp(accent, ink, ink == ArcadeSkin.Paper ? .1f : .55f); body.normal.textColor = ink;
             float block = 70 * scale; // the title and the lines as one block, centred in the column (the wide layout keeps its top)
-            foreach (string line in Lines[page]) block += body.CalcHeight(new GUIContent(line), text.width - 36 * scale) + 16 * scale;
+            foreach (string line in Lines[page]) block += body.CalcHeight(LocalizedGUI.Content(line), text.width - 36 * scale) + 16 * scale;
             float top = layout == 2 ? text.y : text.y + Mathf.Max(0, (text.height - block) * .5f);
-            GUI.Label(new Rect(text.x, top, text.width, 62 * scale), Titles[page], head);
+            LocalizedGUI.Label(new Rect(text.x, top, text.width, 62 * scale), Titles[page], head);
             float y = top + 70 * scale;
             foreach (string line in Lines[page])
             {
                 ArcadeSkin.Diamond(new Vector2(text.x + 10 * scale, y + 19 * scale), 16 * scale, accent);
-                float h = body.CalcHeight(new GUIContent(line), text.width - 36 * scale);
-                GUI.Label(new Rect(text.x + 34 * scale, y, text.width - 36 * scale, h), line, body);
+                float h = body.CalcHeight(LocalizedGUI.Content(line), text.width - 36 * scale);
+                LocalizedGUI.Label(new Rect(text.x + 34 * scale, y, text.width - 36 * scale, h), line, body);
                 y += h + 16 * scale;
             }
         }
@@ -169,7 +169,7 @@ namespace ArcaneBrigade
                     Vector2 hero = mid + new Vector2(40 * u, 20 * u);
                     if (trans > 0) ArcadeSkin.Glow(new Rect(hero.x - 120 * u, hero.y - 130 * u, 240 * u, 260 * u), new Color(accent.r, accent.g, accent.b, .5f * Mathf.Sin(trans * Mathf.PI) + .2f));
                     Sprite(hero, (120 + 30 * Mathf.Sin(Mathf.Clamp01(trans * 3) * Mathf.PI * .5f)) * u, Hero(c, heroId));
-                    if (trans > .05f) { pop.normal.textColor = accent; GUI.Label(new Rect(hero.x - 150 * u, d.y + 20 * u, 300 * u, 50 * u), "TRANSFORM!", pop); }
+                    if (trans > .05f) { pop.normal.textColor = accent; LocalizedGUI.Label(new Rect(hero.x - 150 * u, d.y + 20 * u, 300 * u, 50 * u), "TRANSFORM!", pop); }
                     break;
                 }
                 case 3: // a stall shows a friend; coins fly to it; SOLD
@@ -179,7 +179,7 @@ namespace ArcaneBrigade
                     ArcadeSkin.Ticket(stall, ArcadeSkin.Paper, accent);
                     Sprite(new Vector2(stall.center.x, stall.y + 90 * u), 110 * u, Friend(c, 3), k > .75f ? 1 - (k - .75f) * 4 : 1);
                     for (int i = 0; i < 4; i++) { float f = Mathf.Clamp01((k - .2f - i * .08f) / .3f); if (f > 0 && f < 1) Sprite(Vector2.Lerp(new Vector2(d.x + 60 * u, d.yMax - 60 * u), new Vector2(stall.center.x, stall.yMax - 30 * u), f), 34 * u, c.Arena != null ? c.Arena.Coin : null); }
-                    if (k > .6f) { pop.normal.textColor = new Color(.9f, .3f, .25f); GUI.Label(new Rect(stall.x, stall.yMax - 70 * u, stall.width, 50 * u), "SOLD!", pop); }
+                    if (k > .6f) { pop.normal.textColor = new Color(.9f, .3f, .25f); LocalizedGUI.Label(new Rect(stall.x, stall.yMax - 70 * u, stall.width, 50 * u), "SOLD!", pop); }
                     break;
                 }
                 case 4: // two of the same friend slide together into one with two stars
@@ -207,7 +207,7 @@ namespace ArcaneBrigade
                         bool on = k > .15f + i * .2f;
                         Sprite(p + Vector2.up * -85 * u, 46 * u, icon, on ? 1 : .25f);
                     }
-                    if (k > .45f) { pop.normal.textColor = accent; GUI.Label(new Rect(d.x, d.y + 20 * u, d.width, 50 * u), "BOND AWAKE: +DAMAGE", pop); }
+                    if (k > .45f) { pop.normal.textColor = accent; LocalizedGUI.Label(new Rect(d.x, d.y + 20 * u, d.width, 50 * u), "BOND AWAKE: +DAMAGE", pop); }
                     break;
                 }
                 default: // a relic drops into its frame, glowing by rarity
@@ -217,7 +217,7 @@ namespace ArcaneBrigade
                     Rect slot = new Rect(mid.x - 80 * u, mid.y - 60 * u, 160 * u, 160 * u);
                     RarityDescriptionFrame.Edge(slot, relic != null ? relic.Rarity : ItemRarity.Rare, t);
                     if (relic != null) Sprite(new Vector2(slot.center.x, Mathf.Lerp(d.y - 40 * u, slot.center.y, 1 - (1 - drop) * (1 - drop))), 110 * u, relic.Icon);
-                    if (k > .4f && relic != null) { pop.normal.textColor = ArcadeSkin.Better; GUI.Label(new Rect(d.x, slot.yMax + 14 * u, d.width, 46 * u), relic.Name, pop); }
+                    if (k > .4f && relic != null) { pop.normal.textColor = ArcadeSkin.Better; LocalizedGUI.Label(new Rect(d.x, slot.yMax + 14 * u, d.width, 46 * u), relic.Name, pop); }
                     break;
                 }
             }

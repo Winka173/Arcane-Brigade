@@ -129,7 +129,7 @@ namespace ArcaneBrigade
             // not read), names in title case at one size
             int names = MetaProgression.BranchNames.Length;
             float[] need = new float[names]; float total = 0;
-            for (int b = 0; b < names; b++) { need[b] = chip.CalcSize(new GUIContent(BranchLabel(MetaProgression.BranchNames[b]))).x + 34; total += need[b]; }
+            for (int b = 0; b < names; b++) { need[b] = chip.CalcSize(LocalizedGUI.Content(BranchLabel(MetaProgression.BranchNames[b]))).x + 34; total += need[b]; }
             float room = tree.width - 6 * names, spare = Mathf.Max(0, room - total) / names, squeeze = Mathf.Min(1, room / total), tx = tree.x;
             for (int b = 0; b < names; b++)
             {
@@ -205,7 +205,7 @@ namespace ArcaneBrigade
                 GUI.DrawTexture(new Rect(disc.center.x - fw * .5f, disc.center.y - fh * .56f, fw, fh), crown.texture, ScaleMode.ScaleToFit);
             }
             // its ranks: a count on a small plate under it (10 px lozenges could not be read on a phone; the roots: a count beside them)
-            if (n.Branch < 0 && open) { small.normal.textColor = ArcadeSkin.KitCream; small.alignment = TextAnchor.MiddleLeft; GUI.Label(new Rect(r.xMax + 4, r.y, 56, r.height), rank + "/" + n.Ranks, small); small.alignment = TextAnchor.UpperLeft; }
+            if (n.Branch < 0 && open) { small.normal.textColor = ArcadeSkin.KitCream; small.alignment = TextAnchor.MiddleLeft; LocalizedGUI.Label(new Rect(r.xMax + 4, r.y, 56, r.height), rank + "/" + n.Ranks, small); small.alignment = TextAnchor.UpperLeft; }
             else if (n.Ranks > 1 && open && focusBranch < 0)
                 for (int k = 0; k < n.Ranks; k++) // the whole tree is dense: small lozenges; its card says the count
                     ArcadeSkin.Diamond(new Vector2(at.x + (k - (n.Ranks - 1) * .5f) * 9, r.yMax - 1), 8, k < rank ? ArcadeSkin.Gold : new Color(.22f, .15f, .1f));
@@ -247,13 +247,13 @@ namespace ArcaneBrigade
             NodeIcon(new Rect(inner.center.x - 28, inner.y, 56, 56), n);
             body.normal.textColor = ink; small.normal.textColor = new Color(ink.r, ink.g, ink.b, .9f);
             body.alignment = TextAnchor.MiddleCenter; small.alignment = TextAnchor.UpperCenter;
-            GUI.Label(new Rect(inner.x, inner.y + 58, inner.width, 26), n.Name, body);
+            LocalizedGUI.Label(new Rect(inner.x, inner.y + 58, inner.width, 26), n.Name, body);
             // the lines flow (a three-line effect pushed the tag over its last line)
-            float lineHeight = Mathf.Max(26, small.CalcHeight(new GUIContent(n.Line), inner.width));
-            GUI.Label(new Rect(inner.x, inner.y + 84, inner.width, lineHeight), n.Line, small);
+            float lineHeight = Mathf.Max(26, small.CalcHeight(LocalizedGUI.Content(n.Line), inner.width));
+            LocalizedGUI.Label(new Rect(inner.x, inner.y + 84, inner.width, lineHeight), n.Line, small);
             int rank = MetaProgression.LampRank(profile, n.Id);
             string tag = n.Capstone ? "THE BRANCH'S CROWN" : MetaProgression.Fork(n) != null ? "PICK 1 OF 2" : n.Ranks > 1 ? "RANK " + rank + "/" + n.Ranks : null;
-            if (tag != null) { chip.normal.textColor = new Color(.55f, .18f, .12f); GUI.Label(new Rect(inner.x, inner.y + 88 + lineHeight, inner.width, 22), tag, chip); }
+            if (tag != null) { chip.normal.textColor = new Color(.55f, .18f, .12f); LocalizedGUI.Label(new Rect(inner.x, inner.y + 88 + lineHeight, inner.width, 22), tag, chip); }
             body.alignment = TextAnchor.UpperLeft; small.alignment = TextAnchor.UpperLeft;
 
             string blocked = MetaProgression.NodeBlocked(profile, n);
@@ -264,7 +264,7 @@ namespace ArcaneBrigade
                 Sprite done = ArcadeSkin.Crafted ? null : ArcadeSkin.KitSprite("Info/MasteredStamp");
                 if (done != null) RunHud.Sprite(new Rect(button.x, button.center.y - 24, 48, 48), done);
                 chip.normal.textColor = new Color(.45f, .3f, .08f);
-                GUI.Label(new Rect(button.x + (done != null ? 56 : 0), button.y, button.width - (done != null ? 56 : 0), button.height), n.Ranks > 1 ? "MASTERED" : "LIT", chip);
+                LocalizedGUI.Label(new Rect(button.x + (done != null ? 56 : 0), button.y, button.width - (done != null ? 56 : 0), button.height), n.Ranks > 1 ? "MASTERED" : "LIT", chip);
             }
             else if (blocked == "Locked")
             {
@@ -276,9 +276,9 @@ namespace ArcaneBrigade
                     : "Opens after " + MetaProgression.BranchOpensAt + " upgrades on the " + before + " branch"
                       + (n.Branch <= RunMeta.DifficultyNames.Length ? "\nor after winning on " + n.Branch + (n.Branch == 1 ? " difficulty" : " different difficulties") : "");
                 // the reason sits on the card's foot, the padlock just above it (it ran off the card's bottom)
-                float whyHeight = small.CalcHeight(new GUIContent(why), inner.width);
+                float whyHeight = small.CalcHeight(LocalizedGUI.Content(why), inner.width);
                 ArcadeSkin.Lock(new Vector2(button.center.x, inner.yMax - whyHeight - 16), 20, ink);
-                GUI.Label(new Rect(inner.x, inner.yMax - whyHeight, inner.width, whyHeight), why, small);
+                LocalizedGUI.Label(new Rect(inner.x, inner.yMax - whyHeight, inner.width, whyHeight), why, small);
                 small.alignment = TextAnchor.UpperLeft;
             }
             else
@@ -294,12 +294,12 @@ namespace ArcaneBrigade
                         else { bought = n.Id; boughtAt = Time.unscaledTime; CheckpointAudio.PlayInterfaceId(n.Capstone || rank + 1 >= n.Ranks && n.Ranks > 1 ? "up.star3" : "shop.buy.gold"); }
                     }
                 }
-                float cw = body.CalcSize(new GUIContent(caption)).x;
+                float cw = body.CalcSize(LocalizedGUI.Content(caption)).x;
                 RunHud.Sprite(new Rect(button.center.x - cw * .5f - 30, button.center.y - 15, 30, 30), MetaIcons.Currency(n.Currency));
                 if (!can && blocked != "Not enough oil" && blocked != "Not enough keepsakes")
                 {
                     small.normal.textColor = new Color(.55f, .18f, .12f); small.alignment = TextAnchor.UpperCenter;
-                    GUI.Label(new Rect(inner.x, button.y - 44, inner.width, 26), blocked, small); // clear of the button's crest
+                    LocalizedGUI.Label(new Rect(inner.x, button.y - 44, inner.width, 26), blocked, small); // clear of the button's crest
                     small.alignment = TextAnchor.UpperLeft;
                 }
             }

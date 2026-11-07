@@ -22,6 +22,7 @@ namespace ArcaneBrigade
         public Rect Placed { get; internal set; }
         public bool Drawn { get; internal set; }
         internal bool PlacementLocked;
+        internal int LanguageRevision = -1;
         internal Vector2 LockedAnchor;
     }
 
@@ -44,7 +45,7 @@ namespace ArcaneBrigade
         public static float LastCompanionAt { get; private set; } = -100;
         public static Rect Bounds = new Rect(16, 108, 1888, 952);
 
-        public static float Lifetime(string text) => Mathf.Clamp(1.6f + (text?.Length ?? 0) * 0.055f, 2.4f, 6.5f);
+        public static float Lifetime(string text) => Mathf.Clamp(1.6f + (GameLocalization.Text(text)?.Length ?? 0) * 0.055f, 2.4f, 6.5f);
 
         public static SpeechBubble Show(string speaker, string name, string text, Func<Vector3?> anchor, SpeechTone tone, float seconds = 0, int priority = 1, BubbleSide prefer = BubbleSide.Above)
         {
@@ -162,12 +163,18 @@ namespace ArcaneBrigade
             if (combat) placed.AddRange(CombatReserved);
             // Existing sentences keep their space even when a newly queued voice has higher priority.
             foreach (var visible in bubbles)
-                if (visible.PlacementLocked) placed.Add(new Rect(visible.Placed.x - 6, visible.Placed.y - 6, visible.Placed.width + 12, visible.Placed.height + 12));
+                if (visible.PlacementLocked && visible.LanguageRevision == GameLocalization.Revision) placed.Add(new Rect(visible.Placed.x - 6, visible.Placed.y - 6, visible.Placed.width + 12, visible.Placed.height + 12));
             // important voices claim their place first; among equals, the older box keeps its spot
             order.Sort((a, b) => a.Priority != b.Priority ? b.Priority.CompareTo(a.Priority) : a.Began.CompareTo(b.Began));
             float offscreenY = Bounds.y + 6;
             foreach (SpeechBubble bubble in order)
             {
+                string localizedText = GameLocalization.Text(bubble.Text);
+                if (bubble.LanguageRevision != GameLocalization.Revision)
+                {
+                    bubble.PlacementLocked = false;
+                    bubble.LanguageRevision = GameLocalization.Revision;
+                }
                 bubble.Drawn = false;
                 if (now < bubble.Began) continue; // still waiting for its moment
                 if (bubble.Tone == SpeechTone.Whisper) { DrawWhisper(bubble, now, reduced); continue; }
@@ -200,7 +207,7 @@ namespace ArcaneBrigade
 
                 GUIStyle style = readable ? plainCopy : copy;
                 float maxWidth = bubble.Tone == SpeechTone.Shopkeeper || bubble.Tone == SpeechTone.Dream ? 420 : bubble.Tone == SpeechTone.Offscreen ? 620 : 350;
-                var content = new GUIContent(bubble.Text);
+                var content = LocalizedGUI.Content(localizedText);
                 float textWidth = Mathf.Min(maxWidth - 44, style.CalcSize(content).x + 4);
                 textWidth = Mathf.Max(textWidth, 120);
                 float textHeight = style.CalcHeight(content, textWidth);
@@ -227,10 +234,10 @@ namespace ArcaneBrigade
                 // growing away from its tail so the tail stays on the speaker
                 if (!reduced)
                 {
-                    int typed = Mathf.Clamp(Mathf.FloorToInt(age * RevealRate), 1, bubble.Text.Length);
-                    if (typed < bubble.Text.Length)
+                    int typed = Mathf.Clamp(Mathf.FloorToInt(age * RevealRate), 1, localizedText.Length);
+                    if (typed < localizedText.Length)
                     {
-                        float tall = Mathf.Min(rect.height, top + style.CalcHeight(new GUIContent(bubble.Text.Substring(0, typed)), textWidth) + 18);
+                        float tall = Mathf.Min(rect.height, top + style.CalcHeight(LocalizedGUI.Content(localizedText.Substring(0, typed)), textWidth) + 18);
                         if (tailed && anchor.y > rect.center.y) rect.y += rect.height - tall;
                         rect.height = tall;
                     }
@@ -256,18 +263,18 @@ namespace ArcaneBrigade
                     string who = RunUICopy.Title(bubble.Name);
                     if (painted)
                     {
-                        float nameWidth = Mathf.Min(rect.width - 30, nameStyle.CalcSize(new GUIContent(who)).x + 40);
+                        float nameWidth = Mathf.Min(rect.width - 30, nameStyle.CalcSize(LocalizedGUI.Content(who)).x + 40);
                         Rect tab = new Rect(rect.x + 10, rect.y - 4, nameWidth, 34);
                         ArcadeSkin.Strip(tab, "Panels/SpeechTab", 22, 24);
-                        GUI.Label(new Rect(tab.x + 18, tab.y + 1, tab.width - 30, 32), who, nameStyle);
+                        LocalizedGUI.Label(new Rect(tab.x + 18, tab.y + 1, tab.width - 30, 32), who, nameStyle);
                     }
-                    else GUI.Label(new Rect(rect.x + 22, rect.y + 8, rect.width - 34, 28), who, nameStyle);
+                    else LocalizedGUI.Label(new Rect(rect.x + 22, rect.y + 8, rect.width - 34, 28), who, nameStyle);
                 }
                 style.normal.textColor = ink;
-                int glyphs = reduced ? bubble.Text.Length : Mathf.Clamp(Mathf.FloorToInt(age * RevealRate), 0, bubble.Text.Length);
+                int glyphs = reduced ? localizedText.Length : Mathf.Clamp(Mathf.FloorToInt(age * RevealRate), 0, localizedText.Length);
                 // the hidden tail of the sentence keeps its space so words never jump between lines while revealing
-                string shown = glyphs >= bubble.Text.Length ? bubble.Text : bubble.Text.Substring(0, glyphs) + "<color=#00000000>" + bubble.Text.Substring(glyphs) + "</color>";
-                GUI.Label(new Rect(rect.x + 22, rect.y + top - (readable ? 0 : 4), textWidth + 4, textHeight + 8), shown, style);
+                string shown = glyphs >= localizedText.Length ? localizedText : localizedText.Substring(0, glyphs) + "<color=#00000000>" + localizedText.Substring(glyphs) + "</color>";
+                LocalizedGUI.Label(new Rect(rect.x + 22, rect.y + top - (readable ? 0 : 4), textWidth + 4, textHeight + 8), shown, style);
                 GUI.color = previous;
                 GUI.matrix = restore;
             }
@@ -380,7 +387,7 @@ namespace ArcaneBrigade
         {
             float age = now - bubble.Began;
             float alpha = Mathf.Clamp01(age / 0.6f) * Mathf.Clamp01((bubble.Expires - now) / 0.9f) * 0.9f;
-            var content = new GUIContent(bubble.Text);
+            var content = LocalizedGUI.Content(bubble.Text);
             float height = whisperStyle.CalcHeight(content, 470);
             Rect rect = bubble.PlacementLocked ? bubble.Placed : new Rect(46, 470 - height * 0.5f, 470, height);
             bubble.PlacementLocked = true;
@@ -388,7 +395,7 @@ namespace ArcaneBrigade
             GUI.color = new Color(1, 1, 1, alpha);
             for (int pass = 0; pass < 2; pass++) ArcadeSkin.Glow(new Rect(rect.x - 70, rect.y - 50, rect.width + 140, rect.height + 100), new Color(0.02f, 0.02f, 0.04f, 0.85f)); // a deeper shade so the words read over busy art
             whisperStyle.normal.textColor = new Color(0.86f, 0.82f, 0.9f, 1);
-            GUI.Label(rect, bubble.Text, whisperStyle);
+            LocalizedGUI.Label(rect, bubble.Text, whisperStyle);
             GUI.color = previous;
             bubble.Placed = rect; bubble.Drawn = true; DrawnCount++;
         }

@@ -70,14 +70,14 @@ namespace ArcaneBrigade
                     // this purchase's own change in the stat's unit ("+12%", "+4 flat", "+0.15"), not the moved compiled total
                     string number=d.Display??Number(d.After-d.Before);
                     string label=d.Message??d.Label.Replace("Run / ","").Replace("Companion bullet interception","Interception")+" "+number;
-                    while(text.fontSize>16 && text.CalcSize(new GUIContent(label)).x>rect.width-30)text.fontSize--;
-                    float start=rect.x+(rect.width-text.CalcSize(new GUIContent(label)).x-29)*.5f;
+                    while(text.fontSize>16 && text.CalcSize(LocalizedGUI.Content(label)).x>rect.width-30)text.fontSize--;
+                    float start=rect.x+(rect.width-text.CalcSize(LocalizedGUI.Content(label)).x-29)*.5f;
                     Color old=GUI.color;GUI.color=new Color(old.r,old.g,old.b,old.a*alpha);
                     StatGlyph.Draw(new Rect(start,rect.y+n*25+3,23,23),Effect(d.Label));GUI.color=old;
                     Rect line=new Rect(start+29,rect.y+n*25,rect.width-29,29);
                     text.normal.textColor=new Color(.015f,.02f,.035f,alpha*.9f);
-                    GUI.Label(new Rect(line.x+1.5f,line.y+1.5f,line.width,line.height),label,text);
-                    color.a=alpha;text.normal.textColor=color;GUI.Label(line,label,text);GUI.Label(new Rect(line.x+.4f,line.y,line.width,line.height),label,text);
+                    LocalizedGUI.Label(new Rect(line.x+1.5f,line.y+1.5f,line.width,line.height),label,text);
+                    color.a=alpha;text.normal.textColor=color;LocalizedGUI.Label(line,label,text);LocalizedGUI.Label(new Rect(line.x+.4f,line.y,line.width,line.height),label,text);
                 }
             }
             text.normal.textColor=ArcadeSkin.Cream;

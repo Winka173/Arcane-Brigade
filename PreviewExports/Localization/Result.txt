@@ -1,0 +1,1 @@
+PASS native English/Vietnamese settings, live switch, saved selection and combat startup

@@ -116,7 +116,7 @@ namespace ArcaneBrigade
             if (!gallery) return;
             GUI.depth = -100; var previous = GUI.matrix; GUI.matrix = Matrix4x4.Scale(new Vector3(Screen.width / 1920f, Screen.height / 1080f, 1));
             ArcadeSkin.Panel(new Rect(200, 140, 1520, 800), ArcadeSkin.Ink); var style = ArcadeTypography.Style(18, true);
-            int i = 0; foreach (ItemEffect effect in Enum.GetValues(typeof(ItemEffect))) { float x = 220 + i % 7 * 211, y = 165 + i / 7 * 104; StatGlyph.Draw(new Rect(x + 67, y, 44, 44), effect); GUI.Label(new Rect(x, y + 50, 205, 40), effect.ToString(), style); i++; }
+            int i = 0; foreach (ItemEffect effect in Enum.GetValues(typeof(ItemEffect))) { float x = 220 + i % 7 * 211, y = 165 + i / 7 * 104; StatGlyph.Draw(new Rect(x + 67, y, 44, 44), effect); LocalizedGUI.Label(new Rect(x, y + 50, 205, 40), effect.ToString(), style); i++; }
             GUI.matrix = previous;
         }
     }

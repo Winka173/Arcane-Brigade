@@ -182,13 +182,13 @@ namespace ArcaneBrigade
 
             // who: the name, one dimmed line in the visitor's hand (the full offer waits under the i)
             title.normal.textColor = ArcadeSkin.Gold;
-            GUI.Label(new Rect(x, inner.y - 6, width - 90, 50), v.Name, title);
+            LocalizedGUI.Label(new Rect(x, inner.y - 6, width - 90, 50), v.Name, title);
             Rect info = new Rect(inner.xMax - 66, inner.y - 6, 66, 66);
             if (ArcadeSkin.Medallion(info, KitMedallion.Info, details)) { details = !details; detailsAt = Time.unscaledTime; } // the painted brass "i" (UI kit)
             Rect said = new Rect(x, card.y + 76, width - 20, 70);
             Lift line = Rise(said, (Time.unscaledTime - Mathf.Max(openedAt + .04f, detailsAt)) / .2f, 0, 1);
-            if (details) { plain.normal.textColor = ArcadeSkin.Cream; GUI.Label(said, ShopVisitors.ScaleText(v.Offer, owner.Session.GoldScale), plain); }
-            else { hand.normal.textColor = new Color(ArcadeSkin.Cream.r, ArcadeSkin.Cream.g, ArcadeSkin.Cream.b, .72f); GUI.Label(new Rect(x, card.y + 78, width - 20, 66), "“" + v.Line + "”", hand); }
+            if (details) { plain.normal.textColor = ArcadeSkin.Cream; LocalizedGUI.Label(said, ShopVisitors.ScaleText(v.Offer, owner.Session.GoldScale), plain); }
+            else { hand.normal.textColor = new Color(ArcadeSkin.Cream.r, ArcadeSkin.Cream.g, ArcadeSkin.Cream.b, .72f); LocalizedGUI.Label(new Rect(x, card.y + 78, width - 20, 66), "“" + v.Line + "”", hand); }
             Settle(line);
 
             if (pictures) DrawPick(v, state, options, x, card.y + Head, width, true);
@@ -242,7 +242,7 @@ namespace ArcaneBrigade
             {
                 RarityDescriptionFrame.Draw(r, ItemRarity.Common, Time.unscaledTime);
                 plain.normal.textColor = ArcadeSkin.Cream; TextAnchor keep = plain.alignment; plain.alignment = TextAnchor.MiddleCenter;
-                GUI.Label(new Rect(r.x + 40, r.y + 20, r.width - 80, r.height - 40), o == null ? "Pick one to see what it does." : NameFor(o), plain);
+                LocalizedGUI.Label(new Rect(r.x + 40, r.y + 20, r.width - 80, r.height - 40), o == null ? "Pick one to see what it does." : NameFor(o), plain);
                 plain.alignment = keep; return;
             }
             pickedOffer.Kind = kind == "item" ? OfferKind.Item : OfferKind.Companion; pickedOffer.Id = id; pickedOffer.Tier = Mathf.Max(1, o.Tier); pickedOffer.Token = -77; pickedOffer.Price = 0;
@@ -254,15 +254,15 @@ namespace ArcaneBrigade
             ShopDescriptionCard.DrawSprite(new Rect(picture.x + 8, picture.y + 8, 134, 134), pickedCard.Portrait);
             float x = picture.xMax + 26, w = r.xMax - 30 - x, y = r.y + 22;
             pickName.normal.textColor = ArcadeSkin.Cream;
-            GUI.Label(new Rect(x, y, w, 40), NameFor(o), pickName);
+            LocalizedGUI.Label(new Rect(x, y, w, 40), NameFor(o), pickName);
             pickKind.normal.textColor = Color.Lerp(RunModifierRules.RarityColor(rarity), Color.white, .2f);
-            GUI.Label(new Rect(x, y + 38, w, 26), pickedCard.Identity, pickKind);
+            LocalizedGUI.Label(new Rect(x, y + 38, w, 26), pickedCard.Identity, pickKind);
             y += 70;
             if (pickedCard.Attack != null)
             {
                 const float H = 60;
                 string label = pickedCard.AttackLabel;
-                Rect plate = new Rect(x, y, Mathf.Min(w, WeaponPlate.Width(H, pickKind.CalcSize(new GUIContent(label)).x)), H);
+                Rect plate = new Rect(x, y, Mathf.Min(w, WeaponPlate.Width(H, pickKind.CalcSize(LocalizedGUI.Content(label)).x)), H);
                 WeaponPlate.Draw(plate, pickedCard.Attack.Weapon != null && pickedCard.Attack.Weapon.Sprite != null ? pickedCard.Attack.Weapon.Sprite : pickedCard.AttackIcon, label, pickKind);
                 y += H + 8;
             }
@@ -283,12 +283,12 @@ namespace ArcaneBrigade
             if (cost > 0)
             {
                 string text = cost.ToString("N0"); float g = Glyph;
-                priceW = g + 8 + amount.CalcSize(new GUIContent(text)).x + 18;
+                priceW = g + 8 + amount.CalcSize(LocalizedGUI.Content(text)).x + 18;
                 Rect priceArea = ArcadeSkin.Content(r, KitPiece.Button); // the price inside the button's content
                 float left = priceArea.xMax - priceW + 18;
                 Icon(new Rect(left, r.y + (r.height - g) * .5f, g, g), "gold");
                 amount.normal.textColor = poor ? new Color(.48f, .06f, .07f) : ArcadeSkin.KitInk;
-                GUI.Label(new Rect(left + g + 8, r.y, priceW - g - 8, r.height), text, amount);
+                LocalizedGUI.Label(new Rect(left + g + 8, r.y, priceW - g - 8, r.height), text, amount);
             }
             Rect wordsArea = ArcadeSkin.Content(r, KitPiece.Button);
             ArcadeSkin.KitCaption(new Rect(wordsArea.x, r.y, wordsArea.width - priceW, r.height), caption, ArcadeSkin.KitText(KitButton.Primary, option.Enabled), button);
@@ -306,7 +306,7 @@ namespace ArcaneBrigade
             for (int i = 0; i < options.Count; i++)
             {
                 VisitorDeal d = deals[i] = ShopVisitors.DealFor(v, options[i].Value, state.Wave, owner.Session.GoldScale) ?? new VisitorDeal(options[i].Label, VisitorDeal.Free, "");
-                verbH = Mathf.Max(verbH, verb.CalcHeight(new GUIContent(d.Do), inner));
+                verbH = Mathf.Max(verbH, verb.CalcHeight(LocalizedGUI.Content(d.Do), inner));
                 payH = Mathf.Max(payH, Row(new Rect(0, 0, inner, 0), "PAY", d.Pay, true, false));
                 getH = Mathf.Max(getH, Row(new Rect(0, 0, inner, 0), "GET", d.Get, false, false));
                 anyWhen |= !string.IsNullOrEmpty(d.When);
@@ -326,7 +326,7 @@ namespace ArcaneBrigade
                 Rect pc = ArcadeSkin.Content(plate, KitPiece.Dialogue);
                 float y = pc.y;
                 verb.normal.textColor = o.Enabled ? ArcadeSkin.Cream : new Color(.8f, .78f, .75f);
-                GUI.Label(new Rect(pc.x, y, inner, verbH), d.Do, verb); y += verbH + 12;
+                LocalizedGUI.Label(new Rect(pc.x, y, inner, verbH), d.Do, verb); y += verbH + 12;
                 Row(new Rect(pc.x, y, inner, payH), "PAY", d.Pay, true, true); y += payH + 8;
                 Row(new Rect(pc.x, y, inner, getH), "GET", d.Get, false, true); y += getH + 14;
                 if (!string.IsNullOrEmpty(d.When)) When(new Rect(pc.x, y, pc.width, 40), d.When);
@@ -353,8 +353,8 @@ namespace ArcaneBrigade
                     Lift rise = Rise(strip, (Time.unscaledTime - openedAt - .04f) / .24f, 0, 1);
                     ArcadeSkin.Plate(strip, ArcadeSkin.Accent);
                     verb.normal.textColor = ArcadeSkin.Cream; verb.alignment = TextAnchor.MiddleLeft;
-                    chip.fontSize = 26; float whenW = string.IsNullOrEmpty(d.When) ? 0 : Mathf.Min(420, chip.CalcSize(new GUIContent(d.When)).x + 36);
-                    GUI.Label(new Rect(strip.x + 24, strip.y + 12, strip.width - 48 - whenW, 46), d.Do, verb); verb.alignment = TextAnchor.MiddleCenter;
+                    chip.fontSize = 26; float whenW = string.IsNullOrEmpty(d.When) ? 0 : Mathf.Min(420, chip.CalcSize(LocalizedGUI.Content(d.When)).x + 36);
+                    LocalizedGUI.Label(new Rect(strip.x + 24, strip.y + 12, strip.width - 48 - whenW, 46), d.Do, verb); verb.alignment = TextAnchor.MiddleCenter;
                     if (whenW > 0) When(new Rect(strip.xMax - 16 - whenW, strip.y + 15, whenW, 40), d.When);
                     Row(new Rect(strip.x + 24, strip.y + 66, half - 16, rowsH), "PAY", d.Pay, true, true);
                     Row(new Rect(strip.x + 24 + half, strip.y + 66, half - 16, rowsH), "GET", d.Get, false, true);
@@ -378,15 +378,15 @@ namespace ArcaneBrigade
                 Sprite icon = IconFor(o);
                 if (icon != null) ShopDescriptionCard.DrawSprite(new Rect(slot.x + 16, slot.y + 12, slot.width - 32, 112), icon);
                 plateName.normal.textColor = o.Enabled ? ArcadeSkin.Cream : new Color(.8f, .78f, .75f);
-                GUI.Label(new Rect(slot.x + 6, slot.y + 128, slot.width - 12, 52), NameFor(o), plateName);
+                LocalizedGUI.Label(new Rect(slot.x + 6, slot.y + 128, slot.width - 12, 52), NameFor(o), plateName);
                 Rect foot = new Rect(slot.x + 8, slot.y + 182, slot.width - 16, 40);
                 if (o.Gold > 0 || v.Id == "JunkCollector" || v.Id == "Pawnbroker")
                 {
-                    string text = "+" + o.Gold; float g = Glyph * .85f, w = g + 6 + amount.CalcSize(new GUIContent(text)).x, l = foot.center.x - w * .5f;
+                    string text = "+" + o.Gold; float g = Glyph * .85f, w = g + 6 + amount.CalcSize(LocalizedGUI.Content(text)).x, l = foot.center.x - w * .5f;
                     Icon(new Rect(l, foot.y + (foot.height - g) * .5f, g, g), "gold");
-                    amount.normal.textColor = GetTone; GUI.Label(new Rect(l + g + 6, foot.y, w, foot.height), text, amount);
+                    amount.normal.textColor = GetTone; LocalizedGUI.Label(new Rect(l + g + 6, foot.y, w, foot.height), text, amount);
                 }
-                else if (o.Tier > 0) { chip.fontSize = 22; chip.normal.textColor = ArcadeSkin.Gold; GUI.Label(foot, new string('★', Mathf.Clamp(o.Tier, 1, 5)), chip); chip.fontSize = 19; }
+                else if (o.Tier > 0) { chip.fontSize = 22; chip.normal.textColor = ArcadeSkin.Gold; LocalizedGUI.Label(foot, new string('★', Mathf.Clamp(o.Tier, 1, 5)), chip); chip.fontSize = 19; }
                 GUI.color = keep;
                 if (!o.Enabled && d != null) Missing(new Rect(slot.xMax - 50, slot.y - 12, 50, 50), v, d, state);
                 if (o.Enabled && TouchTargets.Button(slot, GUIContent.none, GUIStyle.none)) Pick(first + i, options);
@@ -398,7 +398,7 @@ namespace ArcaneBrigade
                 Rect prev = new Rect(ax, y + SlotH * .5f - 46, aw, 92), next = new Rect(ax + aw + 12, prev.y, aw, 92);
                 if (ArcadeSkin.IconButton(prev, KitRound.Walnut, "◀", null, true, mark)) { page = (page + pages - 1) % pages; pageAt = Time.unscaledTime; pageDir = -1; }
                 if (ArcadeSkin.IconButton(next, KitRound.Walnut, "▶", null, true, mark)) { page = (page + 1) % pages; pageAt = Time.unscaledTime; pageDir = 1; }
-                caption.normal.textColor = ArcadeSkin.Cream; GUI.Label(new Rect(ax, prev.yMax + 8, aw * 2 + 12, 24), (page + 1) + " / " + pages, caption);
+                caption.normal.textColor = ArcadeSkin.Cream; LocalizedGUI.Label(new Rect(ax, prev.yMax + 8, aw * 2 + 12, 24), (page + 1) + " / " + pages, caption);
             }
             return y - top + SlotH;
         }
@@ -419,16 +419,16 @@ namespace ArcaneBrigade
             List<VisitorTerm> terms = ShopVisitors.Terms(row);
             if (terms.Count == 0)
             {
-                if (draw) { amount.normal.textColor = new Color(.86f, .84f, .78f); GUI.Label(new Rect(cx, cy, area.xMax - cx, Line), "Free", amount); }
+                if (draw) { amount.normal.textColor = new Color(.86f, .84f, .78f); LocalizedGUI.Label(new Rect(cx, cy, area.xMax - cx, Line), "Free", amount); }
                 return Line;
             }
             for (int i = 0; i < terms.Count; i++)
             {
                 VisitorTerm t = terms[i];
                 string join = i == 0 ? "" : t.Or ? "or" : "+";
-                float joinW = i == 0 ? 0 : (t.Or ? caption.CalcSize(new GUIContent("or")).x + 12 : 22);
+                float joinW = i == 0 ? 0 : (t.Or ? caption.CalcSize(LocalizedGUI.Content("or")).x + 12 : 22);
                 bool icon = !string.IsNullOrEmpty(t.Icon);
-                float iconW = icon ? Glyph + 6 : 0, textW = amount.CalcSize(new GUIContent(t.Amount)).x;
+                float iconW = icon ? Glyph + 6 : 0, textW = amount.CalcSize(LocalizedGUI.Content(t.Amount)).x;
                 float w = joinW + iconW + textW;
                 if (cx > left && cx + w > area.xMax) { cx = left; cy += Line; }
                 if (draw)
@@ -436,12 +436,12 @@ namespace ArcaneBrigade
                     if (joinW > 0)
                     {
                         GUIStyle s = t.Or ? caption : amount; Color c = s.normal.textColor; s.normal.textColor = new Color(tone.r, tone.g, tone.b, .7f);
-                        GUI.Label(new Rect(cx, cy, joinW, Line), join, s); s.normal.textColor = c;
+                        LocalizedGUI.Label(new Rect(cx, cy, joinW, Line), join, s); s.normal.textColor = c;
                     }
                     float ix = cx + joinW;
                     if (icon) Icon(new Rect(ix, cy + (Line - Glyph) * .5f, Glyph, Glyph), t.Icon);
                     amount.normal.textColor = t.Icon == "relic" && !pay && Enum.TryParse(FirstWord(t.Amount), out ItemRarity rarity) && rarity != ItemRarity.Common ? Color.Lerp(RunModifierRules.RarityColor(rarity), Color.white, .25f) : tone;
-                    GUI.Label(new Rect(ix + iconW, cy, Mathf.Min(textW + 4, area.xMax - ix - iconW + 4), Line), t.Amount, amount);
+                    LocalizedGUI.Label(new Rect(ix + iconW, cy, Mathf.Min(textW + 4, area.xMax - ix - iconW + 4), Line), t.Amount, amount);
                 }
                 cx += w + 8;
             }
@@ -452,13 +452,13 @@ namespace ArcaneBrigade
         /// <summary>The neutral WHEN / IF chip; its words shrink to fit a narrow plate.</summary>
         private void When(Rect r, string when)
         {
-            var text = new GUIContent(when);
+            var text = LocalizedGUI.Content(when);
             chip.fontSize = 26; while (chip.fontSize > 24 && chip.CalcSize(text).x + 24 > r.width) chip.fontSize--; // never under 24 (review 3/11/2026: it shrank to 14 on a phone)
             float w = Mathf.Min(r.width, chip.CalcSize(text).x + 28);
             Rect c = new Rect(r.x + (r.width - w) * .5f, r.y, w, r.height);
             ArcadeSkin.Slant(c, new Color(1, 1, 1, .1f));
             chip.normal.textColor = new Color(.88f, .85f, .78f);
-            GUI.Label(c, when, chip); chip.fontSize = 22;
+            LocalizedGUI.Label(c, when, chip); chip.fontSize = 22;
         }
 
         /// <summary>A term's picture: coins, eggs, chests and lamps as the game paints them, the hero, a relic gem, a gauge,
@@ -504,8 +504,8 @@ namespace ArcaneBrigade
                     ArcadeSkin.Line(new Rect(r.center.x - r.width * .16f, r.y + r.height * .84f, r.width * .16f + 1.5f, 3), ArcadeSkin.Cream);
                     return;
                 }
-                case "elite": ArcadeSkin.Dot(r, new Color(.35f, .26f, .08f)); mark.normal.textColor = ArcadeSkin.Gold; GUI.Label(r, "★", mark); return;
-                case "?": ArcadeSkin.Dot(r, new Color(.30f, .22f, .45f)); mark.normal.textColor = ArcadeSkin.Gold; GUI.Label(r, "?", mark); return;
+                case "elite": ArcadeSkin.Dot(r, new Color(.35f, .26f, .08f)); mark.normal.textColor = ArcadeSkin.Gold; LocalizedGUI.Label(r, "★", mark); return;
+                case "?": ArcadeSkin.Dot(r, new Color(.30f, .22f, .45f)); mark.normal.textColor = ArcadeSkin.Gold; LocalizedGUI.Label(r, "?", mark); return;
             }
             if (Enum.TryParse(icon, out ItemEffect effect)) StatGlyph.Draw(r, effect);
         }

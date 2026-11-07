@@ -102,8 +102,8 @@ namespace ArcaneBrigade
                 string caption = exhibit.Seen ? exhibit.Name.Replace("Contract · ", "") : tab == 4 ? "Defeat to unlock" : tab == 3 ? "Activate to unlock" : "Find in a run";
                 Rect nameBounds = new Rect(card.x + 24, card.y + 68, card.width - 48, 26); // clear of the case's rim
                 var nameStyle = new GUIStyle(cardText);
-                while (nameStyle.fontSize > 16 && nameStyle.CalcHeight(new GUIContent(caption), nameBounds.width) > nameBounds.height) nameStyle.fontSize--;
-                GUI.Label(nameBounds, caption, nameStyle);
+                while (nameStyle.fontSize > 16 && nameStyle.CalcHeight(LocalizedGUI.Content(caption), nameBounds.width) > nameBounds.height) nameStyle.fontSize--;
+                LocalizedGUI.Label(nameBounds, caption, nameStyle);
                 if (index == selection) ArcadeSkin.PickedSeal(card); // the chosen shelf is stamped
             }
             ScrollPanel.End();
@@ -143,7 +143,7 @@ namespace ArcaneBrigade
                                 for (int part = 0; part < 3; part++)
                                 {
                                     bool broken = (diorama.BrokenMask & 1 << part) != 0;
-                                    var label = new GUIContent((broken ? "FIX " : "BREAK ") + (part + 1), anatomy.Organs[part].Name + ": " + anatomy.Organs[part].BreakSummary);
+                                    var label = LocalizedGUI.Content((broken ? "FIX " : "BREAK ") + (part + 1), anatomy.Organs[part].Name + ": " + anatomy.Organs[part].BreakSummary);
                                     if (TouchTargets.Button(new Rect(860 + part * 114, 388, 107, 28), label, controls)) diorama.BrokenMask ^= 1 << part;
                                 }
                         }
@@ -175,19 +175,19 @@ namespace ArcaneBrigade
                 else diorama.Dispose();
                 float titleTop = exhibit.Unit != null && exhibit.Seen ? poseCount > 5 ? 450 : 428 : exhibit.Seen ? 412 : 365;
                 string heading = exhibit.Seen ? exhibit.Name : "Empty shelf";
-                float titleHeight = Mathf.Clamp(title.CalcHeight(new GUIContent(heading), 323), 24, 52);
-                TextAnchor keepTitle = title.alignment; title.alignment = TextAnchor.UpperCenter; GUI.Label(new Rect(866, titleTop, 323, titleHeight), heading, title); title.alignment = keepTitle; // centred under the picture
+                float titleHeight = Mathf.Clamp(title.CalcHeight(LocalizedGUI.Content(heading), 323), 24, 52);
+                TextAnchor keepTitle = title.alignment; title.alignment = TextAnchor.UpperCenter; LocalizedGUI.Label(new Rect(866, titleTop, 323, titleHeight), heading, title); title.alignment = keepTitle; // centred under the picture
                 string description = exhibit.Seen ? exhibit.Detail : tab == 4 ? "Defeat this boss in a real hall to unlock its display." : tab == 3 ? "Activate the chain in actual combat. Owning its set is not enough." : "Find this item during a run. Viewing or testing does not unlock it.";
                 if (exhibit.Seen && exhibit.Unit != null && exhibit.Unit.IsBoss) description += "\n\n" + BossPartRules.Describe(exhibit.Unit);
                 Rect details = DescriptionBounds(titleTop, titleHeight);
                 float textWidth = details.width - 22;
-                float height = Mathf.Max(details.height, body.CalcHeight(new GUIContent(description), textWidth) + 12);
+                float height = Mathf.Max(details.height, body.CalcHeight(LocalizedGUI.Content(description), textWidth) + 12);
                 detailScroll = ScrollPanel.Begin(details, detailScroll, new Rect(0, 0, textWidth, height));
-                GUI.Label(new Rect(0, 4, textWidth, height - 8), description, body);
+                LocalizedGUI.Label(new Rect(0, 4, textWidth, height - 8), description, body);
                 ScrollPanel.End();
             }
             int found = exhibits.FindAll(exhibit => exhibit.Seen).Count;
-            GUI.Label(new Rect(65, 630, 730, 40), found + " / " + exhibits.Count + " found", body); // no key hints (mobile-first)
+            LocalizedGUI.Label(new Rect(65, 630, 730, 40), found + " / " + exhibits.Count + " found", body); // no key hints (mobile-first)
         }
         public static Rect DescriptionBounds(float titleTop, float titleHeight)
         {

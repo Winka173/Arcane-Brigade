@@ -33,6 +33,13 @@ namespace ArcaneBrigade
             scroll = ScrollPanel.Begin(new Rect(at.x + viewX, at.y + viewY, viewW, viewH), scroll, new Rect(0, 0, viewW - 30, contentHeight));
             origin = new Vector2(-viewX, -viewY); // the rows below keep their sheet coordinates; inside the scroll they start at its top
             float y = 150;
+            Header(label, ref y, "Language");
+            int language = Choice(label, ref y, "Language", new[] { "English", "Tiếng Việt" }, profile.Language == GameLocalization.Vietnamese ? 1 : 0);
+            if (language >= 0)
+            {
+                CheckpointAudio.PlayInterfaceId("ui.setting");
+                TrySetLanguage(profile, language == 1 ? GameLocalization.Vietnamese : GameLocalization.English, save);
+            }
             Header(label, ref y, "Sound");
             Volume(label, ref y, "Master volume", profile.Volume, value => profile.Volume = value);
             Volume(label, ref y, "Music", profile.MusicVolume, value => profile.MusicVolume = value);
@@ -225,6 +232,16 @@ namespace ArcaneBrigade
             PresentationSettings.Apply(profile);
             if (display) PresentationSettings.ApplyDisplay(profile);
         }
+        /// <summary>Use the same immediate-save and rollback contract as the other settings.</summary>
+        public static bool TrySetLanguage(PlayerProfile current, string language, Func<bool> saveFn)
+        {
+            string before = current.Language;
+            current.Language = GameLocalization.NormalizeLanguage(language);
+            bool saved = saveFn();
+            if (!saved) current.Language = before;
+            PresentationSettings.Apply(current);
+            return saved;
+        }
         /// <summary>The chosen segment is the same piece lacquered red (gold read as the screen's main button).</summary>
         private static string ChosenPiece => ArcadeSkin.KitSprite("Controls/SegmentMiddleChosen") != null ? "Chosen" : "Selected";
         private static GUIStyle stepStyle;
@@ -237,7 +254,7 @@ namespace ArcaneBrigade
             if (plate != null && !ArcadeSkin.Crafted) RunHud.Sprite(at, plate); else ArcadeSkin.CodePlate(at, CodeTone.Walnut);
             stepStyle ??= new GUIStyle(ArcadeTypography.Style(32, true)) { alignment = TextAnchor.MiddleCenter };
             stepStyle.normal.textColor = ArcadeSkin.KitCream;
-            GUI.Label(ArcadeSkin.RoundFace(at, KitRound.Walnut), sign, stepStyle);
+            LocalizedGUI.Label(ArcadeSkin.RoundFace(at, KitRound.Walnut), sign, stepStyle);
             return pressed;
         }
         private static void Volume(Action<Rect, string> label, ref float y, string caption, float value, Action<float> setter)

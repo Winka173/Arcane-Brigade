@@ -47,8 +47,8 @@ namespace ArcaneBrigade
             float age = t - bannerFor;
             if (!awake || kit == null || age >= TitleLife) return;
             titleDrawn = true;
-            string word = kit.Transformation + "!";
-            Font font = Regal(style.Id) ? ArcadeTypography.Display : ArcadeTypography.Punch;
+            string word = GameLocalization.Text(kit.Transformation) + "!";
+            Font font = GameLocalization.IsVietnamese ? ArcadeTypography.Heading : Regal(style.Id) ? ArcadeTypography.Display : ArcadeTypography.Punch;
             if (word != titleShown || font != titleFont) Letter(word, font);
 
             // the word's width from each glyph's advance (TextMesh draws ten font pixels to a unit at character size 1)

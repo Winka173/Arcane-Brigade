@@ -286,7 +286,7 @@ namespace ArcaneBrigade
         {
             if (!reviewing) return;
             GUIStyle title = new GUIStyle(GUI.skin.label) { fontSize = 24, alignment = TextAnchor.UpperCenter, normal = { textColor = new Color(.94f, .89f, .77f) } };
-            GUI.Label(new Rect(0, 20, Screen.width, 60), caption + (reduced ? " / REDUCED" : " / STANDARD"), title);
+            LocalizedGUI.Label(new Rect(0, 20, Screen.width, 60), caption + (reduced ? " / REDUCED" : " / STANDARD"), title);
         }
         private void ClearActors()
         {

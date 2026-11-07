@@ -165,7 +165,7 @@ namespace ArcaneBrigade
             if (labels == null) return;
             var previous = GUI.matrix; GUI.matrix = Matrix4x4.Scale(new Vector3(Screen.width / 1920f, Screen.height / 1080f, 1));
             var style = new GUIStyle(GUI.skin.label) { fontSize = 18, alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold };
-            for (int i = 0; i < labels.Length; i++) if (labels[i] != null) GUI.Label(new Rect(i % 4 * 480, 251 + i / 4 * 252, 480, 40), labels[i], style);
+            for (int i = 0; i < labels.Length; i++) if (labels[i] != null) LocalizedGUI.Label(new Rect(i % 4 * 480, 251 + i / 4 * 252, 480, 40), labels[i], style);
             GUI.matrix = previous;
         }
     }

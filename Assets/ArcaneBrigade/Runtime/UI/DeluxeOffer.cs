@@ -47,24 +47,24 @@ namespace ArcaneBrigade
             {
                 ArcadeSkin.Frame(card, KitFrame.Dialogue, .55f);
                 heading.normal.textColor = ArcadeSkin.Gold;
-                GUI.Label(new Rect(card.x, card.y + 46, card.width, 64), "ARCANE BRIGADE DELUXE", heading);
+                LocalizedGUI.Label(new Rect(card.x, card.y + 46, card.width, 64), "ARCANE BRIGADE DELUXE", heading);
                 note.normal.textColor = new Color(ArcadeSkin.Cream.r, ArcadeSkin.Cream.g, ArcadeSkin.Cream.b, .8f);
-                GUI.Label(new Rect(card.x + 80, card.y + 118, card.width - 160, 50), string.IsNullOrEmpty(reason) ? "Bought once. The whole game stays free to play." : reason, note);
+                LocalizedGUI.Label(new Rect(card.x + 80, card.y + 118, card.width - 160, 50), string.IsNullOrEmpty(reason) ? "Bought once. The whole game stays free to play." : reason, note);
                 float y = card.y + 196;
                 line.normal.textColor = ArcadeSkin.Cream;
                 foreach (string item in Deluxe.Contents)
                 {
                     ArcadeSkin.Diamond(new Vector2(card.x + 120, y + 30), 11, ArcadeSkin.Gold);
-                    GUI.Label(new Rect(card.x + 148, y, card.width - 240, 60), item, line);
+                    LocalizedGUI.Label(new Rect(card.x + 148, y, card.width - 240, 60), item, line);
                     y += 74;
                 }
-                GUI.Label(new Rect(card.x + 80, y + 4, card.width - 160, 46), "Nothing that makes a run stronger is ever sold.", note);
+                LocalizedGUI.Label(new Rect(card.x + 80, y + 4, card.width - 160, 46), "Nothing that makes a run stronger is ever sold.", note);
                 bool busy = DeluxeStore.Busy, ready = DeluxeStore.Available;
                 Rect buy = new Rect(card.center.x - 260, card.yMax - 230, 520, 96);
                 if (ArcadeSkin.KitGuiButton(buy, busy ? "…" : ready ? "GET DELUXE · " + Deluxe.Price : "STORE NOT READY", primary) && ready && !busy) DeluxeStore.Buy();
                 Rect restore = new Rect(card.center.x - 190, buy.yMax + 14, 380, 64);
                 if (ArcadeSkin.Button(restore, "RESTORE PURCHASE", KitButton.Secondary, !busy, secondary) && !busy) DeluxeStore.Restore();
-                if (!string.IsNullOrEmpty(DeluxeStore.Message)) { note.normal.textColor = ArcadeSkin.Gold; GUI.Label(new Rect(card.x + 60, buy.y - 58, card.width - 120, 50), DeluxeStore.Message, note); }
+                if (!string.IsNullOrEmpty(DeluxeStore.Message)) { note.normal.textColor = ArcadeSkin.Gold; LocalizedGUI.Label(new Rect(card.x + 60, buy.y - 58, card.width - 120, 50), DeluxeStore.Message, note); }
                 if (ArcadeSkin.Medallion(new Rect(card.xMax - 70, card.y + 6, 64, 64), KitMedallion.Close) && !LivingUI.Closing(Key)) LivingUI.CloseThen(Key, () => open = false);
                 // a tap outside the card closes it too
                 if (Event.current.type == EventType.MouseDown && !card.Contains(Event.current.mousePosition) && !LivingUI.Closing(Key)) LivingUI.CloseThen(Key, () => open = false);

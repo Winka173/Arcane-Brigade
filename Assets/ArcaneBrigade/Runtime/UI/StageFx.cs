@@ -74,9 +74,9 @@ namespace ArcaneBrigade
             }
             float textX = design.x * 0.1f + bandH * 1.7f;
             title.normal.textColor = new Color(tint.r, tint.g, tint.b, alpha);
-            GUI.Label(new Rect(textX, bandY + rise + bandH * 0.1f, design.x, bandH * 0.55f), live.Title, title);
+            LocalizedGUI.Label(new Rect(textX, bandY + rise + bandH * 0.1f, design.x, bandH * 0.55f), live.Title, title);
             subtitle.normal.textColor = new Color(ArcadeSkin.Cream.r, ArcadeSkin.Cream.g, ArcadeSkin.Cream.b, alpha * 0.9f);
-            GUI.Label(new Rect(textX + 2, bandY + rise + bandH * 0.62f, design.x, bandH * 0.3f), live.Subtitle, subtitle);
+            LocalizedGUI.Label(new Rect(textX + 2, bandY + rise + bandH * 0.62f, design.x, bandH * 0.3f), live.Subtitle, subtitle);
         }
     }
 
@@ -133,9 +133,9 @@ namespace ArcaneBrigade
                 GUI.color = old;
             }
             label.normal.textColor = painted != null ? new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, alpha) : ink; // gold on the painted seal's red
-            GUI.Label(new Rect(centre.x - 100, centre.y - 78, 200, 24), word.Length > 0 ? word : "WAVE", label);
+            LocalizedGUI.Label(new Rect(centre.x - 100, centre.y - 78, 200, 24), word.Length > 0 ? word : "WAVE", label);
             number.normal.textColor = new Color(ArcadeSkin.Cream.r, ArcadeSkin.Cream.g, ArcadeSkin.Cream.b, alpha);
-            GUI.Label(new Rect(centre.x - 110, centre.y - 50, 220, 100), digits, number);
+            LocalizedGUI.Label(new Rect(centre.x - 110, centre.y - 50, 220, 100), digits, number);
             GUI.matrix = previous;
         }
 
@@ -268,15 +268,15 @@ namespace ArcaneBrigade
             if (copy == null) { copy = ArcadeTypography.Style(29); copy.font = ArcadeTypography.Hand; copy.normal.textColor = new Color(0.22f, 0.18f, 0.13f); copy.alignment = TextAnchor.MiddleLeft; }
             Vector3 screen = camera.WorldToScreenPoint(owner.Simulation.Champion.Position + Vector2.up * 1.1f);
             Vector3 point = GUI.matrix.inverse.MultiplyPoint3x4(new Vector3(screen.x, Screen.height - screen.y, 0));
-            float width = Mathf.Min(560, copy.CalcSize(new GUIContent(message)).x + 60);
-            float height = copy.CalcHeight(new GUIContent(message), width - 50) + 30;
+            float width = Mathf.Min(560, copy.CalcSize(LocalizedGUI.Content(message)).x + 60);
+            float height = copy.CalcHeight(LocalizedGUI.Content(message), width - 50) + 30;
             float drift = PresentationSettings.ReducedMotion ? 0 : (1 - reveal) * 8;
             Rect bubble = new Rect(Mathf.Clamp(point.x - width * 0.5f, 20, 1900 - width), Mathf.Clamp(point.y - height - 30 + drift, 120, 900), width, height);
             Color previous = GUI.color; GUI.color = new Color(1, 1, 1, reveal);
             ArcadeSkin.Glow(new Rect(bubble.x - 30, bubble.y - 20, bubble.width + 60, bubble.height + 40), new Color(ArcadeSkin.Accent.r, ArcadeSkin.Accent.g, ArcadeSkin.Accent.b, 0.25f));
             ArcadeSkin.Line(new Rect(Mathf.Clamp(point.x, bubble.x + 20, bubble.xMax - 30) - 1, bubble.yMax, 2, 22), new Color(ArcadeSkin.Paper.r, ArcadeSkin.Paper.g, ArcadeSkin.Paper.b, 0.8f));
             ArcadeSkin.Ticket(bubble, ArcadeSkin.Paper, ArcadeSkin.Accent);
-            GUI.Label(new Rect(bubble.x + 24, bubble.y + 12, bubble.width - 38, bubble.height - 24), message, copy);
+            LocalizedGUI.Label(new Rect(bubble.x + 24, bubble.y + 12, bubble.width - 38, bubble.height - 24), message, copy);
             GUI.color = previous;
         }
     }

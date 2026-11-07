@@ -339,7 +339,7 @@ namespace ArcaneBrigade
             if (sealStyle == null) { sealStyle = ArcadeTypography.Style(18, true); sealStyle.alignment = TextAnchor.MiddleCenter; sealStyle.wordWrap = false; if (ArcadeTypography.Display != null) sealStyle.font = ArcadeTypography.Display; }
             sealStyle.fontSize = Mathf.Max(10, Mathf.RoundToInt(size * 0.5f));
             sealStyle.normal.textColor = Faded(new Color(0.95f, 0.75f, 0.68f, 0.9f), previous);
-            GUI.Label(rect, letter, sealStyle);
+            LocalizedGUI.Label(rect, letter, sealStyle);
         }
 
         /// <summary>Keyboard/controller focus: a small candle light to the left and a warm underline that breathes.</summary>
@@ -473,12 +473,12 @@ namespace ArcaneBrigade
             // capital label above it (the eyebrow argument is kept for callers but never drawn)
             if (headerStyle == null) { headerStyle = ArcadeTypography.Style(36, true); headerStyle.alignment = TextAnchor.MiddleCenter; headerStyle.wordWrap = false; }
             headerStyle.fontSize = 36;
-            float width = Mathf.Clamp(headerStyle.CalcSize(new GUIContent(heading)).x + 2 * 118 * 72 / 112f + 20, 420, rectangle.width);
+            float width = Mathf.Clamp(headerStyle.CalcSize(LocalizedGUI.Content(heading)).x + 2 * 118 * 72 / 112f + 20, 420, rectangle.width);
             Rect plate = new Rect(rectangle.center.x - width * .5f, rectangle.y + 12, width, Mathf.Min(72, rectangle.height - 12)); // centred over its page or card, like the stations' titles
             if (HasKit) Frame(plate, KitFrame.Plaque); else Plate(plate, Accent);
             headerStyle.normal.textColor = KitCream;
             FitText(headerStyle, heading, PlaqueWords(plate));
-            GUI.Label(plate, heading, headerStyle);
+            LocalizedGUI.Label(plate, heading, headerStyle);
         }
 
         public static void Stamp(Rect rectangle, string caption)
@@ -487,7 +487,7 @@ namespace ArcaneBrigade
             GUIStyle label = stampStyle ?? (stampStyle = ArcadeTypography.Style(20, true));
             label.normal.textColor = Accent;
             label.alignment = TextAnchor.MiddleCenter;
-            GUI.Label(new Rect(rectangle.x, rectangle.y + 6, rectangle.width, rectangle.height - 12), caption, label);
+            LocalizedGUI.Label(new Rect(rectangle.x, rectangle.y + 6, rectangle.width, rectangle.height - 12), caption, label);
             if (HasKit) Ornament(new Rect(rectangle.x, rectangle.yMax - 9, rectangle.width, 18), KitDivider.Key); else Divider(new Rect(rectangle.x, rectangle.yMax - 1, rectangle.width, 1), Accent);
         }
     }

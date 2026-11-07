@@ -65,7 +65,7 @@ namespace ArcaneBrigade
                 Rect letter = new Rect(LetterRect.x, LetterRect.y + bob, LetterRect.width, LetterRect.height);
                 ArcadeSkin.Ticket(letter, ArcadeSkin.Paper, ArcadeSkin.Wax); Seal(new Vector2(letter.x + 34, letter.center.y), 34);
                 name.normal.textColor = new Color(.25f, .19f, .14f);
-                GUI.Label(new Rect(letter.x + 60, letter.y + 6, letter.width - 76, letter.height - 12), "A letter from the Last Customer", name);
+                LocalizedGUI.Label(new Rect(letter.x + 60, letter.y + 6, letter.width - 76, letter.height - 12), "A letter from the Last Customer", name);
                 if (TouchTargets.Button(letter, GUIContent.none, GUIStyle.none)) { folded = false; InputConsumedFrame = Time.frameCount; CheckpointAudio.PlayInterfaceId("ui.select"); }
                 GUI.matrix = keepMatrix; wasOpen = false; return;
             }
@@ -92,9 +92,9 @@ namespace ArcaneBrigade
             ArcadeSkin.Ticket(card, ArcadeSkin.Paper, ArcadeSkin.Wax);
             Seal(new Vector2(card.xMax - 42, card.y + 40), 46);
             hand.normal.textColor = new Color(.25f, .19f, .14f);
-            GUI.Label(new Rect(card.x + 50, card.y + 26, card.width - 100, 120), Sale ? "THE LAST CUSTOMER: 'I'll take one of them off your hands. Every coin they cost you, back in your pocket.'" : "THE LAST CUSTOMER: 'Sell me your memory of one of them, and I'll light a lamp for you. You'd hardly miss it.'", hand);
+            LocalizedGUI.Label(new Rect(card.x + 50, card.y + 26, card.width - 100, 120), Sale ? "THE LAST CUSTOMER: 'I'll take one of them off your hands. Every coin they cost you, back in your pocket.'" : "THE LAST CUSTOMER: 'Sell me your memory of one of them, and I'll light a lamp for you. You'd hardly miss it.'", hand);
             plain.normal.textColor = new Color(.18f, .14f, .1f);
-            GUI.Label(new Rect(card.x + 50, card.y + 148, card.width - 100, 84), Sale ? "The one you choose leaves for good. No letter, no new place: only gold." : "The one you choose stays with you, but becomes a stranger: you forget who they are, and they no longer count toward bonds. One broken lantern burns again.", plain);
+            LocalizedGUI.Label(new Rect(card.x + 50, card.y + 148, card.width - 100, 84), Sale ? "The one you choose leaves for good. No letter, no new place: only gold." : "The one you choose stays with you, but becomes a stranger: you forget who they are, and they no longer count toward bonds. One broken lantern burns again.", plain);
             for (int i = 0; i < shown; i++)
             {
                 UnitDefinition unit = owner.Content.Unit(species[first + i]);
@@ -109,7 +109,7 @@ namespace ArcaneBrigade
                 if (isPicked) ArcadeSkin.PickedSeal(frame); // the picked friend's medallion is stamped
                 name.normal.textColor = isPicked ? new Color(.62f, .27f, .05f) : new Color(.18f, .14f, .1f); // and its name in warm brown
                 TextAnchor keepName = name.alignment; name.alignment = TextAnchor.UpperCenter;
-                GUI.Label(new Rect(slot.x - 10, frame.yMax + 4, slot.width + 20, 66), unit == null ? species[first + i] : RunUICopy.UnitName(unit), name); // two full lines, never clipped
+                LocalizedGUI.Label(new Rect(slot.x - 10, frame.yMax + 4, slot.width + 20, 66), unit == null ? species[first + i] : RunUICopy.UnitName(unit), name); // two full lines, never clipped
                 name.alignment = keepName;
                 if (TouchTargets.Button(slot, GUIContent.none, GUIStyle.none)) { picked = species[first + i]; CheckpointAudio.PlayInterfaceId("ui.select"); }
             }
@@ -122,13 +122,13 @@ namespace ArcaneBrigade
                 if (TouchTargets.Button(previousPage, "◀", name)) page = (page + pages - 1) % pages;
                 if (TouchTargets.Button(nextPage, "▶", name)) page = (page + 1) % pages;
                 plain.normal.textColor = new Color(.18f, .14f, .1f);
-                GUI.Label(new Rect(card.x, card.y + 395, card.width, 22), (page + 1) + " / " + pages, plain);
+                LocalizedGUI.Label(new Rect(card.x, card.y + 395, card.width, 22), (page + 1) + " / " + pages, plain);
             }
             // what selling the picked one means, then SELL and WALK ON side by side (painted buttons, one size)
             bool ready = picked != null && species.Contains(picked);
             UnitDefinition chosen = ready ? owner.Content.Unit(picked) : null;
             plain.normal.textColor = ready ? new Color(.55f, .12f, .1f) : new Color(.18f, .14f, .1f);
-            GUI.Label(new Rect(card.x + 50, card.y + 436, card.width - 100, 60), ready
+            LocalizedGUI.Label(new Rect(card.x + 50, card.y + 436, card.width - 100, 60), ready
                 ? Sale ? (chosen != null ? RunUICopy.UnitName(chosen) : picked) + " leaves for good. You get " + owner.Session.MemorySalePrice(picked) + " gold."
                 : (chosen != null ? RunUICopy.UnitName(chosen) : picked) + " stays and fights, but no longer counts toward bonds. A broken lantern burns again."
                 : "Pick a friend to see what you would give up.", plain);
@@ -198,9 +198,9 @@ namespace ArcaneBrigade
             Color popKeep = CardPop.Apply("memory-return", card); // every card opens the same way
             ArcadeSkin.Ticket(card, ArcadeSkin.Paper, ArcadeSkin.Accent);
             hand.normal.textColor = new Color(.25f, .19f, .14f);
-            GUI.Label(new Rect(card.x + 50, card.y + 24, card.width - 100, 90), "You stood up. Nobody paid. Outside, one of the dark lanterns is warm again.", hand);
+            LocalizedGUI.Label(new Rect(card.x + 50, card.y + 24, card.width - 100, 90), "You stood up. Nobody paid. Outside, one of the dark lanterns is warm again.", hand);
             plain.normal.textColor = new Color(.18f, .14f, .1f);
-            GUI.Label(new Rect(card.x + 50, card.y + 118, card.width - 100, 30), colours ? "Choose what comes back to you, or take the colours instead." : "Choose what comes back to you.", plain);
+            LocalizedGUI.Label(new Rect(card.x + 50, card.y + 118, card.width - 100, 30), colours ? "Choose what comes back to you, or take the colours instead." : "Choose what comes back to you.", plain);
             for (int i = 0; i < dark.Count; i++)
             {
                 int lamp = dark[i];
@@ -209,7 +209,7 @@ namespace ArcaneBrigade
                 if (icons[lamp] != null) RunHud.Sprite(new Rect(slot.x + 25, slot.y + 10, 100, 100), icons[lamp]);
                 else ArcadeSkin.Glow(new Rect(slot.x + 35, slot.y + 20, 80, 80), new Color(ArcadeSkin.Gold.r, ArcadeSkin.Gold.g, ArcadeSkin.Gold.b, 0.5f));
                 label.normal.textColor = ArcadeSkin.Cream;
-                GUI.Label(new Rect(slot.x + 6, slot.y + 115, slot.width - 12, 70), (i + 1) + " · " + ActOneCanon.LampHeld[lamp], label);
+                LocalizedGUI.Label(new Rect(slot.x + 6, slot.y + 115, slot.width - 12, 70), (i + 1) + " · " + ActOneCanon.LampHeld[lamp], label);
                 if (TouchTargets.Button(slot, GUIContent.none, GUIStyle.none)) { picked = i; CheckpointAudio.PlayInterfaceId("ui.select"); }
             }
             if (colours)
@@ -219,7 +219,7 @@ namespace ArcaneBrigade
                 Sprite prism = PacingArtwork.Prism(owner.Content);
                 if (prism != null) RunHud.Sprite(new Rect(slot.x + 25, slot.y + 10, 100, 100), prism);
                 label.normal.textColor = new Color(0.68f, 1, 0.92f);
-                GUI.Label(new Rect(slot.x + 6, slot.y + 115, slot.width - 12, 70), (dark.Count + 1) + " · the colours: a rainbow gift", label);
+                LocalizedGUI.Label(new Rect(slot.x + 6, slot.y + 115, slot.width - 12, 70), (dark.Count + 1) + " · the colours: a rainbow gift", label);
                 if (TouchTargets.Button(slot, GUIContent.none, GUIStyle.none)) { picked = dark.Count; CheckpointAudio.PlayInterfaceId("ui.select"); }
             }
             // what the pick means, in plain words, then the confirm button
@@ -228,7 +228,7 @@ namespace ArcaneBrigade
             string meaning = picked >= 0 && picked < dark.Count
                 ? "Relight this lantern: it burns again in every fight from now on, lighting its corner, and you remember " + ActOneCanon.LampHeld[dark[picked]] + "."
                 : picked == dark.Count && colours ? "Leave the lanterns dark and choose one of three rainbow gifts now." : "Pick a lantern's memory or the colours to see what it gives.";
-            GUI.Label(new Rect(card.x + 60, card.y + 372, card.width - 120, 70), meaning, info);
+            LocalizedGUI.Label(new Rect(card.x + 60, card.y + 372, card.width - 120, 70), meaning, info);
             bool ready = picked >= 0 && (picked < dark.Count || colours && picked == dark.Count);
             if (ArcadeSkin.Button(new Rect(card.center.x - 200, card.yMax - 128, 400, 88), ready ? (picked == dark.Count ? "TAKE THE COLOURS" : "RELIGHT") : "PICK ONE", ready ? KitButton.Primary : KitButton.Secondary, ready, info) && !CardPop.Closing("memory-return")) CardPop.CloseThen("memory-return", Confirm);
             GUI.color = popKeep;

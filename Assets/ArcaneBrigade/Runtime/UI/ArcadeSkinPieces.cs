@@ -350,7 +350,7 @@ namespace ArcaneBrigade
         public static void FitText(GUIStyle style, string text, float width)
         {
             if (style == null || string.IsNullOrEmpty(text) || width <= 0) return;
-            var content = new GUIContent(text);
+            var content = LocalizedGUI.Content(text);
             if (style.CalcSize(content).x <= width) return;
             bool oneWord = text.IndexOf(' ') < 0; // a single word is never split across two lines ("TROPHIE / S")
             int size = style.fontSize > 0 ? style.fontSize : 16, floor = Mathf.Max(10, Mathf.RoundToInt(size * (oneWord ? .55f : .7f)));
@@ -367,7 +367,7 @@ namespace ArcaneBrigade
             GUIStyle s = Fit(style, r);
             if (s == null || string.IsNullOrEmpty(caption)) return s;
             float room = Content(r, KitPiece.Plate).width;
-            var content = new GUIContent(caption);
+            var content = LocalizedGUI.Content(caption);
             if (s.CalcSize(content).x <= room) return s;
             var probe = new GUIStyle(s) { fontSize = s.fontSize > 0 ? s.fontSize : 16, wordWrap = false };
             FitText(probe, caption, room);

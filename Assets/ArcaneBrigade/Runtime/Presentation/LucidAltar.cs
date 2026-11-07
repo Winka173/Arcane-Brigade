@@ -140,7 +140,7 @@ namespace ArcaneBrigade
             ArcadeSkin.TitleBanner(new Rect(660, 130, 600, 70), "LUCID", banner);
             UnitDefinition unit = owner.Content.Unit(riteUnit);
             line.normal.textColor = Cream;
-            GUI.Label(new Rect(560, 212, 800, 44), (unit != null ? RunUICopy.UnitName(unit) : "") + " wakes past its dream", line);
+            LocalizedGUI.Label(new Rect(560, 212, 800, 44), (unit != null ? RunUICopy.UnitName(unit) : "") + " wakes past its dream", line);
             GUI.color = keep;
         }
 
@@ -158,9 +158,9 @@ namespace ArcaneBrigade
             Rect inner = ArcadeSkin.Content(card, KitFrame.Card);
             Color brown = new Color(.25f, .16f, .1f);
             title.normal.textColor = brown;
-            GUI.Label(new Rect(inner.x, inner.y, inner.width, 48), "LUCID RITE", title);
+            LocalizedGUI.Label(new Rect(inner.x, inner.y, inner.width, 48), "LUCID RITE", title);
             hand.normal.textColor = new Color(.30f, .22f, .16f, .8f);
-            GUI.Label(new Rect(inner.x, inner.y + 50, inner.width, 40), "A 3-star friend wakes past its dream. " + (LucidLeft(state) == 1 ? "One rite left." : "Two rites a run."), hand);
+            LocalizedGUI.Label(new Rect(inner.x, inner.y + 50, inner.width, 40), "A 3-star friend wakes past its dream. " + (LucidLeft(state) == 1 ? "One rite left." : "Two rites a run."), hand);
 
             // the friends who can wake: their pictures, one picked
             const float tileW = 150, tileH = 196, gap = 14;
@@ -175,25 +175,25 @@ namespace ArcaneBrigade
                 RunHud.Fill(tile, i == pick ? ArcadeSkin.CardLit : ArcadeSkin.Card);
                 ShopDescriptionCard.DrawSprite(new Rect(tile.x + 16, tile.y + 12, tileW - 32, 120), unit != null ? unit.Body : null);
                 small.normal.textColor = ArcadeSkin.Cream;
-                GUI.Label(new Rect(tile.x + 8, tile.y + 136, tileW - 16, 26), unit != null ? RunUICopy.UnitName(unit) : entry.UnitId, small);
+                LocalizedGUI.Label(new Rect(tile.x + 8, tile.y + 136, tileW - 16, 26), unit != null ? RunUICopy.UnitName(unit) : entry.UnitId, small);
                 small.normal.textColor = Gold;
-                GUI.Label(new Rect(tile.x + 8, tile.y + 162, tileW - 16, 24), "★★★", small);
+                LocalizedGUI.Label(new Rect(tile.x + 8, tile.y + 162, tileW - 16, 24), "★★★", small);
                 if (TouchTargets.Button(tile, GUIContent.none, GUIStyle.none)) { pick = i; CheckpointAudio.PlayInterfaceId("ui.select"); }
             }
-            if (shownCount == 0) { line.normal.textColor = brown; GUI.Label(new Rect(inner.x, rowY + 60, inner.width, 60), "No 3-star friend is ready to wake.", line); }
+            if (shownCount == 0) { line.normal.textColor = brown; LocalizedGUI.Label(new Rect(inner.x, rowY + 60, inner.width, 60), "No 3-star friend is ready to wake.", line); }
 
             // what it gains, then the price with the HUD's own egg and coin
             line.normal.textColor = new Color(.14f, .40f, .25f);
-            GUI.Label(new Rect(inner.x, rowY + tileH + 14, inner.width, 34), "+30% damage  ·  bigger  ·  weapon grows  ·  +1 in its bond", line);
+            LocalizedGUI.Label(new Rect(inner.x, rowY + tileH + 14, inner.width, 34), "+30% damage  ·  bigger  ·  weapon grows  ·  +1 in its bond", line);
             float priceY = rowY + tileH + 58;
             bool eggsOk = state.Eggs >= session.LucidEggCost, goldOk = state.Gold >= session.LucidGoldCost;
             Rect price = new Rect(inner.center.x - 170, priceY, 340, 40);
             RunHud.Sprite(new Rect(price.x, price.y, 40, 40), CurrencyIcons.Egg);
             line.normal.textColor = eggsOk ? brown : new Color(.7f, .15f, .12f); line.alignment = TextAnchor.MiddleLeft;
-            GUI.Label(new Rect(price.x + 48, price.y, 110, 40), session.LucidEggCost.ToString(), line);
+            LocalizedGUI.Label(new Rect(price.x + 48, price.y, 110, 40), session.LucidEggCost.ToString(), line);
             RunHud.Sprite(new Rect(price.x + 170, price.y, 40, 40), CurrencyIcons.Coin);
             line.normal.textColor = goldOk ? brown : new Color(.7f, .15f, .12f);
-            GUI.Label(new Rect(price.x + 218, price.y, 120, 40), session.LucidGoldCost.ToString(), line);
+            LocalizedGUI.Label(new Rect(price.x + 218, price.y, 120, 40), session.LucidGoldCost.ToString(), line);
             line.alignment = TextAnchor.MiddleCenter;
 
             // AWAKEN and LATER, one size, apart

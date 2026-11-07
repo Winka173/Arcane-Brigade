@@ -16,25 +16,25 @@ namespace ArcaneBrigade
         /// 6.5" phone held sideways).</summary>
         public static float ReachPixels => Application.isMobilePlatform && Screen.dpi > 0 ? 8f / 25.4f * Screen.dpi : Screen.height * 0.115f;
 
-        public static bool Button(Rect bounds, string caption, GUIStyle style) => Button(bounds, new GUIContent(caption), style);
-        public static bool Button(Rect bounds, string caption) => Button(bounds, new GUIContent(caption), GUI.skin.button);
+        public static bool Button(Rect bounds, string caption, GUIStyle style) => Button(bounds, LocalizedGUI.Content(caption), style);
+        public static bool Button(Rect bounds, string caption) => Button(bounds, LocalizedGUI.Content(caption), GUI.skin.button);
         public static bool Button(Rect bounds, GUIContent content, GUIStyle style)
         {
-            if (!RunUIHints.Phone) return GUI.Button(bounds, content, style);
+            if (!RunUIHints.Phone) return LocalizedGUI.Button(bounds, content, style);
             Rect screen = ToScreen(bounds);
             Event e = Event.current;
             if (e.type == EventType.Repaint)
             {
                 if (frame != Time.frameCount) { frame = Time.frameCount; (previous, drawn) = (drawn, previous); drawn.Clear(); }
                 if (GUI.enabled) drawn.Add(screen);
-                return GUI.Button(bounds, content, style);
+                return LocalizedGUI.Button(bounds, content, style);
             }
-            if (e.type != EventType.MouseDown && e.type != EventType.MouseUp || !GUI.enabled || bounds.Contains(e.mousePosition)) return GUI.Button(bounds, content, style);
+            if (e.type != EventType.MouseDown && e.type != EventType.MouseUp || !GUI.enabled || bounds.Contains(e.mousePosition)) return LocalizedGUI.Button(bounds, content, style);
             Vector2 point = GUI.matrix.MultiplyPoint3x4(e.mousePosition);
-            if (!Nearest(point, out Rect target) || Vector2.Distance(target.center, screen.center) > 6f) return GUI.Button(bounds, content, style);
+            if (!Nearest(point, out Rect target) || Vector2.Distance(target.center, screen.center) > 6f) return LocalizedGUI.Button(bounds, content, style);
             Vector2 keep = e.mousePosition;
             e.mousePosition = bounds.center;
-            bool clicked = GUI.Button(bounds, content, style);
+            bool clicked = LocalizedGUI.Button(bounds, content, style);
             if (e.type != EventType.Used) e.mousePosition = keep;
             return clicked;
         }

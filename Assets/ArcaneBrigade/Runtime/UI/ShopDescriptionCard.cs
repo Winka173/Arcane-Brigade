@@ -211,7 +211,7 @@ namespace ArcaneBrigade
             DrawSprite(new Rect(ai.x, ai.y + 3, 30, 30), AttackIcon);
             // the weapon this friend comes with: its name, then its whole damage, pace and reach on one line that wraps
             // (review 31/10/2026: the name and numbers were cut at the rim, "Reach" sat on the frame)
-            label.normal.textColor = ArcadeSkin.Gold; label.fontSize = ArcadeTypography.SizeNote; GUI.Label(new Rect(ai.x + 38, ai.y, ai.width - 38, 38), "Weapon", label);
+            label.normal.textColor = ArcadeSkin.Gold; label.fontSize = ArcadeTypography.SizeNote; LocalizedGUI.Label(new Rect(ai.x + 38, ai.y, ai.width - 38, 38), "Weapon", label);
             value.normal.textColor = ArcadeSkin.Cream;
             FitWrap(new Rect(ai.x, ai.y + 38, ai.width, 32), Attack.Choices == 0 ? "None available" : Attack.Weapon != null ? RunUICopy.WeaponName(Attack.Weapon.Id) : "Random weapon", value, ArcadeTypography.SizeNote);
             muted.normal.textColor = ArcadeSkin.Teal;
@@ -279,17 +279,17 @@ namespace ArcaneBrigade
         private static void FitWrap(Rect rect, string text, GUIStyle style, int size)
         {
             style.fontSize = size; style.wordWrap = true; style.clipping = TextClipping.Clip;
-            var content = new GUIContent(text);
+            var content = LocalizedGUI.Content(text);
             while (style.fontSize > 22 && style.CalcHeight(content, rect.width) > rect.height) style.fontSize--;
             TextAnchor keep = style.alignment; style.alignment = TextAnchor.UpperLeft;
-            GUI.Label(rect, text, style);
+            LocalizedGUI.Label(rect, text, style);
             style.alignment = keep; style.wordWrap = false;
         }
         private static void FitLabel(Rect rect, string text, GUIStyle style, int size)
         {
             style.fontSize = size; style.wordWrap = false; style.clipping = TextClipping.Clip;
-            while (style.fontSize > 22 && style.CalcSize(new GUIContent(text)).x > rect.width) style.fontSize--; // a long name shrinks a little, never to unreadable
-            GUI.Label(rect, text, style);
+            while (style.fontSize > 22 && style.CalcSize(LocalizedGUI.Content(text)).x > rect.width) style.fontSize--; // a long name shrinks a little, never to unreadable
+            LocalizedGUI.Label(rect, text, style);
         }
         public static Color BenefitColor(ItemEffect effect, float number)
         {

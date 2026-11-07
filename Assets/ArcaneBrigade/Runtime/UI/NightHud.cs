@@ -18,7 +18,7 @@ namespace ArcaneBrigade
             if (loss == null) { loss = ArcadeTypography.Style(34); loss.font = ArcadeTypography.Hand; loss.alignment = TextAnchor.MiddleCenter; loss.wordWrap = true; }
             float beat = PresentationSettings.ReducedMotion ? 1 : 0.75f + 0.25f * Mathf.Abs(Mathf.Sin(Time.unscaledTime * Mathf.PI * 0.8f));
             loss.normal.textColor = remaining < 15 ? new Color(ArcadeSkin.Danger.r, ArcadeSkin.Danger.g, ArcadeSkin.Danger.b, beat) : new Color(ArcadeSkin.Paper.r, ArcadeSkin.Paper.g, ArcadeSkin.Paper.b, beat);
-            GUI.Label(area, "someone is knocking · answer before it stops · " + Mathf.CeilToInt(remaining) + "s", loss);
+            LocalizedGUI.Label(area, "someone is knocking · answer before it stops · " + Mathf.CeilToInt(remaining) + "s", loss);
         }
 
         /// <summary>When a lantern goes out, the thing it held is written across the night for a few seconds.</summary>
@@ -32,9 +32,9 @@ namespace ArcaneBrigade
             Color was = GUI.color;
             GUI.color = new Color(was.r, was.g, was.b, was.a * alpha);
             loss.normal.textColor = new Color(0, 0, 0, 0.7f);
-            GUI.Label(new Rect(area.x + 2, area.y + 2, area.width, area.height), ActOneCanon.LampLoss(lamp), loss);
+            LocalizedGUI.Label(new Rect(area.x + 2, area.y + 2, area.width, area.height), ActOneCanon.LampLoss(lamp), loss);
             loss.normal.textColor = ArcadeSkin.Paper;
-            GUI.Label(area, ActOneCanon.LampLoss(lamp), loss);
+            LocalizedGUI.Label(area, ActOneCanon.LampLoss(lamp), loss);
             GUI.color = was;
         }
 
@@ -137,7 +137,7 @@ namespace ArcaneBrigade
             if (companions > shown)
             {
                 count.normal.textColor = ArcadeSkin.Gold;
-                GUI.Label(new Rect(centre.x + radius - 4, centre.y + radius * 0.35f, 40, 16), "+" + (companions - shown), count);
+                LocalizedGUI.Label(new Rect(centre.x + radius - 4, centre.y + radius * 0.35f, 40, 16), "+" + (companions - shown), count);
             }
         }
     }

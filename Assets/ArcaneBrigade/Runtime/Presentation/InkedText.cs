@@ -9,8 +9,10 @@ namespace ArcaneBrigade
         private static readonly Vector2[] Around = { new Vector2(1, 0), new Vector2(-1, 0), new Vector2(0, 1), new Vector2(0, -1), new Vector2(.7f, .7f), new Vector2(-.7f, .7f), new Vector2(.7f, -.7f), new Vector2(-.7f, -.7f) };
         public static readonly Color Ink = new Color(0.13f, 0.08f, 0.06f);
         private TextMesh face;
+        private Font authoredFont;
         private TextMesh[] rim;
         private string text = "";
+        private int languageRevision = -1;
         private Color colour = Color.white;
         public TextMesh Face => face;
 
@@ -20,6 +22,7 @@ namespace ArcaneBrigade
             var root = new GameObject(name); root.transform.SetParent(parent, false);
             InkedText label = root.AddComponent<InkedText>();
             font = font != null ? font : ArcadeTypography.Punch;
+            label.authoredFont = font;
             label.face = Make(root.transform, "Face", font, fontSize, characterSize, order, Vector2.zero);
             label.rim = new TextMesh[Around.Length + 1];
             for (int i = 0; i < Around.Length; i++) label.rim[i] = Make(root.transform, "InkRim", font, fontSize, characterSize, order - 1, Around[i] * thickness);
@@ -42,12 +45,27 @@ namespace ArcaneBrigade
         private void Apply()
         {
             if (face == null) return;
-            face.text = text; face.color = colour;
+            languageRevision = GameLocalization.Revision;
+            string shown = GameLocalization.Text(text);
+            // Lilita One has no Vietnamese glyphs; use the complete storybook heading face for translated words.
+            Font selectedFont = GameLocalization.IsVietnamese ? ArcadeTypography.Heading : authoredFont;
+            if (face.font != selectedFont)
+            {
+                face.font = selectedFont;
+                face.GetComponent<MeshRenderer>().sharedMaterial = face.font.material;
+                foreach (TextMesh mesh in rim)
+                {
+                    mesh.font = face.font;
+                    mesh.GetComponent<MeshRenderer>().sharedMaterial = face.font.material;
+                }
+            }
+            face.text = shown; face.color = colour;
             for (int i = 0; i < rim.Length; i++)
             {
-                rim[i].text = text;
+                rim[i].text = shown;
                 rim[i].color = i < Around.Length ? new Color(Ink.r, Ink.g, Ink.b, colour.a) : new Color(0, 0, 0, colour.a * 0.45f);
             }
         }
+        private void LateUpdate() { if (languageRevision != GameLocalization.Revision) Apply(); }
     }
 }

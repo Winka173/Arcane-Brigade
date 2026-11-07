@@ -167,15 +167,15 @@ namespace ArcaneBrigade
             if (copy == null) { copy = ArcadeTypography.Style(24); copy.normal.textColor = ArcadeSkin.Ink; name = ArcadeTypography.Style(18, true); name.normal.textColor = ArcadeSkin.Ink; }
             float reveal = reduced ? 1 : Mathf.Clamp01((now - began) / 0.18f);
             float width = 370 * Mathf.SmoothStep(0.9f, 1, reveal);
-            Rect bubble = new Rect(1180, 260 + (1 - reveal) * 8, width, Mathf.Max(126, copy.CalcHeight(new GUIContent(line), width - 36) + 61));
+            Rect bubble = new Rect(1180, 260 + (1 - reveal) * 8, width, Mathf.Max(126, copy.CalcHeight(LocalizedGUI.Content(line), width - 36) + 61));
             Color previous = GUI.color; GUI.color = new Color(1, 1, 1, reveal);
             ArcadeSkin.Ticket(bubble, ArcadeSkin.Cream, special ? new Color(0.7f, 0.45f, 0.85f) : ArcadeSkin.Accent);
             string title = MerchantName ?? (special ? "MADAM DREAMSHELL" : "THE RECEIPT GULPER");
             name.fontSize = 22; name.wordWrap = false;
-            name.fontSize = Mathf.Clamp(Mathf.FloorToInt(18 * (bubble.width - 36) / Mathf.Max(1, name.CalcSize(new GUIContent(title)).x)), 12, 18);
-            GUI.Label(new Rect(bubble.x + 18, bubble.y + 12, bubble.width - 36, 27), title, name);
+            name.fontSize = Mathf.Clamp(Mathf.FloorToInt(18 * (bubble.width - 36) / Mathf.Max(1, name.CalcSize(LocalizedGUI.Content(title)).x)), 12, 18);
+            LocalizedGUI.Label(new Rect(bubble.x + 18, bubble.y + 12, bubble.width - 36, 27), title, name);
             int length = VisibleGlyphs(now, reduced);
-            GUI.Label(new Rect(bubble.x + 18, bubble.y + 45, bubble.width - 36, bubble.height - 55), line.Substring(0, length), copy);
+            LocalizedGUI.Label(new Rect(bubble.x + 18, bubble.y + 45, bubble.width - 36, bubble.height - 55), line.Substring(0, length), copy);
             GUI.color = previous;
         }
     }

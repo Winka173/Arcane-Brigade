@@ -148,7 +148,7 @@ namespace ArcaneBrigade
         {
             if (!gallery) return;
             Matrix4x4 old = GUI.matrix; GUI.matrix = Matrix4x4.Scale(new Vector3(Screen.width / 1920f, Screen.height / 1080f, 1));
-            GUI.Label(new Rect(70, 35, 1750, 70), new[] { "CURIOSITY", "CELEBRATION", "RECOIL WITHOUT FLASH", "EXHAUSTION" }[Mathf.Clamp(pose, 0, 3)], ArcadeTypography.Style(36, true));
+            LocalizedGUI.Label(new Rect(70, 35, 1750, 70), new[] { "CURIOSITY", "CELEBRATION", "RECOIL WITHOUT FLASH", "EXHAUSTION" }[Mathf.Clamp(pose, 0, 3)], ArcadeTypography.Style(36, true));
             GUI.matrix = old;
         }
         private void OnDestroy() => Application.logMessageReceived -= Log;

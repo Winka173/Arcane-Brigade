@@ -217,23 +217,23 @@ namespace ArcaneBrigade
             int zone = System.Array.IndexOf(ActOneCanon.PlacePanel, c.Image);
             var image = zone >= 0 && zonePanels[zone] != null ? zonePanels[zone] : panels[zone >= 2 ? 1 : c.Image == "OpenDawn" ? 2 : 0];
             if (image != null) GUI.DrawTexture(new Rect(60, 150, 720, 540), image, ScaleMode.ScaleToFit);
-            GUI.Label(new Rect(70, 55, 1780, 75), ActOneCanon.PlaceNames[ActOneCanon.Place(c.Wave)] + " / " + c.Title, title);
+            LocalizedGUI.Label(new Rect(70, 55, 1780, 75), ActOneCanon.PlaceNames[ActOneCanon.Place(c.Wave)] + " / " + c.Title, title);
             // the lanterns still burning are shown as the HUD's own lantern row, not counted out in words
             string evidenceArt = chapter switch { 1 or 18 or 19 => "Item_Receipt", 10 => "Item_SewnLetter", 12 => "Item_Umbrella", 16 => "Item_ExitKey", _ => null };
             if (chapter == ActOneCanon.HobChapter && page == 0) evidenceArt = null;
             Sprite evidence = ActOneArtwork.Picture(evidenceArt);
             if (evidence != null) RunHud.Sprite(new Rect(75, 785, 125, 105), evidence);
-            GUI.Label(new Rect(evidence != null ? 220 : 80, 785, evidence != null ? 550 : 680, 80), "EVIDENCE\n" + c.Evidence, small);
+            LocalizedGUI.Label(new Rect(evidence != null ? 220 : 80, 785, evidence != null ? 550 : 680, 80), "EVIDENCE\n" + c.Evidence, small);
             NightHud.Lanterns(new Rect(evidence != null ? 220 : 80, 862, 230, 30), owner.Session.State);
             if (Press(new Rect(80, 710, 680, 65), "THE PEOPLE TRAVELLING WITH YOU")) ShowLives();
-            GUI.Label(new Rect(850, 145, 990, 50), "CHAPTER " + (chapter + 1) + " / PAGE " + (page + 1) + " OF " + c.Pages.Length, small);
+            LocalizedGUI.Label(new Rect(850, 145, 990, 50), "CHAPTER " + (chapter + 1) + " / PAGE " + (page + 1) + " OF " + c.Pages.Length, small);
             string text = c.Pages[page] + ActOneCanon.PageExtra(owner.Session.State, chapter, page);
             if (chapter == 0 && page == 0) text += "\n\nYOUR ARRIVAL\n" + WaitingArrivals.For(owner.Session.State.ChampionId);
-            float height = Mathf.Max(650, copy.CalcHeight(new GUIContent(text), 940) + 30);
+            float height = Mathf.Max(650, copy.CalcHeight(LocalizedGUI.Content(text), 940) + 30);
             string[] options = ActOneCanon.ChoiceOptions[chapter];
             bool choosing = options != null && page == 0 && Memory.Choices[chapter] == 0;
             scroll = ScrollPanel.Begin(new Rect(850, 210, 1000, choosing ? 400 : 660), scroll, new Rect(0, 0, 955, height));
-            GUI.Label(new Rect(0, 0, 940, height), text, copy); ScrollPanel.End();
+            LocalizedGUI.Label(new Rect(0, 0, 940, height), text, copy); ScrollPanel.End();
             for (int i = 0; i < MienChoStory.Available(owner.Session.State); i++)
             {
                 Rect entry = new Rect(70 + i % 7 * 97, 900 + i / 7 * 56, 88, 46);
@@ -259,7 +259,7 @@ namespace ArcaneBrigade
                 if (Press(new Rect(1070, 925, 490, 65), next >= c.Pages.Length ? "KEEP THE EVIDENCE / CLOSE" : "CONTINUE")) Advance();
             }
             if (Press(new Rect(1580, 925, 270, 65), arrivalOpen ? "SKIP" : "READ LATER")) Close();
-            GUI.Label(new Rect(850, 1000, 1000, 65), arrivalOpen ? "The journal keeps this page: open the sealed note any time." : "Paused. This page is saved.", small);
+            LocalizedGUI.Label(new Rect(850, 1000, 1000, 65), arrivalOpen ? "The journal keeps this page: open the sealed note any time." : "Paused. This page is saved.", small);
             GUI.matrix = old;
         }
         /// <summary>The non-blocking "a new page in the journal" note: a handwritten ticket with a wax seal holding the
@@ -284,7 +284,7 @@ namespace ArcaneBrigade
             noteHand.normal.textColor = new Color(.25f, .19f, .14f);
             // the note says what it holds; no "tap to read" (requirement: no input hints; its small line was clipped on phones)
             noteHand.fontSize = 30;
-            GUI.Label(new Rect(note.x + 16, note.y, note.width - 64, note.height), count > 1 ? "new pages" : "a new page", noteHand);
+            LocalizedGUI.Label(new Rect(note.x + 16, note.y, note.width - 64, note.height), count > 1 ? "new pages" : "a new page", noteHand);
             ArcadeSkin.Seal(new Vector2(note.xMax - 26, note.y + 26), 38, count > 99 ? "99+" : count.ToString());
             GUI.matrix = before;
             if (TouchTargets.Button(note, GUIContent.none, GUIStyle.none)) OpenNext();
@@ -324,8 +324,8 @@ namespace ArcaneBrigade
             for (int i = 0; i < ActOneCanon.StoryIds.Length; i++) if (ActOneCanon.StoryPresent(i, state.Wave, state.Phase == SessionPhase.Shop, state.Endless)) ids.Add("story:" + i);
             foreach (var entry in owner.Session.State.Roster) if (!ids.Contains(entry.UnitId)) ids.Add(entry.UnitId);
             foreach (var entry in owner.Session.State.AcquiredVariants) if (!ids.Contains(entry.UnitId)) ids.Add(entry.UnitId);
-            GUI.Label(new Rect(70, 55, 1780, 75), "MIEN CHO / LIVES ALONGSIDE YOURS", title);
-            if (ids.Count == 0) GUI.Label(new Rect(100, 250, 1500, 200), "Every creature you meet has a life before and after this crossing. Recruit a companion to learn their origin here.", copy);
+            LocalizedGUI.Label(new Rect(70, 55, 1780, 75), "MIEN CHO / LIVES ALONGSIDE YOURS", title);
+            if (ids.Count == 0) LocalizedGUI.Label(new Rect(100, 250, 1500, 200), "Every creature you meet has a life before and after this crossing. Recruit a companion to learn their origin here.", copy);
             else
             {
                 creature = Mathf.Clamp(creature, 0, ids.Count - 1);
@@ -335,13 +335,13 @@ namespace ArcaneBrigade
                 var unit = owner.Content.Unit(id);
                 bool stranger = story < 0 && owner.Session.Stranger(id);
                 RunHud.Sprite(new Rect(100, 220, 560, 470), story >= 0 ? ActOneArtwork.Picture(ActOneCanon.StoryNames[story]) ?? unit.Body : unit.Body);
-                GUI.Label(new Rect(100, 730, 650, 120), (story >= 0 ? ActOneCanon.StoryNames[story] : stranger ? "???" : unit.DisplayName) + "\n" + (creature + 1) + " / " + ids.Count, title);
+                LocalizedGUI.Label(new Rect(100, 730, 650, 120), (story >= 0 ? ActOneCanon.StoryNames[story] : stranger ? "???" : unit.DisplayName) + "\n" + (creature + 1) + " / " + ids.Count, title);
                 string text = stranger ? "A STRANGER\nYou sold your memory of them to the Last Customer. They still travel with you. You do not know who they are.\n\nThey introduce themselves again at every rest. They are kind about it."
                     : story >= 0 ? "TRAVELLING WITH YOU\n" + CreatureLives.Arc(id, state)
                     : "LIFE IN THE WAITING REALM\n" + CreatureLives.Origin(id) + "\n\nALONG THE CROSSING\n" + CreatureLives.Arc(id, owner.Session.State);
-                float height = Mathf.Max(650, copy.CalcHeight(new GUIContent(text), 940) + 30);
+                float height = Mathf.Max(650, copy.CalcHeight(LocalizedGUI.Content(text), 940) + 30);
                 scroll = ScrollPanel.Begin(new Rect(850, 180, 1000, 690), scroll, new Rect(0, 0, 955, height));
-                GUI.Label(new Rect(0, 0, 940, height), text, copy); ScrollPanel.End();
+                LocalizedGUI.Label(new Rect(0, 0, 940, height), text, copy); ScrollPanel.End();
                 if (Press(new Rect(100, 900, 260, 65), "PREVIOUS FRIEND")) { creature = (creature + ids.Count - 1) % ids.Count; scroll = Vector2.zero; }
                 if (Press(new Rect(390, 900, 260, 65), "NEXT FRIEND")) { creature = (creature + 1) % ids.Count; scroll = Vector2.zero; }
             }

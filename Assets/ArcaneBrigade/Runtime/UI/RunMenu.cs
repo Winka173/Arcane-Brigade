@@ -307,7 +307,7 @@ namespace ArcaneBrigade
         }
 
         private bool Button(Rect rectangle, string caption) => navigation.Button(rectangle, caption, button);
-        private void Label(Rect rectangle, string caption) { GUI.Label(rectangle, ArcadeTypography.DisplayText(caption), text); }
+        private void Label(Rect rectangle, string caption) { LocalizedGUI.Label(rectangle, ArcadeTypography.DisplayText(caption), text); }
 
         private void OnGUI()
         {
@@ -388,7 +388,7 @@ namespace ArcaneBrigade
                 // a short note on a plate over the lower middle that leaves after a few seconds, never a line over the page's own buttons
                 var note = new Rect(320, 572, 640, 72);
                 ArcadeSkin.Plate(note, ArcadeSkin.Gold);
-                GUI.Label(new Rect(note.x + 32, note.y, note.width - 64, note.height), error, new GUIStyle(text) { alignment = TextAnchor.MiddleCenter });
+                LocalizedGUI.Label(new Rect(note.x + 32, note.y, note.width - 64, note.height), error, new GUIStyle(text) { alignment = TextAnchor.MiddleCenter });
             }
             if (!profile.ReducedMotion)
             {
@@ -451,7 +451,7 @@ namespace ArcaneBrigade
             if (ArcadeTypography.Display != null) logo.font = ArcadeTypography.Display;
             TextAnchor a = logo.alignment; logo.alignment = TextAnchor.UpperLeft; logo.normal.textColor = ArcadeSkin.Cream;
             if (ArcadeSkin.KitSprite("Menu/GameLogo") is Sprite bootLogo) RunHud.Sprite(new Rect(28, 8, 440, 154), bootLogo);
-            else GUI.Label(new Rect(40, 54, 760, 90), "Arcane Brigade", logo);
+            else LocalizedGUI.Label(new Rect(40, 54, 760, 90), "Arcane Brigade", logo);
             logo.alignment = a;
             GUI.color = keep;
         }
@@ -538,9 +538,9 @@ namespace ArcaneBrigade
             float alpha = Mathf.Clamp01((age - 1.2f) / 1.4f) * Mathf.Clamp01((8f - age) / 1.5f);
             ArcadeSkin.Glow(new Rect(40, 150, 360, 380), new Color(ArcadeSkin.Accent.r, ArcadeSkin.Accent.g, ArcadeSkin.Accent.b, 0.22f * alpha));
             chairVoice.normal.textColor = new Color(0, 0, 0, 0.75f * alpha);
-            GUI.Label(new Rect(62, 302, 340, 80), "Would you like me to sit closer?", chairVoice);
+            LocalizedGUI.Label(new Rect(62, 302, 340, 80), "Would you like me to sit closer?", chairVoice);
             chairVoice.normal.textColor = new Color(ArcadeSkin.Paper.r, ArcadeSkin.Paper.g, ArcadeSkin.Paper.b, alpha);
-            GUI.Label(new Rect(60, 300, 340, 80), "Would you like me to sit closer?", chairVoice);
+            LocalizedGUI.Label(new Rect(60, 300, 340, 80), "Would you like me to sit closer?", chairVoice);
         }
 
         private Texture2D Backdrop()
@@ -661,13 +661,13 @@ namespace ArcaneBrigade
             if (ArcadeSkin.KitSprite("Menu/GameLogo") is Sprite gameLogo) RunHud.Sprite(new Rect(28, 8, 440, 154), gameLogo);
             else
             {
-                GUI.Label(new Rect(44, 58, 620, 90), "Arcane Brigade", logoShadow);
+                LocalizedGUI.Label(new Rect(44, 58, 620, 90), "Arcane Brigade", logoShadow);
                 logo.normal.textColor = ArcadeSkin.Cream;
-                GUI.Label(new Rect(40, 54, 620, 90), "Arcane Brigade", logo);
+                LocalizedGUI.Label(new Rect(40, 54, 620, 90), "Arcane Brigade", logo);
             }
             if (spotHint == null) { spotHint = ArcadeTypography.Style(24, false); spotHint.font = ArcadeTypography.Hand; spotHint.alignment = TextAnchor.MiddleCenter; spotHint.normal.textColor = ArcadeSkin.Cream; spotHint.wordWrap = false; }
             spotHint.alignment = TextAnchor.UpperLeft;
-            GUI.Label(new Rect(46, ArcadeSkin.KitSprite("Menu/GameLogo") != null ? 160 : 140, 760, 32), "someone is waiting for you…", spotHint);
+            LocalizedGUI.Label(new Rect(46, ArcadeSkin.KitSprite("Menu/GameLogo") != null ? 160 : 140, 760, 32), "someone is waiting for you…", spotHint);
             spotHint.alignment = TextAnchor.MiddleCenter;
 
             // requirement 24/10/2026: "nobody can tell what reacts to the mouse, let alone on a phone - redo the main menu, with the
@@ -682,7 +682,7 @@ namespace ArcaneBrigade
                 // the longer ones having shrunk to fit)
                 smallButton = new GUIStyle(button) { fontSize = ArcadeTypography.On720(ArcadeTypography.SizeNote) };
                 float room = SmallSpotWidth - 2 * (ArcadeSkin.CompactCap * 60 / 120f + 8) - 14;
-                while (smallButton.fontSize > 12 && smallButton.CalcSize(new GUIContent("        HOW TO PLAY")).x > room) smallButton.fontSize--;
+                while (smallButton.fontSize > 12 && smallButton.CalcSize(LocalizedGUI.Content("        HOW TO PLAY")).x > room) smallButton.fontSize--;
             }
             for (int index = 0; index < SpotLabels.Length; index++)
             {
@@ -767,7 +767,7 @@ namespace ArcaneBrigade
                 RunHud.Sprite(new Rect(card.center.x - portraitSize * 0.5f, top, portraitSize, 140), RosterPortrait(unit, Time.unscaledTime, index, true, profile.ReducedMotion)); // every hero in the roster acts (requirement 24/10/2026)
                 GUI.color = previousColor;
                 TextAnchor keepAlign = caption.alignment; caption.alignment = TextAnchor.MiddleCenter;
-                GUI.Label(new Rect(card.x + 10, top + 142, card.width - 20, 38), RunUICopy.UnitName(unit), caption);
+                LocalizedGUI.Label(new Rect(card.x + 10, top + 142, card.width - 20, 38), RunUICopy.UnitName(unit), caption);
                 caption.alignment = keepAlign;
                 if (!unlocked) ArcadeSkin.Tag(new Rect(card.x + 12, card.y + 186, card.width - 24, 28), HeroUnlocks.Coming(unit) ? "COMING SOON" : HeroUnlocks.Short(unit), CodeTone.Cream, chip);
                 if (!unlocked) ArcadeSkin.Lock(new Vector2(card.x + 34, card.y + 34), 22, ArcadeSkin.KitCream); // the same lock as the collection's
@@ -784,20 +784,20 @@ namespace ArcaneBrigade
             else ArcadeSkin.Glow(new Rect(752, 125, 170, 175), new Color(1f, 0.8f, 0.45f, 0.28f));
             RunHud.Sprite(new Rect(775, 134, 132, 132), RosterPortrait(champion, Time.unscaledTime, selection, true, profile.ReducedMotion));
             if (rosterTitle == null) { rosterTitle = ArcadeTypography.Style(28, true); if (ArcadeTypography.Display != null) rosterTitle.font = ArcadeTypography.Display; }
-            GUI.Label(new Rect(934, 150, 286, 70), RunUICopy.UnitName(champion), rosterTitle); // right of the stage
+            LocalizedGUI.Label(new Rect(934, 150, 286, 70), RunUICopy.UnitName(champion), rosterTitle); // right of the stage
             ArcadeSkin.Tag(new Rect(934, 222, 230, 30), RunUICopy.WeaponName(champion.Weapon.Id), CodeTone.Walnut, chip);
             string unlockNote = HeroUnlocks.Full(profile, champion, catalog, false); // the count stands beside its bar
             if (!string.IsNullOrEmpty(unlockNote))
             {
                 // the locked hero's road, on its own line with a bar (it was one small line under the weapon)
-                GUI.Label(new Rect(934, 256, 290, 30), HeroUnlocks.Coming(champion) ? "Arrives in a later update" : unlockNote, note);
+                LocalizedGUI.Label(new Rect(934, 256, 290, 30), HeroUnlocks.Coming(champion) ? "Arrives in a later update" : unlockNote, note);
                 float share = HeroUnlocks.Share(profile, champion);
                 if (share >= 0)
                 {
                     Rect bar = new Rect(934, 292, 160, 14);
                     if (ArcadeSkin.Strip(bar, "Info/RatioTrack", 24, 24) && bar.width * share > bar.height) ArcadeSkin.Strip(new Rect(bar.x + 2, bar.y + 2, (bar.width - 4) * share, bar.height - 4), "Info/RatioFill", 20, 20);
                     var shown = HeroUnlocks.Progress(profile, HeroUnlocks.RuleOf(champion));
-                    GUI.Label(new Rect(bar.xMax + 10, 284, 120, 30), shown.have.ToString("N0") + " / " + shown.need.ToString("N0"), note);
+                    LocalizedGUI.Label(new Rect(bar.xMax + 10, 284, 120, 30), shown.have.ToString("N0") + " / " + shown.need.ToString("N0"), note);
                 }
             }
             else if (catalog.HeroRevision > 0)
@@ -862,7 +862,7 @@ namespace ArcaneBrigade
                 ArcadeSkin.Lock(new Vector2(dangerRect.x + 9, dangerRect.center.y), 16, danger.normal.textColor);
                 dangerRect = new Rect(dangerRect.x + 26, dangerRect.y, dangerRect.width - 26, dangerRect.height);
             }
-            if (sealedDifficulty) GUI.Label(dangerRect, dangerText, danger);
+            if (sealedDifficulty) LocalizedGUI.Label(dangerRect, dangerText, danger);
             if (deluxeDifficulty && TouchTargets.Button(new Rect(410, 656, 352, 52), GUIContent.none, GUIStyle.none)) DeluxeOffer.Open("Sleepless and The Last Night are part of Deluxe.");
             GUI.enabled = HeroUnlocks.Open(profile, champion) && !sealedDifficulty;
             if (navigation.Button(new Rect(770, 650, 450, 62), HeroUnlocks.Open(profile, champion) && !sealedDifficulty ? "STEP THROUGH ▶" : HeroUnlocks.Coming(champion) ? "COMING SOON" : "LOCKED", primary)) { if (existingSave) ShowPage(Page.ConfirmOverwrite); else Launch(false); }
@@ -895,7 +895,7 @@ namespace ArcaneBrigade
         {
             HeroIdentityDefinition identity = HeroIdentities.For(champion.Id);
             if (identity == null) return RunUICopy.ChampionDescription(champion);
-            string first = identity.Description; int stop = first.IndexOf(". ", System.StringComparison.Ordinal); if (stop > 0) first = first.Substring(0, stop + 1);
+            string first = GameLocalization.Text(identity.Description); int stop = first.IndexOf(". ", System.StringComparison.Ordinal); if (stop > 0) first = first.Substring(0, stop + 1);
             HeroKit kit = HeroKits.For(champion.Id);
             return RunUICopy.Title(identity.Name) + "\n" + first + (kit != null ? "\nTransforms into " + RunUICopy.Title(kit.Transformation) + "." : ""); // UI standard: no all-capital lines
         }
@@ -915,7 +915,7 @@ namespace ArcaneBrigade
                 if (LivingUI.Auto("hero-details", card.center))
                 {
                     ArcadeSkin.Frame(card, KitFrame.Dialogue, .5f);
-                    GUI.Label(new Rect(card.x, card.y + 22, card.width, 40), heroDetailsName, overlayTitle);
+                    LocalizedGUI.Label(new Rect(card.x, card.y + 22, card.width, 40), heroDetailsName, overlayTitle);
                     float h = Mathf.Max(400, GlossaryUI.Height(heroDetailsText, overlayLine, 700) + 10);
                     heroDetailsScroll = ScrollPanel.Begin(new Rect(card.x + 40, card.y + 76, 720, card.height - 110), heroDetailsScroll, new Rect(0, 0, 700, h));
                     GlossaryUI.Text(new Rect(0, 0, 700, h), heroDetailsText, overlayLine);
@@ -932,9 +932,9 @@ namespace ArcaneBrigade
                 if (LivingUI.Auto("pact-picker", card.center))
                 {
                     ArcadeSkin.Frame(card, KitFrame.Dialogue, .5f);
-                    GUI.Label(new Rect(card.x, card.y + 20, card.width, 40), "NIGHT PACT", overlayTitle);
+                    LocalizedGUI.Label(new Rect(card.x, card.y + 20, card.width, 40), "NIGHT PACT", overlayTitle);
                     overlayLine.alignment = TextAnchor.MiddleCenter; overlayLine.normal.textColor = ArcadeSkin.KitCream;
-                    GUI.Label(new Rect(card.x + 40, card.y + 60, card.width - 80, 34), "Curses for this night. Lamp Oil and Keepsakes ×" + MetaProgression.PactMultiplier(meta.Pacts).ToString("0.##"), overlayLine);
+                    LocalizedGUI.Label(new Rect(card.x + 40, card.y + 60, card.width - 80, 34), "Curses for this night. Lamp Oil and Keepsakes ×" + MetaProgression.PactMultiplier(meta.Pacts).ToString("0.##"), overlayLine);
                     for (int i = 0; i < count; i++)
                     {
                         MetaPact pact = MetaProgression.Pacts[i];
@@ -944,9 +944,9 @@ namespace ArcaneBrigade
                         Rect seal = new Rect(row.x + 10, row.y + 6, 44, 44);
                         if (MetaHub.CurseSeal(i) is Sprite wax) RunHud.Sprite(seal, wax); else RunHud.Sprite(seal, MetaIcons.Station(MetaStation.NightPact, true));
                         overlayTitle.fontSize = 20; overlayTitle.alignment = TextAnchor.MiddleLeft; overlayTitle.normal.textColor = on ? ArcadeSkin.Gold : ArcadeSkin.KitCream;
-                        GUI.Label(new Rect(row.x + 66, row.y, 220, row.height), pact.Name, overlayTitle);
+                        LocalizedGUI.Label(new Rect(row.x + 66, row.y, 220, row.height), pact.Name, overlayTitle);
                         overlayLine.alignment = TextAnchor.MiddleRight; overlayLine.normal.textColor = ArcadeSkin.KitCream;
-                        GUI.Label(new Rect(row.x + 280, row.y, row.width - 298, row.height), pact.Line + " · ×" + pact.Reward.ToString("0.##"), overlayLine);
+                        LocalizedGUI.Label(new Rect(row.x + 280, row.y, row.width - 298, row.height), pact.Line + " · ×" + pact.Reward.ToString("0.##"), overlayLine);
                         int pick = i;
                         if (TouchTargets.Button(row, GUIContent.none, GUIStyle.none) && !LivingUI.Closing("pact-picker")) { MetaProgression.TogglePact(profile, pick); SaveProfile(); CheckpointAudio.PlayInterfaceId("ui.select"); }
                     }
@@ -962,17 +962,17 @@ namespace ArcaneBrigade
                 if (LivingUI.Auto("difficulty-picker", card.center))
                 {
                     ArcadeSkin.Frame(card, KitFrame.Dialogue, .5f);
-                    GUI.Label(new Rect(card.x, card.y + 20, card.width, 40), "CHOOSE THE NIGHT'S DIFFICULTY", overlayTitle);
+                    LocalizedGUI.Label(new Rect(card.x, card.y + 20, card.width, 40), "CHOOSE THE NIGHT'S DIFFICULTY", overlayTitle);
                     for (int i = 0; i < count; i++)
                     {
                         Rect row = new Rect(card.x + 40, card.y + 76 + i * 64, card.width - 80, 56);
                         bool deluxeRow = Deluxe.DifficultyLocked(i), sealedRow = i > unlocked || deluxeRow, chosen = i == difficulty;
                         ArcadeSkin.CodePlate(row, CodeTone.Walnut, sealedRow ? 3 : chosen ? ArcadeSkin.Chosen : 0);
                         overlayTitle.fontSize = 20; overlayTitle.alignment = TextAnchor.MiddleLeft; overlayTitle.normal.textColor = RunMeta.DifficultyColor(i);
-                        GUI.Label(new Rect(row.x + (sealedRow ? 44 : 18), row.y, 240, row.height), RunMeta.DifficultyNames[i], overlayTitle);
+                        LocalizedGUI.Label(new Rect(row.x + (sealedRow ? 44 : 18), row.y, 240, row.height), RunMeta.DifficultyNames[i], overlayTitle);
                         if (sealedRow) ArcadeSkin.Lock(new Vector2(row.x + 24, row.center.y), 14, ArcadeSkin.KitCream);
                         overlayLine.alignment = TextAnchor.MiddleRight; overlayLine.normal.textColor = ArcadeSkin.KitCream;
-                        GUI.Label(new Rect(row.x + 250, row.y, row.width - 268, row.height), deluxeRow ? "Part of Deluxe" : sealedRow ? "Light the whole Lamp Tree" : DifficultyLine(i), overlayLine);
+                        LocalizedGUI.Label(new Rect(row.x + 250, row.y, row.width - 268, row.height), deluxeRow ? "Part of Deluxe" : sealedRow ? "Light the whole Lamp Tree" : DifficultyLine(i), overlayLine);
                         overlayLine.alignment = TextAnchor.UpperLeft;
                         int pick = i;
                         if (deluxeRow && TouchTargets.Button(row, GUIContent.none, GUIStyle.none)) DeluxeOffer.Open("Sleepless and The Last Night are part of Deluxe.");
@@ -1024,15 +1024,15 @@ namespace ArcaneBrigade
             if (Event.current.type == EventType.MouseDown && Time.unscaledTime - explainShown > .1f) { explainText = null; return; }
             explainTitle ??= ArcadeTypography.Style(ArcadeTypography.On720(ArcadeTypography.SizeBody), true); explainBody ??= ArcadeTypography.Style(ArcadeTypography.On720(ArcadeTypography.SizeNote)); explainBody.wordWrap = true;
             // the words sit inside the frame's own padded area (release testing 3/11/2026: the title ran under the top rim)
-            float w = 360, h = 30 + 30 + explainBody.CalcHeight(new GUIContent(explainText), w - 52) + 28;
+            float w = 360, h = 30 + 30 + explainBody.CalcHeight(LocalizedGUI.Content(explainText), w - 52) + 28;
             Rect card = new Rect(Mathf.Clamp(explainAt.center.x - w * .5f, 20, 1260 - w), explainAt.yMax + 10, w, h); // the menu's 1280x720 space
             if (card.yMax > 704) card.y = explainAt.y - h - 10;
             Matrix4x4 keepMatrix = GUI.matrix; Color keepColour = GUI.color;
             LivingUI.Pop(Time.unscaledTime - explainShown, new Vector2(card.center.x, card.y));
             if (ArcadeSkin.HasKit) ArcadeSkin.Frame(card, KitFrame.Dialogue, .5f); else RunHud.Fill(card, ArcadeSkin.Card);
             Rect inner = ArcadeSkin.HasKit ? ArcadeSkin.Content(card, KitFrame.Dialogue, true, .5f) : new Rect(card.x + 18, card.y + 12, w - 36, h - 24);
-            GUI.Label(new Rect(inner.x, inner.y, inner.width, 28), explainHead, explainTitle);
-            GUI.Label(new Rect(inner.x, inner.y + 30, inner.width, inner.yMax - inner.y - 30), explainText, explainBody);
+            LocalizedGUI.Label(new Rect(inner.x, inner.y, inner.width, 28), explainHead, explainTitle);
+            LocalizedGUI.Label(new Rect(inner.x, inner.y + 30, inner.width, inner.yMax - inner.y - 30), explainText, explainBody);
             GUI.matrix = keepMatrix; GUI.color = keepColour;
         }
         private float quitAskedAt = -1;
@@ -1047,7 +1047,7 @@ namespace ArcaneBrigade
             if (ArcadeSkin.HasKit) ArcadeSkin.Frame(card, KitFrame.Dialogue, .5f); else RunHud.Fill(card, ArcadeSkin.Card);
             explainTitle ??= ArcadeTypography.Style(ArcadeTypography.On720(ArcadeTypography.SizeBody), true);
             TextAnchor keepAlign = explainTitle.alignment; explainTitle.alignment = TextAnchor.MiddleCenter;
-            GUI.Label(new Rect(card.x + 24, card.y + 34, card.width - 48, 60), "Leave the Waiting Realm?", explainTitle);
+            LocalizedGUI.Label(new Rect(card.x + 24, card.y + 34, card.width - 48, 60), "Leave the Waiting Realm?", explainTitle);
             explainTitle.alignment = keepAlign;
             if (navigation.Button(new Rect(card.x + 30, card.yMax - 92, 160, 56), "STAY", primary)) quitAskedAt = -1;
             if (navigation.Button(new Rect(card.xMax - 190, card.yMax - 92, 160, 56), "LEAVE", button)) QuitGame();
@@ -1068,7 +1068,7 @@ namespace ArcaneBrigade
             LivingUI.Pop(Time.unscaledTime - keepsakeOpenedAt, new Vector2(card.center.x, card.yMax));
             if (ArcadeSkin.HasKit) ArcadeSkin.Frame(card, KitFrame.Dialogue, .5f); else RunHud.Fill(card, ArcadeSkin.Card);
             explainTitle ??= ArcadeTypography.Style(ArcadeTypography.On720(ArcadeTypography.SizeBody), true);
-            GUI.Label(new Rect(card.x + pad, card.y + 10, w - pad * 2, 26), "Bring a keepsake", explainTitle);
+            LocalizedGUI.Label(new Rect(card.x + pad, card.y + 10, w - pad * 2, 26), "Bring a keepsake", explainTitle);
             for (int i = 0; i < count; i++)
             {
                 Rect slot = new Rect(card.x + pad + (i % perRow) * (cell + gap), card.y + 42 + (i / perRow) * (cell + gap), cell, cell);
@@ -1151,7 +1151,7 @@ namespace ArcaneBrigade
                 ArcadeSkin.PortraitSlot(cell, on); RunHud.Sprite(new Rect(cell.x + 5, cell.y + 5, 34, 34), relic?.Icon ?? MetaIcons.Station(MetaStation.Postbox, true));
                 if (TouchTargets.Button(cell, GUIContent.none, GUIStyle.none)) { keepsakeOpen = !keepsakeOpen; keepsakeAt = cell; keepsakeOpenedAt = Time.unscaledTime; explainText = null; CheckpointAudio.PlayInterfaceId("ui.open"); }
             }
-            if (caption != null) GUI.Label(new Rect(row.x, row.yMax + 1, row.width, 22), caption, note);
+            if (caption != null) LocalizedGUI.Label(new Rect(row.x, row.yMax + 1, row.width, 22), caption, note);
             return true;
         }
 
@@ -1248,10 +1248,10 @@ namespace ArcaneBrigade
             for (int i = 0; i < numbers.Length; i++)
             {
                 Rect col = new Rect(c.x + i * w, c.y, w, c.height);
-                GUI.Label(new Rect(col.x, col.y, col.width, col.height * .6f), numbers[i], totalNumber);
+                LocalizedGUI.Label(new Rect(col.x, col.y, col.width, col.height * .6f), numbers[i], totalNumber);
                 totalCaption.fontSize = ArcadeTypography.On720(ArcadeTypography.SizeNote);
-                while (totalCaption.fontSize > 16 && totalCaption.CalcSize(new GUIContent(captions[i])).x > col.width - 8) totalCaption.fontSize--;
-                GUI.Label(new Rect(col.x, col.y + col.height * .58f, col.width, col.height * .4f), captions[i], totalCaption);
+                while (totalCaption.fontSize > 16 && totalCaption.CalcSize(LocalizedGUI.Content(captions[i])).x > col.width - 8) totalCaption.fontSize--;
+                LocalizedGUI.Label(new Rect(col.x, col.y + col.height * .58f, col.width, col.height * .4f), captions[i], totalCaption);
                 if (i > 0) ArcadeSkin.Diamond(new Vector2(col.x, col.center.y), 5, new Color(.55f, .36f, .18f, .7f)); // a small brass stud between columns, not a ruled line
             }
         }

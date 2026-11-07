@@ -134,7 +134,7 @@ namespace ArcaneBrigade
             {
                 float x = 220 + i % 7 * 211, y = 145 + i / 7 * 110;
                 StatGlyph.Draw(new Rect(x + 45, y + 8, 24, 24), effect); StatGlyph.Draw(new Rect(x + 100, y, 40, 40), effect);
-                string label = ShortOfferCopy.StatName(effect); GUI.Label(new Rect(x, y + 52, 204, 48), label, style); i++;
+                string label = ShortOfferCopy.StatName(effect); LocalizedGUI.Label(new Rect(x, y + 52, 204, 48), label, style); i++;
             }
             GUI.matrix = old;
         }

@@ -34,7 +34,7 @@ namespace ArcaneBrigade
             GUI.depth = -200;
             RarityDescriptionFrame.Draw(new Rect(520, 700, 880, 300), sample.Value, Time.unscaledTime); // the shop tooltip
             RarityDescriptionFrame.Draw(new Rect(1300, 260, 460, 220), sample.Value, Time.unscaledTime); // an inspected card
-            GUI.color = Color.white; GUI.Label(new Rect(540, 720, 600, 40), sample.Value.ToString().ToUpperInvariant());
+            GUI.color = Color.white; LocalizedGUI.Label(new Rect(540, 720, 600, 40), sample.Value.ToString().ToUpperInvariant());
         }
         private void Write() => File.WriteAllLines(Path.Combine(root, "Keeper.txt"), log);
         private void OnLog(string message, string trace, LogType type) { if (type == LogType.Error || type == LogType.Exception) { log.Add("ERROR " + message + " | " + trace.Split('\n')[0]); Write(); } }

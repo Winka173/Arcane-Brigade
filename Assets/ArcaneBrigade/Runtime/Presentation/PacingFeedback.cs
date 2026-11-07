@@ -169,7 +169,7 @@ namespace ArcaneBrigade
                 ArcadeSkin.Ticket(paper, ArcadeSkin.Cream, ArcadeSkin.Gold);
                 if (unroll > 0.95f)
                 {
-                    GUI.Label(new Rect(paper.x, paper.y + 4, paper.width, 22), "THE CHEST GIVES", small);
+                    LocalizedGUI.Label(new Rect(paper.x, paper.y + 4, paper.width, 22), "THE CHEST GIVES", small);
                     RunCatalog content = owner.Content;
                     Sprite coin = content.Arena.Coin, egg = content.EggSprite, heart = CurrencyIcons.Heart, lamp = PacingArtwork.Flare(content);
                     Sprite[] faces = { coin, egg, heart, lamp };
@@ -194,8 +194,8 @@ namespace ArcaneBrigade
                         if (landed && (age >= stop + 0.12f || reduced))
                         {
                             int size = numbers.fontSize; numbers.normal.textColor = tile ? (isHeart ? new Color(.62f, .08f, .1f) : isEgg ? new Color(.08f, .36f, .42f) : new Color(.52f, .33f, .04f)) : isHeart ? new Color(1f, 0.7f, 0.66f) : isEgg ? ArcadeSkin.Teal : ArcadeSkin.Gold;
-                            while (numbers.fontSize > 12 && numbers.CalcSize(new GUIContent(amount)).x > numberRect.width - 6) numbers.fontSize--;
-                            GUI.Label(tile ? numberRect : new Rect(slot.x, slot.y + Tile - 30, Tile, 30), amount, numbers); // inside the painted tile's rim, under the picture
+                            while (numbers.fontSize > 12 && numbers.CalcSize(LocalizedGUI.Content(amount)).x > numberRect.width - 6) numbers.fontSize--;
+                            LocalizedGUI.Label(tile ? numberRect : new Rect(slot.x, slot.y + Tile - 30, Tile, 30), amount, numbers); // inside the painted tile's rim, under the picture
                             numbers.fontSize = size;
                         }
                         if (landed && Event.current.type == EventType.Repaint && age - stop < 0.02f && reelTicks < 64) { reelTicks++; CheckpointAudio.PlayInterfaceId(reel == count - 1 ? "ui.receipt" : "shop.ticket.sway", 0.05f); }
@@ -247,9 +247,9 @@ namespace ArcaneBrigade
             Rect slip = new Rect(222, 98, 176, 36);
             ArcadeSkin.Ticket(new Rect(slip.x - pop, slip.y - pop, slip.width + pop * 2, slip.height + pop * 2), ArcadeSkin.Cream, ArcadeSkin.Gold);
             hand.normal.textColor = ArcadeSkin.Ink; hand.fontSize = 26;
-            GUI.Label(new Rect(slip.x + 8, slip.y - 2, 70, slip.height), "gold", hand);
+            LocalizedGUI.Label(new Rect(slip.x + 8, slip.y - 2, 70, slip.height), "gold", hand);
             numbers.normal.textColor = new Color(0.55f, 0.36f, 0.08f);
-            GUI.Label(new Rect(slip.x + 72, slip.y, slip.width - 78, slip.height), "+" + tallyShown.ToString("N0"), numbers);
+            LocalizedGUI.Label(new Rect(slip.x + 72, slip.y, slip.width - 78, slip.height), "+" + tallyShown.ToString("N0"), numbers);
             hand.fontSize = 30;
             GUI.color = previous;
         }

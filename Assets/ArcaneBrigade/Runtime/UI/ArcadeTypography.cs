@@ -31,9 +31,9 @@ namespace ArcaneBrigade
         {
             Color colour = style.normal.textColor;
             style.normal.textColor = new Color(0.04f, 0.03f, 0.07f, colour.a * 0.85f);
-            GUI.Label(new Rect(rectangle.x + offset, rectangle.y + offset, rectangle.width, rectangle.height), text, style);
+            LocalizedGUI.Label(new Rect(rectangle.x + offset, rectangle.y + offset, rectangle.width, rectangle.height), text, style);
             style.normal.textColor = colour;
-            GUI.Label(rectangle, text, style);
+            LocalizedGUI.Label(rectangle, text, style);
         }
 
         /// <summary>The UI standard's five sizes (Docs/UI_Standard.md) in units of the 1920x1080 canvas; nothing is set smaller than SizeNote.</summary>

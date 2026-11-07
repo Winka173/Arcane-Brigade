@@ -69,21 +69,21 @@ namespace ArcaneBrigade
                 GUI.matrix=matrix;return;
             }
             RunHud.Fill(new Rect(0,0,1920,1080),new Color(.018f,.023f,.045f));
-            GUI.Label(new Rect(70,45,1760,65),"ACT "+(WaitingCampaign.Act(state)+1)+" / "+WaitingCampaign.Title(WaitingCampaign.Act(state)),title);
+            LocalizedGUI.Label(new Rect(70,45,1760,65),"ACT "+(WaitingCampaign.Act(state)+1)+" / "+WaitingCampaign.Title(WaitingCampaign.Act(state)),title);
             int room=WaitingCampaign.RoomFor(WaitingCampaign.Act(state),state.Wave);
-            GUI.Label(new Rect(70,130,1770,80),WaitingCampaign.Objective(state),small);
+            LocalizedGUI.Label(new Rect(70,130,1770,80),WaitingCampaign.Objective(state),small);
             if(room>0 && !state.Endless)
             {if(Press(new Rect(70,230,1770,70),"ENTER WALKABLE ROOM / "+WaitingCampaign.RoomName(room)))EnterRoom();}
-            else GUI.Label(new Rect(80,230,1740,70),"Walkable rooms open after waves 8-9, 14-15, 16-17.",small);
+            else LocalizedGUI.Label(new Rect(80,230,1740,70),"Walkable rooms open after waves 8-9, 14-15, 16-17.",small);
             for(int i=0;i<6;i++)if(Press(new Rect(70+i*295,335,280,75),owner.Content.Unit(WaitingCompanionQuests.Routes[i].Id).DisplayName)){route=i;scroll=Vector2.zero;}
             var quest=WaitingCompanionQuests.Routes[route];int stage=WaitingCompanionQuests.Next(state,route);
             RunHud.Sprite(new Rect(90,470,330,320),owner.Content.Unit(quest.Id).Body);
-            GUI.Label(new Rect(80,810,350,120),quest.Title,title);
+            LocalizedGUI.Label(new Rect(80,810,350,120),quest.Title,title);
             string text=stage<0?"THEIR CHOSEN FUTURE\nThis route is complete. Their decisions remain in the room and epilogue.":"PART "+(stage+1)+" / SHOP AFTER WAVE "+WaitingCompanionQuests.Waves[stage]+"\n"+quest.Scenes[stage];
             text+=WaitingCompanionQuests.Consequences(state,quest.Id);
-            float height=Mathf.Max(340,copy.CalcHeight(new GUIContent(text),1280)+20);
+            float height=Mathf.Max(340,copy.CalcHeight(LocalizedGUI.Content(text),1280)+20);
             bool choosing=stage>=0 && state.Wave>=WaitingCompanionQuests.Waves[stage] && state.Roster.Exists(x=>x.UnitId==quest.Id);
-            scroll=ScrollPanel.Begin(new Rect(500,450,1330,choosing?190:340),scroll,new Rect(0,0,1290,height));GUI.Label(new Rect(0,0,1280,height),text,copy);ScrollPanel.End();
+            scroll=ScrollPanel.Begin(new Rect(500,450,1330,choosing?190:340),scroll,new Rect(0,0,1290,height));LocalizedGUI.Label(new Rect(0,0,1280,height),text,copy);ScrollPanel.End();
             bool ready=stage>=0 && state.Wave>=WaitingCompanionQuests.Waves[stage] && state.Roster.Exists(x=>x.UnitId==quest.Id);
             if(ready)
             {
@@ -91,9 +91,9 @@ namespace ArcaneBrigade
                 int taken=ChoiceCards.Draw(new Rect(500,655,1330,290),new[]{quest.First[stage],quest.Second[stage]},new[]{quest.Outcomes[stage*2],quest.Outcomes[stage*2+1]},ref journeyPick);
                 if(taken>=0 && Choose(taken+1))journeyPick=-1;
             }
-            else GUI.Label(new Rect(500,815,1300,100),stage<0?"Their story continues through the consequences you chose. No stat reward or loyalty debt.":"Travel with this companion and reach the stated shop. You can leave now and return later; the main route never requires this quest.",small);
+            else LocalizedGUI.Label(new Rect(500,815,1300,100),stage<0?"Their story continues through the consequences you chose. No stat reward or loyalty debt.":"Travel with this companion and reach the stated shop. You can leave now and return later; the main route never requires this quest.",small);
             if(Press(new Rect(1330,960,480,65),"RETURN TO THE SHOP"))Close();
-            GUI.Label(new Rect(80,980,1180,60),"Paused. Choices change scenes and futures, never recruit quotas.",small);
+            LocalizedGUI.Label(new Rect(80,980,1180,60),"Paused. Choices change scenes and futures, never recruit quotas.",small);
             GUI.matrix=matrix;
         }
         private bool Press(Rect rect,string text)=>ArcadeSkin.Button(rect,text,KitButton.Secondary,GUI.enabled,button); // painted, like every button

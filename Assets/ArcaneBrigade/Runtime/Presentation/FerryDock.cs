@@ -182,11 +182,11 @@ namespace ArcaneBrigade
             if (corner != null) RunHud.Sprite(new Rect(card.xMax - 104, card.y + 16, 80, 80), corner);
             Color ink = new Color(.18f, .14f, .1f);
             hand.normal.textColor = new Color(.25f, .19f, .14f);
-            GUI.Label(new Rect(card.x + 60, card.y + 24, card.width - 180, 100), rowing
+            LocalizedGUI.Label(new Rect(card.x + 60, card.y + 24, card.width - 180, 100), rowing
                 ? "THE FERRYMAN: 'Three are waiting on the far bank. Who comes back with me?'"
                 : "THE FERRYMAN: 'Someone going home tonight? Or someone crossing over?'", hand);
             plain.normal.textColor = ink;
-            GUI.Label(new Rect(card.x + 60, card.y + 128, card.width - 120, 76), rowing
+            LocalizedGUI.Label(new Rect(card.x + 60, card.y + 128, card.width - 120, 76), rowing
                 ? RunUICopy.UnitName(owner.Content.Unit(picked)) + " crosses, and the one you choose comes back at the same stars."
                 : "Pick a friend first.", plain);
             for (int i = 0; i < shown; i++)
@@ -217,7 +217,7 @@ namespace ArcaneBrigade
                     }
                     GUI.color = keepTint;
                 }
-                GUI.Label(new Rect(slot.x - 8, frame.yMax + 8, slot.width + 16, 100), unit == null ? id : RunUICopy.UnitName(unit), names);
+                LocalizedGUI.Label(new Rect(slot.x - 8, frame.yMax + 8, slot.width + 16, 100), unit == null ? id : RunUICopy.UnitName(unit), names);
                 if (TouchTargets.Button(slot, GUIContent.none, GUIStyle.none)) { if (rowing) crossing = id; else picked = id; CheckpointAudio.PlayInterfaceId("ui.select"); }
             }
             if (!rowing && pages > 1)
@@ -226,7 +226,7 @@ namespace ArcaneBrigade
                 if (ArcadeSkin.Button(back, "◀", KitButton.Secondary, true, label)) page = (page + pages - 1) % pages;
                 if (ArcadeSkin.Button(next, "▶", KitButton.Secondary, true, label)) page = (page + 1) % pages;
             }
-            if (rowing && shown == 0) GUI.Label(new Rect(card.x + 60, card.y + 250, card.width - 120, 60), "Nobody is waiting on the far bank tonight.", plain);
+            if (rowing && shown == 0) LocalizedGUI.Label(new Rect(card.x + 60, card.y + 250, card.width - 120, 60), "Nobody is waiting on the far bank tonight.", plain);
             float rowY = card.y + 470; // a clear gap under the names
             if (rowing) DrawRowing(card, rowY, ink);
             else DrawChoices(card, rowY, ink);
@@ -249,7 +249,7 @@ namespace ArcaneBrigade
                 : !ready ? "Half of what they cost comes back, and they leave a letter."
                 : "+" + session.SeeHomeRefund(picked) + " gold · a letter (Lamp Oil at the end)" + (session.SeeHomeReturnsPlace(picked) ? " · a place for a new friend" : "");
             if (letterIcon != null) RunHud.Sprite(new Rect(home.x, home.y, 56, 56), letterIcon);
-            GUI.Label(new Rect(home.x + 64, home.y, home.width - 64, 92), homeText, plain);
+            LocalizedGUI.Label(new Rect(home.x + 64, home.y, home.width - 64, 92), homeText, plain);
             bool canHome = ready && session.SeeHomeOpen;
             if (ArcadeSkin.Button(new Rect(home.x, home.y + 100, home.width, 84), canHome ? "SEE THEM HOME" : "PICK ONE", KitButton.Danger, canHome, label) && canHome && !CardPop.Closing(Key))
                 CardPop.CloseThen(Key, SendHome);
@@ -258,7 +258,7 @@ namespace ArcaneBrigade
                 : !eggs ? "Costs " + session.FerryEggs + " dreamsand. You have " + session.State.Eggs + "."
                 : "Costs " + session.FerryEggs + " dreamsand. A new friend at the same stars.";
             if (ferryIcon != null) RunHud.Sprite(new Rect(row.x, row.y, 56, 56), ferryIcon);
-            GUI.Label(new Rect(row.x + 64, row.y, row.width - 64, 92), rowText, plain);
+            LocalizedGUI.Label(new Rect(row.x + 64, row.y, row.width - 64, 92), rowText, plain);
             bool canRow = ready && session.FerryOpen && eggs;
             if (ArcadeSkin.Button(new Rect(row.x, row.y + 100, row.width, 84), canRow ? "ROW ACROSS" : "PICK ONE", KitButton.Primary, canRow, label) && canRow)
             { rowing = true; crossing = null; CheckpointAudio.PlayInterfaceId("ui.select"); }
@@ -268,7 +268,7 @@ namespace ArcaneBrigade
         {
             RunSession session = owner.Session;
             plain.normal.textColor = ink;
-            GUI.Label(new Rect(card.x + 60, y, card.width - 120, 60), crossing == null ? "Pick who comes back."
+            LocalizedGUI.Label(new Rect(card.x + 60, y, card.width - 120, 60), crossing == null ? "Pick who comes back."
                 : RunUICopy.UnitName(owner.Content.Unit(crossing)) + " joins at " + RunSession.StarText(session.StarProgress(picked)) + " stars for " + session.FerryEggs + " dreamsand.", plain);
             bool ready = crossing != null;
             if (ArcadeSkin.Button(new Rect(card.center.x - 220, y + 90, 440, 88), ready ? "BRING THEM ACROSS" : "PICK ONE", KitButton.Primary, ready, label) && ready && !CardPop.Closing(Key))

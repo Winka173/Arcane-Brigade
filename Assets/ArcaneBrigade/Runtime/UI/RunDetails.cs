@@ -163,7 +163,7 @@ namespace ArcaneBrigade
             for (int k = back; k < seats.Count; k++) DrawSeat(rows, seats[k], counts, SeatRect(k), k == selectedSeat, rowHeight);
             int hidden = counts.Count - seats.Count;
             if (seatName == null) { seatName = ArcadeTypography.Style(22, true); seatName.alignment = TextAnchor.MiddleCenter; seatName.wordWrap = false; }
-            if (hidden > 0) { seatName.normal.textColor = ArcadeSkin.Cream; GUI.Label(new Rect(area.xMax - 220, area.yMax - 28, 210, 22), "+" + hidden + " MORE AT THE TABLE", seatName); }
+            if (hidden > 0) { seatName.normal.textColor = ArcadeSkin.Cream; LocalizedGUI.Label(new Rect(area.xMax - 220, area.yMax - 28, 210, 22), "+" + hidden + " MORE AT THE TABLE", seatName); }
             // the selected guest speaks
             if (selectedSeat >= 0)
             {
@@ -173,14 +173,14 @@ namespace ArcaneBrigade
                 string facts = row.Name + "  ·  " + (row.Summary ?? "").Split('\n')[0];
                 if (sayHand == null) { sayHand = ArcadeTypography.Style(25); sayHand.font = ArcadeTypography.Hand; sayHand.normal.textColor = new Color(0.25f, 0.20f, 0.14f); sayHand.wordWrap = true; }
                 seatName.normal.textColor = ArcadeSkin.Ink;
-                float width = 640, height = string.IsNullOrEmpty(said) ? 48 : 48 + Mathf.Min(36, sayHand.CalcHeight(new GUIContent(said), width - 36));
+                float width = 640, height = string.IsNullOrEmpty(said) ? 48 : 48 + Mathf.Min(36, sayHand.CalcHeight(LocalizedGUI.Content(said), width - 36));
                 // inside the table's area, under the tabs and above the back row (requirement 22/10/2026: it covered the tabs)
                 Rect bubble = new Rect(Mathf.Clamp(seat.center.x - width * 0.5f, area.x, area.xMax - width), area.y + 2, width, height);
                 ArcadeSkin.Ticket(bubble, ArcadeSkin.Paper, ArcadeSkin.Accent);
                 seatName.alignment = TextAnchor.MiddleLeft;
-                GUI.Label(new Rect(bubble.x + 18, bubble.y + 12, width - 36, 24), facts, seatName);
+                LocalizedGUI.Label(new Rect(bubble.x + 18, bubble.y + 12, width - 36, 24), facts, seatName);
                 seatName.alignment = TextAnchor.MiddleCenter;
-                if (!string.IsNullOrEmpty(said)) GUI.Label(new Rect(bubble.x + 18, bubble.y + 36, width - 36, height - 48), said, sayHand);
+                if (!string.IsNullOrEmpty(said)) LocalizedGUI.Label(new Rect(bubble.x + 18, bubble.y + 36, width - 36, height - 48), said, sayHand);
             }
         }
 
@@ -200,7 +200,7 @@ namespace ArcaneBrigade
                 Rect badge = new Rect(seat.xMax - 34, seat.y + 4, 34, 22);
                 ArcadeSkin.Slant(badge, ArcadeSkin.Ink);
                 seatName.normal.textColor = ArcadeSkin.Gold;
-                GUI.Label(badge, "×" + many, seatName);
+                LocalizedGUI.Label(badge, "×" + many, seatName);
             }
             if (TouchTargets.Button(seat, GUIContent.none, GUIStyle.none))
             {
@@ -280,7 +280,7 @@ namespace ArcaneBrigade
                     Vector2 bubble = new Vector2(tabRect.xMax - 44, tabRect.center.y);
                     ArcadeSkin.Diamond(bubble, 34, new Color(.12f, .08f, .1f, .95f)); ArcadeSkin.Diamond(bubble, 28, counts[index] > 0 ? ArcadeSkin.Accent : new Color(.4f, .36f, .32f));
                     badgeStyle ??= ArcadeTypography.Style(22, true); badgeStyle.alignment = TextAnchor.MiddleCenter; badgeStyle.normal.textColor = ArcadeSkin.KitInk;
-                    GUI.Label(new Rect(bubble.x - 20, bubble.y - 14, 40, 28), counts[index].ToString(), badgeStyle);
+                    LocalizedGUI.Label(new Rect(bubble.x - 20, bubble.y - 14, 40, 28), counts[index].ToString(), badgeStyle);
                 }
             }
             List<RunBuildReadModel.Row> rows = tab == 0 ? model.Stats : tab == 1 ? model.Companions : tab == 2 ? model.Relics : model.Links;
@@ -314,14 +314,14 @@ namespace ArcaneBrigade
                     }
                 }
                 tileName ??= ArcadeTypography.Style(22, true); tileName.alignment = TextAnchor.MiddleCenter; tileName.wordWrap = true; tileName.normal.textColor = ArcadeSkin.Paper;
-                GUI.Label(new Rect(tile.x + 12, tile.y + 128, tile.width - 24, 56), row.Name, tileName);
+                LocalizedGUI.Label(new Rect(tile.x + 12, tile.y + 128, tile.width - 24, 56), row.Name, tileName);
                 if (shownRarity is ItemRarity tagRarity)
                 {
                     Rect rarityTag = new Rect(tile.xMax - 128, tile.y + 8, 120, 28);
                     ArcadeSkin.Slant(rarityTag, RunModifierRules.RarityColor(tagRarity));
                     rarityStyle ??= new GUIStyle(ArcadeTypography.Style(20, true)) { alignment = TextAnchor.MiddleCenter, wordWrap = false };
                     rarityStyle.normal.textColor = ArcadeSkin.Ink;
-                    GUI.Label(rarityTag, RunModifierRules.RarityName(tagRarity).ToUpperInvariant(), rarityStyle);
+                    LocalizedGUI.Label(rarityTag, RunModifierRules.RarityName(tagRarity).ToUpperInvariant(), rarityStyle);
                 }
                 if (TouchTargets.Button(tile, GUIContent.none, GUIStyle.none)) { selection = index; selectedAt = Time.unscaledTime; explanationScroll = Vector2.zero; }
             }
@@ -342,10 +342,10 @@ namespace ArcaneBrigade
                 if (row.Icon != null) RunHud.Sprite(new Rect(25, card.y + 20, 75, 80), row.Icon);
                 if (row.WeaponIcon != null) RunHud.Sprite(new Rect(68, card.y + 62, 42, 48), row.WeaponIcon);
                 GlossaryUI.Text(new Rect(contentLeft, card.y + 12, 820, 48), row.Name, text);
-                GUI.Label(new Rect(contentLeft, card.y + 58, 820, rowHeight - 65), row.Summary, tab == 0 ? number : text);
+                LocalizedGUI.Label(new Rect(contentLeft, card.y + 58, 820, rowHeight - 65), row.Summary, tab == 0 ? number : text);
                 if (TouchTargets.Button(card, GUIContent.none, GUIStyle.none)) { selection = index; selectedAt = Time.unscaledTime; explanationScroll = Vector2.zero; }
             }
-            if (rows.Count == 0) GUI.Label(new Rect(25, 35, 900, 120), tab == 1 ? "No friends yet. Recruit from shops at rest." : tab == 2 ? "No relics yet. Buy them from shops at rest." : "No links to inspect yet.", text);
+            if (rows.Count == 0) LocalizedGUI.Label(new Rect(25, 35, 900, 120), tab == 1 ? "No friends yet. Recruit from shops at rest." : tab == 2 ? "No relics yet. Buy them from shops at rest." : "No links to inspect yet.", text);
             ScrollPanel.End();
             RunHud.Fill(new Rect(1160, 300, 665, 665), ArcadeSkin.Card);
             ArcadeSkin.Line(new Rect(1160, 300, 5, 665), Color.Lerp(ArcadeSkin.Accent, ArcadeSkin.Teal, LivingUI.Reveal(Time.unscaledTime - selectedAt, PresentationSettings.ReducedMotion)));
@@ -353,7 +353,7 @@ namespace ArcaneBrigade
             {
                 var chosen = rows[Mathf.Clamp(selection, 0, rows.Count - 1)];
                 RunHud.Sprite(new Rect(1185, 325, 100, 100), chosen.Icon);
-                GUI.Label(new Rect(1310, 340, 480, 70), chosen.Name, text);
+                LocalizedGUI.Label(new Rect(1310, 340, 480, 70), chosen.Name, text);
             }
             string explanation = rows.Count == 0 ? "" : rows[Mathf.Clamp(selection, 0, rows.Count - 1)].Explanation;
             float quoteHeight = 0;
@@ -364,8 +364,8 @@ namespace ArcaneBrigade
                 if (!string.IsNullOrEmpty(said))
                 {
                     if (handStyle == null) { handStyle = ArcadeTypography.Style(30); handStyle.font = ArcadeTypography.Hand; handStyle.normal.textColor = ArcadeSkin.Paper; handStyle.wordWrap = true; } // wraps inside the panel, never runs off screen
-                    quoteHeight = Mathf.Min(150, handStyle.CalcHeight(new GUIContent("“" + said + "”"), 590) + 18);
-                    GUI.Label(new Rect(1190, 318, 600, quoteHeight), "“" + said + "”", handStyle);
+                    quoteHeight = Mathf.Min(150, handStyle.CalcHeight(LocalizedGUI.Content("“" + said + "”"), 590) + 18);
+                    LocalizedGUI.Label(new Rect(1190, 318, 600, quoteHeight), "“" + said + "”", handStyle);
                     ArcadeSkin.Divider(new Rect(1190, 318 + quoteHeight, 590, 1), new Color(ArcadeSkin.Accent.r, ArcadeSkin.Accent.g, ArcadeSkin.Accent.b, 0.4f));
                     quoteHeight += 12;
                 }

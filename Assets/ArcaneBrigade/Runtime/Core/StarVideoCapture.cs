@@ -68,8 +68,8 @@ namespace ArcaneBrigade
             style ??= new GUIStyle(GUI.skin.label) { fontSize = 44, fontStyle = FontStyle.Bold, alignment = TextAnchor.MiddleCenter };
             Matrix4x4 keep = GUI.matrix; GUI.matrix = Matrix4x4.Scale(new Vector3(Screen.width / 1920f, Screen.height / 1080f, 1));
             Rect r = new Rect(360, 40, 1200, 70);
-            style.normal.textColor = new Color(0, 0, 0, .8f); GUI.Label(new Rect(r.x + 2, r.y + 2, r.width, r.height), caption, style);
-            style.normal.textColor = new Color(1f, .9f, .6f); GUI.Label(r, caption, style);
+            style.normal.textColor = new Color(0, 0, 0, .8f); LocalizedGUI.Label(new Rect(r.x + 2, r.y + 2, r.width, r.height), caption, style);
+            style.normal.textColor = new Color(1f, .9f, .6f); LocalizedGUI.Label(r, caption, style);
             GUI.matrix = keep;
         }
 

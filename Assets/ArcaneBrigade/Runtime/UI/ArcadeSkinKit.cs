@@ -144,14 +144,14 @@ namespace ArcaneBrigade
             {
                 // a one-line box never wraps (the second line fell out of the box): the words shrink a little more instead
                 label.wordWrap = false;
-                while (label.fontSize > 12 && label.CalcSize(new GUIContent(text)).x > r.width) label.fontSize--;
+                while (label.fontSize > 12 && label.CalcSize(LocalizedGUI.Content(text)).x > r.width) label.fontSize--;
             }
             kitShadow.fontSize = label.fontSize; kitShadow.wordWrap = label.wordWrap;
             bool onGold = colour.grayscale < .35f;
             kitShadow.normal.textColor = onGold ? new Color(1f, .93f, .72f, .45f * colour.a) : new Color(0, 0, 0, .6f * colour.a);
-            GUI.Label(new Rect(r.x + (onGold ? 0 : 1), r.y + (onGold ? 1 : 2), r.width, r.height), text, kitShadow);
+            LocalizedGUI.Label(new Rect(r.x + (onGold ? 0 : 1), r.y + (onGold ? 1 : 2), r.width, r.height), text, kitShadow);
             label.normal.textColor = colour;
-            GUI.Label(r, text, label);
+            LocalizedGUI.Label(r, text, label);
             label.alignment = kitShadow.alignment = TextAnchor.MiddleCenter;
         }
 
@@ -316,7 +316,7 @@ namespace ArcaneBrigade
             {
                 GUIStyle style = KitLabel(like); style.alignment = TextAnchor.MiddleLeft;
                 style.normal.textColor = like != null ? like.normal.textColor : Cream;
-                GUI.Label(new Rect(knob.xMax + 12, r.y, r.width - knob.width - 12, r.height), label, style);
+                LocalizedGUI.Label(new Rect(knob.xMax + 12, r.y, r.width - knob.width - 12, r.height), label, style);
                 style.alignment = TextAnchor.MiddleCenter;
             }
             return TouchTargets.Button(r, GUIContent.none, GUIStyle.none) ? !value : value;

@@ -75,14 +75,15 @@ namespace ArcaneBrigade
             LivingUI.Pop(Time.unscaledTime - gaugeHelpAt, card.center);
             ArcadeSkin.Frame(card, KitFrame.Dialogue, .6f);
             Rect inner = ArcadeSkin.Content(card, KitFrame.Dialogue);
-            GUI.Label(new Rect(inner.x, inner.y, inner.width, 30), heading, title);
-            small.wordWrap = true; GUI.Label(new Rect(inner.x, inner.y + 34, inner.width, inner.height - 34), copy, small);
+            LocalizedGUI.Label(new Rect(inner.x, inner.y, inner.width, 30), heading, title);
+            small.wordWrap = true; LocalizedGUI.Label(new Rect(inner.x, inner.y + 34, inner.width, inner.height - 34), copy, small);
             GUI.matrix = m; GUI.color = c;
             if (Event.current.type == EventType.MouseUp && !card.Contains(Event.current.mousePosition) && !new Rect(100, 70, 60, 50).Contains(Event.current.mousePosition) && !LanternRow.Contains(Event.current.mousePosition)) gaugeHelpAt = -1;
         }
         private static string FirstSentences(string text, int count)
         {
             if (string.IsNullOrEmpty(text)) return "";
+            text = GameLocalization.Text(text);
             int at = -1;
             for (int i = 0; i < count; i++) { int next = text.IndexOf(". ", at + 1, System.StringComparison.Ordinal); if (next < 0) return text; at = next + 1; }
             return text.Substring(0, at).Trim();
@@ -109,14 +110,14 @@ namespace ArcaneBrigade
                 ArcadeSkin.Frame(new Rect(330, 150, 1260, 800), KitFrame.Dialogue, .6f);
                 ArcadeSkin.Header(new Rect(510, 190, 900, 92), "THE NIGHT WAITS WITH YOU", "Light, Sound & Comfort");
                 if (navigation.Button(new Rect(1330, 205, 200, 50), "BACK", button)) pausePage = 0;
-                SettingsSheet.Draw(owner.Profile ?? new PlayerProfile(), new Vector2(320, 180), (r, c) => navigation.Button(r, c, button), (r, c) => GUI.Label(r, ArcadeTypography.DisplayText(c), text), owner.SaveSettings, true, r => navigation.Button(r, "", GUIStyle.none));
+                SettingsSheet.Draw(owner.Profile ?? new PlayerProfile(), new Vector2(320, 180), (r, c) => navigation.Button(r, c, button), (r, c) => LocalizedGUI.Label(r, ArcadeTypography.DisplayText(c), text), owner.SaveSettings, true, r => navigation.Button(r, "", GUIStyle.none));
                 return;
             }
             if (pausePage == 2)
             {
                 ArcadeSkin.Frame(new Rect(600, 330, 720, 400), KitFrame.Dialogue, .6f);
                 ArcadeSkin.Header(new Rect(660, 380, 600, 100), "THE NIGHT WAITS WITH YOU", "Start over?");
-                GUI.Label(new Rect(660, 490, 600, 80), "This night ends here and is not recorded.\nA new night begins with the same hero.", text);
+                LocalizedGUI.Label(new Rect(660, 490, 600, 80), "This night ends here and is not recorded.\nA new night begins with the same hero.", text);
                 if (navigation.Button(new Rect(660, 600, 280, 65), "KEEP PLAYING", primary)) pausePage = 0;
                 if (navigation.Button(new Rect(980, 600, 280, 65), "START OVER", dangerButton ??= ArcadeSkin.DangerStyle(button))) { pausePage = 0; owner.RestartRun(); }
                 return;
@@ -190,7 +191,7 @@ namespace ArcaneBrigade
             // review 31/10/2026: the page says how far you are, and an unfound combo names the friend you already met
             int found = 0; foreach (var c in list) if (Known(session, c.members) > 1) found++;
             comboLine.normal.textColor = ArcadeSkin.Cream;
-            GUI.Label(new Rect(area.x + 8, area.y, area.width - 40, 80), "Found " + found + " of " + list.Count + " combos" + (found == 0 ? " · bring two friends of a combo into the brigade" : ""), comboLine);
+            LocalizedGUI.Label(new Rect(area.x + 8, area.y, area.width - 40, 80), "Found " + found + " of " + list.Count + " combos" + (found == 0 ? " · bring two friends of a combo into the brigade" : ""), comboLine);
             area = new Rect(area.x, area.y + 86, area.width, area.height - 86);
             comboScroll = ScrollPanel.Begin(area, comboScroll, new Rect(0, 0, area.width - 20, Mathf.Max(area.height, list.Count * row)));
             for (int i = 0; i < list.Count; i++)
@@ -212,7 +213,7 @@ namespace ArcaneBrigade
                 string met = known == 1 ? RunUICopy.UnitName(catalog.Unit(System.Array.Find(c.members, m => Met(session, m)))) : null;
                 string title = known > 1 ? (c.name ?? string.Join(" + ", System.Array.ConvertAll(c.members, m => RunUICopy.UnitName(catalog.Unit(m))))) : met != null ? met + " + ?" : "Unknown combo";
                 string count = c.members.Length > 2 && known > 1 ? "  ·  " + Combos.OwnedOf(session, c.members) + " of " + c.members.Length + " in party" : "";
-                GUI.Label(new Rect(x, r.y + 16, r.xMax - x - 48, r.height - 28), title + count + (active ? "  ·  active" : "") + "\n" + (known > 1 ? c.line : c.members.Length == 2 ? "Meet both friends to find this combo." : "Meet two of these " + c.members.Length + " friends to find this combo."), comboLine);
+                LocalizedGUI.Label(new Rect(x, r.y + 16, r.xMax - x - 48, r.height - 28), title + count + (active ? "  ·  active" : "") + "\n" + (known > 1 ? c.line : c.members.Length == 2 ? "Meet both friends to find this combo." : "Meet two of these " + c.members.Length + " friends to find this combo."), comboLine);
             }
             ScrollPanel.End();
         }
@@ -392,7 +393,7 @@ namespace ArcaneBrigade
             ArcadeSkin.Line(new Rect(108, 39, 224 * Mathf.Clamp01(healthTrail / maximum), 24), new Color(0.55f, 0.30f, 0.14f));
             ArcadeSkin.Line(new Rect(108, 39, 224 * Mathf.Clamp01(shownHealth / maximum), 24), new Color(1f, 0.70f, 0.36f)); // your light, not the hostile red
             numeric.normal.textColor = health / maximum > 0.45f ? ArcadeSkin.Ink : ArcadeSkin.Cream; // ink reads on the lantern bar
-            GUI.Label(new Rect(108, 34, 224, 34), Mathf.CeilToInt(Mathf.Min(health, maximum)) + " / " + Mathf.CeilToInt(maximum), numeric);
+            LocalizedGUI.Label(new Rect(108, 34, 224, 34), Mathf.CeilToInt(Mathf.Min(health, maximum)) + " / " + Mathf.CeilToInt(maximum), numeric);
             Sprite(new Rect(92, 31, 38, 38), owner.Content.HeartSprite);
             }
             numeric.normal.textColor = ArcadeSkin.Cream;
@@ -466,7 +467,7 @@ namespace ArcaneBrigade
             Rect eggSocket = ArcadeSkin.Counter(new Rect(16, 146, 200, 44), KitCounter.Egg, out Rect eggText);
             Sprite(new Rect(goldSocket.x - goldPulse, goldSocket.y - goldPulse, goldSocket.width + goldPulse * 2, goldSocket.height + goldPulse * 2), owner.Content.Arena.Coin); // centred in the socket
             numericLeft.normal.textColor = Color.Lerp(ArcadeSkin.Cream, ArcadeSkin.Gold, goldPulse / 4f);
-            GUI.Label(goldText, Mathf.RoundToInt(shownGold).ToString("N0"), numericLeft);
+            LocalizedGUI.Label(goldText, Mathf.RoundToInt(shownGold).ToString("N0"), numericLeft);
             float gainAge = Time.unscaledTime - goldGainAt;
             if (goldGain > 0 && gainAge < 1.1f)
             {
@@ -478,13 +479,13 @@ namespace ArcaneBrigade
             }
             Sprite(new Rect(eggSocket.x - eggPulse, eggSocket.y - eggPulse, eggSocket.width + eggPulse * 2, eggSocket.height + eggPulse * 2), owner.Content.EggSprite);
             numericLeft.normal.textColor = Color.Lerp(ArcadeSkin.Cream, ArcadeSkin.Teal, eggPulse / 4f);
-            GUI.Label(eggText, Mathf.RoundToInt(shownEggs).ToString("N0"), numericLeft);
+            LocalizedGUI.Label(eggText, Mathf.RoundToInt(shownEggs).ToString("N0"), numericLeft);
             // in the shop the banner sits clear of the health bar's end cap (it overlapped it at x 380)
             Rect waveRect = state.Phase == SessionPhase.Shop ? new Rect(452, 26, 280, 52) : new Rect(820, 22, 280, 52);
             if (ArcadeSkin.HasKit) ArcadeSkin.Frame(waveRect, KitFrame.WaveBanner); else ArcadeSkin.Plate(waveRect, ArcadeSkin.Accent);
             string waveText = (state.Endless ? "∞ " : "") + "Wave " + state.Wave;
             if (ArcadeSkin.HasKit) ArcadeSkin.KitCaption(ArcadeSkin.Content(waveRect, KitFrame.WaveBanner, false), waveText, title.normal.textColor, title, true); // shrinks to fit inside the banner
-            else GUI.Label(new Rect(waveRect.x + 10, waveRect.y + 4, waveRect.width - 10, 44), waveText, title);
+            else LocalizedGUI.Label(new Rect(waveRect.x + 10, waveRect.y + 4, waveRect.width - 10, 44), waveText, title);
             if (state.Phase == SessionPhase.Combat)
             {
                 bool overtime = simulation.IsBossOvertime;
@@ -495,7 +496,7 @@ namespace ArcaneBrigade
                 if (!plate) ArcadeSkin.Plate(timer, overtime ? ArcadeSkin.Danger : remaining <= 5 ? ArcadeSkin.Gold : ArcadeSkin.Teal);
                 numeric.normal.textColor = overtime ? new Color(1f, .45f, .4f) : remaining <= 5 ? ArcadeSkin.Gold : ArcadeSkin.Cream;
                 float hand = plate ? 44 * timer.height / 64 : 10;
-                GUI.Label(new Rect(timer.x + hand, timer.y + 1, timer.width - hand - 14, timer.height - 2), CombatTimerCaption(overtime, remaining), numeric);
+                LocalizedGUI.Label(new Rect(timer.x + hand, timer.y + 1, timer.width - hand - 14, timer.height - 2), CombatTimerCaption(overtime, remaining), numeric);
                 numeric.normal.textColor = ArcadeSkin.Cream;
             }
             // no lantern row under the wallet (requirement 4/11/2026: it only confused players); the lanterns stay in the journal
@@ -512,7 +513,7 @@ namespace ArcaneBrigade
                     float bossMax = simulation.Boss.Definition.Health + (second != null ? second.Definition.Health : 0);
                     float bossShare = Mathf.Clamp01(bossNow / Mathf.Max(1, bossMax));
                     string bossTitle = RunUICopy.Title(RunUICopy.UnitName(simulation.Boss.Definition)); // UI standard: a name in title case, never all capitals
-                    float bossTitleWidth = Mathf.Clamp(bossName.CalcSize(new GUIContent(bossTitle)).x + 16, 350, 990);
+                    float bossTitleWidth = Mathf.Clamp(bossName.CalcSize(LocalizedGUI.Content(bossTitle)).x + 16, 350, 990);
                     // the health just lost lingers behind the fill, then drains to it
                     if (bossShare >= bossTrail) bossTrail = bossShare; else bossTrail = Mathf.MoveTowards(bossTrail, bossShare, Time.unscaledDeltaTime * .25f);
                     Sprite bossFrame = ArcadeSkin.Crafted ? null : ArcadeSkin.KitSprite("HUD/BossBarFrame");
@@ -537,21 +538,21 @@ namespace ArcaneBrigade
                         if (ArcadeSkin.KitSprite("HUD/BossNameRibbon") is Sprite bossBand) Sprite(bossRibbon, bossBand);
                         TextAnchor bossAlign = bossName.alignment; bossName.alignment = TextAnchor.MiddleCenter;
                         Color bossInk = bossName.normal.textColor; bossName.normal.textColor = new Color(1f, .9f, .66f); // cream on the red ribbon
-                        GUI.Label(new Rect(bossRibbon.x + 50, bossRibbon.y + 2, bossRibbon.width - 100, bossRibbon.height - 8), bossTitle, bossName);
+                        LocalizedGUI.Label(new Rect(bossRibbon.x + 50, bossRibbon.y + 2, bossRibbon.width - 100, bossRibbon.height - 8), bossTitle, bossName);
                         bossName.alignment = bossAlign; bossName.normal.textColor = bossInk;
                         // the boss's health in short numbers (330K / 331K), no divider through them and no percentage
-                        GUI.Label(bossGroove, ShortNumber(bossNow) + " / " + ShortNumber(bossMax), numeric);
+                        LocalizedGUI.Label(bossGroove, ShortNumber(bossNow) + " / " + ShortNumber(bossMax), numeric);
                     }
                     else
                     {
                         ArcadeSkin.Slant(new Rect(420, 908, bossTitleWidth + 70, 40), ArcadeSkin.Danger);
                         Sprite(new Rect(432, 906, 42, 42), simulation.Boss.Definition.Body);
-                        GUI.Label(new Rect(480, 908, bossTitleWidth, 40), bossTitle, bossName);
+                        LocalizedGUI.Label(new Rect(480, 908, bossTitleWidth, 40), bossTitle, bossName);
                         ArcadeSkin.Line(new Rect(424, 954, 1076, 40), new Color(0.01f, 0.01f, 0.02f, 0.75f));
                         ArcadeSkin.Line(new Rect(420, 950, 1080, 38), ArcadeSkin.Ink);
                         ArcadeSkin.Line(new Rect(425, 955, 1070 * bossShare, 28), ArcadeSkin.Danger);
                         ArcadeSkin.Line(new Rect(425, 955, 1070 * bossShare, 6), new Color(1f, 0.55f, 0.42f));
-                        GUI.Label(new Rect(425, 950, 1070, 38), ShortNumber(bossNow) + " / " + ShortNumber(bossMax), numeric);
+                        LocalizedGUI.Label(new Rect(425, 950, 1070, 38), ShortNumber(bossNow) + " / " + ShortNumber(bossMax), numeric);
                     }
                 }
                 if (simulation.Phase == RunPhase.Paused) DrawPause(owner);
@@ -575,7 +576,7 @@ namespace ArcaneBrigade
                     LivingUI.Pop(Time.unscaledTime - terminalAt, new Vector2(960, 875));
                     ArcadeSkin.Plate(new Rect(560, 840, 800, 70), state.Phase == SessionPhase.Defeat ? ArcadeSkin.Danger : ArcadeSkin.Gold);
                     bool satDown = (state.ActOne?.SitCloser ?? 0) == ActOneProgress.Lost;
-                    GUI.Label(new Rect(550, 840, 820, 70), state.Phase == SessionPhase.Defeat ? satDown ? "You sat down." : "Your light goes out…" : "Dawn has come…", title);
+                    LocalizedGUI.Label(new Rect(550, 840, 820, 70), state.Phase == SessionPhase.Defeat ? satDown ? "You sat down." : "Your light goes out…" : "Dawn has come…", title);
                     GUI.matrix = previous; GUI.color = resultColour;
                     GUI.skin = previousSkin;
                     navigation.End();
@@ -592,7 +593,7 @@ namespace ArcaneBrigade
                 Sprite(fallen ? new Rect(265, 372, 200, 190) : new Rect(225, 378, 280, 280), owner.Content.Unit(state.ChampionId).Body);
                 Sprite(fallen ? new Rect(420, 520, 70, 70) : new Rect(425, 540, 80, 80), owner.Content.Unit(state.ChampionId).Weapon.Sprite); // held inside the emblem, by the hero (review 3/11/2026: it hung outside the medallion)
                 if (fallen) DrawFallenWord(owner, state, new Rect(115, 608, 565, 84));
-                TextAnchor keepNotice = small.alignment; small.alignment = TextAnchor.UpperCenter; GUI.Label(new Rect(115, 692, 565, 46), owner.MetaNotice, small); small.alignment = keepNotice; // centred under the emblem
+                TextAnchor keepNotice = small.alignment; small.alignment = TextAnchor.UpperCenter; LocalizedGUI.Label(new Rect(115, 692, 565, 46), owner.MetaNotice, small); small.alignment = keepNotice; // centred under the emblem
                 // one column of full-width plates, one shape for all (review 4/11/2026: two wide ornate plates and two square-ended ones)
                 if (state.Phase == SessionPhase.Victory)
                 {
@@ -604,7 +605,7 @@ namespace ArcaneBrigade
                         if (locked) DeluxeOffer.Open("Endless is part of Deluxe: keep your brigade and relics past dawn.");
                         else owner.ContinueEndless();
                     }
-                    if (locked) ArcadeSkin.Lock(new Vector2(endless.center.x - button.CalcSize(new GUIContent("ENDLESS · DELUXE")).x * .5f - 20, endless.center.y), 16, ArcadeSkin.KitCream); // just before the words
+                    if (locked) ArcadeSkin.Lock(new Vector2(endless.center.x - button.CalcSize(LocalizedGUI.Content("ENDLESS · DELUXE")).x * .5f - 20, endless.center.y), 16, ArcadeSkin.KitCream); // just before the words
                 }
                 // the Clock's Rewind (play-test item 27): once a run, back to the shop before the lost wave
                 if (fallen && owner.Session.RewindReady && navigation.Button(new Rect(115, 744, 560, 56), "REWIND · BACK TO WAVE " + owner.Session.RewindWave, primary)) owner.RewindRun();
@@ -620,7 +621,7 @@ namespace ArcaneBrigade
             {
                 Rect note = new Rect(560, 236, 800, 64);
                 ArcadeSkin.Plate(note, ArcadeSkin.Worse);
-                GUI.Label(new Rect(note.x + 24, note.y, note.width - 48, note.height), SaveNote(owner), new GUIStyle(text) { alignment = TextAnchor.MiddleCenter });
+                LocalizedGUI.Label(new Rect(note.x + 24, note.y, note.width - 48, note.height), SaveNote(owner), new GUIStyle(text) { alignment = TextAnchor.MiddleCenter });
             }
             if (state.Phase == SessionPhase.Combat || state.Phase == SessionPhase.Shop) DrawBonds(owner);
             waveStamp.Observe(state.RunId, state.Wave, state.Phase == SessionPhase.Combat && !owner.TransitionPending);
@@ -639,7 +640,7 @@ namespace ArcaneBrigade
             if (owner.TransitionPending)
             {
                 ArcadeSkin.Plate(new Rect(660, 722, 600, 66), ArcadeSkin.Teal);
-                GUI.Label(new Rect(550, 720, 820, 70), "The dark draws back", title);
+                LocalizedGUI.Label(new Rect(550, 720, 820, 70), "The dark draws back", title);
                 return;
             }
             WorldShop shop = owner.Shop;
@@ -697,10 +698,10 @@ namespace ArcaneBrigade
                 // a drink or a food says so in a small tag beside its name, never as a row among what it gives and costs
                 var relic = item ? owner.Content.Item(station.Offer.Id) : null;
                 string kindWord = relic != null && relic.Category != RelicCategory.Curio ? RelicDescriptions.Category(relic).ToUpperInvariant() : null;
-                float kindW = kindWord != null ? tagStyle.CalcSize(new GUIContent(kindWord)).x + 28 : 0;
+                float kindW = kindWord != null ? tagStyle.CalcSize(LocalizedGUI.Content(kindWord)).x + 28 : 0;
                 string shownName = shop.DisplayName(station);
-                float nameW = Mathf.Min(cardName.CalcSize(new GUIContent(shownName)).x, width - (kindWord != null ? kindW + 14 : 0));
-                GUI.Label(new Rect(x, panel.y + 22, kindWord != null ? nameW : width, 44), shownName, cardName); // clear of the frame's top rim
+                float nameW = Mathf.Min(cardName.CalcSize(LocalizedGUI.Content(shownName)).x, width - (kindWord != null ? kindW + 14 : 0));
+                LocalizedGUI.Label(new Rect(x, panel.y + 22, kindWord != null ? nameW : width, 44), shownName, cardName); // clear of the frame's top rim
                 if (kindWord != null) ArcadeSkin.Tag(new Rect(x + nameW + 14, panel.y + 30, kindW, 30), kindWord, CodeTone.Walnut, tagStyle, ArcadeSkin.Cream);
                 float y = panel.y + 70;
                 if (station.Offer != null && offerCard.Attack != null) y = ShopChips(x, y, width);
@@ -804,7 +805,7 @@ namespace ArcaneBrigade
             void Chip(Sprite icon, string label, bool lit)
             {
                 int size = cardChip.fontSize;
-                float Need() => Lead + cardChip.CalcSize(new GUIContent(label)).x + Tail;
+                float Need() => Lead + cardChip.CalcSize(LocalizedGUI.Content(label)).x + Tail;
                 float room = width - (cx - x);
                 while (Need() > room && cardChip.fontSize > 24) cardChip.fontSize--;
                 if (Need() > room && cx > x && rows < 2) { rows++; cx = x; rowY += H + 8; room = width; cardChip.fontSize = size; while (Need() > room && cardChip.fontSize > 24) cardChip.fontSize--; }
@@ -817,7 +818,7 @@ namespace ArcaneBrigade
                 cardChip.normal.textColor = lit ? new Color(1f, .9f, .55f) : ArcadeSkin.Cream; // lit words stay bright (a blink dimmed them below the unlit ones)
                 // the words sit on the chip's own middle line (its icon socket's measured centre), not the picture's box centre
                 float middle = ArcadeSkin.ChipIconRect(chip).center.y + H * .03f; // the words centre on the socket's line (they sat too low and too far right)
-                GUI.Label(new Rect(chip.x + Lead, middle - H * .5f, w - Lead - Tail, H), label, cardChip);
+                LocalizedGUI.Label(new Rect(chip.x + Lead, middle - H * .5f, w - Lead - Tail, H), label, cardChip);
                 cardChip.fontSize = size;
                 cx += w + Gap;
             }
@@ -827,7 +828,7 @@ namespace ArcaneBrigade
                 int size = cardChip.fontSize;
                 string label = offerCard.AttackLabel;
                 const float PlateH = 64; // its own row, taller than the chips (review 5/11/2026: at the chips' 50 the plate and its weapon were too small)
-                float Need() => WeaponPlate.Width(PlateH, cardChip.CalcSize(new GUIContent(label)).x);
+                float Need() => WeaponPlate.Width(PlateH, cardChip.CalcSize(LocalizedGUI.Content(label)).x);
                 while (Need() > width && cardChip.fontSize > 22) cardChip.fontSize--;
                 Rect plate = new Rect(cx, rowY, Mathf.Min(width, Need()), PlateH);
                 WeaponPlate.Draw(plate, offerCard.Attack.Weapon != null && offerCard.Attack.Weapon.Sprite != null ? offerCard.Attack.Weapon.Sprite : offerCard.AttackIcon, label, cardChip);
@@ -856,18 +857,18 @@ namespace ArcaneBrigade
             // one line that shrinks to fit, never wrapped into a second line the plate cuts off
             cardBig.wordWrap = false;
             // fits both ways: as wide as the plate allows and no taller than its half (BUY lost its top to the plate's rim)
-            while (cardBig.fontSize > 12 && (cardBig.CalcSize(new GUIContent(verb)).x > verbRect.width - 6 || cardBig.CalcSize(new GUIContent(verb)).y > verbRect.height + 4)) cardBig.fontSize--;
-            GUI.Label(verbRect, verb, cardBig);
+            while (cardBig.fontSize > 12 && (cardBig.CalcSize(LocalizedGUI.Content(verb)).x > verbRect.width - 6 || cardBig.CalcSize(LocalizedGUI.Content(verb)).y > verbRect.height + 4)) cardBig.fontSize--;
+            LocalizedGUI.Label(verbRect, verb, cardBig);
             cardBig.fontSize = bigSize; cardBig.normal.textColor = bigColor;
             if (!priced) return;
             string amount = price.ToString();
-            float wide = 30 + 8 + cardPrice.CalcSize(new GUIContent(amount)).x, left = inner.center.x - wide * .5f;
+            float wide = 30 + 8 + cardPrice.CalcSize(LocalizedGUI.Content(amount)).x, left = inner.center.x - wide * .5f;
             Rect priceRow = new Rect(inner.x, inner.y + inner.height * .57f, inner.width, inner.height * .43f);
             Rect icon = new Rect(left, priceRow.center.y - 14, 28, 28);
             Sprite(icon, currency == ShopCurrency.Health ? CurrencyIcons.Heart : currency == ShopCurrency.Eggs ? owner.Content.EggSprite : owner.Content.Arena.Coin);
             Color priceColor = cardPrice.normal.textColor;
             if (!affordable) cardPrice.normal.textColor = new Color(.85f, .16f, .2f); // short of it: the price in red
-            GUI.Label(new Rect(icon.xMax + 8, icon.y - 2, wide, 32), amount, cardPrice);
+            LocalizedGUI.Label(new Rect(icon.xMax + 8, icon.y - 2, wide, 32), amount, cardPrice);
             cardPrice.normal.textColor = priceColor;
         }
         /// <summary>Whether the player has enough of the offer's currency (HP prices must leave you standing).</summary>
@@ -899,8 +900,8 @@ namespace ArcaneBrigade
             Rect inner = new Rect(panel.x + 56, panel.y + 34, panel.width - 112, panel.height - 68);
             RarityDescriptionFrame.Backdrop(new Rect(inner.x, inner.y, 72, 72), rarity, owner.PresentationClock);
             ShopDescriptionCard.DrawSprite(new Rect(inner.x, inner.y, 72, 72), offerCard.Portrait);
-            GUI.Label(new Rect(inner.x + 88, inner.y - 4, inner.width - 88 - 196, 44), shop.DisplayName(station), cardName);
-            small.normal.textColor = tag; GUI.Label(new Rect(inner.x + 88, inner.y + 40, inner.width - 88 - 196, 36), RunUICopy.Sentence(offerCard.Identity), small); small.normal.textColor = ArcadeSkin.Cream;
+            LocalizedGUI.Label(new Rect(inner.x + 88, inner.y - 4, inner.width - 88 - 196, 44), shop.DisplayName(station), cardName);
+            small.normal.textColor = tag; LocalizedGUI.Label(new Rect(inner.x + 88, inner.y + 40, inner.width - 88 - 196, 36), RunUICopy.Sentence(offerCard.Identity), small); small.normal.textColor = ArcadeSkin.Cream;
             if (navigation.Button(new Rect(inner.xMax - 176, inner.y, 176, 72), "BACK", button)) { SetShopDetails(false); return; }
             float headerHeight = offerCard.HeaderHeight, tilesTop = inner.y + 96;
             if (headerHeight > 0) offerCard.DrawHeader(new Rect(inner.x, tilesTop, inner.width, headerHeight), owner.PresentationClock);
@@ -961,7 +962,7 @@ namespace ArcaneBrigade
             string hint = pause.Contains(Event.current.mousePosition) ? RunUIHints.Pause(RunUIHints.Device) : details.Contains(Event.current.mousePosition) ? RunUIHints.Details(RunUIHints.Device) : null;
             if (hint == null) return;
             Fill(new Rect(1400, 92, 435, 44), Panel);
-            GUI.Label(new Rect(1413, 99, 410, 40), hint, small);
+            LocalizedGUI.Label(new Rect(1413, 99, 410, 40), hint, small);
         }
 
         private void ObserveMoments(ArenaController owner)
@@ -1081,7 +1082,7 @@ namespace ArcaneBrigade
             if (compareStyle == null) { compareStyle = ArcadeTypography.Style(17, false, true); compareStyle.wordWrap = false; compareStyle.clipping = TextClipping.Clip; compareStyle.alignment = TextAnchor.MiddleLeft; }
             ArcadeSkin.Line(new Rect(area.x - 14, area.y, 2, area.height), new Color(ArcadeSkin.Cream.r, ArcadeSkin.Cream.g, ArcadeSkin.Cream.b, 0.3f));
             caption.alignment = TextAnchor.MiddleLeft;
-            GUI.Label(new Rect(area.x, area.y - 4, area.width, 20), "IF YOU BUY", caption);
+            LocalizedGUI.Label(new Rect(area.x, area.y - 4, area.width, 20), "IF YOU BUY", caption);
             caption.alignment = TextAnchor.MiddleCenter;
             float row = Mathf.Min(28, (area.height - 18) / Mathf.Max(1, previewRows.Count));
             for (int index = 0; index < previewRows.Count; index++)
@@ -1092,10 +1093,10 @@ namespace ArcaneBrigade
                 string name = entry.name;
                 int slash = name.LastIndexOf(" / ", System.StringComparison.Ordinal);
                 if (slash >= 0) name = "Ally " + name.Substring(slash + 3);
-                GUI.Label(new Rect(line.x, line.y, 165, row), name, compareStyle);
-                GUI.Label(new Rect(line.x + 180, line.y, 70, row), entry.before, compareStyle);
+                LocalizedGUI.Label(new Rect(line.x, line.y, 165, row), name, compareStyle);
+                LocalizedGUI.Label(new Rect(line.x + 180, line.y, 70, row), entry.before, compareStyle);
                 compareStyle.normal.textColor = entry.better ? ArcadeSkin.Better : ArcadeSkin.Worse;
-                GUI.Label(new Rect(line.x + 260, line.y, 130, row), (entry.better ? "▲ " : "▼ ") + entry.after, compareStyle);
+                LocalizedGUI.Label(new Rect(line.x + 260, line.y, 130, row), (entry.better ? "▲ " : "▼ ") + entry.after, compareStyle);
             }
         }
 
@@ -1192,7 +1193,7 @@ namespace ArcaneBrigade
             else if (!ArcadeSkin.KitSliced(more, "Info/NavyTile", .45f)) ArcadeSkin.PortraitSlot(more, false);
             programStyle.alignment = TextAnchor.MiddleCenter; programStyle.normal.textColor = roundButton != null ? ArcadeSkin.Ink : ArcadeSkin.Cream; // dark ink on the brass
             int hidden = bondSummary.Rows.Count - (shownRows - newBonds.Count); // the bonds not on the two rows
-            GUI.Label(more, hidden > 0 ? "+" + hidden : "···", programStyle);
+            LocalizedGUI.Label(more, hidden > 0 ? "+" + hidden : "···", programStyle);
             ArcadeTypography.ShadowLabel(new Rect(more.x - 10, more.y + tile + 2, tile + 20, below - 2), "all", bondNumber);
             if (TouchTargets.Button(new Rect(more.x, more.y, more.width, tile + below), GUIContent.none, bondHit))
             {
@@ -1233,10 +1234,10 @@ namespace ArcaneBrigade
             float countRight = active || activates ? line.xMax - 78 : line.xMax - 6; // the count ends before the level stamp
             // the words sit in the row's middle with room above and below (they touched the row's top), the bar under them
             Rect words = new Rect(line.x + 48, line.y + 6, countRight - line.x - 48 - 70, line.height - 18);
-            GUI.Label(words, bond.Name, programStyle);
+            LocalizedGUI.Label(words, bond.Name, programStyle);
             int next = Mathf.Max(after, bond.NextThreshold(after));
             bondNumber.normal.textColor = programStyle.normal.textColor;
-            GUI.Label(new Rect(countRight - 70, words.y, 70, words.height), previewing && after != count ? after + "/" + next : count + "/" + Mathf.Max(count, bond.NextThreshold(count)), bondNumber);
+            LocalizedGUI.Label(new Rect(countRight - 70, words.y, 70, words.height), previewing && after != count ? after + "/" + next : count + "/" + Mathf.Max(count, bond.NextThreshold(count)), bondNumber);
             programStyle.normal.textColor = ArcadeSkin.Ink;
             Rect progress = new Rect(line.x + 48, line.yMax - 9, line.width - 56, 4);
             ArcadeSkin.Line(progress, new Color(0, 0, 0, .12f));
@@ -1268,7 +1269,7 @@ namespace ArcaneBrigade
             Sprite(new Rect(area.x + 12, area.y + 8, 76, area.height - 18), face);
             if (handStyle == null) { handStyle = ArcadeTypography.Style(24); handStyle.font = ArcadeTypography.Hand; handStyle.wordWrap = false; handStyle.clipping = TextClipping.Clip; }
             if (fallenStyle == null) { fallenStyle = new GUIStyle(handStyle) { fontSize = 27, wordWrap = true, alignment = TextAnchor.MiddleLeft }; fallenStyle.normal.textColor = new Color(0.24f, 0.19f, 0.13f); }
-            GUI.Label(new Rect(area.x + 100, area.y + 6, area.width - 116, area.height - 16), "“" + line + "”", fallenStyle);
+            LocalizedGUI.Label(new Rect(area.x + 100, area.y + 6, area.width - 116, area.height - 16), "“" + line + "”", fallenStyle);
         }
 
         private void DrawReceipt(RunSnapshot state)
@@ -1282,14 +1283,14 @@ namespace ArcaneBrigade
                 CheckpointAudio.PlayInterfaceId(receiptOpen ? "ui.receipt" : "ui.close", 0.08f);
             }
             if (!receiptOpen) return;
-            float contentHeight = small.CalcHeight(new GUIContent(receipt.Description), 425) + 20;
+            float contentHeight = small.CalcHeight(LocalizedGUI.Content(receipt.Description), 425) + 20;
             float panelHeight = Mathf.Clamp(contentHeight + 110, 190, 470);
             Fill(new Rect(1320, 275, 510, panelHeight), Color.Lerp(Panel, ArcadeSkin.Accent, 0.12f));
             ArcadeSkin.Divider(new Rect(1340, 342, 460, 2), ArcadeSkin.Accent);
-            GUI.Label(new Rect(1340, 295, 465, 45), receipt.Title, text);
+            LocalizedGUI.Label(new Rect(1340, 295, 465, 45), receipt.Title, text);
             float height = Mathf.Max(panelHeight - 105, contentHeight);
             receiptScroll = ScrollPanel.Begin(new Rect(1340, 355, 470, panelHeight - 105), receiptScroll, new Rect(0, 0, 430, height));
-            GUI.Label(new Rect(0, 0, 425, height), receipt.Description, small);
+            LocalizedGUI.Label(new Rect(0, 0, 425, height), receipt.Description, small);
             ScrollPanel.End();
         }
 
@@ -1300,9 +1301,9 @@ namespace ArcaneBrigade
             navigation.Begin();
             Matrix4x4 previous = ArcadeTypography.BeginViewport(camera.pixelRect, 1920, 1080);
             Fill(new Rect(470, 310, 980, 440), Panel);
-            GUI.Label(new Rect(520, 345, 880, 80), "Return to the Waiting Room?", title);
-            GUI.Label(new Rect(540, 445, 840, 105), "Save and return keeps this run where it stands. Leave without saving takes it back to its last save: the start of this wave, or your last shop purchase.", text);
-            if (!string.IsNullOrEmpty(owner.SaveError)) GUI.Label(new Rect(540, 550, 840, 70), SaveNote(owner), small);
+            LocalizedGUI.Label(new Rect(520, 345, 880, 80), "Return to the Waiting Room?", title);
+            LocalizedGUI.Label(new Rect(540, 445, 840, 105), "Save and return keeps this run where it stands. Leave without saving takes it back to its last save: the start of this wave, or your last shop purchase.", text);
+            if (!string.IsNullOrEmpty(owner.SaveError)) LocalizedGUI.Label(new Rect(540, 550, 840, 70), SaveNote(owner), small);
             // requirement 24/10/2026: a way out without saving, beside saving and staying
             if (navigation.Button(new Rect(510, 650, 280, 65), "STAY", button)) owner.CancelMenuReturn();
             if (navigation.Button(new Rect(820, 650, 280, 65), "LEAVE, DON'T SAVE", button)) owner.ExitWithoutSaving();

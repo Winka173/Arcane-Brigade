@@ -74,6 +74,7 @@ namespace ArcaneBrigade
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void Initialize()
         {
+            if (Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-localization-capture") >= 0) return;
             if (OctoberCapture.Requested) return;
             if (Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-secret-capture") >= 0) return;
             if (BuildMorphCapture.Requested) return;

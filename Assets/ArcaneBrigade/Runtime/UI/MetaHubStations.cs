@@ -102,7 +102,7 @@ namespace ArcaneBrigade
         {
             int favour = profile.Meta.Favour; if (favour <= 0) return;
             chip.normal.textColor = ArcadeSkin.Gold;
-            GUI.Label(r, "FAVOUR " + new string('★', favour), chip);
+            LocalizedGUI.Label(r, "FAVOUR " + new string('★', favour), chip);
         }
 
         private void DrawStation(MetaStation station, Rect area, RunCatalog catalog, PlayerProfile profile, int heroIndex, Func<bool> save)
@@ -191,18 +191,18 @@ namespace ArcaneBrigade
             if (shown == null)
             {
                 hand.alignment = TextAnchor.MiddleCenter;
-                GUI.Label(pc, Array.Exists(letters, l => MetaProgression.LetterEarned(profile, l)) ? "A letter is waiting." : "No letters yet.\nThe first comes after a boss.", hand);
+                LocalizedGUI.Label(pc, Array.Exists(letters, l => MetaProgression.LetterEarned(profile, l)) ? "A letter is waiting." : "No letters yet.\nThe first comes after a boss.", hand);
                 hand.alignment = TextAnchor.UpperLeft; return;
             }
-            body.alignment = TextAnchor.UpperCenter; GUI.Label(new Rect(pc.x, pc.y, pc.width, 28), RunUICopy.Title(shown.Name), body); body.alignment = TextAnchor.UpperLeft; // the letter's title centred over it
-            GUI.Label(new Rect(pc.x, pc.y + 38, pc.width, pc.height - 190), shown.Text, hand);
-            hand.alignment = TextAnchor.UpperRight; GUI.Label(new Rect(pc.x, pc.yMax - 160, pc.width, 32), "— Thursday", hand); hand.alignment = TextAnchor.UpperLeft;
+            body.alignment = TextAnchor.UpperCenter; LocalizedGUI.Label(new Rect(pc.x, pc.y, pc.width, 28), RunUICopy.Title(shown.Name), body); body.alignment = TextAnchor.UpperLeft; // the letter's title centred over it
+            LocalizedGUI.Label(new Rect(pc.x, pc.y + 38, pc.width, pc.height - 190), shown.Text, hand);
+            hand.alignment = TextAnchor.UpperRight; LocalizedGUI.Label(new Rect(pc.x, pc.yMax - 160, pc.width, 32), "— Thursday", hand); hand.alignment = TextAnchor.UpperLeft;
             ItemDefinition keep = catalog.Item(shown.Relic);
             Rect stand = new Rect(pc.x, pc.yMax - 112, 112, 96); // narrower, so the words beside it keep two full lines
             ArcadeSkin.Pedestal(stand, Time.unscaledTime);
             if (keep?.Icon != null) RunHud.Sprite(ArcadeSkin.PedestalSeat(stand), keep.Icon);
-            GUI.Label(new Rect(stand.xMax + 14, stand.y + 14, pc.xMax - stand.xMax - 14, 28), keep?.Name ?? "", body);
-            GUI.Label(new Rect(stand.xMax + 14, stand.y + 46, pc.xMax - stand.xMax - 14, 50), "Bring it from hero select", small);
+            LocalizedGUI.Label(new Rect(stand.xMax + 14, stand.y + 14, pc.xMax - stand.xMax - 14, 28), keep?.Name ?? "", body);
+            LocalizedGUI.Label(new Rect(stand.xMax + 14, stand.y + 46, pc.xMax - stand.xMax - 14, 50), "Bring it from hero select", small);
         }
 
         // ---------------------------------------------------------------- the Museum
@@ -232,12 +232,12 @@ namespace ArcaneBrigade
             string left = pieces != null && museumPick >= 0 && museumPick < pieces.Count
                 ? (pieces[museumPick].Seen ? pieces[museumPick].Name : "Not found yet")
                 : found + " found · next gift at " + (found / MetaProgression.MuseumStep + 1) * MetaProgression.MuseumStep;
-            GUI.Label(new Rect(head.x, head.y + 4, head.width - 230, 34), left, body);
+            LocalizedGUI.Label(new Rect(head.x, head.y + 4, head.width - 230, 34), left, body);
             Rect gift = new Rect(head.xMax - 220, head.y, 28, 28);
             if (!PaintedStatIcons.TryDraw(gift, ItemEffect.Damage)) RunHud.Sprite(gift, MetaIcons.Station(MetaStation.Museum, true));
-            GUI.Label(new Rect(gift.xMax + 4, head.y + 2, 70, 28), "+" + damage + "%", number);
+            LocalizedGUI.Label(new Rect(gift.xMax + 4, head.y + 2, 70, 28), "+" + damage + "%", number);
             RunHud.Sprite(new Rect(head.xMax - 110, head.y, 28, 28), CurrencyIcons.Coin);
-            GUI.Label(new Rect(head.xMax - 78, head.y + 2, 70, 28), "+" + gold + "%", number);
+            LocalizedGUI.Label(new Rect(head.xMax - 78, head.y + 2, 70, 28), "+" + gold + "%", number);
             Rect view = new Rect(area.x, area.y + 130, area.width, area.height - 130 - 64);
             // every find in full (pictures, poses, numbers, trying a weapon) is in the Collection
             Rect browse = new Rect(area.center.x - 190, area.yMax - 56, 380, 52);
@@ -277,8 +277,8 @@ namespace ArcaneBrigade
                 GUI.color = keep;
                 if (!won) ArcadeSkin.Lock(new Vector2(r.x + 32, r.y + 30), 22, new Color(.86f, .7f, .42f, .9f));
                 Ink(won ? ArcadeSkin.KitInk : ArcadeSkin.KitCream);
-                GUI.Label(new Rect(r.x + 64, r.y + 4, r.width - 74, 34), name, body);
-                GUI.Label(new Rect(r.x + 64, r.y + 28, r.width - 74, 24), won ? line : line + " to earn it", small);
+                LocalizedGUI.Label(new Rect(r.x + 64, r.y + 4, r.width - 74, 34), name, body);
+                LocalizedGUI.Label(new Rect(r.x + 64, r.y + 28, r.width - 74, 24), won ? line : line + " to earn it", small);
                 Nav(r, false);
             }
             ScrollEnd(view);
@@ -294,11 +294,11 @@ namespace ArcaneBrigade
             RunHud.Sprite(new Rect(sum.x + 18, sum.y + 6, 32, 32), MetaIcons.LampOil);
             RunHud.Sprite(new Rect(sum.x + 52, sum.y + 6, 32, 32), MetaIcons.Keepsake);
             Ink(ArcadeSkin.KitCream);
-            GUI.Label(new Rect(sum.x + 92, sum.y + 8, 120, 28), "×" + MetaProgression.PactMultiplier(mask).ToString("0.00"), number);
+            LocalizedGUI.Label(new Rect(sum.x + 92, sum.y + 8, 120, 28), "×" + MetaProgression.PactMultiplier(mask).ToString("0.00"), number);
             UnitDefinition traveller = catalog.Champions[Mathf.Clamp(heroIndex, 0, catalog.Champions.Length - 1)];
             MetaScore record = MetaProgression.PactRecord(profile, traveller.Id);
             small.alignment = TextAnchor.MiddleRight;
-            GUI.Label(new Rect(sum.x + 200, sum.y, sum.width - 216, sum.height), RunUICopy.UnitName(traveller) + " · " + (record != null ? "best night " + record.Score : "no pact run yet"), small);
+            LocalizedGUI.Label(new Rect(sum.x + 200, sum.y, sum.width - 216, sum.height), RunUICopy.UnitName(traveller) + " · " + (record != null ? "best night " + record.Score : "no pact run yet"), small);
             small.alignment = TextAnchor.UpperLeft;
             for (int i = 0; i < MetaProgression.Pacts.Length; i++)
             {
@@ -312,9 +312,9 @@ namespace ArcaneBrigade
                 Rect seal = new Rect(r.x + 18, r.y + 9, 50, 50);
                 PactIcon(seal, i, catalog);
                 Ink(ArcadeSkin.KitCream);
-                GUI.Label(new Rect(r.x + 86, r.y + 12, r.width - 270, 34), pact.Name, body);
-                GUI.Label(new Rect(r.x + 86, r.y + 38, r.width - 270, 24), pact.Line, small);
-                GUI.Label(new Rect(r.xMax - 172, r.y + 20, 90, 28), "×" + pact.Reward.ToString("0.00"), number);
+                LocalizedGUI.Label(new Rect(r.x + 86, r.y + 12, r.width - 270, 34), pact.Name, body);
+                LocalizedGUI.Label(new Rect(r.x + 86, r.y + 38, r.width - 270, 24), pact.Line, small);
+                LocalizedGUI.Label(new Rect(r.xMax - 172, r.y + 20, 90, 28), "×" + pact.Reward.ToString("0.00"), number);
                 ArcadeSkin.CheckBox(new Rect(r.xMax - 66, r.y + 15, 38, 38), on);
                 if (TouchTargets.Button(r, GUIContent.none, GUIStyle.none) | Nav(r))
                 {
@@ -352,21 +352,21 @@ namespace ArcaneBrigade
             Rect card = new Rect(area.x, area.y, area.width, 252);
             ArcadeSkin.Frame(card, KitFrame.Card, .3f);
             Ink(ArcadeSkin.FrameText(KitFrame.Card));
-            body.alignment = TextAnchor.UpperCenter; GUI.Label(new Rect(card.x + 24, card.y + 16, card.width - 48, 28), "Tonight's dream · " + day, body); body.alignment = TextAnchor.UpperLeft; // a card's title sits in its middle
+            body.alignment = TextAnchor.UpperCenter; LocalizedGUI.Label(new Rect(card.x + 24, card.y + 16, card.width - 48, 28), "Tonight's dream · " + day, body); body.alignment = TextAnchor.UpperLeft; // a card's title sits in its middle
             if (hero != null)
             {
                 ArcadeSkin.Glow(new Rect(card.x + 4, card.y + 40, 170, 190), new Color(1f, .8f, .45f, .22f));
                 RunHud.Sprite(new Rect(card.x + 24, card.y + 56, 130, 150), hero.Body);
             }
             float x = card.x + 180, w = card.xMax - x - 24;
-            GUI.Label(new Rect(x, card.y + 54, w, 28), hero != null ? RunUICopy.UnitName(hero) : "No hero yet", body);
-            GUI.Label(new Rect(x, card.y + 82, w, 24), "Peaceful · same night for everyone", small);
+            LocalizedGUI.Label(new Rect(x, card.y + 54, w, 28), hero != null ? RunUICopy.UnitName(hero) : "No hero yet", body);
+            LocalizedGUI.Label(new Rect(x, card.y + 82, w, 24), "Peaceful · same night for everyone", small);
             PactIcon(new Rect(x, card.y + 112, 40, 40), pact, catalog);
-            GUI.Label(new Rect(x + 50, card.y + 106, w - 50, 32), MetaProgression.Pacts[pact].Name, body); // tall enough for the body face's ascenders
-            GUI.Label(new Rect(x + 50, card.y + 138, w - 50, 24), MetaProgression.Pacts[pact].Line, small);
+            LocalizedGUI.Label(new Rect(x + 50, card.y + 106, w - 50, 32), MetaProgression.Pacts[pact].Name, body); // tall enough for the body face's ascenders
+            LocalizedGUI.Label(new Rect(x + 50, card.y + 138, w - 50, 24), MetaProgression.Pacts[pact].Line, small);
             RunHud.Sprite(new Rect(x + 4, card.y + 168, 32, 32), MetaIcons.Keepsake);
-            GUI.Label(new Rect(x + 50, card.y + 172, w - 50, 26), MetaProgression.DailyPaid(profile, day) ? "Paid today" : "+" + MetaProgression.DailyKeepsakes + " the first dream today", number);
-            GUI.Label(new Rect(x + 50, card.y + 206, w - 50, 26), best != null ? "Best today: night " + best.Score : "No dream yet today", small);
+            LocalizedGUI.Label(new Rect(x + 50, card.y + 172, w - 50, 26), MetaProgression.DailyPaid(profile, day) ? "Paid today" : "+" + MetaProgression.DailyKeepsakes + " the first dream today", number);
+            LocalizedGUI.Label(new Rect(x + 50, card.y + 206, w - 50, 26), best != null ? "Best today: night " + best.Score : "No dream yet today", small);
             Rect go = new Rect(area.center.x - 170, card.yMax + 16, 340, 58);
             bool can = hero != null;
             if ((ArcadeSkin.Button(go, "DREAM TONIGHT ▶", KitButton.Primary, can, body) | Nav(go, can)) && can) { panelAction = HubAction.Daily; CheckpointAudio.PlayInterfaceId("ui.confirm"); }
@@ -375,7 +375,7 @@ namespace ArcaneBrigade
             foreach (MetaScore past in profile.Meta.DailyBest)
             {
                 if (past.Key == day || shownDays >= 3) continue;
-                GUI.Label(new Rect(area.x + 40, y, area.width - 80, 26), past.Key + "   " + "night " + past.Score, small);
+                LocalizedGUI.Label(new Rect(area.x + 40, y, area.width - 80, 26), past.Key + "   " + "night " + past.Score, small);
                 y += 28; shownDays++;
             }
         }
@@ -392,27 +392,27 @@ namespace ArcaneBrigade
                 bool lit = i < favour;
                 if (lit) ArcadeSkin.Glow(new Rect(s.x - 10, s.y - 10, s.width + 20, s.height + 20), new Color(1f, .8f, .4f, .4f));
                 star.normal.textColor = lit ? ArcadeSkin.Gold : new Color(.5f, .45f, .4f, .55f);
-                GUI.Label(s, "★", star);
+                LocalizedGUI.Label(s, "★", star);
             }
             Ink(ArcadeSkin.KitCream);
             number.alignment = TextAnchor.UpperCenter;
-            GUI.Label(new Rect(area.x, area.y + 78, area.width, 28), "+" + Mathf.RoundToInt(favour * MetaProgression.FavourOil * 100) + "% Lamp Oil, for good", number);
+            LocalizedGUI.Label(new Rect(area.x, area.y + 78, area.width, 28), "+" + Mathf.RoundToInt(favour * MetaProgression.FavourOil * 100) + "% Lamp Oil, for good", number);
             number.alignment = TextAnchor.UpperLeft;
             small.alignment = TextAnchor.UpperCenter;
-            GUI.Label(new Rect(area.x, area.y + 108, area.width, 24), "Each star: +10% Lamp Oil", small);
+            LocalizedGUI.Label(new Rect(area.x, area.y + 108, area.width, 24), "Each star: +10% Lamp Oil", small);
             small.alignment = TextAnchor.UpperLeft;
             Rect req = new Rect(area.x + 60, area.y + 146, area.width - 120, 150);
             ArcadeSkin.Frame(req, KitFrame.Card, .3f);
             Ink(ArcadeSkin.FrameText(KitFrame.Card));
             var (have, need) = MetaProgression.BellRanks(profile);
             RunHud.Sprite(new Rect(req.x + 22, req.y + 20, 40, 40), MetaIcons.Station(MetaStation.Window, profile.Wins > 0));
-            GUI.Label(new Rect(req.x + 74, req.y + 26, req.width - 230, 28), "See the dawn", body);
-            GUI.Label(new Rect(req.xMax - 150, req.y + 26, 128, 28), profile.Wins > 0 ? "DONE" : "—", number);
+            LocalizedGUI.Label(new Rect(req.x + 74, req.y + 26, req.width - 230, 28), "See the dawn", body);
+            LocalizedGUI.Label(new Rect(req.xMax - 150, req.y + 26, 128, 28), profile.Wins > 0 ? "DONE" : "—", number);
             RunHud.Sprite(new Rect(req.x + 22, req.y + 70, 40, 40), MetaIcons.Station(MetaStation.Lantern, have >= need));
-            GUI.Label(new Rect(req.x + 74, req.y + 76, req.width - 230, 28), "First five branches lit", body);
-            GUI.Label(new Rect(req.xMax - 150, req.y + 76, 128, 28), have + " / " + need, number);
+            LocalizedGUI.Label(new Rect(req.x + 74, req.y + 76, req.width - 230, 28), "First five branches lit", body);
+            LocalizedGUI.Label(new Rect(req.xMax - 150, req.y + 76, 128, 28), have + " / " + need, number);
             small.normal.textColor = new Color(.55f, .18f, .12f);
-            GUI.Label(new Rect(req.x + 74, req.y + 112, req.width - 96, 26), "Ringing sets them back to zero", small);
+            LocalizedGUI.Label(new Rect(req.x + 74, req.y + 112, req.width - 96, 26), "Ringing sets them back to zero", small);
             string blocked = MetaProgression.BellBlocked(profile);
             bool can = blocked == null;
             if (!can) bellArmed = false;
@@ -435,7 +435,7 @@ namespace ArcaneBrigade
             if (!can && blocked != "MAX")
             {
                 Ink(ArcadeSkin.KitCream); small.alignment = TextAnchor.UpperCenter;
-                GUI.Label(new Rect(area.x, button.yMax + 8, area.width, 24), blocked, small);
+                LocalizedGUI.Label(new Rect(area.x, button.yMax + 8, area.width, 24), blocked, small);
                 small.alignment = TextAnchor.UpperLeft;
             }
         }

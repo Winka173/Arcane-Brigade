@@ -18,7 +18,7 @@ namespace ArcaneBrigade
             var definitions = RunAchievements.Definitions(catalog); int earned = 0;
             foreach (var d in definitions) if (profile.Achievements.Contains(d.Id)) earned++;
             GUIStyle title = ArcadeTypography.Style(ArcadeTypography.On720(ArcadeTypography.SizeBody), true), text = ArcadeTypography.Style(ArcadeTypography.On720(ArcadeTypography.SizeNote));
-            GUI.Label(new Rect(65, 150, 770, 35), earned + " / " + definitions.Count + " memories recorded. No permanent stat rewards.", text);
+            LocalizedGUI.Label(new Rect(65, 150, 770, 35), earned + " / " + definitions.Count + " memories recorded. No permanent stat rewards.", text);
             unfinishedOnly = ArcadeSkin.Toggle(new Rect(915, 146, 320, 44), unfinishedOnly, "Show unfinished only"); // the painted switch (UI kit)
             int count = 0; foreach (var d in definitions) if (!unfinishedOnly || !profile.Achievements.Contains(d.Id)) count++;
             scroll = ScrollPanel.Begin(new Rect(60, 200, 1160, 455), scroll, new Rect(0, 0, 1120, Mathf.Max(450, Mathf.Ceil(count / 2f) * 164)));
@@ -45,7 +45,7 @@ namespace ArcaneBrigade
                 ArcadeSkin.KitCaption(new Rect(left, card.y + 20, right - left, 30), (complete && seal == null ? "✓ " : "") + d.Name, title.normal.textColor, title, false);
                 text.wordWrap = true; text.clipping = TextClipping.Clip;
                 bool counted = d.Goal > 1; // a yes-or-no memory has no bar and no 0 / 1
-                GUI.Label(new Rect(left, card.y + 50, right - left, counted ? 54 : 84), d.Description, text);
+                LocalizedGUI.Label(new Rect(left, card.y + 50, right - left, counted ? 54 : 84), d.Description, text);
                 if (!counted) continue;
                 float progress = complete ? d.Goal : RunAchievements.Progress(profile.AchievementEvidence, d);
                 Rect bar = new Rect(left, card.y + 114, card.xMax - 160 - left, 14);
@@ -59,7 +59,7 @@ namespace ArcaneBrigade
                     ArcadeSkin.Line(bar, new Color(.16f, .18f, .24f));
                     ArcadeSkin.Line(new Rect(bar.x, bar.y, bar.width * Mathf.Clamp01(progress / d.Goal), bar.height), complete ? ArcadeSkin.Gold : ArcadeSkin.Teal);
                 }
-                GUI.Label(new Rect(card.xMax - 146, card.y + 106, 110, 28), progress.ToString("0.##") + " / " + d.Goal.ToString("0.##"), text);
+                LocalizedGUI.Label(new Rect(card.xMax - 146, card.y + 106, 110, 28), progress.ToString("0.##") + " / " + d.Goal.ToString("0.##"), text);
             }
             ScrollPanel.End();
         }

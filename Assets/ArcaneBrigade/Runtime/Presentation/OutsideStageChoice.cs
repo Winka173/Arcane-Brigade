@@ -118,8 +118,8 @@ namespace ArcaneBrigade
                 Vector3 point=Camera.main.WorldToViewportPoint(HandAt);
                 Rect badge=new Rect(Mathf.Clamp(point.x*1920-(HandAt.x>0?110:185),30,1520),Mathf.Clamp((1-point.y)*1080+16,190,898),370,100);
                 RarityDescriptionFrame.Draw(badge,ItemRarity.Rainbow,owner.PresentationClock);
-                GUI.Label(new Rect(badge.x+8,badge.y+5,354,32),HandAt==ActOneChallengePosition?"OPTIONAL BOSS / THE KEEPER, WHOLE":"OPTIONAL BOSS / THE KEEPER",copy);
-                GUI.Label(new Rect(badge.x+8,badge.y+37,354,55),Focused?"Defeat ends the run":owner.Session.State.Secrets!=null && owner.Session.State.Secrets.LetterSent?"It remembers your letter.\nWin a rainbow companion or relic":(HandAt==ActOneChallengePosition?"Break its hand, carpet and eye\nWin a rainbow companion or relic":"Approach the glowing hand\nWin a rainbow companion or relic"),copy);
+                LocalizedGUI.Label(new Rect(badge.x+8,badge.y+5,354,32),HandAt==ActOneChallengePosition?"OPTIONAL BOSS / THE KEEPER, WHOLE":"OPTIONAL BOSS / THE KEEPER",copy);
+                LocalizedGUI.Label(new Rect(badge.x+8,badge.y+37,354,55),Focused?"Defeat ends the run":owner.Session.State.Secrets!=null && owner.Session.State.Secrets.LetterSent?"It remembers your letter.\nWin a rainbow companion or relic":(HandAt==ActOneChallengePosition?"Break its hand, carpet and eye\nWin a rainbow companion or relic":"Approach the glowing hand\nWin a rainbow companion or relic"),copy);
                 if(Focused && TouchTargets.Button(badge,GUIContent.none,GUIStyle.none))Interact();
             }
             else
@@ -137,7 +137,7 @@ namespace ArcaneBrigade
                     Rect plate = new Rect(710, 204, 500, 56);
                     ArcadeSkin.CodePlate(plate, CodeTone.Walnut);
                     copy.alignment = TextAnchor.MiddleCenter; copy.fontSize = ArcadeTypography.SizeNote;
-                    GUI.Label(ArcadeSkin.Content(plate, KitFrame.Card), "Choose one rainbow gift", copy);
+                    LocalizedGUI.Label(ArcadeSkin.Content(plate, KitFrame.Card), "Choose one rainbow gift", copy);
                     copy.fontSize = ArcadeTypography.SizeNote;
                     GUI.color = keep;
                 }
@@ -159,14 +159,14 @@ namespace ArcaneBrigade
                     Rect take = new Rect(panel.xMax - 228, panel.center.y - 52, 192, 104);
                     float tx = panel.x + 208, tw = take.x - 20 - tx;
                     cardName.alignment = TextAnchor.MiddleLeft; cardName.wordWrap = false; cardName.normal.textColor = RunModifierRules.RarityColor(giftCard.Rarity);
-                    GUI.Label(new Rect(tx, panel.y + 16, tw, 46), item?.Name ?? (ally != null ? RunUICopy.UnitName(ally) : id), cardName);
+                    LocalizedGUI.Label(new Rect(tx, panel.y + 16, tw, 46), item?.Name ?? (ally != null ? RunUICopy.UnitName(ally) : id), cardName);
                     cardLine.normal.textColor = ArcadeSkin.Cream;
                     // a friend's weapon on its own steel plate with its picture, as on the shop's card (requirement 4/11/2026)
                     float below = panel.y + 66;
                     if (ally != null && giftCard.Attack != null && !string.IsNullOrEmpty(giftCard.AttackLabel))
                     {
                         const float PlateH = 60;
-                        Rect plate = new Rect(tx, below, Mathf.Min(tw, WeaponPlate.Width(PlateH, cardLine.CalcSize(new GUIContent(giftCard.AttackLabel)).x)), PlateH);
+                        Rect plate = new Rect(tx, below, Mathf.Min(tw, WeaponPlate.Width(PlateH, cardLine.CalcSize(LocalizedGUI.Content(giftCard.AttackLabel)).x)), PlateH);
                         WeaponPlate.Draw(plate, giftCard.Attack.Weapon != null && giftCard.Attack.Weapon.Sprite != null ? giftCard.Attack.Weapon.Sprite : giftCard.AttackIcon, giftCard.AttackLabel, cardLine);
                         below += PlateH + 8;
                     }

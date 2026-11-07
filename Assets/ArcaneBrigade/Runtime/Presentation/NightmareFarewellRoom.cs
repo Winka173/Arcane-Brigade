@@ -100,8 +100,8 @@ namespace ArcaneBrigade
             ArcadeSkin.Ticket(top, ArcadeSkin.Paper, ArcadeSkin.Wax);
             Rect topIn = ArcadeSkin.Content(top, KitFrame.Card);
             head.normal.textColor = ink; body.normal.textColor = new Color(.3f, .22f, .15f);
-            GUI.Label(new Rect(topIn.x, topIn.y, topIn.width, 44), "THE CONTRACT HAS BURNED", head);
-            GUI.Label(new Rect(topIn.x, topIn.y + 46, topIn.width, topIn.height - 46), "One lantern still holds a name that was never his to buy. The door is real: both choices lead to morning.", body);
+            LocalizedGUI.Label(new Rect(topIn.x, topIn.y, topIn.width, 44), "THE CONTRACT HAS BURNED", head);
+            LocalizedGUI.Label(new Rect(topIn.x, topIn.y + 46, topIn.width, topIn.height - 46), "One lantern still holds a name that was never his to buy. The door is real: both choices lead to morning.", body);
 
             if (focus >= 0) picked = focus; // walking up to a witness picks its card
             bool ready = !owner.PresentationPaused && owner.PresentationClock - appeared >= 1.2f;
@@ -112,9 +112,9 @@ namespace ArcaneBrigade
                 ArcadeSkin.Ticket(card, ArcadeSkin.Paper, picked == i ? ArcadeSkin.Gold : ArcadeSkin.Accent);
                 Rect inner = ArcadeSkin.Content(card, KitFrame.Card);
                 choiceTitle.normal.textColor = picked == i ? ArcadeSkin.Wax : ink;
-                GUI.Label(new Rect(inner.x, inner.y, inner.width, 44), Titles[i], choiceTitle);
+                LocalizedGUI.Label(new Rect(inner.x, inner.y, inner.width, 44), Titles[i], choiceTitle);
                 choiceBody.normal.textColor = ink;
-                GUI.Label(new Rect(inner.x, inner.y + 52, inner.width, inner.height - 52), Meanings[i], choiceBody);
+                LocalizedGUI.Label(new Rect(inner.x, inner.y + 52, inner.width, inner.height - 52), Meanings[i], choiceBody);
                 if (ready && TouchTargets.Button(card, GUIContent.none, GUIStyle.none)) { picked = i; CheckpointAudio.PlayInterfaceId("ui.select"); }
             }
             bool can = ready && picked >= 0;

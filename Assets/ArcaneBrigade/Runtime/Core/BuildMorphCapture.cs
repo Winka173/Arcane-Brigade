@@ -133,13 +133,13 @@ namespace ArcaneBrigade
         {
             if (!gallery) return;
             Matrix4x4 old = GUI.matrix; GUI.matrix = Matrix4x4.Scale(new Vector3(Screen.width / 1920f, Screen.height / 1080f, 1));
-            GUI.Label(new Rect(80, 70, 1700, 80), title, ArcadeTypography.Style(48, true));
-            GUI.Label(new Rect(80, 150, 1700, 50), "BUILD FORMS / PRODUCTION CHARACTER RENDER / " + (reduced ? "REDUCED EFFECTS" : "STANDARD"), ArcadeTypography.Style(24));
+            LocalizedGUI.Label(new Rect(80, 70, 1700, 80), title, ArcadeTypography.Style(48, true));
+            LocalizedGUI.Label(new Rect(80, 150, 1700, 50), "BUILD FORMS / PRODUCTION CHARACTER RENDER / " + (reduced ? "REDUCED EFFECTS" : "STANDARD"), ArcadeTypography.Style(24));
             for (int i = 0; i < 3; i++)
             {
                 float x = 195 + i * 610;
-                GUI.Label(new Rect(x, 820, 540, 60), BuildMorphs.StageName(i + 1).ToUpperInvariant(), ArcadeTypography.Style(32, true));
-                GUI.Label(new Rect(x, 880, 540, 90), new[] { "Weapon charm + stitched clasp", "Distinct back attachment", "Full silhouette + orbiting motifs" }[i], ArcadeTypography.Style(22));
+                LocalizedGUI.Label(new Rect(x, 820, 540, 60), BuildMorphs.StageName(i + 1).ToUpperInvariant(), ArcadeTypography.Style(32, true));
+                LocalizedGUI.Label(new Rect(x, 880, 540, 90), new[] { "Weapon charm + stitched clasp", "Distinct back attachment", "Full silhouette + orbiting motifs" }[i], ArcadeTypography.Style(22));
             }
             GUI.matrix = old;
         }

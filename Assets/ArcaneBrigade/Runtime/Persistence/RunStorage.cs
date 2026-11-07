@@ -18,6 +18,8 @@ namespace ArcaneBrigade
         public int Cosmetic;
         public List<AchievementMetric> AchievementEvidence = new List<AchievementMetric>();
         public float Volume = 0.7f;
+        // Missing in older profiles: English remains the default, independently of the OS language.
+        public string Language = GameLocalization.English;
         public bool ReducedMotion;
         public float MusicVolume = 0.8f;
         public float SfxVolume = 0.85f;
@@ -105,6 +107,7 @@ namespace ArcaneBrigade
                     if (profile == null || profile.Version < 1 || profile.Version > PlayerProfile.CurrentVersion || profile.BestWave < 0 || profile.CompletedRuns == null || profile.SeenUnits == null || profile.SeenItems == null || profile.Achievements == null || !float.IsFinite(profile.Volume)) throw new InvalidOperationException("Invalid profile");
                     if (profile.Wins < 0 || profile.TotalKills < 0 || profile.Cosmetic < 0 || profile.Cosmetic > 2) throw new InvalidOperationException("Invalid profile counters");
                     profile.Volume = Mathf.Clamp01(profile.Volume);
+                    profile.Language = GameLocalization.NormalizeLanguage(profile.Language);
                     if (profile.SeenWeapons == null) profile.SeenWeapons = new List<string>();
                     profile.AchievementEvidence ??= new List<AchievementMetric>();
                     var evidenceKeys = new HashSet<string>();

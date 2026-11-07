@@ -115,7 +115,7 @@ namespace ArcaneBrigade
         {
             if(labels==null || owner==null)return;var camera=FindAnyObjectByType<ArenaCamera>()?.GetComponent<Camera>();if(camera==null)return;
             var style=new GUIStyle(GUI.skin.label){alignment=TextAnchor.MiddleCenter,fontSize=14};style.normal.textColor=new Color(1,.94f,.78f);
-            for(int i=0;i<labels.Length;i++)if(labels[i]!=null){Vector3 p=camera.WorldToScreenPoint(labelPositions[i]);GUI.Label(new Rect(p.x-130,Screen.height-p.y,260,24),labels[i],style);}
+            for(int i=0;i<labels.Length;i++)if(labels[i]!=null){Vector3 p=camera.WorldToScreenPoint(labelPositions[i]);LocalizedGUI.Label(new Rect(p.x-130,Screen.height-p.y,260,24),labels[i],style);}
         }
         private void OnDestroy()=>Application.logMessageReceived-=Log;
     }

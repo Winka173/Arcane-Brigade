@@ -1,0 +1,29 @@
+PASS New profile defaults to English
+PASS English survives profile round trip
+PASS English strings are byte-for-byte unchanged
+PASS Settings saves Vietnamese
+PASS Settings applies language immediately
+PASS Vietnamese settings labels
+PASS Both language choices keep their native names
+PASS Composed HUD text preserves numbers
+PASS Unity rich-text markup is preserved
+PASS Glossary markup and stat IDs survive whole-sentence translation
+PASS Unknown text falls back to source
+PASS Measured text is not translated twice
+PASS Vietnamese survives restart
+PASS Language selection preserves progression
+PASS Failed save rolls language back
+PASS Settings switches back to English
+PASS Switching back clears Vietnamese display and persists English
+PASS Unsupported saved language falls back to English
+PASS Older profile without language defaults to English
+PASS Offline Vietnamese catalogue covers authored runtime and content text
+PASS Translation keys are unique
+PASS No empty translation entries
+PASS Vietnamese glyph coverage: AlegreyaSans-Body
+PASS Vietnamese glyph coverage: Fraunces-Heading
+PASS Vietnamese glyph coverage: Fraunces-Display
+PASS Vietnamese glyph coverage: Caveat-Hand
+PASS Vietnamese glyph coverage: AlegreyaSans-Numbers
+PASS Localization never mutates gameplay assets
+Entries: 7754

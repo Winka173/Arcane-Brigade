@@ -265,6 +265,7 @@ namespace ArcaneBrigade
         private DamageNumber Word(Vector2 at, string text, Color color, float size, float life = .9f)
         {
             if (!PresentationSettings.DamageNumbers || string.IsNullOrEmpty(text)) return null;
+            text = GameLocalization.Text(text);
             DamageNumber number = Take(true); if (number == null) return null;
             number.Kind = 2; number.Champion = true; number.SubjectId = 0; number.Amount = 0; number.Critical = false; number.Shake = 0;
             // labels arriving together stack upward instead of on top of one another

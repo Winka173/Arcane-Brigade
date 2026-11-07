@@ -229,14 +229,14 @@ namespace ArcaneBrigade
             {
                 // the line in a small paper card over the thing, popping in and fading out
                 if (thingStyle == null) { thingStyle = ArcadeTypography.Style(ArcadeTypography.On720(ArcadeTypography.SizeNote)); thingStyle.wordWrap = true; thingStyle.alignment = TextAnchor.MiddleCenter; thingStyle.font = ArcadeTypography.Hand; }
-                float w = 340, h = thingStyle.CalcHeight(new GUIContent(spokenLine), w - 36) + 28, age = Time.unscaledTime - spokenAt;
+                float w = 340, h = thingStyle.CalcHeight(LocalizedGUI.Content(spokenLine), w - 36) + 28, age = Time.unscaledTime - spokenAt;
                 Rect card = new Rect(Mathf.Clamp(spoken.Area.center.x - w * .5f, 16, 1264 - w), Mathf.Max(96, spoken.Area.y - h - 12), w, h);
                 Matrix4x4 keepMatrix = GUI.matrix; Color keepColour = GUI.color;
                 LivingUI.Pop(age, card.center);
                 GUI.color = new Color(keepColour.r, keepColour.g, keepColour.b, keepColour.a * Mathf.Clamp01((4.5f - age) / .4f));
                 if (!ArcadeSkin.PaperArt(card, PaperKind.Receipt)) ArcadeSkin.Ticket(card, ArcadeSkin.Paper, ArcadeSkin.Accent);
                 thingStyle.normal.textColor = ArcadeSkin.KitInk;
-                GUI.Label(new Rect(card.x + 18, card.y + 14, w - 36, h - 28), spokenLine, thingStyle);
+                LocalizedGUI.Label(new Rect(card.x + 18, card.y + 14, w - 36, h - 28), spokenLine, thingStyle);
                 GUI.matrix = keepMatrix; GUI.color = keepColour;
             }
         }
@@ -383,7 +383,7 @@ namespace ArcaneBrigade
             {
                 ArcadeSkin.Frame(new Rect(96, 18, 400, 62), KitFrame.Plaque);
                 heading.normal.textColor = ArcadeSkin.KitCream;
-                GUI.Label(new Rect(96, 18, 400, 62), "THE WAITING ROOM", heading);
+                LocalizedGUI.Label(new Rect(96, 18, 400, 62), "THE WAITING ROOM", heading);
             }
             if (!PanelOpen) FavourStars(profile, new Rect(96, 80, 400, 30)); // an open station's title would cover it by half
             Purse(profile, new Rect(900, 26, 340, 62)); // clear of the screen's corner
@@ -548,7 +548,7 @@ namespace ArcaneBrigade
         }
         private Rect TagRect(Vector2 topCentre, string text)
         {
-            float w = Mathf.Max(130, chip.CalcSize(new GUIContent(text)).x + 44);
+            float w = Mathf.Max(130, chip.CalcSize(LocalizedGUI.Content(text)).x + 44);
             return new Rect(Mathf.Clamp(topCentre.x - w * .5f, 20, 1260 - w), Mathf.Clamp(topCentre.y, 120, 680), w, 34); // its chains clear of the title plaque
         }
         private bool Free(Rect tag)
@@ -565,7 +565,7 @@ namespace ArcaneBrigade
             float k = tag.height / 72f;
             if (ArcadeSkin.Strip(new Rect(tag.x - 14, tag.y - 46 * k, tag.width + 28, 120 * k), "Menu/StationSign", 70, 70)) chip.normal.textColor = ArcadeSkin.KitCream;
             else { ArcadeSkin.Ticket(tag, ArcadeSkin.Paper, ArcadeSkin.Accent); chip.normal.textColor = ArcadeSkin.Ink; }
-            GUI.Label(tag, text, chip);
+            LocalizedGUI.Label(tag, text, chip);
         }
 
         /// <summary>Lamp Oil and Keepsakes on a velvet plaque.</summary>
@@ -577,9 +577,9 @@ namespace ArcaneBrigade
             // requirement 24/10/2026: the icons sat on the plaque's scrolled end; lay them out inside the velvet (the frame's padded content)
             Rect c = ArcadeSkin.Content(r, KitFrame.Plaque); float half = c.width * .5f, icon = Mathf.Min(46, c.height - 2); // big enough to tell apart
             RunHud.Sprite(new Rect(c.x + 4, c.center.y - icon * .5f, icon, icon), MetaIcons.LampOil);
-            GUI.Label(new Rect(c.x + icon + 12, c.y, half - icon - 14, c.height), profile.Meta.LampOil.ToString("N0"), number);
+            LocalizedGUI.Label(new Rect(c.x + icon + 12, c.y, half - icon - 14, c.height), profile.Meta.LampOil.ToString("N0"), number);
             RunHud.Sprite(new Rect(c.x + half + 4, c.center.y - icon * .5f, icon, icon), MetaIcons.Keepsake);
-            GUI.Label(new Rect(c.x + half + icon + 12, c.y, half - icon - 14, c.height), profile.Meta.Keepsakes.ToString("N0"), number);
+            LocalizedGUI.Label(new Rect(c.x + half + icon + 12, c.y, half - icon - 14, c.height), profile.Meta.Keepsakes.ToString("N0"), number);
             number.alignment = TextAnchor.UpperLeft;
         }
 
@@ -602,7 +602,7 @@ namespace ArcaneBrigade
                 }
                 ArcadeSkin.Frame(new Rect(PanelRect.center.x - 230, PanelRect.y - 30, 460, 62), KitFrame.Plaque);
                 heading.normal.textColor = ArcadeSkin.KitCream;
-                GUI.Label(new Rect(PanelRect.center.x - 230, PanelRect.y - 30, 460, 62), "THE LAMP TREE", heading);
+                LocalizedGUI.Label(new Rect(PanelRect.center.x - 230, PanelRect.y - 30, 460, 62), "THE LAMP TREE", heading);
                 if (ArcadeSkin.Medallion(new Rect(PanelRect.xMax - 58, PanelRect.y - 6, 60, 60), KitMedallion.Close)) { Close(); return; }
                 DrawTree(catalog, profile, save);
                 return;
@@ -612,9 +612,9 @@ namespace ArcaneBrigade
             RunHud.Sprite(new Rect(PanelRect.x + 34, PanelRect.y + 128, 172, 206), MetaIcons.Station(station, MetaProgression.Restored(profile, station)));
             ArcadeSkin.Frame(new Rect(PanelRect.center.x - 230, PanelRect.y - 30, 460, 62), KitFrame.Plaque);
             heading.normal.textColor = ArcadeSkin.KitCream;
-            GUI.Label(new Rect(PanelRect.center.x - 230, PanelRect.y - 30, 460, 62), MetaProgression.StationName(station).ToUpperInvariant(), heading);
+            LocalizedGUI.Label(new Rect(PanelRect.center.x - 230, PanelRect.y - 30, 460, 62), MetaProgression.StationName(station).ToUpperInvariant(), heading);
             small.normal.textColor = ArcadeSkin.KitCream; small.alignment = TextAnchor.UpperCenter;
-            GUI.Label(new Rect(PanelRect.x + 20, PanelRect.y + 344, 200, 60), MetaProgression.StationLine(station), small); // just under the picture
+            LocalizedGUI.Label(new Rect(PanelRect.x + 20, PanelRect.y + 344, 200, 60), MetaProgression.StationLine(station), small); // just under the picture
             small.alignment = TextAnchor.UpperLeft;
             if (ArcadeSkin.Medallion(new Rect(PanelRect.xMax - 58, PanelRect.y - 6, 60, 60), KitMedallion.Close)) { Close(); return; }
 
@@ -645,11 +645,11 @@ namespace ArcaneBrigade
             float tx = inner.x + 60, tw = inner.xMax - tx;
             TrackIcon(new Rect(inner.x, inner.y, 48, 48), track);
             body.normal.textColor = ink; small.normal.textColor = new Color(ink.r, ink.g, ink.b, .85f); number.normal.textColor = ink;
-            GUI.Label(new Rect(tx, inner.y - 3, tw - 56, 34), track.Name, body);
-            small.alignment = TextAnchor.UpperRight; GUI.Label(new Rect(inner.xMax - 52, inner.y, 52, 22), rank + "/" + track.Max, small); small.alignment = TextAnchor.UpperLeft;
-            GUI.Label(new Rect(tx, inner.y + 23, tw, 22), track.Line, small);
+            LocalizedGUI.Label(new Rect(tx, inner.y - 3, tw - 56, 34), track.Name, body);
+            small.alignment = TextAnchor.UpperRight; LocalizedGUI.Label(new Rect(inner.xMax - 52, inner.y, 52, 22), rank + "/" + track.Max, small); small.alignment = TextAnchor.UpperLeft;
+            LocalizedGUI.Label(new Rect(tx, inner.y + 23, tw, 22), track.Line, small);
             string values = rank >= track.Max ? track.Value(rank) : track.Value(rank) + "  →  " + track.Value(rank + 1);
-            GUI.Label(new Rect(tx, inner.y + 43, tw, 26), values, number);
+            LocalizedGUI.Label(new Rect(tx, inner.y + 43, tw, 26), values, number);
             string blocked = MetaProgression.Blocked(profile, track);
             Rect button = new Rect(tx, inner.yMax - 38, tw, 38);
             if (rank >= track.Max) { ArcadeSkin.Button(button, "MAX", KitButton.Secondary, false, chip); Nav(button, false); return; }
@@ -664,12 +664,12 @@ namespace ArcaneBrigade
                     else { bought = track.Id; boughtAt = Time.unscaledTime; CheckpointAudio.PlayInterfaceId(rank + 1 >= track.Max ? "up.star3" : "shop.buy.gold"); }
                 }
             }
-            float cw = body.CalcSize(new GUIContent(caption)).x;
+            float cw = body.CalcSize(LocalizedGUI.Content(caption)).x;
             RunHud.Sprite(new Rect(button.center.x - cw * .5f - 28, button.center.y - 15, 30, 30), MetaIcons.Currency(track.Currency));
             if (!can && blocked != "Not enough oil" && blocked != "Not enough keepsakes")
             {
                 small.normal.textColor = new Color(.55f, .18f, .12f);
-                small.alignment = TextAnchor.UpperRight; GUI.Label(new Rect(c.x + 76, c.y + 60, c.width - 90, 22), blocked, small); small.alignment = TextAnchor.UpperLeft;
+                small.alignment = TextAnchor.UpperRight; LocalizedGUI.Label(new Rect(c.x + 76, c.y + 60, c.width - 90, 22), blocked, small); small.alignment = TextAnchor.UpperLeft;
             }
         }
 
@@ -696,7 +696,7 @@ namespace ArcaneBrigade
             Color ink = ArcadeSkin.FrameText(KitFrame.Card);
             body.normal.textColor = ink;
             BondDefinition chosen = Array.Find(catalog.Bonds, b => b.Id == profile.Meta.Heirloom);
-            GUI.Label(new Rect(r.x + 16, r.y + 8, r.width - 32, 34), "FAMILY · " + (chosen != null ? chosen.Name.ToUpperInvariant() : "TAP A CREST"), body);
+            LocalizedGUI.Label(new Rect(r.x + 16, r.y + 8, r.width - 32, 34), "FAMILY · " + (chosen != null ? chosen.Name.ToUpperInvariant() : "TAP A CREST"), body);
             float x = r.x + 16;
             foreach (BondDefinition bond in catalog.Bonds)
             {
@@ -729,8 +729,8 @@ namespace ArcaneBrigade
                 do wardrobeHero = (wardrobeHero + 1) % count; while (!HeroUnlocks.Listed(catalog.Champions[wardrobeHero]));
             RunHud.Sprite(new Rect(area.x + 70, area.y - 4, 64, 64), hero.Body);
             body.normal.textColor = ArcadeSkin.KitCream; number.normal.textColor = ArcadeSkin.KitCream;
-            GUI.Label(new Rect(area.x + 142, area.y + 2, area.width - 280, 34), RunUICopy.UnitName(hero), body);
-            GUI.Label(new Rect(area.x + 142, area.y + 28, area.width - 280, 26), waves + " waves together", number);
+            LocalizedGUI.Label(new Rect(area.x + 142, area.y + 2, area.width - 280, 34), RunUICopy.UnitName(hero), body);
+            LocalizedGUI.Label(new Rect(area.x + 142, area.y + 28, area.width - 280, 26), waves + " waves together", number);
             float y = area.y + 72, ch = 116; // the three perks fill the page, each with its road to READY
             for (int i = 0; i < MetaProgression.MasteryWaves.Length; i++)
             {
@@ -744,11 +744,11 @@ namespace ArcaneBrigade
                 body.normal.textColor = ink; small.normal.textColor = ink; number.normal.textColor = ink;
                 Sprite icon = i == 0 && MetaProgression.AltStarter(catalog, hero) is UnitDefinition coat ? coat.Body : MetaIcons.Station(MetaStation.Wardrobe, earned);
                 RunHud.Sprite(new Rect(c.x + 22, c.y + 16, 84, 84), icon);
-                GUI.Label(new Rect(c.x + 122, c.y + 10, c.width - 330, 36), MetaProgression.MasteryNames[i], body); // a box as tall as the line (26 cut the tops of the letters)
+                LocalizedGUI.Label(new Rect(c.x + 122, c.y + 10, c.width - 330, 36), MetaProgression.MasteryNames[i], body); // a box as tall as the line (26 cut the tops of the letters)
                 string line = MetaProgression.MasteryLines[i];
                 if (i == 0 && MetaProgression.AltStarter(catalog, hero) is UnitDefinition alt) line = "Start with " + RunUICopy.UnitName(alt);
                 if (i == 2 && exists) line = MetaProgression.HabitAdded(HeroKits.For(hero.Id)).Text.Replace("Second habit: ", "");
-                GUI.Label(new Rect(c.x + 122, c.y + 44, c.width - 330, 40), exists ? RunUICopy.Sentence(line) : "Not for this hero", small);
+                LocalizedGUI.Label(new Rect(c.x + 122, c.y + 44, c.width - 330, 40), exists ? RunUICopy.Sentence(line) : "Not for this hero", small);
                 if (exists && !earned)
                 {
                     Rect bar = new Rect(c.x + 122, c.y + 88, c.width - 330, 14);
@@ -756,7 +756,7 @@ namespace ArcaneBrigade
                     if (ArcadeSkin.Strip(bar, "Info/RatioTrack", 24, 24) && bar.width * share > bar.height) ArcadeSkin.Strip(new Rect(bar.x + 2, bar.y + 2, (bar.width - 4) * share, bar.height - 4), "Info/RatioFill", 20, 20);
                 }
                 number.alignment = TextAnchor.MiddleRight;
-                GUI.Label(new Rect(c.xMax - 210, c.y, 180, ch), !exists ? "—" : earned ? "READY" : Mathf.Min(waves, MetaProgression.MasteryWaves[i]) + " / " + MetaProgression.MasteryWaves[i], number);
+                LocalizedGUI.Label(new Rect(c.xMax - 210, c.y, 180, ch), !exists ? "—" : earned ? "READY" : Mathf.Min(waves, MetaProgression.MasteryWaves[i]) + " / " + MetaProgression.MasteryWaves[i], number);
                 number.alignment = TextAnchor.UpperLeft;
             }
         }

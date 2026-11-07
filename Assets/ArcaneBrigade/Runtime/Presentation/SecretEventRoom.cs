@@ -275,9 +275,9 @@ namespace ArcaneBrigade
                 {
                     ArcadeSkin.TitleBanner(new Rect(560, bannerY, 800, 64), SecretEventAssets.Titles[(int)s.Kind], heading);
                     // what the room is for, on its own dark plate so it reads over the room's art
-                    float plainW = Mathf.Min(1320, label.CalcSize(new GUIContent(SecretEventAssets.Plain[(int)s.Kind])).x + 60);
+                    float plainW = Mathf.Min(1320, label.CalcSize(LocalizedGUI.Content(SecretEventAssets.Plain[(int)s.Kind])).x + 60);
                     ArcadeSkin.CodePlate(new Rect(960 - plainW * .5f, bannerY + 66, plainW, 36), CodeTone.Walnut, 0);
-                    GUI.Label(new Rect(300, bannerY + 68, 1320, 32), SecretEventAssets.Plain[(int)s.Kind], label);
+                    LocalizedGUI.Label(new Rect(300, bannerY + 68, 1320, 32), SecretEventAssets.Plain[(int)s.Kind], label);
                 });
                 if (s.Stage == SecretEventStage.Choosing)
                 {
@@ -328,7 +328,7 @@ namespace ArcaneBrigade
                             Vector2 mid = new Vector2(plate.center.x, y0 + 52);
                             ArcadeSkin.Lock(new Vector2(mid.x - 96, mid.y), 16, ArcadeSkin.KitInk);
                             Color was = label.normal.textColor; label.normal.textColor = ArcadeSkin.KitInk;
-                            GUI.Label(new Rect(mid.x - 80, mid.y - 20, 200, 40), "Not available now", label);
+                            LocalizedGUI.Label(new Rect(mid.x - 80, mid.y - 20, 200, 40), "Not available now", label);
                             label.normal.textColor = was;
                         }
                         else if (!shut && TouchTargets.Button(plate, GUIContent.none, GUIStyle.none)) { selected = i; hold = 0; }
@@ -357,7 +357,7 @@ namespace ArcaneBrigade
             }
             else if (owner.Session.SecretFighting)
             {
-                GUI.Label(new Rect(48, 1020, 1000, 30), SecretEventAssets.Titles[(int)owner.Session.State.Secrets.Kind], small); // padded in from the corner
+                LocalizedGUI.Label(new Rect(48, 1020, 1000, 30), SecretEventAssets.Titles[(int)owner.Session.State.Secrets.Kind], small); // padded in from the corner
             }
             GUI.matrix = previous; GUI.depth = depth; GUI.color = Color.white;
         }
@@ -366,9 +366,9 @@ namespace ArcaneBrigade
         private void LegacyResult(SecretEventProgress s, bool shut)
         {
             ArcadeSkin.Frame(new Rect(420, 540, 1080, 315), KitFrame.Dialogue, .6f);
-            body.wordWrap = true; float resultHeight = body.CalcHeight(new GUIContent(s.Result), 990);
+            body.wordWrap = true; float resultHeight = body.CalcHeight(LocalizedGUI.Content(s.Result), 990);
             resultScroll = ScrollPanel.Begin(new Rect(455, 562, 1010, 170), resultScroll, new Rect(0, 0, 990, resultHeight));
-            GUI.Label(new Rect(0, 0, 990, resultHeight), s.Result, body);
+            LocalizedGUI.Label(new Rect(0, 0, 990, resultHeight), s.Result, body);
             ScrollPanel.End();
             if (ArcadeSkin.KitGuiButton(new Rect(660, 745, 600, 68), "OK", primary) && !shut) cardClosingAt = Time.unscaledTime;
         }
@@ -383,7 +383,7 @@ namespace ArcaneBrigade
             // the relic's name on a walnut tag under the stand; with more than one to offer, a CHANGE button beside it opens the picker
             bool many = owner.Session.SecretTargets.Count > 1;
             string name = relic?.Name ?? "No relic to offer";
-            float nameWidth = Mathf.Clamp(label.CalcSize(new GUIContent(name)).x + 48, 160, 340);
+            float nameWidth = Mathf.Clamp(label.CalcSize(LocalizedGUI.Content(name)).x + 48, 160, 340);
             Rect nameTag = new Rect(box.center.x - nameWidth * .5f - (many ? 76 : 0), 420, nameWidth, 40);
             ArcadeSkin.Tag(nameTag, name, CodeTone.Walnut, label, ArcadeSkin.KitCream);
             if (many && ArcadeSkin.Button(new Rect(nameTag.xMax + 12, 416, 140, 48), "CHANGE", KitButton.Secondary) && !blocked) OpenPicker(1);
@@ -394,7 +394,7 @@ namespace ArcaneBrigade
                 ArcadeSkin.Plate(friend, ArcadeSkin.Accent);
                 UnitDefinition unit = owner.Content.Unit(s.TargetUnit);
                 if (unit?.Body != null) DrawSprite(new Rect(friend.x + 10, friend.y + 10, 80, 80), unit.Body);
-                GUI.Label(new Rect(friend.x + 96, friend.y + 10, 196, 80), unit != null ? RunUICopy.UnitName(unit) : "A friend", label);
+                LocalizedGUI.Label(new Rect(friend.x + 96, friend.y + 10, 196, 80), unit != null ? RunUICopy.UnitName(unit) : "A friend", label);
                 bool others = owner.Session.State.Roster.Count > 1;
                 if (others && ArcadeSkin.Button(new Rect(friend.center.x - 70, friend.yMax + 8, 140, 48), "CHANGE", KitButton.Secondary) && !blocked) OpenPicker(2);
                 if (!blocked && others && TouchTargets.Button(friend, GUIContent.none, GUIStyle.none)) OpenPicker(2);
@@ -431,7 +431,7 @@ namespace ArcaneBrigade
             if (panelArt != null) DrawSprite(frame, panelArt); else ArcadeSkin.Frame(frame, KitFrame.Dialogue, .6f);
             float pad = pw * PanelPad, x0 = frame.x + pad, top = frame.y + ph * PanelPadTop, bottom = frame.yMax - ph * PanelPadTop;
             string[] lines = s.Result.Split('\n');
-            GUI.Label(new Rect(x0, top, frame.width - pad * 2, 44), lines[0], heading);
+            LocalizedGUI.Label(new Rect(x0, top, frame.width - pad * 2, 44), lines[0], heading);
             string iconId = claim ? s.RewardId : s.ResultIcon;
             Sprite icon = owner.Content.Item(iconId)?.Icon ?? owner.Content.Unit(iconId)?.Body ?? SecretArt.Relic(s.Kind); // every deal shows a picture
             float rowsTop = top + 56, buttonH = 64, rowsBottom = bottom - buttonH - 14;
@@ -477,7 +477,7 @@ namespace ArcaneBrigade
             Rect card = new Rect(960 - width * .5f, Mathf.Max(260, 600 - h * .5f), width, h);
             RarityDescriptionFrame.Draw(card, rewardCard.Rarity, Time.unscaledTime);
             Rect inner = new Rect(card.x + 60, card.y + 34, card.width - 120, card.height - 68);
-            GUI.Label(new Rect(inner.x, inner.y, inner.width, 44), s.Result.Split('\n')[0], heading);
+            LocalizedGUI.Label(new Rect(inner.x, inner.y, inner.width, 44), s.Result.Split('\n')[0], heading);
             // the relic rises onto its rarity's backdrop with a little bounce and settles
             float held = Time.unscaledTime - resultAt, top = inner.y + 64;
             float rise = PresentationSettings.ReducedMotion ? 1 : Mathf.Clamp01(held / .45f), bounce = PresentationSettings.ReducedMotion ? 0 : Mathf.Sin(Mathf.Clamp01(held / .7f) * Mathf.PI) * 14;
@@ -485,8 +485,8 @@ namespace ArcaneBrigade
             RarityDescriptionFrame.Backdrop(new Rect(inner.x + 10, top, 150, 150), rewardCard.Rarity, Time.unscaledTime);
             if (item.Icon != null) ShopDescriptionCard.DrawSprite(new Rect(inner.x + 85 - side * .5f, top + 75 - side * .5f - bounce, side, side), item.Icon);
             float tx = inner.x + 190;
-            GUI.Label(new Rect(tx, top - 4, textW, 42), item.Name, rewardName);
-            GUI.Label(new Rect(tx, top + 36, textW, 24), "NEW RELIC · " + rewardCard.Identity, rewardKind);
+            LocalizedGUI.Label(new Rect(tx, top - 4, textW, 42), item.Name, rewardName);
+            LocalizedGUI.Label(new Rect(tx, top + 36, textW, 24), "NEW RELIC · " + rewardCard.Identity, rewardKind);
             GlossaryUI.Text(new Rect(tx, top + 66, textW, textH - 64), summary, rewardLine);
             GlossaryUI.Draw(new Vector2(1920, 1080));
             Rect go = new Rect(card.center.x - 220, card.yMax - 104, 440, 68);
@@ -508,13 +508,13 @@ namespace ArcaneBrigade
                 : (tone == CodeTone.Oxblood ? new Color(1f, .5f, .45f) : tone == CodeTone.Green ? new Color(.55f, .95f, .55f) : ArcadeSkin.KitCream);
             gemTag.normal.textColor = tagColour;
             float x = r.x + g + 12, tw = r.xMax - x;
-            GUI.Label(new Rect(x, r.y - 2, tw, 28), tag, gemTag);
+            LocalizedGUI.Label(new Rect(x, r.y - 2, tw, 28), tag, gemTag);
             gemText.normal.textColor = parchment ? (tone == CodeTone.Cream ? ArcadeSkin.KitInk : Color.Lerp(ArcadeSkin.KitInk, tagColour, .55f)) : new Color(.96f, .93f, .86f);
             string marked = Marked(text, parchment ? CodeTone.Cream : tone);
             Rect area = new Rect(x, r.y + 24, tw, r.height - 26);
             gemText.fontSize = parchment ? 26 : ArcadeTypography.SizeNote;
-            while (gemText.fontSize > 20 && gemText.CalcHeight(new GUIContent(marked), area.width) > area.height) gemText.fontSize--; // it fits its line
-            GUI.Label(area, marked, gemText);
+            while (gemText.fontSize > 20 && gemText.CalcHeight(LocalizedGUI.Content(marked), area.width) > area.height) gemText.fontSize--; // it fits its line
+            LocalizedGUI.Label(area, marked, gemText);
         }
         /// <summary>A picture kept to its own shape inside the box, centred.</summary>
         private void DrawFitted(Rect box, Sprite sprite)
@@ -536,9 +536,9 @@ namespace ArcaneBrigade
             body.wordWrap = true;
             area = new Rect(area.x, area.y, area.width - 14, area.height); // clear of the ribbon's right gem
             int size = body.fontSize; TextAnchor align = body.alignment;
-            while (body.fontSize > 20 && body.CalcHeight(new GUIContent(text), area.width) > area.height) body.fontSize--; // two lines stay inside the ribbon
+            while (body.fontSize > 20 && body.CalcHeight(LocalizedGUI.Content(text), area.width) > area.height) body.fontSize--; // two lines stay inside the ribbon
             body.alignment = TextAnchor.MiddleLeft; // centred in its ribbon's height
-            GUI.Label(area, text, body);
+            LocalizedGUI.Label(area, text, body);
             body.fontSize = size; body.alignment = align; body.normal.textColor = keep;
         }
         // requirement 24/10/2026 (no tap-to-cycle pickers): the relic or friend you offer is chosen from a popup of all of them
@@ -583,7 +583,7 @@ namespace ArcaneBrigade
             Matrix4x4 m = GUI.matrix; Color c = GUI.color;
             LivingUI.Pop(Time.unscaledTime - pickerAt, panel.center);
             ArcadeSkin.Frame(panel, KitFrame.Dialogue, .6f);
-            GUI.Label(new Rect(panel.x, panel.y + 22, panel.width, 40), relics ? "CHOOSE A RELIC" : "CHOOSE A FRIEND", heading);
+            LocalizedGUI.Label(new Rect(panel.x, panel.y + 22, panel.width, 40), relics ? "CHOOSE A RELIC" : "CHOOSE A FRIEND", heading);
             int picked = -1;
             for (int i = 0; i < choices.Count; i++)
             {
@@ -593,11 +593,11 @@ namespace ArcaneBrigade
                 if (choices[i].chosen) Stamp(new Rect(cell.x, cell.y, tile, tile));
                 // names and short descriptions wrap inside the tile's column and never run under each other (long names take two lines)
                 pickerName ??= new GUIStyle(label) { fontSize = 20, wordWrap = true, alignment = TextAnchor.UpperCenter };
-                GUI.Label(new Rect(cell.x - 10, cell.y + tile + 2, tile + 20, 48), choices[i].name, pickerName);
+                LocalizedGUI.Label(new Rect(cell.x - 10, cell.y + tile + 2, tile + 20, 48), choices[i].name, pickerName);
                 // what it does, in a line or two (requirement 25/10/2026: names alone told nothing)
                 pickerWhat ??= new GUIStyle(label) { fontSize = 20, wordWrap = true, alignment = TextAnchor.UpperCenter, clipping = TextClipping.Overflow };
                 pickerWhat.normal.textColor = new Color(.62f, .92f, .66f);
-                GUI.Label(new Rect(cell.x - 10, cell.y + tile + 52, tile + 20, 64), choices[i].what, pickerWhat);
+                LocalizedGUI.Label(new Rect(cell.x - 10, cell.y + tile + 52, tile + 20, 64), choices[i].what, pickerWhat);
                 if (TouchTargets.Button(cell, GUIContent.none, GUIStyle.none)) picked = i;
             }
             GUI.matrix = m; GUI.color = c;

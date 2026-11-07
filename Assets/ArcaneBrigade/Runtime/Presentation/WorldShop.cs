@@ -725,7 +725,7 @@ namespace ArcaneBrigade
             if (soldStyle == null) { soldStyle = ArcadeTypography.Style(26, true); soldStyle.alignment = TextAnchor.MiddleCenter; soldStyle.normal.textColor = ArcadeSkin.Danger; if (ArcadeTypography.Display != null) soldStyle.font = ArcadeTypography.Display; }
             ArcadeSkin.Line(new Rect(ticket.x + 8, ticket.y + 6, ticket.width - 16, 3), ArcadeSkin.Danger);
             ArcadeSkin.Line(new Rect(ticket.x + 8, ticket.yMax - 9, ticket.width - 16, 3), ArcadeSkin.Danger);
-            GUI.Label(ticket, "SOLD", soldStyle);
+            LocalizedGUI.Label(ticket, "SOLD", soldStyle);
             GUI.color = previous;
             GUI.matrix = unrotated;
         }
@@ -772,7 +772,7 @@ namespace ArcaneBrigade
             if (talkStyle == null) { talkStyle = ArcadeTypography.Style(26, true); talkStyle.alignment = TextAnchor.MiddleCenter; talkStyle.wordWrap = false; }
             talkStyle.normal.textColor = near > .5f ? ArcadeSkin.Wax : ArcadeSkin.KitInk;
             string dots = still ? "…" : new string('.', 1 + (int)(now * 2.5f) % 3).PadRight(3, ' ');
-            GUI.Label(new Rect(bubble.x, bubble.y - 2, bubble.width, bubble.height), near > .5f ? "!" : dots, talkStyle);
+            LocalizedGUI.Label(new Rect(bubble.x, bubble.y - 2, bubble.width, bubble.height), near > .5f ? "!" : dots, talkStyle);
             GUI.color = keep;
             GUI.matrix = restoreMatrix;
         }
@@ -828,10 +828,10 @@ namespace ArcaneBrigade
                 Sprite currency = station.Currency == ShopCurrency.Eggs ? owner.Content.EggSprite : station.Currency == ShopCurrency.Health ? CurrencyIcons.Heart : owner.Content.Arena.Coin;
                 RunHud.Sprite(new Rect(ticket.x + 10, ticket.y + 7, 26, 26), currency);
                 priceStyle.fontSize = 28;
-                while (priceStyle.fontSize > 24 && priceStyle.CalcSize(new GUIContent(price)).x > ticket.width - 50) priceStyle.fontSize--; // a long price stays readable on a phone
+                while (priceStyle.fontSize > 24 && priceStyle.CalcSize(LocalizedGUI.Content(price)).x > ticket.width - 50) priceStyle.fontSize--; // a long price stays readable on a phone
                 bool short_ = station.Offer != null ? !owner.Session.CanBuy(station.Offer) : (station.Action == "VISITOR" || station.Action == "REROLL") && owner.Session.State.Gold < station.Price; // not enough gold: the price turns red
                 priceStyle.normal.textColor = short_ ? new Color(0.75f, 0.15f, 0.2f) : ArcadeSkin.Ink;
-                GUI.Label(new Rect(ticket.x + 48, ticket.y, ticket.width - 54, ticket.height), price, priceStyle); // 12 px after the coin, centred on the tag
+                LocalizedGUI.Label(new Rect(ticket.x + 48, ticket.y, ticket.width - 54, ticket.height), price, priceStyle); // 12 px after the coin, centred on the tag
                 priceStyle.normal.textColor = ArcadeSkin.Ink;
                 if (station.Offer != null)
                 {
@@ -848,7 +848,7 @@ namespace ArcaneBrigade
                     ArcadeSkin.Slant(category, fit == "NEW" ? Color.Lerp(ArcadeSkin.Gold, Color.white, .15f) : fit == "STAR UP" ? Color.Lerp(ArcadeSkin.Teal, Color.white, .1f) : fit == "BOND" ? Color.Lerp(tagColor, ArcadeSkin.Teal, .55f) : fit == "FOR HERO" ? Color.Lerp(tagColor, ArcadeSkin.Gold, .45f) : tagColor);
                     if (merge)
                     {
-                        GUI.Label(new Rect(category.x + 3, category.y, 92, category.height), "MERGE", categoryStyle);
+                        LocalizedGUI.Label(new Rect(category.x + 3, category.y, 92, category.height), "MERGE", categoryStyle);
                         // the stars it will make, plain and in the star's colour: silver two, gold three, purple four
                         Color keepTint = GUI.color; GUI.color = UnitVisual.StarColour(mergeTier);
                         for (int star = 0; star < mergeTier; star++) RunHud.Sprite(new Rect(category.x + 94 + star * 18, category.y + 7, 18, 18), K8Motion.TierStar());
@@ -858,13 +858,13 @@ namespace ArcaneBrigade
                     {
                         // the build-fit badge: the bond it raises (or the relic itself) and a short word
                         if (fitIcon != null) RunHud.Sprite(new Rect(category.x + 8, category.y + 2, 22, 22), fitIcon);
-                        if (fitIcon != null) GUI.Label(new Rect(category.x + 28, category.y, category.width - 30, category.height), fit, categoryStyle);
-                        else GUI.Label(category, fit, categoryStyle);
+                        if (fitIcon != null) LocalizedGUI.Label(new Rect(category.x + 28, category.y, category.width - 30, category.height), fit, categoryStyle);
+                        else LocalizedGUI.Label(category, fit, categoryStyle);
                     }
-                    else GUI.Label(category, item ? "RELIC" : "FRIEND", categoryStyle);
+                    else LocalizedGUI.Label(category, item ? "RELIC" : "FRIEND", categoryStyle);
                 }
                 GUI.matrix = unrotated;
-                if (denied) GUI.Label(new Rect(point.x - 140, ticket.y - 65, 280, 35), station.Denial, denialStyle);
+                if (denied) LocalizedGUI.Label(new Rect(point.x - 140, ticket.y - 65, 280, 35), station.Denial, denialStyle);
             }
         }
     }

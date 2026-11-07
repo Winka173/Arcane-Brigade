@@ -1,5 +1,7 @@
 # Arcane Brigade
 
+Ngôn ngữ: **English** (mặc định) và **Tiếng Việt**, đổi tại **Settings > Language** và lưu tự động. Bản Windows có ngôn ngữ mới: `Builds/Localization/ArcaneBrigade.exe`. Chi tiết: [Docs/Localization.md](Docs/Localization.md).
+
 ## Bản mới nhất — K8 Windows candidate
 
 K8: shopkeeper kỳ dị riêng với thoại lúc vào/xem hàng/mua/thiếu tiền, thảm và cờ quầy vẽ riêng; boss/hero có silhouette riêng, squad/vũ khí nhỏ gọn hơn, pose liên tục và feedback gộp damage. Roster lưới chân dung, UI tiếng Việt, hệ có mốc 2/4/6, nâng sao đổi cách đánh, bốn công thức hợp thể, đạn nảy/tách nhánh và bốn bài nhạc CC0 riêng. Boss quá giờ ngừng gọi viện binh nhưng vẫn cần bị hạ. **Chưa nghiệm thu production.** Co-op và Android/iOS/Steam device gates vẫn mở; tests không thay duyệt art/audio/feel.

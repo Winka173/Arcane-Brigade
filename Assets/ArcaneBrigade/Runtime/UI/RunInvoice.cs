@@ -113,12 +113,12 @@ namespace ArcaneBrigade
         private void DrawHaul(float y, float inner, RunSnapshot run, GUIStyle body, GUIStyle number, GUIStyle small)
         {
             ArcadeSkin.Line(new Rect(0, y, inner, HaulHeight(run) - 10), new Color(ArcadeSkin.Ink.r, ArcadeSkin.Ink.g, ArcadeSkin.Ink.b, .08f));
-            GUI.Label(new Rect(8, y + 8, inner * .5f, 36), "For the waiting room", body);
+            LocalizedGUI.Label(new Rect(8, y + 8, inner * .5f, 36), "For the waiting room", body);
             float x = inner - 8;
             foreach (var (icon, amount) in new[] { (MetaIcons.Keepsake, run.Meta.HaulKeepsakes), (MetaIcons.LampOil, run.Meta.HaulOil) })
             {
-                string text = "+" + amount; float w = body.CalcSize(new GUIContent(text)).x;
-                body.alignment = TextAnchor.MiddleRight; GUI.Label(new Rect(x - w - 4, y + 8, w + 4, 38), text, body); body.alignment = TextAnchor.UpperLeft;
+                string text = "+" + amount; float w = body.CalcSize(LocalizedGUI.Content(text)).x;
+                body.alignment = TextAnchor.MiddleRight; LocalizedGUI.Label(new Rect(x - w - 4, y + 8, w + 4, 38), text, body); body.alignment = TextAnchor.UpperLeft;
                 RunHud.Sprite(new Rect(x - w - 48, y + 6, 40, 40), icon); x -= w + 64;
             }
             float row = y + 56;
@@ -126,12 +126,12 @@ namespace ArcaneBrigade
             {
                 string[] p = line.Split('|'); if (p.Length != 3) continue;
                 RunHud.Sprite(new Rect(10, row + 2, 30, 30), p[0] == "keep" ? MetaIcons.Keepsake : MetaIcons.LampOil);
-                GUI.Label(new Rect(50, row, inner - 150, 36), p[1], small);
-                small.alignment = TextAnchor.UpperRight; GUI.Label(new Rect(inner - 100, row, 90, 36), "+" + p[2], small); small.alignment = TextAnchor.UpperLeft;
+                LocalizedGUI.Label(new Rect(50, row, inner - 150, 36), p[1], small);
+                small.alignment = TextAnchor.UpperRight; LocalizedGUI.Label(new Rect(inner - 100, row, 90, 36), "+" + p[2], small); small.alignment = TextAnchor.UpperLeft;
                 row += 38;
             }
             // where to spend it (players did not know the permanent upgrades were there)
-            GUI.Label(new Rect(10, row + 4, inner - 20, 38), "Spend them in the Waiting Room, at the Lamp Tree.", small);
+            LocalizedGUI.Label(new Rect(10, row + 4, inner - 20, 38), "Spend them in the Waiting Room, at the Lamp Tree.", small);
         }
 
         public void Draw(Rect rectangle, RunSnapshot run, RunCatalog catalog, string nickname = null, int frozenScore = -1)
@@ -158,10 +158,10 @@ namespace ArcaneBrigade
 
             // headline: who, how far, how long, how many bosses
             float x = rectangle.x + 24, w = rectangle.width - 48;
-            heading.alignment = TextAnchor.MiddleCenter; GUI.Label(new Rect(x, rectangle.y + 10, w, 60), nickname ?? RunMeta.Nickname(run), heading); // centred in the header strip heading.alignment = TextAnchor.UpperLeft;
+            heading.alignment = TextAnchor.MiddleCenter; LocalizedGUI.Label(new Rect(x, rectangle.y + 10, w, 60), nickname ?? RunMeta.Nickname(run), heading); // centred in the header strip heading.alignment = TextAnchor.UpperLeft;
             string journey = (run.Endless ? "Endless" : "Journey") + " · " + RunMeta.DifficultyNames[Mathf.Clamp(run.Difficulty, 0, RunMeta.DifficultyNames.Length - 1)] + " · " + (run.Phase == SessionPhase.Victory ? "Dawn reached" : "Ended at wave " + run.Wave);
-            GUI.Label(new Rect(x, rectangle.y + 84, w, 36), journey, body); // under the strip, with a breath
-            GUI.Label(new Rect(x, rectangle.y + 118, w, 36), "Wave " + run.Wave + "  ·  " + Time(run.CombatSeconds) + "  ·  " + run.BossKills + (run.BossKills == 1 ? " boss" : " bosses"), number);
+            LocalizedGUI.Label(new Rect(x, rectangle.y + 84, w, 36), journey, body); // under the strip, with a breath
+            LocalizedGUI.Label(new Rect(x, rectangle.y + 118, w, 36), "Wave " + run.Wave + "  ·  " + Time(run.CombatSeconds) + "  ·  " + run.BossKills + (run.BossKills == 1 ? " boss" : " bosses"), number);
             ArcadeSkin.Divider(new Rect(x, rectangle.y + 160, w, 2), ArcadeSkin.Ink);
 
             Rect view = new Rect(rectangle.x + 16, rectangle.y + 172, rectangle.width - 32, rectangle.height - 186);
@@ -176,7 +176,7 @@ namespace ArcaneBrigade
             scroll = ScrollPanel.Begin(view, scroll, new Rect(0, 0, inner, height), new Color(ArcadeSkin.Paper.r * .6f, ArcadeSkin.Paper.g * .6f, ArcadeSkin.Paper.b * .6f, .5f));
             float y = 0;
             if (HasHaul(run)) { DrawHaul(y, inner, run, body, number, small); y += HaulHeight(run); }
-            GUI.Label(new Rect(4, y, inner, 38), "Your brigade", body); y += 44;
+            LocalizedGUI.Label(new Rect(4, y, inner, 38), "Your brigade", body); y += 44;
             for (int index = 0; index < shown; index++)
             {
                 Member m = cachedMembers[index];
@@ -185,7 +185,7 @@ namespace ArcaneBrigade
                 UnitDefinition unit = catalog.Unit(m.UnitId);
                 RunHud.Sprite(new Rect(4, y + 8, 70, 70), unit != null ? unit.Body : null);
                 float textX = 86, right = 100;
-                GUI.Label(new Rect(textX, y, inner - textX - right, 36), (m.Hero ? "You · " : "") + Name(m.UnitId, catalog) + Stars(m.Stars), body);
+                LocalizedGUI.Label(new Rect(textX, y, inner - textX - right, 36), (m.Hero ? "You · " : "") + Name(m.UnitId, catalog) + Stars(m.Stars), body);
                 Rect bar = new Rect(textX, y + 46, inner - textX - right, 18); // clear of the name's descenders
                 // the share of damage on a painted walnut groove with a lamp-gold fill
                 if (ArcadeSkin.Strip(bar, "Info/RatioTrack", 24, 24))
@@ -199,22 +199,22 @@ namespace ArcaneBrigade
                     ArcadeSkin.Line(new Rect(bar.x, bar.y, bar.width * m.Share * reveal, bar.height), m.Hero ? ArcadeSkin.Accent : ArcadeSkin.Teal * .85f);
                 }
                 if (m.Damage > 0 || m.Kills > 0)
-                    GUI.Label(new Rect(textX, y + 66, inner - textX - right, 36), (m.Damage > 0 ? Short(m.Damage) + " damage" : "") + (m.Damage > 0 && m.Kills > 0 ? " · " : "") + (m.Kills > 0 ? Short(m.Kills) + " defeated" : ""), small);
+                    LocalizedGUI.Label(new Rect(textX, y + 66, inner - textX - right, 36), (m.Damage > 0 ? Short(m.Damage) + " damage" : "") + (m.Damage > 0 && m.Kills > 0 ? " · " : "") + (m.Kills > 0 ? Short(m.Kills) + " defeated" : ""), small);
                 number.alignment = TextAnchor.MiddleRight;
-                GUI.Label(new Rect(inner - right, y + 28, right - 4, 40), m.Damage > 0 ? Mathf.RoundToInt(m.Share * 100) + "%" : "", number);
+                LocalizedGUI.Label(new Rect(inner - right, y + 28, right - 4, 40), m.Damage > 0 ? Mathf.RoundToInt(m.Share * 100) + "%" : "", number);
                 number.alignment = TextAnchor.UpperLeft;
                 GUI.color = keep;
                 y += 104;
             }
             if (cachedBonds.Count > 0)
             {
-                GUI.Label(new Rect(4, y + 6, inner, 38), "Bonds", body); y += 50;
+                LocalizedGUI.Label(new Rect(4, y + 6, inner, 38), "Bonds", body); y += 50;
                 foreach (BondRow row in cachedBonds)
                 {
                     RunHud.Sprite(new Rect(4, y + 8, 52, 52), row.Bond.Icon);
-                    GUI.Label(new Rect(68, y, inner - 72, 36), row.Bond.Name, body);
+                    LocalizedGUI.Label(new Rect(68, y, inner - 72, 36), row.Bond.Name, body);
                     int level = row.Bond.ActiveLevel(row.Count);
-                    GUI.Label(new Rect(68, y + 36, inner - 72, 36), row.Count + (row.Count == 1 ? " member · " : " members · ") + (level > 0 ? "Level " + level : "Not ready"), small);
+                    LocalizedGUI.Label(new Rect(68, y + 36, inner - 72, 36), row.Count + (row.Count == 1 ? " member · " : " members · ") + (level > 0 ? "Level " + level : "Not ready"), small);
                     y += 76;
                 }
             }
@@ -229,34 +229,34 @@ namespace ArcaneBrigade
             y += 166;
             if (run.Items.Count > 0)
             {
-                GUI.Label(new Rect(4, y, inner, 38), "Relics", body); y += 50;
+                LocalizedGUI.Label(new Rect(4, y, inner, 38), "Relics", body); y += 50;
                 for (int index = 0; index < run.Items.Count; index++)
                 {
                     ItemStack stack = run.Items[index];
                     Rect cell = new Rect(index % columns * 76, y + index / columns * 76, 68, 68);
                     RunHud.Sprite(new Rect(cell.x + 4, cell.y + 2, 56, 56), catalog.Item(stack.Id)?.Icon);
-                    if (stack.Count > 1) { number.alignment = TextAnchor.LowerRight; GUI.Label(cell, "×" + stack.Count, number); number.alignment = TextAnchor.UpperLeft; }
+                    if (stack.Count > 1) { number.alignment = TextAnchor.LowerRight; LocalizedGUI.Label(cell, "×" + stack.Count, number); number.alignment = TextAnchor.UpperLeft; }
                 }
                 y += relicRows * 76;
             }
             if (run.Phase == SessionPhase.Defeat && !string.IsNullOrEmpty(run.LastDamageSource))
-                GUI.Label(new Rect(4, y + 6, inner, 38), "Fell to " + RunUICopy.DamageSource(run.LastDamageSource, catalog), body);
+                LocalizedGUI.Label(new Rect(4, y + 6, inner, 38), "Fell to " + RunUICopy.DamageSource(run.LastDamageSource, catalog), body);
             ScrollPanel.End();
         }
 
         private static void Trophy(Rect r, string title, Sprite icon, string name, string amount, GUIStyle body, GUIStyle small)
         {
             ArcadeSkin.Line(r, new Color(ArcadeSkin.Ink.r, ArcadeSkin.Ink.g, ArcadeSkin.Ink.b, .08f));
-            GUI.Label(new Rect(r.x + 8, r.y + 4, r.width - 16, 36), title, small);
+            LocalizedGUI.Label(new Rect(r.x + 8, r.y + 4, r.width - 16, 36), title, small);
             // each trophy in a brass medal socket (an empty socket when nobody earned it)
             Sprite socket = ArcadeSkin.Crafted ? null : ArcadeSkin.KitSprite("Info/MedalSocket");
             if (socket != null) GUI.DrawTexture(new Rect(r.x + 4, r.y + 40, 80, 80), socket.texture, ScaleMode.ScaleToFit);
             if (icon != null) RunHud.Sprite(socket != null ? new Rect(r.x + 19, r.y + 50, 50, 50) : new Rect(r.x + 8, r.y + 46, 66, 66), icon);
             float tx = icon != null || socket != null ? r.x + 92 : r.x + 8;
             body.wordWrap = true;
-            GUI.Label(new Rect(tx, r.y + 42, r.xMax - tx - 6, 70), name, body);
+            LocalizedGUI.Label(new Rect(tx, r.y + 42, r.xMax - tx - 6, 70), name, body);
             body.wordWrap = false;
-            GUI.Label(new Rect(tx, r.y + 112, r.xMax - tx - 6, 36), amount, small);
+            LocalizedGUI.Label(new Rect(tx, r.y + 112, r.xMax - tx - 6, 36), amount, small);
         }
     }
 }

@@ -28,8 +28,8 @@ namespace ArcaneBrigade
             if (string.IsNullOrEmpty(text) || style == null) return;
             Color keep = style.normal.textColor; TextAnchor align = style.alignment; bool wrap = style.wordWrap;
             style.alignment = TextAnchor.MiddleCenter; style.wordWrap = false;
-            style.normal.textColor = new Color(0, 0, 0, .55f); GUI.Label(new Rect(r.x + 2, r.y + 3, r.width, r.height), text, style);
-            style.normal.textColor = KitCream; GUI.Label(r, text, style);
+            style.normal.textColor = new Color(0, 0, 0, .55f); LocalizedGUI.Label(new Rect(r.x + 2, r.y + 3, r.width, r.height), text, style);
+            style.normal.textColor = KitCream; LocalizedGUI.Label(r, text, style);
             style.normal.textColor = keep; style.alignment = align; style.wordWrap = wrap;
         }
 

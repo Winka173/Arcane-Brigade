@@ -32,13 +32,13 @@ namespace ArcaneBrigade
                 ArcadeSkin.Ticket(card, ArcadeSkin.Paper, on ? ArcadeSkin.Gold : ArcadeSkin.Accent);
                 Rect inner = ArcadeSkin.Content(card, KitFrame.Card);
                 title.normal.textColor = on ? ArcadeSkin.Wax : ink;
-                float titleH = Mathf.Min(inner.height * .45f, title.CalcHeight(new GUIContent(options[i]), inner.width) + 4);
-                GUI.Label(new Rect(inner.x, inner.y, inner.width, titleH), options[i], title);
+                float titleH = Mathf.Min(inner.height * .45f, title.CalcHeight(LocalizedGUI.Content(options[i]), inner.width) + 4);
+                LocalizedGUI.Label(new Rect(inner.x, inner.y, inner.width, titleH), options[i], title);
                 string meaning = meanings != null && i < meanings.Length ? meanings[i] : null;
                 if (!string.IsNullOrEmpty(meaning))
                 {
                     body.normal.textColor = ink;
-                    GUI.Label(new Rect(inner.x, inner.y + titleH + 6, inner.width, inner.height - titleH - 6), meaning, body);
+                    LocalizedGUI.Label(new Rect(inner.x, inner.y + titleH + 6, inner.width, inner.height - titleH - 6), meaning, body);
                 }
                 if (TouchTargets.Button(card, GUIContent.none, GUIStyle.none)) { if (picked != i) CheckpointAudio.PlayInterfaceId("ui.select"); picked = i; }
             }
@@ -53,7 +53,7 @@ namespace ArcaneBrigade
         {
             hintStyle ??= new GUIStyle(ArcadeTypography.Style(26, true)) { alignment = TextAnchor.MiddleCenter };
             hintStyle.normal.textColor = ArcadeSkin.KitCream;
-            GUI.Label(where, "Tap a card to choose", hintStyle);
+            LocalizedGUI.Label(where, "Tap a card to choose", hintStyle);
         }
     }
 }

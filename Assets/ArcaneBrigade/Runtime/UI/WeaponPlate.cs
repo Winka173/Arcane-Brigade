@@ -44,7 +44,7 @@ namespace ArcaneBrigade
             Color ink = style.normal.textColor; TextAnchor keep = style.alignment;
             style.normal.textColor = ArcadeSkin.Cream; style.alignment = TextAnchor.MiddleLeft;
             float from = TextStart * k + 8, to = (Full - TextEnd) * k;
-            GUI.Label(new Rect(r.x + from, r.y, r.width - from - to, r.height), label, style);
+            LocalizedGUI.Label(new Rect(r.x + from, r.y, r.width - from - to, r.height), label, style);
             style.normal.textColor = ink; style.alignment = keep;
         }
     }

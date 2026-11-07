@@ -280,21 +280,21 @@ namespace ArcaneBrigade
             heading??=ArcadeTypography.Style(32,true);copy??=ArcadeTypography.Style(25);copy.wordWrap=true;
             button??=ArcadeTypography.Style(22,true);button.wordWrap=true;button.alignment=TextAnchor.MiddleCenter;small??=ArcadeTypography.Style(20);small.wordWrap=true;
             ArcadeSkin.Plate(new Rect(45,20,1830,105),ArcadeSkin.Teal);
-            GUI.Label(new Rect(75,28,1750,48),rescue?"THE PERFECT ROOM":WaitingCampaign.RoomName(room),heading);
-            GUI.Label(new Rect(75,80,1750,42),rescue?"Walk: WASD / arrows / stick. Beside Hob, press Space / E / A once to help. Return: TAB / START. Pause: ESC / B.":"Walk: WASD / arrows / stick. Examine nearby records: E / R / X. Return: TAB / START. Pause: ESC / B.",small);
+            LocalizedGUI.Label(new Rect(75,28,1750,48),rescue?"THE PERFECT ROOM":WaitingCampaign.RoomName(room),heading);
+            LocalizedGUI.Label(new Rect(75,80,1750,42),rescue?"Walk: WASD / arrows / stick. Beside Hob, press Space / E / A once to help. Return: TAB / START. Pause: ESC / B.":"Walk: WASD / arrows / stick. Examine nearby records: E / R / X. Return: TAB / START. Pause: ESC / B.",small);
             if(rescue)DrawRescue();
             if(ArcadeSkin.Button(new Rect(1450,955,410,84),"RETURN TO THE SHOP",KitButton.Secondary,true,button))ReturnToShop();
             string consequences="";
             for(int i=0;i<6;i++){var q=session.State.WaitingCampaign.CompanionChoices;if(q[i*3+2]>0)consequences+=WaitingCompanionQuests.Routes[i].Outcomes[4+q[i*3+2]-1]+"\n";}
-            if(!rescue && !Modal && consequences.Length>0){ArcadeSkin.Plate(new Rect(60,750,1300,200),ArcadeSkin.Teal);GUI.Label(new Rect(80,770,1260,170),consequences,small);}
-            if(paused){RunHud.Fill(new Rect(450,390,1020,250),new Color(.02f,.03f,.06f));GUI.Label(new Rect(500,420,900,70),"PAUSED / THE ROOM WAITS",heading);if(TouchTargets.Button(new Rect(650,530,620,65),"RESUME",button))paused=false;}
+            if(!rescue && !Modal && consequences.Length>0){ArcadeSkin.Plate(new Rect(60,750,1300,200),ArcadeSkin.Teal);LocalizedGUI.Label(new Rect(80,770,1260,170),consequences,small);}
+            if(paused){RunHud.Fill(new Rect(450,390,1020,250),new Color(.02f,.03f,.06f));LocalizedGUI.Label(new Rect(500,420,900,70),"PAUSED / THE ROOM WAITS",heading);if(TouchTargets.Button(new Rect(650,530,620,65),"RESUME",button))paused=false;}
             if(selected>=0)
             {
                 RunHud.Fill(new Rect(220,220,1480,780),new Color(.025f,.03f,.055f));
-                GUI.Label(new Rect(270,250,1370,70),WaitingRooms.Label(room,selected),heading);
+                LocalizedGUI.Label(new Rect(270,250,1370,70),WaitingRooms.Label(room,selected),heading);
                 int choice=session.State.WaitingCampaign.RoomChoices[(room-1)*3+selected];
                 string text=WaitingRooms.Question(room,selected)+(choice>0?"\n\n"+WaitingRooms.Result(room,selected,choice):"");
-                scroll=ScrollPanel.Begin(new Rect(270,350,1370,choice==0?210:470),scroll,new Rect(0,0,1330,Mathf.Max(310,copy.CalcHeight(new GUIContent(text),1310))));GUI.Label(new Rect(0,0,1310,600),text,copy);ScrollPanel.End();
+                scroll=ScrollPanel.Begin(new Rect(270,350,1370,choice==0?210:470),scroll,new Rect(0,0,1330,Mathf.Max(310,copy.CalcHeight(LocalizedGUI.Content(text),1310))));LocalizedGUI.Label(new Rect(0,0,1310,600),text,copy);ScrollPanel.End();
                 if(choice==0)
                 {
                     // the two options as cards that say where each leads; picked, then confirmed (requirement 22/10/2026)
@@ -303,7 +303,7 @@ namespace ArcaneBrigade
                 }
                 if(ArcadeSkin.Button(new Rect(1230,925,400,70),"BACK",KitButton.Secondary,true,button)){selected=-1;recordPick=-1;}
             }
-            if(error.Length>0)GUI.Label(new Rect(50,1015,1800,55),error,small);
+            if(error.Length>0)LocalizedGUI.Label(new Rect(50,1015,1800,55),error,small);
             GUI.matrix=matrix;
         }
         private void DrawRescue()
@@ -318,13 +318,13 @@ namespace ArcaneBrigade
                 : pulling?(helpers<Mathf.Min(3,friends.Length)?"You reach for Hob. The others come to help.":"Everyone has hold of Hob. Nobody is pulling alone.")
                 : Vector2.Distance(position,hobFloor)<1.9f?"Press Space once. Reach for Hob; the others will help."
                 : "Hob is sitting in a chair of its own. Dust is settling on its shoulders.";
-            GUI.Label(new Rect(card.x+30,card.y+8,card.width-60,72),line,hand);
+            LocalizedGUI.Label(new Rect(card.x+30,card.y+8,card.width-60,72),line,hand);
             if(!rescued)
             {
                 ArcadeSkin.Line(new Rect(card.x+120,card.y+86,card.width-240,10),new Color(.1f,.08f,.08f,.6f));
                 ArcadeSkin.Line(new Rect(card.x+120,card.y+86,(card.width-240)*Mathf.Clamp01(pull/PullSeconds),10),ArcadeSkin.Accent);
                 Color was=small.normal.textColor;small.normal.textColor=new Color(.2f,.15f,.1f);
-                GUI.Label(new Rect(card.x+120,card.y+100,card.width-240,26),helpers+" PULLING",small);
+                LocalizedGUI.Label(new Rect(card.x+120,card.y+100,card.width-240,26),helpers+" PULLING",small);
                 small.normal.textColor=was;
             }
             GUI.matrix=popMatrix;GUI.color=popColour;

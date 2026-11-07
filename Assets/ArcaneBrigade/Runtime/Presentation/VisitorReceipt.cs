@@ -124,11 +124,11 @@ namespace ArcaneBrigade
             RarityDescriptionFrame.Draw(card, rarity, Time.unscaledTime);
             Rect inner = new Rect(card.x + 56, card.y + 30, card.width - 112, card.height - 60);
             heading.normal.textColor = ArcadeSkin.Gold;
-            GUI.Label(new Rect(inner.x, inner.y, inner.width, 44), "YOU RECEIVED", heading);
+            LocalizedGUI.Label(new Rect(inner.x, inner.y, inner.width, 44), "YOU RECEIVED", heading);
             body.normal.textColor = new Color(ArcadeSkin.Cream.r, ArcadeSkin.Cream.g, ArcadeSkin.Cream.b, .7f);
             receivedStyle ??= new GUIStyle(body) { alignment = TextAnchor.MiddleCenter, fontSize = 20 }; // made once, not every GUI pass
             receivedStyle.normal.textColor = body.normal.textColor;
-            GUI.Label(new Rect(inner.x, inner.y + 44, inner.width, 28), title, receivedStyle);
+            LocalizedGUI.Label(new Rect(inner.x, inner.y + 44, inner.width, 28), title, receivedStyle);
             float y = inner.y + 92, step = 0;
             foreach (int i in majors)
             {
@@ -146,14 +146,14 @@ namespace ArcaneBrigade
                 float scale = PresentationSettings.ReducedMotion ? 1 : Mathf.Lerp(.55f, 1, Mathf.SmoothStep(0, 1, rise)) * (1 + .08f * Mathf.Sin(Mathf.Clamp01((held - .45f) / .35f) * Mathf.PI));
                 float side = 108 * scale;
                 ShopDescriptionCard.DrawSprite(new Rect(treasure.x - side * .5f, treasure.y - side * .5f - bounce, side, side), l.Icon);
-                GUI.Label(new Rect(inner.x + 150, y - 4, textW, 40), l.Text, cardName);
+                LocalizedGUI.Label(new Rect(inner.x + 150, y - 4, textW, 40), l.Text, cardName);
                 Color tag = RunModifierRules.RarityColor(shown.Rarity);
                 body.normal.textColor = tag;
                 identityStyle ??= new GUIStyle(body) { fontSize = 22, wordWrap = false };
                 identityStyle.normal.textColor = body.normal.textColor;
                 // a friend you already had comes as a star-up, not a new friend; under the name with a gap
                 bool starUp = l.Friend && l.Text.Contains(" now ");
-                GUI.Label(new Rect(inner.x + 150, y + 42, textW, 26), (!l.Gain ? (l.Friend ? "LEFT · " : "GAVE AWAY · ") : starUp ? "STAR UP · " : l.Friend ? "NEW FRIEND · " : "NEW RELIC · ") + shown.Identity, identityStyle);
+                LocalizedGUI.Label(new Rect(inner.x + 150, y + 42, textW, 26), (!l.Gain ? (l.Friend ? "LEFT · " : "GAVE AWAY · ") : starUp ? "STAR UP · " : l.Friend ? "NEW FRIEND · " : "NEW RELIC · ") + shown.Identity, identityStyle);
                 GlossaryUI.Text(new Rect(inner.x + 150, y + 76, textW, rowH - 76), summary, cardLine);
                 GUI.matrix = lm; GUI.color = lc;
                 y += rowH + 16;
@@ -165,7 +165,7 @@ namespace ArcaneBrigade
                 LivingUI.Pop(Time.unscaledTime - shownAt - .12f - step++ * .08f, new Vector2(card.center.x, y + 24));
                 if (l.Icon != null) ShopDescriptionCard.DrawSprite(new Rect(inner.x + 40, y + 4, 40, 40), l.Icon);
                 body.normal.textColor = l.Gain ? new Color(.62f, .95f, .66f) : new Color(1f, .58f, .55f);
-                GUI.Label(new Rect(inner.x + 96, y, inner.width - 110, 48), l.Text, body);
+                LocalizedGUI.Label(new Rect(inner.x + 96, y, inner.width - 110, 48), l.Text, body);
                 GUI.matrix = lm; GUI.color = lc;
                 y += 50;
             }
@@ -230,13 +230,13 @@ namespace ArcaneBrigade
             float enter = Mathf.SmoothStep(0, 1, Mathf.Clamp01(age / .25f)), leave = Mathf.Clamp01((ToastSeconds - age) / .4f);
             string text = ""; Sprite icon = null;
             foreach (Line l in lines) { text += (text.Length > 0 ? "   ·   " : "") + l.Text; if (icon == null) icon = l.Icon; }
-            float width = Mathf.Clamp(body.CalcSize(new GUIContent(text)).x + (icon != null ? 150 : 80), 360, 1000);
+            float width = Mathf.Clamp(body.CalcSize(LocalizedGUI.Content(text)).x + (icon != null ? 150 : 80), 360, 1000);
             Rect strip = new Rect(960 - width * .5f, 150 - (1 - enter) * 30, width, 76);
             Color keep = GUI.color; GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * enter * leave);
             ArcadeSkin.Ticket(strip, ArcadeSkin.Paper, ArcadeSkin.Wax);
             if (icon != null) ShopDescriptionCard.DrawSprite(new Rect(strip.x + 26, strip.y + 10, 56, 56), icon);
             body.normal.textColor = new Color(.16f, .42f, .22f);
-            GUI.Label(new Rect(strip.x + (icon != null ? 100 : 30), strip.y, strip.width - (icon != null ? 120 : 60), strip.height), text, body);
+            LocalizedGUI.Label(new Rect(strip.x + (icon != null ? 100 : 30), strip.y, strip.width - (icon != null ? 120 : 60), strip.height), text, body);
             GUI.color = keep;
         }
     }

@@ -142,8 +142,8 @@ namespace ArcaneBrigade
                 if (icon != null) RunHud.Sprite(new Rect(r.x + 82 * k - 30 * k, r.center.y - 30 * k, 60 * k, 60 * k), icon);
                 Rect words = new Rect(r.x + 148 * k, r.y + 14 * k, r.width - 148 * k - 64 * k, r.height - 28 * k);
                 int size = line.fontSize;
-                while (line.fontSize > 20 && line.CalcHeight(new GUIContent(tip.Line), words.width) > words.height) line.fontSize--;
-                GUI.Label(words, tip.Line, line);
+                while (line.fontSize > 20 && line.CalcHeight(LocalizedGUI.Content(tip.Line), words.width) > words.height) line.fontSize--;
+                LocalizedGUI.Label(words, tip.Line, line);
                 line.fontSize = size;
             }
             else
@@ -152,7 +152,7 @@ namespace ArcaneBrigade
                 Highlight(r, Time.unscaledTime - shownAt, alpha);
                 Rect inner = ArcadeSkin.Content(r, KitFrame.Dialogue); // inside the painted rim and roses
                 if (icon != null) RunHud.Sprite(new Rect(inner.x, r.center.y - 34, 68, 68), icon);
-                GUI.Label(new Rect(inner.x + 84, r.y, inner.xMax - inner.x - 84, r.height), tip.Line, line);
+                LocalizedGUI.Label(new Rect(inner.x + 84, r.y, inner.xMax - inner.x - 84, r.height), tip.Line, line);
             }
             GUI.color = keep; GUI.matrix = keepMatrix;
             if (TouchTargets.Button(r, GUIContent.none, GUIStyle.none) && !LivingUI.Closing("guide-tip")) LivingUI.CloseThen("guide-tip", () => showing = null); // a tap closes it
@@ -221,7 +221,7 @@ namespace ArcaneBrigade
             Color keep = GUI.color; GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * alpha);
             ArcadeSkin.Ticket(r, ArcadeSkin.Ink, ArcadeSkin.Gold);
             Highlight(r, age, alpha);
-            GUI.Label(new Rect(r.x, r.y + 18, r.width, 50), "Reach the dawn", title);
+            LocalizedGUI.Label(new Rect(r.x, r.y + 18, r.width, 50), "Reach the dawn", title);
             RunCatalog c = owner.Content;
             Sprite[] icons = { c.Unit(owner.Session.State.ChampionId)?.Body, c.Bosses.Length > 0 ? c.Bosses[0].Body : null, c.Arena.Coin };
             string[] words = { "Survive 20 nights", "Every 4th night, a boss", "Between nights, spend in the shop" };
@@ -229,7 +229,7 @@ namespace ArcaneBrigade
             {
                 Rect cell = new Rect(r.x + 30 + i * 285, r.y + 80, 270, 200);
                 if (icons[i] != null) RunHud.Sprite(new Rect(cell.center.x - 50, cell.y, 100, 100), icons[i]);
-                GUI.Label(new Rect(cell.x, cell.y + 110, cell.width, 80), words[i], small);
+                LocalizedGUI.Label(new Rect(cell.x, cell.y + 110, cell.width, 80), words[i], small);
             }
             GUI.color = keep;
             if (TouchTargets.Button(r, GUIContent.none, GUIStyle.none)) goalAt = -100;
@@ -257,8 +257,8 @@ namespace ArcaneBrigade
                 ArcadeSkin.Ticket(card, ArcadeSkin.Ink, ArcadeSkin.Accent);
                 if (cards[i].icon != null) RunHud.Sprite(new Rect(card.center.x - 55, card.y + 18, 110, 110), cards[i].icon);
                 Rect inner = ArcadeSkin.Content(card, KitFrame.Dialogue); // inside the frame's rim with the standard padding
-                GUI.Label(new Rect(inner.x, card.y + 132, inner.width, 40), cards[i].head, head);
-                GUI.Label(new Rect(inner.x, card.y + 176, inner.width, inner.yMax - card.y - 176), cards[i].body, small);
+                LocalizedGUI.Label(new Rect(inner.x, card.y + 132, inner.width, 40), cards[i].head, head);
+                LocalizedGUI.Label(new Rect(inner.x, card.y + 176, inner.width, inner.yMax - card.y - 176), cards[i].body, small);
             }
         }
     }

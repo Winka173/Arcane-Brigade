@@ -932,16 +932,16 @@ namespace ArcaneBrigade
             Matrix4x4 previous = GUI.matrix;
             GUI.matrix = Matrix4x4.TRS(new Vector3(viewport.x, Screen.height - viewport.yMax, 0f), Quaternion.identity, Vector3.one * scale);
             GUI.Box(new Rect(52, 30, 1816, 80), GUIContent.none);
-            GUI.Label(new Rect(80, 43, 470, 50), "HP " + Mathf.CeilToInt(simulation.Champion.Health) + " / " + catalog.Champion.Health + "    GOLD " + simulation.Gold, label);
-            GUI.Label(new Rect(660, 43, 970, 50), "WAVE 1   " + Mathf.Max(0, Mathf.CeilToInt(catalog.WaveDuration - simulation.Elapsed)) + "s   KILLS " + simulation.Kills + "   ALLIES " + simulation.CompanionCount + "   RADIUS " + catalog.CompanionLeash.ToString("0.0"), label);
+            LocalizedGUI.Label(new Rect(80, 43, 470, 50), "HP " + Mathf.CeilToInt(simulation.Champion.Health) + " / " + catalog.Champion.Health + "    GOLD " + simulation.Gold, label);
+            LocalizedGUI.Label(new Rect(660, 43, 970, 50), "WAVE 1   " + Mathf.Max(0, Mathf.CeilToInt(catalog.WaveDuration - simulation.Elapsed)) + "s   KILLS " + simulation.Kills + "   ALLIES " + simulation.CompanionCount + "   RADIUS " + catalog.CompanionLeash.ToString("0.0"), label);
             if (TouchTargets.Button(new Rect(1695, 45, 145, 48), "PAUSE", button)) SetPaused(true);
-            GUI.Label(new Rect(70, 1015, 1780, 42), "Move: WASD / arrows / lower-left touch drag. Auto-combat.", label);
+            LocalizedGUI.Label(new Rect(70, 1015, 1780, 42), "Move: WASD / arrows / lower-left touch drag. Auto-combat.", label);
             if (simulation.Phase != RunPhase.Combat)
             {
                 GUI.Box(new Rect(590, 340, 740, 390), GUIContent.none);
                 string text = simulation.Phase == RunPhase.Paused ? "PAUSED" : simulation.Phase == RunPhase.Victory ? "WAVE SURVIVED" : "BRIGADE FALLEN";
-                GUI.Label(new Rect(620, 365, 680, 65), text, heading);
-                GUI.Label(new Rect(675, 445, 650, 50), "Kills: " + simulation.Kills + "    Collected gold: " + simulation.Gold, label);
+                LocalizedGUI.Label(new Rect(620, 365, 680, 65), text, heading);
+                LocalizedGUI.Label(new Rect(675, 445, 650, 50), "Kills: " + simulation.Kills + "    Collected gold: " + simulation.Gold, label);
                 if (TouchTargets.Button(new Rect(760, 520, 400, 60), simulation.Phase == RunPhase.Paused ? "RESUME" : "PLAY AGAIN", button))
                 {
                     if (simulation.Phase == RunPhase.Paused) SetPaused(false); else Begin();

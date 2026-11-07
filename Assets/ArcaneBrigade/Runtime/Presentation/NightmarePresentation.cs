@@ -224,11 +224,11 @@ namespace ArcaneBrigade
                 string[] lines = EndingLines(NightmareDialogue.Ending(owner.Session.State,page));
                 int line = Mathf.Clamp(endingLine, 1, Mathf.Max(1, lines.Length - 1));
                 bool more = line < lines.Length - 1;
-                if (lines.Length > 0) GUI.Label(new Rect(320,700,1280,44),lines[0],endingTitle);
-                if (line >= 2) GUI.Label(new Rect(320,752,1280,60),lines[line - 1],endingPrevious);
+                if (lines.Length > 0) LocalizedGUI.Label(new Rect(320,700,1280,44),lines[0],endingTitle);
+                if (line >= 2) LocalizedGUI.Label(new Rect(320,752,1280,60),lines[line - 1],endingPrevious);
                 float fresh = PresentationSettings.ReducedMotion ? 1 : Mathf.Clamp01((owner.PresentationClock - lineAt) / .35f);
                 Color keep = GUI.color; GUI.color = new Color(keep.r, keep.g, keep.b, keep.a * fresh);
-                if (lines.Length > 1) GUI.Label(new Rect(320,816,1280,140),lines[line],endingCurrent);
+                if (lines.Length > 1) LocalizedGUI.Label(new Rect(320,816,1280,140),lines[line],endingCurrent);
                 GUI.color = keep;
                 Rect next = new Rect(720,970,480,80);
                 // a tap anywhere on the page shows the next line (the button too)

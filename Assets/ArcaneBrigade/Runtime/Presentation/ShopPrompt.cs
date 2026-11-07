@@ -27,8 +27,8 @@ namespace ArcaneBrigade
             Matrix4x4 m = GUI.matrix; Color c = GUI.color;
             LivingUI.Pop(age, Frame.center);
             ArcadeSkin.Frame(Frame, KitFrame.Dialogue, .6f);
-            GUI.Label(new Rect(420, 858, 1080, 44), title, heading);
-            GUI.Label(new Rect(430, 900, 810, 76), plain, line);
+            LocalizedGUI.Label(new Rect(420, 858, 1080, 44), title, heading);
+            LocalizedGUI.Label(new Rect(430, 900, 810, 76), plain, line);
             bool pressed = ArcadeSkin.KitGuiButton(new Rect(1260, 916, 230, 56), verb, primary);
             GUI.matrix = m; GUI.color = c;
             return pressed;

@@ -163,7 +163,7 @@ namespace ArcaneBrigade
                 Rect tag = new Rect(Mathf.Clamp(x - 180, 20, 1540), Mathf.Clamp(y + 30, 180, 950), 360, 58);
                 ArcadeSkin.Ticket(tag, ArcadeSkin.Paper, ArcadeSkin.Wax);
                 hand.normal.textColor = new Color(.25f, .19f, .14f);
-                GUI.Label(tag, said, hand);
+                LocalizedGUI.Label(tag, said, hand);
                 if (available && TouchTargets.Button(tag, GUIContent.none, GUIStyle.none)) asking = true;
             }
             else
@@ -178,9 +178,9 @@ namespace ArcaneBrigade
                 Rect inner = ArcadeSkin.Content(card, KitFrame.Card);
                 ArcadeSkin.Seal(new Vector2(inner.xMax - 30, inner.y + 26), 46, "!");
                 hand.normal.textColor = new Color(.25f, .19f, .14f);
-                GUI.Label(new Rect(inner.x + 10, inner.y + 6, inner.width - 80, 140), "THE SHOPKEEPER: 'Not that one. Please. If you sit in it, you are in there alone with it — and if it keeps you, you do not get up.'", hand);
+                LocalizedGUI.Label(new Rect(inner.x + 10, inner.y + 6, inner.width - 80, 140), "THE SHOPKEEPER: 'Not that one. Please. If you sit in it, you are in there alone with it — and if it keeps you, you do not get up.'", hand);
                 plain.normal.textColor = new Color(.18f, .14f, .1f);
-                GUI.Label(new Rect(inner.x + 10, inner.y + 160, inner.width - 20, 120),
+                LocalizedGUI.Label(new Rect(inner.x + 10, inner.y + 160, inner.width - 20, 120),
                     "HIDDEN FIGHT · THE NIGHT YOU HID\nThe Bedside and the travellers it wakes fight like wave " + (state.Wave + ActOneCanon.SitWaveBonus) + ". Defeat it before the knocking stops (" + Mathf.RoundToInt(ActOneCanon.KnockSeconds) + " s).\nIf you lose, the journey ends here. Only once per journey.", plain);
                 float buttonsY = inner.yMax - 92;
                 if (ArcadeSkin.Button(new Rect(inner.center.x - 350, buttonsY, 320, 88), "SIT DOWN", KitButton.Danger, true, choice) && !CardPop.Closing("warm-chair")) CardPop.CloseThen("warm-chair", Sit);

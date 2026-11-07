@@ -139,7 +139,7 @@ namespace ArcaneBrigade
             float h = r.height * .34f;
             if (heart != null) RunHud.Sprite(new Rect(r.center.x - h * .5f, r.y + r.height * .2f, h, h), heart);
             sealText.fontSize = Mathf.RoundToInt(r.height * .26f);
-            GUI.Label(new Rect(r.x, r.y + r.height * .48f, r.width, r.height * .3f), "−" + price, sealText);
+            LocalizedGUI.Label(new Rect(r.x, r.y + r.height * .48f, r.width, r.height * .3f), "−" + price, sealText);
         }
 
         /// <summary>The painted buy button for an HP price (drawn over the button's own hit area).</summary>
