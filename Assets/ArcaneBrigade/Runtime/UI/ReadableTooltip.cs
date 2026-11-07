@@ -7,7 +7,8 @@ namespace ArcaneBrigade
     {
         private static string message;
         private static Rect anchor;
-        private static int seenFrame = -10, scene = -1;
+        private static int seenFrame = -10;
+        private static UnityEngine.SceneManagement.Scene scene; // the scene the tip was seen in; a new scene drops it
         private static float pinnedUntil;
         private GUIStyle copy;
         private readonly GUIContent content = new GUIContent();
@@ -31,13 +32,13 @@ namespace ArcaneBrigade
             if (Event.current.type != EventType.Repaint && !tap) return;
             Vector2 a = GUIUtility.GUIToScreenPoint(bounds.min), b = GUIUtility.GUIToScreenPoint(bounds.max);
             message = shown.tooltip; anchor = new Rect(a, b - a); seenFrame = Time.frameCount;
-            scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().handle;
+            scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
             if (tap) pinnedUntil = Time.unscaledTime + 4;
         }
         public static void Clear() { message = null; pinnedUntil = 0; seenFrame = -10; }
         private void OnGUI()
         {
-            if (scene != UnityEngine.SceneManagement.SceneManager.GetActiveScene().handle) { Clear(); return; }
+            if (scene != UnityEngine.SceneManagement.SceneManager.GetActiveScene()) { Clear(); return; }
             if (string.IsNullOrEmpty(message) || Time.frameCount - seenFrame > 1 && Time.unscaledTime >= pinnedUntil) return;
             GUI.depth = -10000;
             Matrix4x4 previous = GUI.matrix; Color tint = GUI.color;
