@@ -1,0 +1,253 @@
+// Temporary native Unity audit instrumentation. Copied into Runtime only while building the audit player.
+// No production behaviour is changed. Commands and all saves are isolated under a diagnostic path.
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+namespace ArcaneBrigade
+{
+    public sealed class UIUXAuditProbe : MonoBehaviour
+    {
+        public static bool Requested => Array.IndexOf(Environment.GetCommandLineArgs(), "-uiux-audit") >= 0;
+        [Serializable] public sealed class Command { public string id, op, value, name; public int number; public float x, y; }
+        [Serializable] public sealed class Element
+        {
+            public string text, tooltip, kind, caller, style, font;
+            public Rect rect; public bool enabled, over, hoverStyle, wrap;
+            public int fontSize; public float requiredHeight;
+        }
+        [Serializable] public sealed class Snapshot
+        {
+            public string id, status, error, scene, page, language, saveRoot;
+            public int width, height, navigationCount, navigationSelected;
+            public List<Element> controls = new List<Element>(), labels = new List<Element>();
+        }
+        // Window visibility only: no OS pointer, keyboard, focus or input APIs are used.
+        [DllImport("user32.dll")] private static extern bool ShowWindow(IntPtr hwnd, int command);
+        [DllImport("user32.dll")] private static extern uint GetWindowThreadProcessId(IntPtr hwnd, out uint process);
+        [DllImport("user32.dll")] private static extern bool EnumWindows(WindowVisitor callback, IntPtr parameter);
+        private delegate bool WindowVisitor(IntPtr hwnd, IntPtr parameter);
+        private static Vector2 virtualPointer = new Vector2(-10000, -10000);
+        private static bool virtualActivation;
+        private static UIUXAuditProbe active;
+        private static bool recording;
+        private static Snapshot sample;
+        private string bridge, output, lastId;
+        private bool busy;
+        private readonly List<string> errors = new List<string>();
+        private static readonly BindingFlags Hidden = BindingFlags.Instance | BindingFlags.NonPublic;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+        private static void Init()
+        {
+            if (!Requested || active != null) return;
+            var go = new GameObject("UI UX Audit Probe"); DontDestroyOnLoad(go);
+            active = go.AddComponent<UIUXAuditProbe>(); Application.runInBackground = true;
+        }
+        private void Awake()
+        {
+            string[] args = Environment.GetCommandLineArgs();
+            string Arg(string name, string fallback) { int i = Array.IndexOf(args, name); return i >= 0 && i + 1 < args.Length ? args[i + 1] : fallback; }
+            bridge = Path.GetFullPath(Arg("-audit-bridge", "Logs/UIUXAudit"));
+            output = Path.GetFullPath(Arg("-capturePath", "PreviewExports/UIUXAudit"));
+            Directory.CreateDirectory(bridge); Directory.CreateDirectory(output);
+            Application.logMessageReceived += Log;
+        }
+        private void Log(string message, string trace, LogType type)
+        { if (type == LogType.Error || type == LogType.Exception || type == LogType.Assert) errors.Add(message + "\n" + trace); }
+        private void OnDestroy() { Application.logMessageReceived -= Log; }
+        private IEnumerator Start()
+        {
+            yield return new WaitForSecondsRealtime(.5f);
+            uint identity = (uint)System.Diagnostics.Process.GetCurrentProcess().Id;
+            EnumWindows((hwnd, parameter) =>
+            {
+                GetWindowThreadProcessId(hwnd, out uint process);
+                if (process == identity) ShowWindow(hwnd, 4); // SW_SHOWNOACTIVATE: render without taking input focus.
+                return true;
+            }, IntPtr.Zero);
+        }
+        public static void ApplyPointer()
+        {
+            if (Requested && Event.current != null)
+                Event.current.mousePosition = GUIUtility.ScreenToGUIPoint(virtualPointer);
+        }
+        public static bool Activate(Rect bounds)
+        {
+            ApplyPointer();
+            if (!Requested || !virtualActivation || !GUI.enabled || Event.current.type != EventType.Repaint || !bounds.Contains(Event.current.mousePosition)) return false;
+            virtualActivation = false; return true;
+        }
+        public static float Slider(Rect bounds, float value, float minimum, float maximum)
+        {
+            ApplyPointer(); Record(bounds, new GUIContent("Volume slider"), GUI.skin.horizontalSlider);
+            return GUI.HorizontalSlider(bounds, value, minimum, maximum);
+        }
+        private static Rect ScreenRect(Rect rect)
+        {
+            Vector2 a = GUIUtility.GUIToScreenPoint(rect.min), b = GUIUtility.GUIToScreenPoint(rect.max);
+            return new Rect(a, b - a);
+        }
+        public static void Record(Rect rect, GUIContent content, GUIStyle style, bool label = false)
+        {
+            ApplyPointer();
+            if (!Requested || !recording || Event.current.type != EventType.Repaint) return;
+            Rect screen = ScreenRect(rect);
+            // Do not count the controls beyond a scroll's currently visible slice.
+            if (ScrollPanel.Inside && !ScrollPanel.Visible.Contains(rect.center)) return;
+            if (screen.xMax <= 0 || screen.yMax <= 0 || screen.x >= Screen.width || screen.y >= Screen.height) return;
+            var frames = new System.Diagnostics.StackTrace(1, false).GetFrames();
+            string caller = frames == null ? "" : string.Join(" > ", frames.Take(7).Select(f => f.GetMethod().DeclaringType?.Name + "." + f.GetMethod().Name));
+            var entry = new Element
+            {
+                text = content?.text ?? "", tooltip = content?.tooltip ?? "", kind = label ? "label" : "button",
+                caller = caller, rect = screen, enabled = GUI.enabled, over = rect.Contains(Event.current.mousePosition),
+                style = style?.name, font = style?.font?.name, fontSize = style?.fontSize ?? 0, wrap = style?.wordWrap ?? false,
+                hoverStyle = style != null && (style.hover.background != style.normal.background || style.hover.textColor != style.normal.textColor),
+                requiredHeight = style != null && content != null ? style.CalcHeight(content, rect.width) : 0
+            };
+            (label ? sample.labels : sample.controls).Add(entry);
+        }
+        private void Update()
+        {
+            if (busy) return;
+            string path = Path.Combine(bridge, "command.json");
+            if (!File.Exists(path)) return;
+            try
+            {
+                Command command = JsonUtility.FromJson<Command>(File.ReadAllText(path));
+                if (command == null || command.id == lastId) return;
+                lastId = command.id; busy = true;
+                StartCoroutine(Dispatch(command));
+            }
+            catch (Exception exception) { File.WriteAllText(Path.Combine(bridge, "read-error.txt"), exception.ToString()); }
+        }
+        private static object Get(object target, string name) => target.GetType().GetField(name, Hidden).GetValue(target);
+        private static void Put(object target, string name, object value) => target.GetType().GetField(name, Hidden).SetValue(target, value);
+        private PlayerProfile Profile()
+        {
+            var owner = FindAnyObjectByType<ArenaController>();
+            return owner != null ? owner.Profile : (PlayerProfile)Get(FindAnyObjectByType<RunMenu>(), "profile");
+        }
+        private void SetVirtualPointer(float x, float y)
+        {
+            virtualPointer = new Vector2(x, y);
+        }
+        private IEnumerator Capture(string name)
+        {
+            sample = new Snapshot(); recording = true;
+            yield return new WaitForEndOfFrame(); recording = false;
+            var menu = FindAnyObjectByType<RunMenu>();
+            sample.scene = SceneManager.GetActiveScene().name; sample.page = menu != null ? menu.CurrentPage.ToString() : "arena";
+            sample.language = GameLocalization.Language; sample.width = Screen.width; sample.height = Screen.height;
+            if (menu != null)
+            {
+                var nav = (ArcadeNavigation)Get(menu, "navigation");
+                sample.navigationCount = ((System.Collections.ICollection)Get(nav, "controls")).Count;
+                sample.navigationSelected = nav.Selected;
+            }
+            sample.saveRoot = RunPaths.Root; sample.status = "captured";
+            Texture2D screenshot = ScreenCapture.CaptureScreenshotAsTexture();
+            File.WriteAllBytes(Path.Combine(output, name + ".png"), screenshot.EncodeToPNG()); Destroy(screenshot);
+            File.WriteAllText(Path.Combine(output, name + ".json"), JsonUtility.ToJson(sample, true));
+        }
+        private IEnumerator Dispatch(Command c)
+        {
+            string error = null;
+            var menu = FindAnyObjectByType<RunMenu>(); var owner = FindAnyObjectByType<ArenaController>();
+            try
+            {
+                switch (c.op)
+                {
+                    case "page": menu.Hub.Close(); menu.ShowPage((RunMenu.Page)Enum.Parse(typeof(RunMenu.Page), c.value)); break;
+                    case "language":
+                        Profile().Language = c.value; PresentationSettings.Apply(Profile()); new RunStorage(RunPaths.Root).SaveProfile(Profile()); break;
+                    case "fixture":
+                        var p = Profile(); p.TutorialSeen = true; p.BestWave = 40; p.TotalKills = 5000; p.Wins = 5;
+                        MetaProgression.Ensure(p); p.Meta.LampOil = 2000; p.Meta.Keepsakes = 50; p.Meta.WonMask = 31;
+                        var catalog = Resources.Load<RunCatalog>("RunCatalog");
+                        p.SeenUnits = catalog.Champions.Concat(catalog.Companions).Concat(catalog.Bosses).Concat(catalog.Enemies).Select(u => u.Id).ToList();
+                        p.SeenItems = catalog.Items.Select(i => i.Id).ToList(); p.SeenWeapons = catalog.Weapons.Select(w => w.Id).ToList();
+                        new RunStorage(RunPaths.Root).SaveProfile(p); break;
+                    case "hub": menu.ShowPage(RunMenu.Page.Hub); menu.Hub.OpenStation((MetaStation)Enum.Parse(typeof(MetaStation), c.value)); break;
+                    case "branch": menu.Hub.FocusLampBranch(c.number); break;
+                    case "lamp": menu.Hub.PickLantern(c.value); break;
+                    case "select": Put(menu, "selection", c.number); break;
+                    case "roster-overlay": Put(menu, c.value, Time.unscaledTime); break;
+                    case "scroll":
+                        if (c.value == "settings") typeof(SettingsSheet).GetField("scroll", BindingFlags.NonPublic | BindingFlags.Static).SetValue(null, new Vector2(0, c.y));
+                        else Put(menu, "scroll", new Vector2(0, c.y)); break;
+                    case "pause": owner.TogglePause(); break;
+                    case "pause-page": Put(Get(owner, "runHud"), "pausePage", c.number); break;
+                    case "details": owner.ToggleDetails(); break;
+                    case "tab": owner.Details.SelectTab(c.number); break;
+                    case "shop-focus":
+                        var station = owner.Shop.Stations.FirstOrDefault(s => s.Offer != null && (c.number < 0 || s.Offer.Kind == (OfferKind)c.number));
+                        if (station != null) owner.Simulation.Champion.Position = owner.Simulation.Champion.PreviousPosition = station.Position + Vector2.down * .4f; break;
+                    case "move": owner.SetPresentationMoveTarget(new Vector2(c.x, c.y)); break;
+                    case "shop-detail": Put(Get(owner, "runHud"), "shopDetails", true); break;
+                    case "return-confirm": owner.RequestMenuReturn(); break;
+                    case "resize": Screen.SetResolution((int)c.x, (int)c.y, FullScreenMode.Windowed); break;
+                    case "pointer": SetVirtualPointer(c.x, c.y); break;
+                    case "activate": SetVirtualPointer(c.x, c.y); virtualActivation = true; break;
+                    case "navigation":
+                        var nav = (ArcadeNavigation)Get(menu, "navigation");
+                        for (int move = 0; move < c.number; move++) nav.Move(1);
+                        break;
+                    case "glossary": GlossaryUI.Show(c.value); break;
+                    case "quit": File.WriteAllText(Path.Combine(bridge, "response.json"), JsonUtility.ToJson(new Snapshot { id = c.id, status = "ok" })); Application.Quit(0); yield break;
+                }
+            }
+            catch (Exception exception) { error = exception.ToString(); }
+            if (error == null && c.op == "load")
+            {
+                var storage = new RunStorage(RunPaths.Root); var catalog = Resources.Load<RunCatalog>("RunCatalog");
+                using (var session = new RunSession(catalog))
+                {
+                    session.Start(catalog.Champions[0].Id, 170011, 0); session.State.Wave = Mathf.Max(1, c.number);
+                    session.State.Gold = c.value == "poor" ? 0 : 10000;
+                    if (c.value == "shop" || c.value == "poor") { session.State.Phase = SessionPhase.Shop; session.State.Eggs = 20; }
+                    if (session.State.Phase == SessionPhase.Shop)
+                    {
+                        session.State.Offers.Clear();
+                        session.State.Offers.Add(new ShopOffer { Token = ++session.State.NextOffer, Id = catalog.Companions[0].Id, Kind = OfferKind.Companion, Price = 20 });
+                        session.State.Offers.Add(new ShopOffer { Token = ++session.State.NextOffer, Id = catalog.Items[0].Id, Kind = OfferKind.Item, Price = 10 });
+                        session.State.Offers.Add(new ShopOffer { Token = ++session.State.NextOffer, Id = catalog.Items[1].Id, Kind = OfferKind.Item, Price = 50 });
+                    }
+                    foreach (var item in catalog.Items.Take(8)) session.State.Items.Add(new ItemStack { Id = item.Id, Count = 1 });
+                    storage.SaveRun(session.State);
+                }
+                RunLaunch.Resume = true; SceneManager.LoadScene("RunArena");
+                yield return new WaitForSecondsRealtime(4);
+            }
+            yield return new WaitForSecondsRealtime(.65f);
+            if (c.op == "sweep" && error == null)
+            {
+                SetVirtualPointer(1, Screen.height - 1); yield return new WaitForSecondsRealtime(.3f);
+                yield return Capture(c.name + "-baseline");
+                Element[] controls = sample.controls.ToArray();
+                var manifest = new List<Element>();
+                for (int i = 0; i < controls.Length; i++)
+                {
+                    Element target = controls[i];
+                    if (target.rect.width < 2 || target.rect.height < 2) continue;
+                    SetVirtualPointer(target.rect.center.x, target.rect.center.y);
+                    yield return new WaitForSecondsRealtime(.3f);
+                    yield return Capture(c.name + "-hover-" + i.ToString("D3"));
+                    manifest.Add(target);
+                }
+                SetVirtualPointer(1, Screen.height - 1);
+            }
+            else if (!string.IsNullOrEmpty(c.name) && error == null) yield return Capture(c.name);
+            File.WriteAllText(Path.Combine(output, "runtime-errors.txt"), string.Join("\n", errors));
+            File.WriteAllText(Path.Combine(bridge, "response.json"), JsonUtility.ToJson(new Snapshot { id = c.id, status = error == null ? "ok" : "error", error = error }));
+            busy = false;
+        }
+    }
+}

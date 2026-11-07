@@ -950,14 +950,23 @@ namespace ArcaneBrigade
                 ArcadeSkin.Line(new Rect(pause.x + 21 * k, pause.y + 14 * k, 8 * k, 24 * k), ArcadeSkin.Ink);
                 ArcadeSkin.Line(new Rect(pause.x + 36 * k, pause.y + 14 * k, 8 * k, 24 * k), ArcadeSkin.Ink);
             }
-            // the brigade book, drawn on the 64 grid and scaled to the button
-            ArcadeSkin.Line(new Rect(details.x + 16 * k, details.y + 12 * k, 33 * k, 28 * k), ArcadeSkin.Ink);
-            ArcadeSkin.Line(new Rect(details.x + 19 * k, details.y + 15 * k, 27 * k, 22 * k), ArcadeSkin.Paper);
-            ArcadeSkin.Line(new Rect(details.x + 31 * k, details.y + 15 * k, 3 * k, 22 * k), ArcadeSkin.Ink);
-            for (int line = 0; line < 3; line++)
+            // A painted leather journal matches the brass medallion and the brigade's storybook pages.
+            // Keep the existing hit region, placement and action; only the central artwork changes.
+            Sprite brigadeBook = ArcadeSkin.KitSprite("HUD/BrigadeBook");
+            if (brigadeBook != null)
             {
-                ArcadeSkin.Line(new Rect(details.x + 22 * k, details.y + (18 + line * 6) * k, 6 * k, 2 * k), ArcadeSkin.Ink);
-                ArcadeSkin.Line(new Rect(details.x + 37 * k, details.y + (18 + line * 6) * k, 6 * k, 2 * k), ArcadeSkin.Ink);
+                Sprite(new Rect(details.x + 9 * k, details.y + 6 * k, 46 * k, 44 * k), brigadeBook);
+            }
+            else
+            {
+                ArcadeSkin.Line(new Rect(details.x + 16 * k, details.y + 12 * k, 33 * k, 28 * k), ArcadeSkin.Ink);
+                ArcadeSkin.Line(new Rect(details.x + 19 * k, details.y + 15 * k, 27 * k, 22 * k), ArcadeSkin.Paper);
+                ArcadeSkin.Line(new Rect(details.x + 31 * k, details.y + 15 * k, 3 * k, 22 * k), ArcadeSkin.Ink);
+                for (int line = 0; line < 3; line++)
+                {
+                    ArcadeSkin.Line(new Rect(details.x + 22 * k, details.y + (18 + line * 6) * k, 6 * k, 2 * k), ArcadeSkin.Ink);
+                    ArcadeSkin.Line(new Rect(details.x + 37 * k, details.y + (18 + line * 6) * k, 6 * k, 2 * k), ArcadeSkin.Ink);
+                }
             }
             string hint = pause.Contains(Event.current.mousePosition) ? RunUIHints.Pause(RunUIHints.Device) : details.Contains(Event.current.mousePosition) ? RunUIHints.Details(RunUIHints.Device) : null;
             if (hint == null) return;
