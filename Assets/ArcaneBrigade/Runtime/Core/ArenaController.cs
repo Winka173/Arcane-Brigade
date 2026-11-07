@@ -501,6 +501,7 @@ namespace ArcaneBrigade
                 MetaNotice = delta > 0 ? (delta == 1 ? "1 NEW FIND" : delta + " NEW FINDS") + " IN THE MUSEUM" : "";
             }
             catch (Exception exception) { SaveError = "Run saved; profile save failed: " + exception.Message; }
+            CloudSync.Checkpoint(profile, storage, false); // cloud save: an upload at most once a minute during a run
             return true;
         }
 
@@ -694,7 +695,7 @@ namespace ArcaneBrigade
         }
 
         private void OnApplicationFocus(bool focus) { if (!RunPaths.Diagnostic) { pauseGate.FocusLost = !focus; AudioListener.pause = pauseGate.FocusLost || pauseGate.Backgrounded; if (simulation != null) ApplyPause(); } }
-        private void OnApplicationPause(bool paused) { pauseGate.Backgrounded = paused; AudioListener.pause = pauseGate.FocusLost || pauseGate.Backgrounded; if (simulation != null) ApplyPause(); if (paused) PersistBoundary(); }
+        private void OnApplicationPause(bool paused) { pauseGate.Backgrounded = paused; AudioListener.pause = pauseGate.FocusLost || pauseGate.Backgrounded; if (simulation != null) ApplyPause(); if (paused && PersistBoundary()) CloudSync.Checkpoint(profile, storage, true); }
 
         /// <summary>The views of everything that moves (units, shots, coins): never part of the room.</summary>
         private bool OnScreen(Vector2 at) { Vector3 v = arenaCamera.WorldToViewportPoint(at); return v.x > -.05f && v.x < 1.05f && v.y > -.05f && v.y < 1.05f; }

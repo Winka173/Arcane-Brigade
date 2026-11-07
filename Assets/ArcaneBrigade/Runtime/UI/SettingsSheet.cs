@@ -100,6 +100,8 @@ namespace ArcaneBrigade
             // the UI style: the painted kit, or drawn by hand in code
             int style = Choice(label, ref y, "UI style", new[] { "Painted", "Crafted" }, profile.UiCrafted ? 1 : 0);
             if (style >= 0) { bool before = profile.UiCrafted; profile.UiCrafted = style == 1; Changed(() => profile.UiCrafted = before); }
+            // cloud save (phones, between runs): the save in the player's own Google Drive; nothing changes until they connect
+            if (!inRun && CloudSync.Offered) CloudRows(label, ref y);
             // the one-time tips and the first-run coach, shown again from the next moment they apply
             label(Shift(new Rect(75, y + 8, 330, 36)), "Tips");
             if (Button(new Rect(420, y, 380, RowControl), "Show tips again"))
@@ -114,6 +116,50 @@ namespace ArcaneBrigade
             origin = at;
         }
         private const float RowStep = 66, RowControl = 50;
+        /// <summary>Cloud save: connect or disconnect Google, automatic sync, the last sync with Sync now, and the restore points.</summary>
+        private static void CloudRows(Action<Rect, string> label, ref float y)
+        {
+            Header(label, ref y, "Cloud save");
+            bool connected = CloudSync.Connected, busy = CloudSync.Busy;
+            bool wasEnabled = GUI.enabled;
+            label(Shift(new Rect(75, y + 8, 330, 36)), "Google Drive");
+            CloudStatus status = CloudSync.Status;
+            label(Shift(new Rect(420, y + 8, 395, 36)), connected && (status == CloudStatus.Idle || status == CloudStatus.Working) ? "Connected" : CloudSync.StatusLine());
+            GUI.enabled = wasEnabled && !busy;
+            if (Button(new Rect(825, y, 380, RowControl), connected ? "Disconnect" : "Connect Google"))
+            {
+                CheckpointAudio.PlayInterfaceId("ui.setting");
+                if (connected) CloudSync.Disconnect(); else CloudSync.Connect();
+            }
+            GUI.enabled = wasEnabled;
+            y += RowStep;
+            if (connected)
+            {
+                int auto = Choice(label, ref y, "Auto sync", new[] { "Off", "On" }, CloudSync.Auto ? 1 : 0);
+                if (auto >= 0) { CheckpointAudio.PlayInterfaceId("ui.setting"); CloudSync.SetAuto(auto == 1); }
+                label(Shift(new Rect(75, y + 8, 330, 36)), "Last synced");
+                label(Shift(new Rect(420, y + 8, 395, 36)), status == CloudStatus.Working ? "Syncing…" : CloudSync.LastSynced());
+                string action = status == CloudStatus.Conflict ? "Choose a save" : status == CloudStatus.AuthNeeded ? "Allow access" : "Sync now";
+                GUI.enabled = wasEnabled && !busy;
+                if (Button(new Rect(825, y, 380, RowControl), action))
+                {
+                    CheckpointAudio.PlayInterfaceId("ui.setting");
+                    if (status == CloudStatus.Conflict) CloudSaveCard.OpenConflict(); else CloudSync.SyncNow();
+                }
+                GUI.enabled = wasEnabled;
+                y += RowStep;
+            }
+            int points = CloudSync.BackupCount;
+            if (connected || points > 0)
+            {
+                label(Shift(new Rect(75, y + 8, 330, 36)), "Restore");
+                label(Shift(new Rect(420, y + 8, 395, 36)), points == 0 ? "No restore points yet" : points == 1 ? "1 restore point" : points + " restore points");
+                GUI.enabled = wasEnabled && points > 0 && !busy;
+                if (Button(new Rect(825, y, 380, RowControl), "Restore…")) { CheckpointAudio.PlayInterfaceId("ui.setting"); CloudSaveCard.OpenRestore(); }
+                GUI.enabled = wasEnabled;
+                y += RowStep;
+            }
+        }
         /// <summary>PC: window mode, resolution (many sizes: a stepper with its arrows), and the frame pace.</summary>
         private static void DesktopScreen(Action<Rect, string> label, ref float y)
         {

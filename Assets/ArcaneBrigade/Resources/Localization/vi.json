@@ -5,6 +5,10 @@
       "target": " (đang chọn)"
     },
     {
+      "source": " restore points",
+      "target": " điểm khôi phục"
+    },
+    {
       "source": "\"Art of Food\" Roshi",
       "target": "\"Nghệ thuật ẩm thực\" Roshi"
     },
@@ -927,6 +931,10 @@
     {
       "source": "1 of 3",
       "target": "1 trên 3"
+    },
+    {
+      "source": "1 restore point",
+      "target": "1 điểm khôi phục"
     },
     {
       "source": "25 GOLD / ALTERNATE REWARD",
@@ -3149,6 +3157,14 @@
       "target": "Tất cả cùng nhau ngay bây giờ!"
     },
     {
+      "source": "Allow access",
+      "target": "Cho phép truy cập"
+    },
+    {
+      "source": "Allow access again",
+      "target": "Cho phép truy cập lại"
+    },
+    {
       "source": "Allow me.",
       "target": "Cho phép tôi."
     },
@@ -3777,6 +3793,10 @@
       "target": "Tự động tấn công"
     },
     {
+      "source": "Auto sync",
+      "target": "Tự đồng bộ"
+    },
+    {
       "source": "Auto-attack · immortal\nArrows: weapon · 1–3: tier\nT: target · R: retry\nEsc: back",
       "target": "Tự động tấn công · bất tử\nMũi tên: vũ khí · 1–3: cấp\nT: mục tiêu · R: thử lại\nEsc: quay lại"
     },
@@ -4269,6 +4289,14 @@
       "target": "Bọ cánh cứng"
     },
     {
+      "source": "Before restoring",
+      "target": "Trước khi khôi phục"
+    },
+    {
+      "source": "Before using the Drive save",
+      "target": "Trước khi dùng bản trên Drive"
+    },
+    {
       "source": "Before.\n\nA late message lights the dark flat: 'See you tomorrow?'\n\nYou do not answer yet. It has been a long time since anyone asked. You lie down on the sofa beside the empty armchair and tell yourself you will reply in the morning.\n\nThe armchair is the last thing you see. You do not remember it being turned toward you.",
       "target": "Trước đây.\n\nMột tin nhắn muộn chiếu sáng căn hộ tối tăm: 'Hẹn gặp lại ngày mai nhé?'\n\nBạn vẫn chưa trả lời. Lâu lắm rồi mới có người hỏi. Bạn nằm xuống chiếc ghế sofa bên cạnh chiếc ghế bành trống và tự nhủ rằng sáng mai bạn sẽ trả lời.\n\nChiếc ghế bành là thứ cuối cùng bạn nhìn thấy. Bạn không nhớ nó đang hướng về phía bạn."
     },
@@ -4331,6 +4359,10 @@
     {
       "source": "Best today: night",
       "target": "Đẹp nhất hôm nay: đêm"
+    },
+    {
+      "source": "Best wave",
+      "target": "Đợt cao nhất"
     },
     {
       "source": "Bet",
@@ -6385,6 +6417,10 @@
       "target": "Choo choo, niềm say mê!"
     },
     {
+      "source": "Choose a save",
+      "target": "Chọn bản lưu"
+    },
+    {
       "source": "Choose an approach in BRIGADE > STATS while resting. Changes apply next battle. No extra combat input required: the gauge transforms you by itself.",
       "target": "Chọn cách tiếp cận trong BRIGADE > THỐNG KÊ trong khi nghỉ ngơi. Những thay đổi áp dụng cho trận chiến tiếp theo. Không cần thêm đầu vào chiến đấu: thước đo sẽ tự biến đổi bạn."
     },
@@ -6619,6 +6655,10 @@
     {
       "source": "Cloud Scissors",
       "target": "Kéo đám mây"
+    },
+    {
+      "source": "Cloud save",
+      "target": "Lưu đám mây"
     },
     {
       "source": "Clover",
@@ -6985,8 +7025,16 @@
       "target": "Xung đột tiến trình bí mật"
     },
     {
+      "source": "Connect Google",
+      "target": "Kết nối Google"
+    },
+    {
       "source": "Connect active hot trails",
       "target": "Kết nối những con đường nóng đang hoạt động"
+    },
+    {
+      "source": "Connected",
+      "target": "Đã kết nối"
     },
     {
       "source": "Connected relics: Coin Compass, Wandering Map. No hidden set bonus.",
@@ -7119,6 +7167,10 @@
     {
       "source": "Could one of yours walk with me for a while?",
       "target": "Bạn có thể đi dạo cùng tôi một lúc được không?"
+    },
+    {
+      "source": "Couldn't sync · save safe",
+      "target": "Chưa đồng bộ · dữ liệu an toàn"
     },
     {
       "source": "Count them. Count them!",
@@ -8045,6 +8097,10 @@
       "target": "Đĩa"
     },
     {
+      "source": "Disconnect",
+      "target": "Ngắt kết nối"
+    },
+    {
       "source": "Discoveries require recorded activations/damage/healing, not merely equipping or viewing a graph.",
       "target": "Khám phá yêu cầu kích hoạt/sát thương/hồi máu được ghi lại, không chỉ đơn thuần là trang bị hoặc xem biểu đồ."
     },
@@ -8395,6 +8451,10 @@
     {
       "source": "Drinks cost 25% less.",
       "target": "Giá đồ uống giảm 25%."
+    },
+    {
+      "source": "Drive save not used",
+      "target": "Bản trên Drive không được dùng"
     },
     {
       "source": "Drop a 1-HP heart every 5 seconds in combat.",
@@ -10345,6 +10405,10 @@
       "target": "Tìm vật phẩm này trong quá trình chạy. Xem hoặc thử nghiệm không mở khóa nó."
     },
     {
+      "source": "Finds, records and achievements from both are kept either way.",
+      "target": "Vật đã tìm thấy, kỷ lục và thành tích của cả hai đều được giữ."
+    },
+    {
       "source": "Finish Sleepless or harder with",
       "target": "Kết thúc Mất ngủ hoặc khó khăn hơn với"
     },
@@ -11687,6 +11751,10 @@
     {
       "source": "Good. We can save a little strength for breakfast.",
       "target": "Tốt. Chúng ta có thể tiết kiệm một chút sức lực cho bữa sáng."
+    },
+    {
+      "source": "Google Drive is full",
+      "target": "Google Drive đã đầy"
     },
     {
       "source": "Grabs the first enemy (100%), reels it in and flings it sideways into others (60%). Bosses only take the hit.",
@@ -14541,6 +14609,10 @@
       "target": "GIỮ KỶ NIỆM"
     },
     {
+      "source": "KEEP THIS DEVICE",
+      "target": "GIỮ THIẾT BỊ NÀY"
+    },
+    {
       "source": "KILLS",
       "target": "GIẾT NGƯỜI"
     },
@@ -14763,6 +14835,10 @@
     {
       "source": "Keg",
       "target": "Thùng"
+    },
+    {
+      "source": "Kept before anything replaced your save. Tap twice to restore.",
+      "target": "Được lưu trước khi bản lưu bị thay. Chạm hai lần để khôi phục."
     },
     {
       "source": "Kept from a Postbox letter; it rides along from the first wave.",
@@ -15235,6 +15311,10 @@
     {
       "source": "Last night your reflection kept moving after you stopped. You met it on the other side of the glass.",
       "target": "Đêm qua hình ảnh phản chiếu của bạn vẫn tiếp tục chuyển động sau khi bạn dừng lại. Bạn đã gặp nó ở phía bên kia của tấm kính."
+    },
+    {
+      "source": "Last synced",
+      "target": "Lần đồng bộ cuối"
     },
     {
       "source": "Last time I stopped you. Not now.",
@@ -17729,8 +17809,16 @@
       "target": "Chưa có di tích nào. Mua chúng từ các cửa hàng ở phần còn lại."
     },
     {
+      "source": "No restore points yet",
+      "target": "Chưa có điểm khôi phục"
+    },
+    {
       "source": "No return to sender!",
       "target": "Không trả lại cho người gửi!"
+    },
+    {
+      "source": "No run in play",
+      "target": "Không có lượt đang chơi"
     },
     {
       "source": "No running on the wet floor. That is my job.",
@@ -17869,6 +17957,10 @@
       "target": "Hiện không có sẵn"
     },
     {
+      "source": "Not connected",
+      "target": "Chưa kết nối"
+    },
+    {
       "source": "Not defeated yet",
       "target": "Chưa bị đánh bại"
     },
@@ -17959,6 +18051,10 @@
     {
       "source": "Not ready",
       "target": "Chưa sẵn sàng"
+    },
+    {
+      "source": "Not synced yet",
+      "target": "Chưa đồng bộ"
     },
     {
       "source": "Not that chair. Please.",
@@ -18263,6 +18359,10 @@
     {
       "source": "Office Lens",
       "target": "Ống kính văn phòng"
+    },
+    {
+      "source": "Offline · syncs later",
+      "target": "Ngoại tuyến · đồng bộ sau"
     },
     {
       "source": "Offset reflections repeat a narrow strike after the original. Higher forms cross their sightlines.",
@@ -19405,6 +19505,10 @@
       "target": "Chọn một cái để xem nó làm được gì."
     },
     {
+      "source": "Pick the one to keep. The other stays as a restore point.",
+      "target": "Chọn bản muốn giữ. Bản còn lại được giữ làm điểm khôi phục."
+    },
+    {
       "source": "Pick them up. Gold buys in the shop, dreamsand in the dream shop.",
       "target": "Nhặt chúng lên. Vàng mua trong cửa hàng, giấc mơ và trong cửa hàng giấc mơ."
     },
@@ -20173,6 +20277,18 @@
       "target": "NGHỈ NGƠI"
     },
     {
+      "source": "RESTORE",
+      "target": "KHÔI PHỤC"
+    },
+    {
+      "source": "RESTORE NOW",
+      "target": "KHÔI PHỤC NGAY"
+    },
+    {
+      "source": "RESTORE POINTS",
+      "target": "ĐIỂM KHÔI PHỤC"
+    },
+    {
       "source": "RESTORE PURCHASE",
       "target": "KHÔI PHỤC MUA HÀNG"
     },
@@ -20837,6 +20953,14 @@
       "target": "Khâu lại"
     },
     {
+      "source": "Restore",
+      "target": "Khôi phục"
+    },
+    {
+      "source": "Restore…",
+      "target": "Khôi phục…"
+    },
+    {
       "source": "Resume",
       "target": "Tiếp tục"
     },
@@ -21147,6 +21271,10 @@
     {
       "source": "Run for 2s without stopping and you gain +25% move speed.",
       "target": "Chạy không ngừng trong 2 giây và bạn nhận được +25% tốc độ di chuyển."
+    },
+    {
+      "source": "Run in play: wave",
+      "target": "Lượt đang chơi: đợt"
     },
     {
       "source": "Run save rejected:",
@@ -23969,6 +24097,18 @@
       "target": "Dùng kiếm thì áp sát, dùng cung thì giữ khoảng cách."
     },
     {
+      "source": "Sync now",
+      "target": "Đồng bộ ngay"
+    },
+    {
+      "source": "Synced",
+      "target": "Đã đồng bộ"
+    },
+    {
+      "source": "Syncing…",
+      "target": "Đang đồng bộ…"
+    },
+    {
       "source": "TA-DA!",
       "target": "TA-DA!"
     },
@@ -24703,6 +24843,10 @@
     {
       "source": "TWIN TAILS",
       "target": "ĐUÔI KÉP"
+    },
+    {
+      "source": "TWO SAVES DIFFER",
+      "target": "HAI BẢN LƯU KHÁC NHAU"
     },
     {
       "source": "Ta-da!",
@@ -27373,6 +27517,10 @@
       "target": "Chương này không có trang cuối."
     },
     {
+      "source": "This device",
+      "target": "Thiết bị này"
+    },
+    {
       "source": "This effect does not trigger other item effects.",
       "target": "Hiệu ứng này không kích hoạt các hiệu ứng vật phẩm khác."
     },
@@ -28213,6 +28361,10 @@
       "target": "Chạy hai nghi thức."
     },
     {
+      "source": "Two saves differ",
+      "target": "Hai bản lưu khác nhau"
+    },
+    {
       "source": "Two that must fall together.",
       "target": "Hai cái đó phải rơi vào nhau."
     },
@@ -28235,6 +28387,10 @@
     {
       "source": "USE",
       "target": "DÙNG"
+    },
+    {
+      "source": "USE DRIVE SAVE",
+      "target": "DÙNG BẢN TRÊN DRIVE"
     },
     {
       "source": "Umbrella",
@@ -28367,6 +28523,10 @@
     {
       "source": "Up you go. On the pile.|grunting lift",
       "target": "Cố lên nào. Trên đống.|thang máy gầm gừ"
+    },
+    {
+      "source": "Update the game to sync",
+      "target": "Cập nhật game để đồng bộ"
     },
     {
       "source": "Upgrade stacks for this run.",

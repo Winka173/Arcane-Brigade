@@ -163,6 +163,49 @@ namespace ArcaneBrigade
             scroll = sandboxReturnScroll;
         }
         private void OnDisable() { CloseWeaponSandbox(); museum.Close(); }
+        private void OnDestroy() { if (profile != null) CloudSync.Detach(profile); }
+        /// <summary>Progress merged from another device was written into this profile: what the menu derives from it follows.</summary>
+        private void OnCloudProgress()
+        {
+            difficulty = Mathf.Clamp(difficulty, 0, RunMeta.UnlockedDifficulty(profile));
+            if (Deluxe.DifficultyLocked(difficulty)) difficulty = Deluxe.FirstDeluxeDifficulty - 1;
+            ArcadeSkin.Bundle = profile.Cosmetic;
+        }
+        /// <summary>The run in play from another device (or "" when it ended there): the run on this device is moved into ArchivedRuns,
+        /// never deleted, and the arriving one is checked like any run save before it is written.</summary>
+        private void OnCloudRun(string payload)
+        {
+            RunSnapshot arriving = null;
+            if (!string.IsNullOrEmpty(payload))
+            {
+                try
+                {
+                    arriving = DifficultySaveMigration.ForRead(JsonUtility.FromJson<RunSnapshot>(payload));
+                    using (var session = new RunSession(catalog)) session.Validate(arriving);
+                }
+                catch (Exception exception) { Debug.LogWarning("Run from another device refused: " + exception.Message); return; }
+            }
+            try
+            {
+                // an older moment of the same run is simply replaced; a different run is kept aside first
+                string localPayload = storage.ReadRunPayload();
+                RunSnapshot here = null;
+                try { here = string.IsNullOrEmpty(localPayload) ? null : JsonUtility.FromJson<RunSnapshot>(localPayload); } catch { }
+                bool sameRun = here != null && arriving != null && here.RunId == arriving.RunId;
+                string archive = Path.Combine(RunPaths.Root, "ArchivedRuns", "Cloud_" + DateTime.UtcNow.ToString("yyyyMMddHHmmss"));
+                bool moved = false;
+                if (!sameRun) foreach (string name in new[] { "run.json", "run.json.bak" })
+                {
+                    string source = Path.Combine(RunPaths.Root, name);
+                    if (!File.Exists(source)) continue;
+                    Directory.CreateDirectory(archive);
+                    File.Move(source, Path.Combine(archive, name)); moved = true;
+                }
+                if (arriving != null) storage.SaveRun(arriving);
+                if (moved || arriving != null) ReloadSaveSummary();
+            }
+            catch (Exception exception) { Debug.LogWarning("Run from another device not saved: " + exception.Message); }
+        }
         /// <summary>A run still in play can be continued; a finished one (lost or won) cannot: its summary was shown and recorded already (play-test 27/10/2026).</summary>
         public static bool CanResumeSnapshot(RunSnapshot snapshot) => snapshot != null && Enum.IsDefined(typeof(SessionPhase), snapshot.Phase) && snapshot.Phase != SessionPhase.Victory && snapshot.Phase != SessionPhase.Defeat;
         private bool CanResume => CanResumeSnapshot(saved);
@@ -182,6 +225,7 @@ namespace ArcaneBrigade
             }
             ReloadSaveSummary();
             PresentationSettings.Apply(profile);
+            CloudSync.Attach(profile, storage, OnCloudProgress, OnCloudRun); // phones, once the player connected Google: their other devices' save
             if (FindAnyObjectByType<AudioListener>() == null) gameObject.AddComponent<AudioListener>();
             music = gameObject.AddComponent<ArcadeMusic>();
             gameObject.AddComponent<CheckpointAudio>().ConfigurePresentation();

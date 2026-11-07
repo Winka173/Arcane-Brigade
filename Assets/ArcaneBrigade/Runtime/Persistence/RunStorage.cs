@@ -76,6 +76,8 @@ namespace ArcaneBrigade
         public RunStorage(string root) { directory = root; }
         public void SaveRun(RunSnapshot run) => Write("run.json", JsonUtility.ToJson(run, true));
         public void SaveProfile(PlayerProfile profile) => Write("profile.json", JsonUtility.ToJson(profile, true));
+        /// <summary>The run save's checked payload (sync across devices sends it as is), null when there is none or it is damaged.</summary>
+        public string ReadRunPayload() { try { return Read("run.json"); } catch { return null; } }
 
         public RunSnapshot LoadRun(RunSession session)
         {
