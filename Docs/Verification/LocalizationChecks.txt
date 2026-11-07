@@ -10,6 +10,13 @@ PASS Unity rich-text markup is preserved
 PASS Glossary markup and stat IDs survive whole-sentence translation
 PASS Unknown text falls back to source
 PASS Measured text is not translated twice
+PASS Page title leaves a gap before Back
+PASS Long Vietnamese title stays on one line within its plaque
+PASS Long hero name fits above the unlock badge
+PASS Shortened names preserve their full text
+PASS Fitting does not mutate shared label styles
+PASS Vietnamese descriptions wrap and fit the available height
+PASS Fixed text cannot draw into neighbouring controls
 PASS Vietnamese survives restart
 PASS Language selection preserves progression
 PASS Failed save rolls language back

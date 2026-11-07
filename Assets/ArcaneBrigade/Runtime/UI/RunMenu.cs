@@ -17,6 +17,8 @@ namespace ArcaneBrigade
     }
     public sealed class RunMenu : MonoBehaviour
     {
+        // The page stays centred; the right edge leaves 20 design pixels before the BACK button.
+        public static Rect PageHeaderBounds => new Rect(290, 32, 700, 92);
         public enum Page { Landing, Roster, Resume, Settings, Help, Records, ConfirmOverwrite, WeaponSandbox, Museum, Achievements, Hub }
         [SerializeField] private RunCatalog catalog;
         private RunStorage storage;
@@ -341,7 +343,7 @@ namespace ArcaneBrigade
             if (CurrentPage != Page.Landing && CurrentPage != Page.Hub)
             {
                 // (the room and its shade are drawn across the whole screen above)
-                ArcadeSkin.Header(new Rect(190, 32, 900, 92), PageEyebrow(CurrentPage), PageTitle(CurrentPage)); // centred on the 1280 page, clear of BACK on the right
+                ArcadeSkin.Header(PageHeaderBounds, PageEyebrow(CurrentPage), PageTitle(CurrentPage));
             }
             if (CurrentPage != Page.Landing && CurrentPage != Page.Hub && Button(new Rect(1010, 40, 200, 50), "BACK"))
             {

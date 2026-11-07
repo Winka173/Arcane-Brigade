@@ -473,12 +473,18 @@ namespace ArcaneBrigade
             // capital label above it (the eyebrow argument is kept for callers but never drawn)
             if (headerStyle == null) { headerStyle = ArcadeTypography.Style(36, true); headerStyle.alignment = TextAnchor.MiddleCenter; headerStyle.wordWrap = false; }
             headerStyle.fontSize = 36;
+            headerStyle.wordWrap = false;
             float width = Mathf.Clamp(headerStyle.CalcSize(LocalizedGUI.Content(heading)).x + 2 * 118 * 72 / 112f + 20, 420, rectangle.width);
             Rect plate = new Rect(rectangle.center.x - width * .5f, rectangle.y + 12, width, Mathf.Min(72, rectangle.height - 12)); // centred over its page or card, like the stations' titles
             if (HasKit) Frame(plate, KitFrame.Plaque); else Plate(plate, Accent);
             headerStyle.normal.textColor = KitCream;
-            FitText(headerStyle, heading, PlaqueWords(plate));
-            LocalizedGUI.Label(plate, heading, headerStyle);
+            float room = PlaqueWords(plate);
+            Rect words = new Rect(plate.center.x - room * .5f, plate.y, room, plate.height);
+            // A plaque is one line. Reserve the carved caps rather than drawing over the whole ornament.
+            GUIContent copy = LocalizedGUI.Content(heading);
+            while (headerStyle.fontSize > 18 && headerStyle.CalcSize(copy).x > room) headerStyle.fontSize--;
+            headerStyle.clipping = TextClipping.Clip;
+            LocalizedGUI.Label(words, copy, headerStyle);
         }
 
         public static void Stamp(Rect rectangle, string caption)
