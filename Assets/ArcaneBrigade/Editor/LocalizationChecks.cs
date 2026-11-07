@@ -75,6 +75,20 @@ namespace ArcaneBrigade.Editor
                 Check(table.entries.Length > 7000, "Offline Vietnamese catalogue covers authored runtime and content text");
                 Check(table.entries.Select(e => e.source).Distinct().Count() == table.entries.Length, "Translation keys are unique");
                 Check(table.entries.All(e => !string.IsNullOrWhiteSpace(e.source) && !string.IsNullOrWhiteSpace(e.target)), "No empty translation entries");
+                var exact = table.entries.ToDictionary(e => e.source, e => e.target, StringComparer.Ordinal);
+                int voicedCaptions = 0;
+                GameLocalization.SetLanguage("vi");
+                foreach (VoiceLine voice in VoiceLines.All)
+                {
+                    if (string.IsNullOrEmpty(voice.Text)) continue; // wordless audio has no subtitle
+                    voicedCaptions++;
+                    Check(exact.TryGetValue(voice.Text, out string caption) && caption != voice.Text && !caption.Contains("|"), "Spoken subtitle has its own Vietnamese entry: " + voice);
+                    Check(GameLocalization.Text(voice.Text) == caption, "Runtime resolves the spoken field without delivery metadata: " + voice);
+                }
+                Check(GameLocalization.Text("Not those? Fair.") == "Chưa ưng à? Được thôi.", "Reported shop reroll line has a reviewed translation");
+                GameLocalization.SetLanguage("en");
+                Check(GameLocalization.Text("Not those? Fair.") == "Not those? Fair.", "English spoken subtitles remain unchanged");
+                results.Add("Voiced subtitle occurrences: " + voicedCaptions);
                 var glyphs = table.entries.SelectMany(e => e.target).Where(c => char.IsLetter(c) && c > 127).Distinct().ToArray();
                 foreach (Font font in new[] { ArcadeTypography.Body, ArcadeTypography.Heading, ArcadeTypography.Display, ArcadeTypography.Hand, ArcadeTypography.Numbers })
                 {

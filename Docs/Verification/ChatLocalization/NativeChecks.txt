@@ -1,0 +1,4 @@
+PASS native SpeechBubbles caption: vi-merchant-reroll = Chưa ưng à? Được thôi.
+PASS native SpeechBubbles caption: en-merchant-reroll = Not those? Fair.
+PASS native SpeechBubbles caption: vi-merchant-reroll-switched-back = Chưa ưng à? Được thôi.
+PASS native runtime errors empty; no OS mouse, keyboard or focus control used.

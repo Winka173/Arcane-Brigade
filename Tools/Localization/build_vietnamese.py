@@ -74,11 +74,15 @@ def candidates():
         found.add(value)
 
     for path in (ROOT / 'Assets/ArcaneBrigade/Runtime').rglob('*.cs'):
-        if 'Capture' in path.name or path.name in ('GameLocalization.cs', 'LocalizedGUI.cs'):
+        if 'Capture' in path.name or path.name in ('GameLocalization.cs', 'LocalizedGUI.cs', 'UIUXAuditProbe.cs'):
             continue
         for match in TOKEN.finditer(path.read_text(encoding='utf-8-sig')):
             if match[0].startswith(('"', '@"')):
                 value = literal(match[0])
+                if path.name == 'VoiceLines.cs' and '|' in value:
+                    # VoiceLine.Text is only the spoken field. Delivery notes are authoring metadata.
+                    add(value.split('|', 1)[0])
+                    continue
                 add(value)
                 # Hero approach names are authored as a pipe-separated list and rendered individually.
                 if '|' in value and 2 <= len(value.split('|')) <= 4 and '\n' not in value and all(len(part) < 40 for part in value.split('|')):
@@ -132,6 +136,21 @@ def main():
     cache = json.loads(CACHE.read_text(encoding='utf-8')) if CACHE.exists() else {}
     if OUTPUT.exists():
         cache.update({entry['source']: entry['target'] for entry in json.loads(OUTPUT.read_text(encoding='utf-8'))['entries']})
+    # Migrate existing drafts that were keyed by "spoken text|delivery note".
+    # Split both sides only when their field counts agree; never guess a missing separator.
+    voice_source = ROOT / 'Assets/ArcaneBrigade/Runtime/Presentation/VoiceLines.cs'
+    for match in TOKEN.finditer(voice_source.read_text(encoding='utf-8-sig')):
+        if not match[0].startswith(('"', '@"')):
+            continue
+        value = literal(match[0])
+        if '|' not in value or not value.split('|', 1)[0].strip():
+            continue
+        draft = cache.get(value, '')
+        spoken = value.split('|', 1)[0]
+        if spoken not in cache and draft.count('|') == value.count('|'):
+            caption = draft.split('|', 1)[0].strip()
+            if caption:
+                cache[spoken] = caption
     pending = [text for text in source if text not in cache and text not in overrides]
     if '--offline' in sys.argv:
         cache.update(overrides)

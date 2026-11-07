@@ -19,7 +19,7 @@ BUILDER = '''using System; using System.IO; using System.Linq; using UnityEditor
 namespace ArcaneBrigade.Editor { public static class UIUXAuditBuild {
 [Serializable] private sealed class Result { public string result; public int errors, warnings; }
 public static void Run() {
-PerformanceReviewChecks.MeasureLocalization(); UIUXPerformanceChecks.Run();
+PerformanceReviewChecks.MeasureLocalization(); LocalizationChecks.Run(); UIUXPerformanceChecks.Run();
 Directory.CreateDirectory("Builds/UIUXAudit"); var report=BuildPipeline.BuildPlayer(new BuildPlayerOptions {
 scenes=EditorBuildSettings.scenes.Where(s=>s.enabled).Select(s=>s.path).ToArray(), target=BuildTarget.StandaloneWindows64,
 locationPathName="Builds/UIUXAudit/ArcaneBrigade.exe", options=BuildOptions.None });

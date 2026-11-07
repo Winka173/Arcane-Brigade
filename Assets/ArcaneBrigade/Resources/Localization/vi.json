@@ -777,12 +777,24 @@
       "target": ". Hiệu ứng chữ ký giữ lại các quy tắc riêng của họ."
     },
     {
+      "source": "...Open.",
+      "target": "...Mở."
+    },
+    {
       "source": "...Open.|the first breath of outside air",
       "target": "...Mở.|hơi thở đầu tiên của không khí bên ngoài"
     },
     {
+      "source": "...They came, didn't they?",
+      "target": "...Họ đã đến phải không?"
+    },
+    {
       "source": "...They came, didn't they?|small, defeated",
       "target": "...Họ đã đến phải không?|nhỏ bé, bị đánh bại"
+    },
+    {
+      "source": "...You did. Who paid?",
+      "target": "...Bạn đã làm được. Ai đã trả tiền?"
     },
     {
       "source": "...You did. Who paid?|shop 19 after SIT CLOSER was won: genuinely shaken",
@@ -2233,6 +2245,10 @@
       "target": "Chữ ký màu đỏ. Tôi sẽ giữ nó an toàn."
     },
     {
+      "source": "A red signature. Safe.",
+      "target": "Một chữ ký đỏ. An toàn rồi."
+    },
+    {
       "source": "A red signature. Safe.|solemn",
       "target": "Chữ ký màu đỏ. An toàn.|trang trọng"
     },
@@ -2339,6 +2355,10 @@
     {
       "source": "A sensible purchase. I'll save the joke for later.",
       "target": "Một sự mua hàng hợp lý. Tôi sẽ để dành câu chuyện cười này sau."
+    },
+    {
+      "source": "A sensible thing.",
+      "target": "Một lựa chọn hợp lý."
     },
     {
       "source": "A sensible thing.|calm approval",
@@ -2917,6 +2937,10 @@
       "target": "Thành tựu"
     },
     {
+      "source": "Acknowledge the care. Refuse the claim.",
+      "target": "Ghi nhận sự quan tâm. Bác bỏ lời đòi hỏi."
+    },
+    {
       "source": "Acorn",
       "target": "Quả sồi"
     },
@@ -3009,6 +3033,10 @@
       "target": "Sau 6 đòn tấn công cơ bản của đồng minh, tối đa 3 người bạn trả lời bằng hình dạng vũ khí của riêng họ. Ưu tiên các mục tiêu ở gần. thời gian hồi chiêu 4 giây; mỗi người biểu diễn sẽ tăng thêm 50% sát thương vũ khí của mình, giới hạn ở mức 75% W."
     },
     {
+      "source": "After everything?",
+      "target": "Sau tất cả?"
+    },
+    {
       "source": "After everything?|hurt",
       "target": "Sau tất cả?|đau"
     },
@@ -3029,6 +3057,10 @@
       "target": "Sau khi bạn nhận sát thương, hồi lại 1 HP. nhiều nhất cứ 1 giây một lần."
     },
     {
+      "source": "Again. Hold.",
+      "target": "Một lần nữa. Giữ."
+    },
+    {
       "source": "Again. Hold.|steady",
       "target": "Một lần nữa. Giữ.|ổn định"
     },
@@ -3037,12 +3069,24 @@
       "target": "Đồng ý đi du lịch không cần tỏ tình ngay bây giờ."
     },
     {
+      "source": "Ah. The one with the name.",
+      "target": "À. Người có tên."
+    },
+    {
       "source": "Ah. The one with the name.|tired recognition",
       "target": "À. Người có tên.| mệt mỏi công nhận"
     },
     {
+      "source": "Ah. We meet properly.",
+      "target": "À. Chúng ta gặp nhau đàng hoàng."
+    },
+    {
       "source": "Ah. We meet properly.|courteous, pleased",
       "target": "À. Chúng ta gặp nhau đàng hoàng.|lịch sự, hài lòng"
+    },
+    {
+      "source": "Ah. You made it.",
+      "target": "À. Bạn tới được rồi."
     },
     {
       "source": "Ah. You made it.|quiet relief, a breath out first",
@@ -3103,6 +3147,10 @@
     {
       "source": "All together now!",
       "target": "Tất cả cùng nhau ngay bây giờ!"
+    },
+    {
+      "source": "Allow me.",
+      "target": "Cho phép tôi."
     },
     {
       "source": "Allow me.|gentlemanly",
@@ -3273,6 +3321,10 @@
       "target": "Một con cú đọc trong kho lưu trữ dưới ánh sáng của một cửa sổ duy nhất, di chuyển ống kính qua các trang khi mặt trời di chuyển. Đêm đến mỗi ngày trước chương cuối cùng. Họ đi du lịch để hoàn thành một câu chuyện trong khi người khác nắm giữ ánh sáng."
     },
     {
+      "source": "An umbrella. Still wet.",
+      "target": "Một chiếc ô. Vẫn còn ướt."
+    },
+    {
       "source": "An umbrella. Still wet.|barely audible",
       "target": "Một chiếc ô. Vẫn còn ướt.|gần như không nghe được"
     },
@@ -3325,6 +3377,10 @@
       "target": "Một chiếc cốc khác, một làn sóng khác."
     },
     {
+      "source": "Another delivery.",
+      "target": "Lại một chuyến giao hàng nữa."
+    },
+    {
       "source": "Another delivery.|weary sigh",
       "target": "Lại một chuyến giao hàng nữa.|thở dài mệt mỏi"
     },
@@ -3343,6 +3399,10 @@
     {
       "source": "Another line on the receipt. Not another chain.",
       "target": "Một dòng khác trên biên lai. Không phải một chuỗi khác."
+    },
+    {
+      "source": "Another set of footsteps.",
+      "target": "Lại thêm một tiếng bước chân."
     },
     {
       "source": "Another set of footsteps.|pleased, listening",
@@ -3507,6 +3567,10 @@
     {
       "source": "Ash Swallower",
       "target": "Máy nuốt tro"
+    },
+    {
+      "source": "Ask a companion which view they want.",
+      "target": "Hỏi đồng hành muốn ngắm khung cảnh nào."
     },
     {
       "source": "Ask the courier to hold it until they are ready.",
@@ -3981,8 +4045,16 @@
       "target": "Quay lại"
     },
     {
+      "source": "Back again. Good.",
+      "target": "Lại về rồi. Tốt quá."
+    },
+    {
       "source": "Back again. Good.|a small smile you can hear",
       "target": "Quay lại lần nữa. Tốt.|một nụ cười nhỏ bạn có thể nghe thấy"
+    },
+    {
+      "source": "Back from the letterbox.",
+      "target": "Quay lại từ hộp thư."
     },
     {
       "source": "Back from the letterbox.|snap",
@@ -4147,6 +4219,10 @@
     {
       "source": "Bazooka",
       "target": "Bazooka"
+    },
+    {
+      "source": "Be kind to each other.",
+      "target": "Hãy đối xử tốt với nhau nhé."
     },
     {
       "source": "Be kind to each other.|fatherly, quiet",
@@ -4405,6 +4481,10 @@
       "target": "Chớp mắt. Tôi sẽ thay đổi giấc mơ bên dưới."
     },
     {
+      "source": "Blink. New dreams.",
+      "target": "Chớp mắt nào. Giấc mơ mới đây."
+    },
+    {
       "source": "Blink. New dreams.|playful hush",
       "target": "Chớp mắt. Những giấc mơ mới.|vui đùa im lặng"
     },
@@ -4561,6 +4641,10 @@
       "target": "Ông chủ"
     },
     {
+      "source": "Bosses beaten ×",
+      "target": "Trùm đã hạ ×"
+    },
+    {
       "source": "Bosses start enraged",
       "target": "Các ông chủ bắt đầu nổi giận"
     },
@@ -4571,6 +4655,10 @@
     {
       "source": "Bottle Gull",
       "target": "Mòng biển chai"
+    },
+    {
+      "source": "Bottom drawer, then.",
+      "target": "Vậy xem ngăn dưới cùng nhé."
     },
     {
       "source": "Bottom drawer, then.|a grunt of effort",
@@ -4717,6 +4805,10 @@
       "target": "Dầu sáng"
     },
     {
+      "source": "Bright oil +",
+      "target": "Dầu sáng +"
+    },
+    {
       "source": "Bright oil II",
       "target": "Dầu sáng II"
     },
@@ -4787,6 +4879,10 @@
     {
       "source": "Broom Skater",
       "target": "Vận động viên trượt ván bằng chổi"
+    },
+    {
+      "source": "Browse. I'll wait.",
+      "target": "Cứ xem đi. Tôi đợi được."
     },
     {
       "source": "Browse. I'll wait.|patient, a little too patient",
@@ -4865,6 +4961,10 @@
       "target": "Đốt, nhiễm độc và sát thương trì hoãn đánh mạnh hơn 25%."
     },
     {
+      "source": "Burnt down to the wick.",
+      "target": "Đốt cháy đến tận bấc."
+    },
+    {
       "source": "Burnt down to the wick.|guttering",
       "target": "Đốt cháy đến tận bấc.|máng xối"
     },
@@ -4883,6 +4983,10 @@
     {
       "source": "Busker",
       "target": "Người hát rong"
+    },
+    {
+      "source": "But I can carry you across it.",
+      "target": "Nhưng tôi có thể đưa bạn vượt qua nó."
     },
     {
       "source": "But I can carry you across it.|warm, enormous",
@@ -5873,6 +5977,10 @@
       "target": "Vỏ camo"
     },
     {
+      "source": "Can you carry this?",
+      "target": "Bạn có thể mang cái này được không?"
+    },
+    {
       "source": "Can you carry this?|testing",
       "target": "Bạn có thể mang cái này được không?|thử nghiệm"
     },
@@ -5941,12 +6049,20 @@
       "target": "Nữ hoàng thẻ bài"
     },
     {
+      "source": "Careful with the merchandise.",
+      "target": "Cẩn thận với hàng hóa."
+    },
+    {
       "source": "Careful with the merchandise.|annoyed, still polite",
       "target": "Cẩn thận với hàng hóa.|bực mình, vẫn lịch sự"
     },
     {
       "source": "Careful with the seams. The dream is still young.",
       "target": "Cẩn thận với các đường may. Ước mơ vẫn còn trẻ."
+    },
+    {
+      "source": "Careful! They're sleeping.",
+      "target": "Cẩn thận! Họ đang ngủ."
     },
     {
       "source": "Careful! They're sleeping.|protective of its load",
@@ -5957,8 +6073,16 @@
       "target": "Cẩn thận. Vết nứt của tôi nhớ tất cả mọi thứ."
     },
     {
+      "source": "Careful. That's a rare one.",
+      "target": "Cẩn thận nhé. Món đó hiếm lắm."
+    },
+    {
       "source": "Careful. That's a rare one.|reverent, slower",
       "target": "Cẩn thận. Đó là một điều hiếm có.|kính trọng, chậm hơn"
+    },
+    {
+      "source": "Careful. That's your heartbeat.",
+      "target": "Cẩn thận. Đó là nhịp tim của bạn đấy."
     },
     {
       "source": "Careful. That's your heartbeat.|worried",
@@ -5967,6 +6091,10 @@
     {
       "source": "Careful. These little seeds are for later.",
       "target": "Cẩn thận. Những hạt giống nhỏ này sẽ dành cho sau này."
+    },
+    {
+      "source": "Careless spending.",
+      "target": "Chi tiêu bất cẩn."
     },
     {
       "source": "Careless spending.|tutting",
@@ -5987,6 +6115,10 @@
     {
       "source": "Carrot",
       "target": "Cà rốt"
+    },
+    {
+      "source": "Carry it like a secret.",
+      "target": "Hãy mang nó như giữ một bí mật."
     },
     {
       "source": "Carry it like a secret.|hushed",
@@ -6453,6 +6585,10 @@
       "target": "Nhắm mắt lại. Không, không phải tất cả trong số họ."
     },
     {
+      "source": "Close your eyes. Stop listening.",
+      "target": "Nhắm mắt lại. Đừng nghe nữa."
+    },
+    {
       "source": "Close your eyes. Stop listening.|sing-song, strained",
       "target": "Nhắm mắt lại. Đừng nghe nữa.|hát lên, căng thẳng"
     },
@@ -6585,6 +6721,10 @@
       "target": "Gai thế chấp"
     },
     {
+      "source": "Collateral. Nothing personal.",
+      "target": "Tài sản thế chấp. Không có gì cá nhân."
+    },
+    {
       "source": "Collateral. Nothing personal.|bored apology",
       "target": "Tài sản thế chấp. Không có gì cá nhân.|chán xin lỗi"
     },
@@ -6677,8 +6817,16 @@
       "target": "Combo"
     },
     {
+      "source": "Combos found ×",
+      "target": "Tổ hợp đã tìm thấy ×"
+    },
+    {
       "source": "Come back with coins, not apologies.",
       "target": "Hãy quay lại với đồng xu chứ không phải lời xin lỗi."
+    },
+    {
+      "source": "Come back. Please.",
+      "target": "Hãy quay lại nhé. Làm ơn."
     },
     {
       "source": "Come back. Please.|the 'please' slips out, he is afraid of being left",
@@ -6693,6 +6841,10 @@
       "target": "Hãy đến gần hơn với ánh sáng. Không đến tận răng."
     },
     {
+      "source": "Come closer. Softly.",
+      "target": "Lại gần đây. Nhẹ thôi."
+    },
+    {
       "source": "Come closer. Softly.|beckoning",
       "target": "Hãy đến gần hơn. Nhẹ nhàng.| vẫy gọi"
     },
@@ -6703,6 +6855,10 @@
     {
       "source": "Come in. I saw you inside an egg.",
       "target": "Vào đi. Tôi đã thấy bạn ở trong một quả trứng."
+    },
+    {
+      "source": "Come in. Mind the step.",
+      "target": "Mời vào. Cẩn thận bậc cửa nhé."
     },
     {
       "source": "Come in. Mind the step.|warm welcome, holding the door",
@@ -6963,6 +7119,10 @@
     {
       "source": "Could one of yours walk with me for a while?",
       "target": "Bạn có thể đi dạo cùng tôi một lúc được không?"
+    },
+    {
+      "source": "Count them. Count them!",
+      "target": "Đếm chúng đi. Đếm chúng!"
     },
     {
       "source": "Count them. Count them!|shrill, eager",
@@ -7295,6 +7455,10 @@
     {
       "source": "Curtain up!",
       "target": "Kéo rèm lên!"
+    },
+    {
+      "source": "Curtain... down...",
+      "target": "Rèm... hạ..."
     },
     {
       "source": "Curtain... down...|bulbs dying one by one",
@@ -7765,6 +7929,10 @@
       "target": "Cửa hàng cao cấp không có sẵn:"
     },
     {
+      "source": "Departure: dawn.",
+      "target": "Khởi hành: bình minh."
+    },
+    {
       "source": "Departure: dawn.|reading the board, flat",
       "target": "Khởi hành: bình minh.|đọc bảng, phẳng"
     },
@@ -7897,12 +8065,20 @@
       "target": "Đèn lồng chuông lặn"
     },
     {
+      "source": "Do I look familiar now?",
+      "target": "Bây giờ trông tôi có quen không?"
+    },
+    {
       "source": "Do I look familiar now?|sly",
       "target": "Bây giờ trông tôi có quen không?| ranh mãnh"
     },
     {
       "source": "Do not confuse being watched with being known.",
       "target": "Đừng nhầm lẫn việc bị theo dõi với việc được biết đến."
+    },
+    {
+      "source": "Do not let go.",
+      "target": "Đừng buông tay."
     },
     {
       "source": "Do not let go.|urgent",
@@ -7941,6 +8117,10 @@
       "target": "Đừng lo lắng, đó chỉ là một cơn bão nhỏ thôi."
     },
     {
+      "source": "Do sit down.",
+      "target": "Hãy ngồi xuống."
+    },
+    {
       "source": "Do sit down.|an invitation that is an order",
       "target": "Hãy ngồi xuống.|lời mời là mệnh lệnh"
     },
@@ -7965,8 +8145,16 @@
       "target": "Bóng đinh nội địa"
     },
     {
+      "source": "Don't answer it.",
+      "target": "Đừng trả lời."
+    },
+    {
       "source": "Don't answer it.|hushed, urgent",
       "target": "Đừng trả lời.|im lặng, khẩn cấp"
+    },
+    {
+      "source": "Don't answer the door.",
+      "target": "Đừng mở cửa."
     },
     {
       "source": "Don't answer the door.|pleading",
@@ -7981,32 +8169,64 @@
       "target": "Đừng nhai, hãy nuốt!"
     },
     {
+      "source": "Don't lose that one.",
+      "target": "Đừng làm mất món đó nhé."
+    },
+    {
       "source": "Don't lose that one.|earnest, almost a plea",
       "target": "Đừng đánh mất cái đó.|thật lòng, gần như là một lời cầu xin"
+    },
+    {
+      "source": "Don't open the...",
+      "target": "Đừng mở..."
     },
     {
       "source": "Don't open the...|cut off",
       "target": "Đừng mở...|cắt bỏ"
     },
     {
+      "source": "Don't rock the tower.",
+      "target": "Đừng làm rung chuyển tòa tháp."
+    },
+    {
       "source": "Don't rock the tower.|alarmed",
       "target": "Đừng làm rung chuyển tòa tháp.|báo động"
+    },
+    {
+      "source": "Don't sit down out there.",
+      "target": "Đừng ngồi xuống ngoài đó."
     },
     {
       "source": "Don't sit down out there.|serious, low, not looking anywhere",
       "target": "Đừng ngồi ngoài đó.|nghiêm túc, thấp giọng, không nhìn đi đâu cả"
     },
     {
+      "source": "Don't trust me. Fine.",
+      "target": "Đừng tin tôi. Tốt thôi."
+    },
+    {
       "source": "Don't trust me. Fine.|defensive",
       "target": "Đừng tin tôi. Tốt thôi.|phòng thủ"
+    },
+    {
+      "source": "Don't. Don't open me.",
+      "target": "Đừng. Đừng mở tôi."
     },
     {
       "source": "Don't. Don't open me.|frightened",
       "target": "Đừng. Đừng mở tôi.|sợ hãi"
     },
     {
+      "source": "Don't. Not that one.",
+      "target": "Đừng. Đừng chọn cái đó."
+    },
+    {
       "source": "Don't. Not that one.|a sharp breath first",
       "target": "Đừng. Không phải cái đó.|một hơi thở gấp trước"
+    },
+    {
+      "source": "Done. Off the shelf.",
+      "target": "Xong. Xuống khỏi kệ rồi."
     },
     {
       "source": "Done. Off the shelf.|brisk, warm",
@@ -8135,6 +8355,10 @@
     {
       "source": "Dream veil: you take 30% less damage.",
       "target": "Tấm màn che trong mơ: bạn nhận ít sát thương hơn 30%."
+    },
+    {
+      "source": "Dream well, wanderer.",
+      "target": "Mơ đẹp nhé, người lữ khách."
     },
     {
       "source": "Dream well, wanderer.|blessing",
@@ -8533,6 +8757,10 @@
       "target": "Mỗi lần hợp nhất trong lần chạy này mang lại cho bạn +2% sát thương vĩnh viễn (tối đa 25%)."
     },
     {
+      "source": "Each one is somebody I brought back.",
+      "target": "Mỗi người là một người tôi mang về."
+    },
+    {
       "source": "Each one is somebody I brought back.|canon, low, guilty",
       "target": "Mỗi người là một người tôi mang về.|canon, thấp, tội"
     },
@@ -8765,6 +8993,10 @@
       "target": "Encore! Encore!"
     },
     {
+      "source": "Encore! I said ENCORE!",
+      "target": "Encore! Tôi nói ENCORE!"
+    },
+    {
       "source": "Encore! I said ENCORE!|frantic applause",
       "target": "Encore! Tôi nói ENCORE!|vỗ tay điên cuồng"
     },
@@ -8787,6 +9019,10 @@
     {
       "source": "Endless is part of Deluxe: keep your brigade and relics past dawn.",
       "target": "Vô tận là một phần của Deluxe: giữ lữ đoàn và di tích của bạn qua bình minh."
+    },
+    {
+      "source": "Endless night",
+      "target": "Đêm vô tận"
     },
     {
       "source": "Endless: keep your brigade and relics past dawn",
@@ -8947,6 +9183,10 @@
     {
       "source": "Engraver",
       "target": "Thợ khắc"
+    },
+    {
+      "source": "Enough. You can carry it.",
+      "target": "Đủ rồi. Bạn có thể mang nó."
     },
     {
       "source": "Enough. You can carry it.|kneeling, proud",
@@ -9349,12 +9589,20 @@
       "target": "Mỗi nút thắt hợp thành một tấm lưới thắt chặt: kẻ địch trong đó bị làm chậm 40% và tấm lưới sẽ cắt chúng."
     },
     {
+      "source": "Every letter gets delivered.",
+      "target": "Mọi lá thư đều được chuyển đi."
+    },
+    {
       "source": "Every letter gets delivered.|vow",
       "target": "Mọi lá thư đều được chuyển đi.|vow"
     },
     {
       "source": "Every letter in the Waiting Realm arrives, eventually. Some take a lifetime; some take a single breath.",
       "target": "Cuối cùng, mọi lá thư trong Vương quốc chờ đợi đều đến. Một số mất cả đời; một số hít một hơi."
+    },
+    {
+      "source": "Every letter sings for me.",
+      "target": "Từng chữ hát cho tôi nghe."
     },
     {
       "source": "Every letter sings for me.|booming chord",
@@ -9381,12 +9629,20 @@
       "target": "Mỗi lần hợp nhất đều làm rung chuyển trái tim: anh hùng và bạn bè nhận được +3% tốc độ tấn công cho đường chạy (tối đa +30%)."
     },
     {
+      "source": "Every name, filed and forgotten.",
+      "target": "Mọi cái tên, nộp và quên."
+    },
+    {
       "source": "Every name, filed and forgotten.|dry rustle",
       "target": "Mọi cái tên, nộp và quên.| tiếng xào xạc khô"
     },
     {
       "source": "Every page the night has written about you is kept behind the glass.",
       "target": "Mỗi trang đêm viết về em đều được cất giữ sau tấm kính."
+    },
+    {
+      "source": "Every penny.",
+      "target": "Từng xu."
     },
     {
       "source": "Every penny.|greedy relish",
@@ -9493,12 +9749,20 @@
       "target": "Mọi người đều có Hob. Không ai kéo một mình."
     },
     {
+      "source": "Everyone here is collateral.",
+      "target": "Mọi người ở đây đều là tài sản thế chấp."
+    },
+    {
       "source": "Everyone here is collateral.|explaining, kindly cruel",
       "target": "Mọi người ở đây đều là tài sản thế chấp.|giải thích, thật tàn nhẫn"
     },
     {
       "source": "Everyone in the queue sits in a chair of their own.",
       "target": "Mọi người trong hàng đợi đều ngồi vào ghế riêng của mình."
+    },
+    {
+      "source": "Everyone sits eventually.",
+      "target": "Cuối cùng mọi người cũng ngồi."
     },
     {
       "source": "Everyone sits eventually.|resigned",
@@ -9513,8 +9777,16 @@
       "target": "Cái gì cũng có thẻ. Ngay cả bạn."
     },
     {
+      "source": "Everything has a price.",
+      "target": "Cái gì cũng có giá của nó."
+    },
+    {
       "source": "Everything has a price.|smooth",
       "target": "Cái gì cũng có giá của nó.|trơn tru"
+    },
+    {
+      "source": "Everything here is spoken for.",
+      "target": "Mọi thứ ở đây đều được nói ra."
     },
     {
       "source": "Everything here is spoken for.|a ledger voice",
@@ -9841,6 +10113,10 @@
       "target": "Mờ dần sang một bên. Bóng của nó xuất hiện sau đó."
     },
     {
+      "source": "Fair trade.",
+      "target": "Thuận mua vừa bán."
+    },
+    {
       "source": "Fair trade.|short, satisfied",
       "target": "Thương mại công bằng.|ngắn gọn, hài lòng"
     },
@@ -9897,6 +10173,10 @@
       "target": "Ưu tiên tiền thưởng có lượng máu cao trong điểm mục tiêu. Thanh toán trả cùng số vàng giới hạn và khiến các đường vượt qua chia sẻ thời gian hồi chiêu 85% W. 3 giây."
     },
     {
+      "source": "Favour ★",
+      "target": "Thiện cảm ★"
+    },
+    {
       "source": "Fear",
       "target": "Sợ hãi"
     },
@@ -9923,6 +10203,10 @@
     {
       "source": "Feeling lucky!",
       "target": "Cảm thấy may mắn!"
+    },
+    {
+      "source": "Feet under you.",
+      "target": "Chân dưới bạn."
     },
     {
       "source": "Feet under you.|the old order, true again",
@@ -10037,6 +10321,10 @@
       "target": "Tốc độ di chuyển cuối cùng"
     },
     {
+      "source": "Finally. Set it down.",
+      "target": "Cuối cùng. Đặt nó xuống."
+    },
+    {
       "source": "Finally. Set it down.|relief",
       "target": "Cuối cùng. Đặt nó xuống.|nhẹ nhõm"
     },
@@ -10097,6 +10385,10 @@
       "target": "Bắn tới hai quả đạn cối trễ. Vỏ không thể xuyên thủng. Bắt đầu với +0,4 giáp và +15% tốc độ di chuyển. Kẻ địch di chuyển nhanh hơn 20%."
     },
     {
+      "source": "Fire's up. Still pouring.",
+      "target": "Cháy rồi. Vẫn đổ."
+    },
+    {
       "source": "Fire's up. Still pouring.|bright",
       "target": "Cháy rồi. Vẫn đổ.|sáng"
     },
@@ -10131,6 +10423,10 @@
     {
       "source": "Fireworks tonight",
       "target": "Pháo hoa tối nay"
+    },
+    {
+      "source": "First",
+      "target": "Đầu tiên"
     },
     {
       "source": "First bell silenced",
@@ -10523,6 +10819,10 @@
     {
       "source": "Fresh crust. Firm claws. Excellent company.",
       "target": "Vỏ tươi. Móng vuốt chắc chắn. Công ty tuyệt vời."
+    },
+    {
+      "source": "Fresh from the back.",
+      "target": "Vừa mang từ kho ra đấy."
     },
     {
       "source": "Fresh from the back.|helpful",
@@ -11225,6 +11525,10 @@
       "target": "Tỏa sáng"
     },
     {
+      "source": "Go carefully.",
+      "target": "Đi đường cẩn thận nhé."
+    },
+    {
       "source": "Go carefully.|quiet blessing",
       "target": "Đi cẩn thận.|may mắn yên tĩnh"
     },
@@ -11235,6 +11539,10 @@
     {
       "source": "Go. Do not look into the dream behind you.",
       "target": "Đi. Đừng nhìn vào giấc mơ đằng sau bạn."
+    },
+    {
+      "source": "Go. Don't look back.",
+      "target": "Đi đi. Đừng ngoảnh lại."
     },
     {
       "source": "Go. Don't look back.|warning, soft",
@@ -11321,12 +11629,24 @@
       "target": "Hết sau 3 đợt"
     },
     {
+      "source": "Good choice.",
+      "target": "Khéo chọn đấy."
+    },
+    {
       "source": "Good choice.|approving nod, deep",
       "target": "Lựa chọn tốt.| gật đầu tán thành, sâu sắc"
     },
     {
+      "source": "Good company. Look after them.",
+      "target": "Bạn đồng hành tốt đấy. Chăm sóc họ nhé."
+    },
+    {
       "source": "Good company. Look after them.|warm instruction",
       "target": "Công ty tốt. Hãy chăm sóc họ.|hướng dẫn nhiệt tình"
+    },
+    {
+      "source": "Good evening. Shall we?",
+      "target": "Chào buổi tối. Chúng ta làm nhé?"
     },
     {
       "source": "Good evening. Shall we?|a bow in the voice",
@@ -11661,6 +11981,10 @@
       "target": "Phễu đựng mũ"
     },
     {
+      "source": "Hatch it gently.",
+      "target": "Hãy để nó nở thật nhẹ nhàng."
+    },
+    {
       "source": "Hatch it gently.|tender",
       "target": "Ấp nhẹ nhàng.|dịu dàng"
     },
@@ -11693,6 +12017,10 @@
       "target": "Anh ấy hạ người xuống cạnh ghế. \"Làm ơn cho khuôn mặt.\""
     },
     {
+      "source": "He paid for this gate.",
+      "target": "Anh ta đã trả tiền cho cánh cổng này."
+    },
+    {
       "source": "He paid for this gate.|losing composure",
       "target": "Anh ta đã trả tiền cho cánh cổng này.|mất bình tĩnh"
     },
@@ -11707,6 +12035,10 @@
     {
       "source": "He wants obedient copies. The mirror offers you a chance to refuse.",
       "target": "Anh ấy muốn những bản sao ngoan ngoãn. Chiếc gương cho bạn một cơ hội để từ chối."
+    },
+    {
+      "source": "He will collect from you.",
+      "target": "Anh ta sẽ thu tiền từ bạn."
     },
     {
       "source": "He will collect from you.|fading threat",
@@ -11813,6 +12145,10 @@
       "target": "Cố lên nào! Kéo kịp thời với tôi."
     },
     {
+      "source": "Heavier bag. Lighter step.",
+      "target": "Túi nặng hơn. Bước đi nhẹ nhàng hơn."
+    },
+    {
       "source": "Heavier bag. Lighter step.|pleased",
       "target": "Túi nặng hơn. Bước đi nhẹ nhàng hơn.|vui lòng"
     },
@@ -11823,6 +12159,10 @@
     {
       "source": "Heavy hand",
       "target": "Nặng tay"
+    },
+    {
+      "source": "Heavy night. Heavy load.",
+      "target": "Đêm nặng nề. Tải nặng."
     },
     {
       "source": "Heavy night. Heavy load.|creaking, slow",
@@ -12221,12 +12561,24 @@
       "target": "Đòn đánh đẩy lùi kẻ địch xa hơn."
     },
     {
+      "source": "Hm. Again.",
+      "target": "Ừm. Một lần nữa."
+    },
+    {
       "source": "Hm. Again.|stoic",
       "target": "Ừm. Một lần nữa.| khắc kỷ"
     },
     {
+      "source": "Hm. Quiet night.",
+      "target": "Ừm. Đêm yên ắng quá."
+    },
+    {
       "source": "Hm. Quiet night.|to himself",
       "target": "Ừm. Đêm yên tĩnh.|với chính mình"
+    },
+    {
+      "source": "Hm. Try these.",
+      "target": "Ừm. Thử những món này xem."
     },
     {
       "source": "Hm. Try these.|thoughtful",
@@ -12269,8 +12621,16 @@
       "target": "Giữ vị trí"
     },
     {
+      "source": "Hold it by the handle.",
+      "target": "Cầm ở phần tay cầm nhé."
+    },
+    {
       "source": "Hold it by the handle.|practical advice",
       "target": "Giữ nó bằng tay cầm.|lời khuyên thiết thực"
+    },
+    {
+      "source": "Hold it with both hands.",
+      "target": "Cầm bằng cả hai tay nhé."
     },
     {
       "source": "Hold it with both hands.|serious, protective",
@@ -12293,8 +12653,16 @@
       "target": "Hãy giữ lấy những điều đã biết bạn mà không cần biên nhận."
     },
     {
+      "source": "Hold on to them.",
+      "target": "Hãy giữ chặt họ."
+    },
+    {
       "source": "Hold on to them.|command, protective",
       "target": "Hãy giữ chặt họ.|lệnh, bảo vệ"
+    },
+    {
+      "source": "Hold on up there!",
+      "target": "Đứng yên trên đó!"
     },
     {
       "source": "Hold on up there!|shouted upward",
@@ -12321,6 +12689,10 @@
       "target": "Đứng yên. Có một mặt trời mọc trong sự phản ánh của bạn."
     },
     {
+      "source": "Hold still. Threading.",
+      "target": "Đứng yên nhé. Ta đang luồn chỉ."
+    },
+    {
       "source": "Hold still. Threading.|concentrating",
       "target": "Đứng yên. Luồng.|tập trung"
     },
@@ -12335,6 +12707,10 @@
     {
       "source": "Hold the citadel!",
       "target": "Giữ thành!"
+    },
+    {
+      "source": "Hold the line! Hold the wick!",
+      "target": "Giữ hàng! Hãy giữ bấc!"
     },
     {
       "source": "Hold the line! Hold the wick!|captain's bark, melting",
@@ -12637,8 +13013,16 @@
       "target": "Tôi có thể trông chừng lưng bạn nếu bạn canh cửa."
     },
     {
+      "source": "I can't. I'm sorry.",
+      "target": "Tôi không thể. Xin lỗi nhé."
+    },
+    {
       "source": "I can't. I'm sorry.|truly sorry, low",
       "target": "Tôi không thể. Tôi xin lỗi.|thực sự xin lỗi, thấp"
+    },
+    {
+      "source": "I cannot walk the road with you.",
+      "target": "Anh không thể đi chung con đường với em."
     },
     {
       "source": "I cannot walk the road with you.|quiet",
@@ -12701,6 +13085,10 @@
       "target": "Tôi tìm thấy một cái rễ có hình dạng giống bàn tay của bạn."
     },
     {
+      "source": "I gave the list back.",
+      "target": "Tôi đưa lại danh sách."
+    },
+    {
       "source": "I gave the list back.|shop 19: returning, tired, not asking forgiveness",
       "target": "Tôi đưa lại danh sách.|shop 19: về, mệt, không xin tha thứ"
     },
@@ -12761,6 +13149,10 @@
       "target": "Anh giữ ấm giấc mơ của em dưới quầy bếp."
     },
     {
+      "source": "I kept your egg warm.",
+      "target": "Ta vẫn giữ ấm quả trứng của con."
+    },
+    {
       "source": "I kept your egg warm.|maternal",
       "target": "Tôi đã giữ ấm quả trứng của bạn.|mẹ"
     },
@@ -12785,8 +13177,16 @@
       "target": "Tôi để nó đi. Dù sao thì nó cũng đã quay lại."
     },
     {
+      "source": "I let you go once.",
+      "target": "Anh đã để em đi một lần."
+    },
+    {
       "source": "I let you go once.|quiet",
       "target": "Anh đã để em đi một lần.|im lặng"
+    },
+    {
+      "source": "I listened. Always.",
+      "target": "Tôi đã lắng nghe. Luôn luôn."
     },
     {
       "source": "I listened. Always.|guilt-trip",
@@ -12865,8 +13265,16 @@
       "target": "Tôi thấy công ty thực sự. Sự phản ánh có thể bắt kịp."
     },
     {
+      "source": "I sold my own name first.",
+      "target": "Tôi đã bán tên của chính mình trước."
+    },
+    {
       "source": "I sold my own name first.|confession, faces slipping",
       "target": "Tôi đã bán tên của chính mình trước.| thú nhận, khuôn mặt trượt dốc"
+    },
+    {
+      "source": "I stand on your left.",
+      "target": "Tôi đứng bên trái bạn."
     },
     {
       "source": "I stand on your left.|guard, clipped",
@@ -12969,8 +13377,16 @@
       "target": "Tôi sẽ cố gắng hết sức để không lăn lộn."
     },
     {
+      "source": "I will wait if you will stay.",
+      "target": "Anh sẽ đợi nếu em ở lại."
+    },
+    {
       "source": "I will wait if you will stay.|the child's promise, in its mouth",
       "target": "Anh sẽ đợi nếu em ở lại.|Lời hứa của đứa trẻ, trong miệng nó"
+    },
+    {
+      "source": "I wondered who'd take that.",
+      "target": "Tôi vẫn tự hỏi ai sẽ lấy món đó."
     },
     {
       "source": "I wondered who'd take that.|curious, pleased",
@@ -13009,6 +13425,10 @@
       "target": "Tôi gọi đó là một cuộc chơi công bằng. Không có bên thứ bảy tham gia."
     },
     {
+      "source": "I'll carry what you can't.",
+      "target": "Tôi sẽ mang theo những gì bạn không thể."
+    },
+    {
       "source": "I'll carry what you can't.|kind",
       "target": "Tôi sẽ mang theo những gì bạn không thể.|kind"
     },
@@ -13023,6 +13443,10 @@
     {
       "source": "I'll find the door again. It was there before; it will be there again.",
       "target": "Tôi sẽ tìm lại được cánh cửa. Nó đã có đó trước đây; nó sẽ lại ở đó."
+    },
+    {
+      "source": "I'll hunt for you now.",
+      "target": "Bây giờ tôi sẽ săn lùng bạn."
     },
     {
       "source": "I'll hunt for you now.|determined",
@@ -13041,6 +13465,10 @@
       "target": "Tôi sẽ che chắn bên trái của bạn. Bạn chọn con đường."
     },
     {
+      "source": "I'll leave the lamp on.",
+      "target": "Tôi sẽ để đèn sáng chờ bạn."
+    },
+    {
       "source": "I'll leave the lamp on.|a promise",
       "target": "Tôi sẽ để đèn sáng.|một lời hứa"
     },
@@ -13053,8 +13481,16 @@
       "target": "Anh sẽ yên tâm hơn khi biết em có nhau."
     },
     {
+      "source": "I'll sing it again.",
+      "target": "Tôi sẽ hát lại."
+    },
+    {
       "source": "I'll sing it again.|humming under the words",
       "target": "Tôi sẽ hát lại.| ngân nga theo lời"
+    },
+    {
+      "source": "I'll snuff the face you keep.",
+      "target": "Tôi sẽ bóp chết cái mặt mà bạn giữ."
     },
     {
       "source": "I'll snuff the face you keep.|hissing",
@@ -13067,6 +13503,10 @@
     {
       "source": "I'll walk on this side, if you don't mind.",
       "target": "Tôi sẽ đi bên này, nếu bạn không phiền."
+    },
+    {
+      "source": "I'll walk with you a while.",
+      "target": "Anh sẽ đi dạo cùng em một lúc."
     },
     {
       "source": "I'll walk with you a while.|warm",
@@ -13171,6 +13611,10 @@
     {
       "source": "If the corridor changes, remember the way your friend walks.",
       "target": "Nếu hành lang thay đổi, hãy nhớ cách bạn của bạn bước đi."
+    },
+    {
+      "source": "If you ever sat in it... no. Never mind.",
+      "target": "Nếu bạn từng ngồi lên đó... không. Thôi, bỏ đi."
     },
     {
       "source": "If you ever sat in it... no. Never mind.|shop 8: starts to confess, stops himself",
@@ -13351,6 +13795,10 @@
     {
       "source": "Interest Tin",
       "target": "Lãi Tín"
+    },
+    {
+      "source": "Interest accrues.",
+      "target": "Lãi tích lũy."
     },
     {
       "source": "Interest accrues.|cold, smiling",
@@ -13813,6 +14261,10 @@
       "target": "Nó cứ chỉ vào bàn tay đang cầm nó."
     },
     {
+      "source": "It knows your heartbeat now.",
+      "target": "Giờ nó đã biết nhịp tim của con."
+    },
+    {
       "source": "It knows your heartbeat now.|intimate",
       "target": "Bây giờ nó biết nhịp tim của bạn.|thân mật"
     },
@@ -13857,6 +14309,10 @@
       "target": "Nó sẽ đưa ra lời đề nghị cho bạn sau khi bạn đọc trang điện thoại"
     },
     {
+      "source": "It'll keep you warm.",
+      "target": "Nó sẽ giữ ấm cho bạn."
+    },
+    {
       "source": "It'll keep you warm.|tender",
       "target": "Nó sẽ giữ ấm cho bạn.|dịu dàng"
     },
@@ -13865,8 +14321,16 @@
       "target": "Nó được gửi tới bạn. Luôn luôn như vậy."
     },
     {
+      "source": "It's only the rain.",
+      "target": "Chỉ là cơn mưa."
+    },
+    {
       "source": "It's only the rain.|lying to itself",
       "target": "Chỉ là cơn mưa.|lừa dối chính mình"
+    },
+    {
+      "source": "It's raining out there.",
+      "target": "Ngoài kia đang mưa."
     },
     {
       "source": "It's raining out there.|wonder",
@@ -14005,12 +14469,20 @@
       "target": "Chỉ cần di chuyển"
     },
     {
+      "source": "Just a drop.",
+      "target": "Chỉ một giọt thôi."
+    },
+    {
       "source": "Just a drop. We do not sell your last heartbeat.",
       "target": "Chỉ một giọt thôi. Chúng tôi không bán nhịp tim cuối cùng của bạn."
     },
     {
       "source": "Just a drop.|careful, gentle",
       "target": "Chỉ một giọt thôi.|cẩn thận, nhẹ nhàng"
+    },
+    {
+      "source": "Just a small signature.",
+      "target": "Chỉ là một chữ ký nhỏ thôi."
     },
     {
       "source": "Just a small signature.|coaxing",
@@ -14031,6 +14503,10 @@
     {
       "source": "Just say it once more. I will wait if you will stay.|beat 1: coaxing the promise back out",
       "target": "Chỉ cần nói lại một lần nữa. Anh sẽ đợi nếu em ở lại.|đánh 1: dỗ dành thực hiện lại lời hứa"
+    },
+    {
+      "source": "Just us now.",
+      "target": "Bây giờ chỉ có chúng ta thôi."
     },
     {
       "source": "Just us now.|possessive softness",
@@ -14117,6 +14593,10 @@
       "target": "Hãy để ý đến ví tiền của bạn."
     },
     {
+      "source": "Keep each other close.",
+      "target": "Nhớ ở sát bên nhau nhé."
+    },
+    {
       "source": "Keep each other close.|parental",
       "target": "Giữ nhau thật gần.|parental"
     },
@@ -14125,12 +14605,20 @@
       "target": "Giữ đủ máu để đưa mọi người về nhà."
     },
     {
+      "source": "Keep enough to get home.",
+      "target": "Nhớ giữ đủ để còn về nhà."
+    },
+    {
       "source": "Keep enough to get home.|protective",
       "target": "Giữ đủ để về nhà.|bảo vệ"
     },
     {
       "source": "Keep going after dawn with the same brigade; every wave is harder.",
       "target": "Tiếp tục cùng lữ đoàn sau bình minh; mỗi đợt sẽ khó hơn."
+    },
+    {
+      "source": "Keep it, then. Keep the voice.",
+      "target": "Vậy thì hãy giữ nó. Giữ giọng nói."
     },
     {
       "source": "Keep it, then. Keep the voice.|yawning away",
@@ -14177,6 +14665,10 @@
       "target": "Giữ hồ sơ chăm sóc nó bên cạnh hồ sơ tổn hại.|Yêu cầu các nhân chứng giữ cả hai tài khoản một cách độc lập."
     },
     {
+      "source": "Keep the rest for dreaming.",
+      "target": "Giữ phần còn lại để mơ nhé."
+    },
+    {
       "source": "Keep the rest for dreaming.|caring",
       "target": "Phần còn lại hãy dành cho ước mơ.|quan tâm"
     },
@@ -14205,8 +14697,16 @@
       "target": "Giữ hơi thở của bạn. Tôi không lấy loại tiền đó."
     },
     {
+      "source": "Keep your change.",
+      "target": "Hãy giữ lấy sự thay đổi của mình."
+    },
+    {
       "source": "Keep your change.|bitter, letting go",
       "target": "Hãy giữ lấy sự thay đổi của mình.|cay đắng, buông bỏ"
+    },
+    {
+      "source": "Keep your coins. Come back.",
+      "target": "Cứ giữ tiền đi. Lần sau quay lại nhé."
     },
     {
       "source": "Keep your coins. Come back.|reassuring",
@@ -14277,8 +14777,16 @@
       "target": "Ấm siêu tốc"
     },
     {
+      "source": "Kettle's on. Let's go.",
+      "target": "Ấm đun nước đang bật. Đi thôi."
+    },
+    {
       "source": "Kettle's on. Let's go.|ready",
       "target": "Ấm đun nước đang bật. Đi thôi.|sẵn sàng"
+    },
+    {
+      "source": "Kettle's still warm.",
+      "target": "Ấm trà vẫn còn nóng."
     },
     {
       "source": "Kettle's still warm.|homely murmur",
@@ -14565,6 +15073,10 @@
       "target": "Vỏ đèn"
     },
     {
+      "source": "Lamp's lit. Come in.",
+      "target": "Đèn thắp rồi. Mời vào."
+    },
+    {
       "source": "Lamp's lit. Come in.|low, practical, kind",
       "target": "Đèn sáng rồi. Mời vào.|thấp, thực tế, tốt bụng"
     },
@@ -14725,6 +15237,10 @@
       "target": "Đêm qua hình ảnh phản chiếu của bạn vẫn tiếp tục chuyển động sau khi bạn dừng lại. Bạn đã gặp nó ở phía bên kia của tấm kính."
     },
     {
+      "source": "Last time I stopped you. Not now.",
+      "target": "Lần trước tôi đã ngăn cản bạn. Không phải bây giờ."
+    },
+    {
       "source": "Last time I stopped you. Not now.|blunt honesty",
       "target": "Lần trước tôi đã ngăn cản bạn. Không phải bây giờ.|trung thực thẳng thắn"
     },
@@ -14837,6 +15353,10 @@
       "target": "Để lại đủ hơi ấm trong lồng ngực."
     },
     {
+      "source": "Leave it be.",
+      "target": "Cứ để nó yên."
+    },
+    {
       "source": "Leave it be.|very quiet",
       "target": "Để yên đi.|rất yên tĩnh"
     },
@@ -14907,6 +15427,10 @@
     {
       "source": "Left at home.",
       "target": "Để ở nhà."
+    },
+    {
+      "source": "Left side. Held.",
+      "target": "Bên trái. Bị giữ."
     },
     {
       "source": "Left side. Held.|soldierly",
@@ -14993,6 +15517,10 @@
       "target": "Lần này hãy để nó chạy lâu hơn một chút."
     },
     {
+      "source": "Let me look again.",
+      "target": "Để tôi tìm lại xem."
+    },
+    {
       "source": "Let me look again.|patient",
       "target": "Để tôi xem lại.|kiên nhẫn"
     },
@@ -15005,12 +15533,24 @@
       "target": "Để tôi xem có gì ở ngăn kéo dưới cùng nhé."
     },
     {
+      "source": "Let me see what you carry.",
+      "target": "Để tôi xem bạn mang theo gì."
+    },
+    {
       "source": "Let me see what you carry.|vast, slow, kind",
       "target": "Để tôi xem bạn mang theo gì.|rộng rãi, chậm rãi, tốt bụng"
     },
     {
+      "source": "Let me take that off you.",
+      "target": "Hãy để tôi cởi nó ra cho bạn."
+    },
+    {
       "source": "Let me take that off you.|helpful, wrong",
       "target": "Hãy để tôi cởi nó ra cho bạn.|có ích, sai rồi"
+    },
+    {
+      "source": "Let me try another face.",
+      "target": "Để tôi thử một khuôn mặt khác."
     },
     {
       "source": "Let me try another face.|voice shifting",
@@ -15049,6 +15589,10 @@
       "target": "Hãy để họ chụp một bản và trả lại khi sẵn sàng."
     },
     {
+      "source": "Let these ones sleep.",
+      "target": "Hãy để những giấc này ngủ tiếp."
+    },
+    {
       "source": "Let these ones sleep.|lullaby",
       "target": "Hãy để những người này ngủ.|bài hát ru"
     },
@@ -15077,6 +15621,10 @@
       "target": "Chúng ta cùng chia sẻ vỏ bánh nhé. Ở giữa có thể chờ đợi."
     },
     {
+      "source": "Let's see what else.",
+      "target": "Để xem còn món gì khác nào."
+    },
+    {
       "source": "Let's see what else.|rummaging, easy",
       "target": "Cùng xem còn gì nữa.|lục lọi, dễ dàng"
     },
@@ -15093,8 +15641,16 @@
       "target": "Thư"
     },
     {
+      "source": "Letters for everyone. Even you.",
+      "target": "Thư gửi mọi người. Ngay cả bạn."
+    },
+    {
       "source": "Letters for everyone. Even you.|cheerful courier",
       "target": "Thư gửi mọi người. Ngay cả bạn.|người chuyển phát nhanh vui vẻ"
+    },
+    {
+      "source": "Letters from home ×",
+      "target": "Thư từ nhà ×"
     },
     {
       "source": "Letters give a boost. Break a parcel: it bursts and spills gold.",
@@ -15123,6 +15679,10 @@
     {
       "source": "Lid|Boil|Whistle",
       "target": "Nắp|Đun sôi|Còi"
+    },
+    {
+      "source": "Lie still.",
+      "target": "Nằm yên."
     },
     {
       "source": "Lie still.|lullaby cadence",
@@ -15325,6 +15885,10 @@
       "target": "Đã khóa ·"
     },
     {
+      "source": "Locked. From in here.",
+      "target": "Đã khóa. Từ trong này."
+    },
+    {
       "source": "Locked. From in here.|a bolt sliding",
       "target": "Đã khóa. Từ trong này.|một tia trượt"
     },
@@ -15409,6 +15973,10 @@
       "target": "Dài hơn"
     },
     {
+      "source": "Look all you like.",
+      "target": "Cứ xem thỏa thích nhé."
+    },
+    {
       "source": "Look all you like. I am not charging for looking. Yet!",
       "target": "Nhìn bao nhiêu tùy thích. Tôi không tính phí cho việc tìm kiếm. Chưa!"
     },
@@ -15431,6 +15999,10 @@
     {
       "source": "Look, then leave",
       "target": "Nhìn rồi bỏ đi"
+    },
+    {
+      "source": "Look. Through the keyhole.",
+      "target": "Nhìn kìa. Qua lỗ khóa."
     },
     {
       "source": "Look. Through the keyhole.|the eye opens",
@@ -15483,6 +16055,10 @@
     {
       "source": "Lost-and-found shop",
       "target": "Cửa hàng đồ thất lạc"
+    },
+    {
+      "source": "Louder! Drown out the knocking!",
+      "target": "To hơn nữa! át đi tiếng gõ cửa!"
     },
     {
       "source": "Louder! Drown out the knocking!|discordant howl",
@@ -15667,6 +16243,10 @@
     {
       "source": "Main menu",
       "target": "Menu chính"
+    },
+    {
+      "source": "Make a shared space at the table.",
+      "target": "Dành một chỗ chung bên bàn."
     },
     {
       "source": "Make a wish!",
@@ -15917,6 +16497,10 @@
       "target": "Tan chảy"
     },
     {
+      "source": "Melt it down. Every memory.",
+      "target": "Làm tan chảy nó. Từng kỷ niệm."
+    },
+    {
       "source": "Melt it down. Every memory.|stately, dripping",
       "target": "Làm tan chảy nó. Từng kỷ niệm.|trang nghiêm, nhỏ giọt"
     },
@@ -16013,6 +16597,10 @@
       "target": "Sóng giữa"
     },
     {
+      "source": "Mind its teeth.",
+      "target": "Coi chừng răng của nó nhé."
+    },
+    {
       "source": "Mind its teeth.|dry, fond warning",
       "target": "Nhớ răng nó.|khô khan, cảnh báo thích thú"
     },
@@ -16021,12 +16609,24 @@
       "target": "Hãy chú ý đến băng!"
     },
     {
+      "source": "Mind the legs.",
+      "target": "Chú ý đến đôi chân."
+    },
+    {
       "source": "Mind the legs.|habit of a mover",
       "target": "Chú ý đến đôi chân.|thói quen của người di chuyển"
     },
     {
+      "source": "Mind the receipts.",
+      "target": "Hãy để ý đến các biên lai."
+    },
+    {
       "source": "Mind the receipts.|amused warning",
       "target": "Hãy để ý đến các biên lai.| cảnh báo thú vị"
+    },
+    {
+      "source": "Mind the road.",
+      "target": "Cẩn thận đường đi nhé."
     },
     {
       "source": "Mind the road.|habitual farewell",
@@ -16273,6 +16873,10 @@
       "target": "Tốc độ di chuyển +"
     },
     {
+      "source": "Move the chair beside the door.",
+      "target": "Chuyển ghế tới cạnh cửa."
+    },
+    {
       "source": "Move the chair beside the door.|Make a shared space at the table.",
       "target": "Di chuyển ghế cạnh cửa.|Tạo không gian chung ở bàn."
     },
@@ -16377,6 +16981,10 @@
       "target": "Đồng hồ tắt tiếng"
     },
     {
+      "source": "My back...",
+      "target": "Lưng tôi..."
+    },
+    {
       "source": "My back...|groan",
       "target": "Lưng tôi...|rên rỉ"
     },
@@ -16387,6 +16995,10 @@
     {
       "source": "My court will remember who stood with us.",
       "target": "Tòa án của tôi sẽ ghi nhớ những người đã đứng về phía chúng tôi."
+    },
+    {
+      "source": "My hand remembers you.",
+      "target": "Bàn tay anh nhớ em."
     },
     {
       "source": "My hand remembers you.|the hand breaks",
@@ -16407,6 +17019,10 @@
     {
       "source": "My label says friend now. In my handwriting.",
       "target": "Hãng của tôi nói là bạn bây giờ. Trong chữ viết tay của tôi."
+    },
+    {
+      "source": "My ledger!",
+      "target": "Sổ cái của tôi!"
     },
     {
       "source": "My ledger!|startled",
@@ -16585,6 +17201,10 @@
       "target": "CHƯA CÓ LƯỢT ĐANG CHƠI"
     },
     {
+      "source": "Name the harm. Refuse the claim.",
+      "target": "Nói rõ tổn thương. Bác bỏ lời đòi hỏi."
+    },
+    {
       "source": "Name the harm. Refuse the claim.|Acknowledge the care. Refuse the claim.",
       "target": "Nêu tên tác hại. Từ chối yêu cầu.|Xác nhận sự quan tâm. Từ chối yêu cầu bồi thường."
     },
@@ -16661,6 +17281,10 @@
       "target": "Diện mạo mới, giá quen thuộc. Cho hoặc nhận một đồng xu."
     },
     {
+      "source": "New finds",
+      "target": "Khám phá mới"
+    },
+    {
       "source": "New finds pay double oil",
       "target": "Phát hiện mới trả dầu gấp đôi"
     },
@@ -16683,6 +17307,10 @@
     {
       "source": "New run",
       "target": "Lượt chơi mới"
+    },
+    {
+      "source": "New shelf. Same shop.",
+      "target": "Kệ hàng mới. Vẫn cửa tiệm cũ."
     },
     {
       "source": "New shelf. Same shop.|wry, patient",
@@ -16743,6 +17371,10 @@
     {
       "source": "Next time, lean on us sooner. That's what we're here for.",
       "target": "Lần sau hãy dựa vào chúng tôi sớm hơn nhé. Đó là lý do chúng tôi ở đây."
+    },
+    {
+      "source": "Next time, maybe.",
+      "target": "Có lẽ để lần sau nhé."
     },
     {
       "source": "Next time, maybe.|hopeful",
@@ -16889,6 +17521,10 @@
       "target": "Giao Ước Đêm"
     },
     {
+      "source": "Night Pact ×",
+      "target": "Giao ước đêm ×"
+    },
+    {
       "source": "Night Watch",
       "target": "Canh đêm"
     },
@@ -16973,6 +17609,10 @@
       "target": "Không có ưu đãi nào của cửa hàng đủ điều kiện"
     },
     {
+      "source": "No face left to wear.",
+      "target": "Không còn mặt để đeo."
+    },
+    {
       "source": "No face left to wear.|blank, smooth",
       "target": "Không còn mặt để đeo.|trống, mịn"
     },
@@ -17037,12 +17677,20 @@
       "target": "Không còn vòng kết nối nào nữa. Chúng ta hãy nhìn thấy một con đường thực sự."
     },
     {
+      "source": "No new marks. Not on you.",
+      "target": "Không có nhãn hiệu mới. Không phải ở bạn."
+    },
+    {
       "source": "No new marks. Not on you.|a vow",
       "target": "Không có nhãn hiệu mới. Không phải ở bạn.| một lời thề"
     },
     {
       "source": "No nightmare leaves my kitchen hungry.",
       "target": "Không có cơn ác mộng nào khiến bếp nhà tôi đói."
+    },
+    {
+      "source": "No one came.",
+      "target": "Không ai đến."
     },
     {
       "source": "No one came.|cold, certain",
@@ -17087,6 +17735,10 @@
     {
       "source": "No running on the wet floor. That is my job.",
       "target": "Không chạy trên sàn ướt. Đó là công việc của tôi."
+    },
+    {
+      "source": "No rush. None at all.",
+      "target": "Không cần vội. Chẳng vội gì đâu."
     },
     {
       "source": "No rush. None at all.|easy, slow",
@@ -17153,20 +17805,40 @@
       "target": "Không ai đứng lên mà không trả tiền.|đoạn 5: cuối cùng, lạnh lùng"
     },
     {
+      "source": "Nobody walks alone in here.",
+      "target": "Ở đây chẳng ai phải đi một mình."
+    },
+    {
       "source": "Nobody walks alone in here.|steady promise",
       "target": "Không ai bước vào đây một mình.|lời hứa kiên định"
+    },
+    {
+      "source": "Nobody woke. Nobody.",
+      "target": "Không ai thức dậy. Không có ai."
     },
     {
       "source": "Nobody woke. Nobody.|hollow",
       "target": "Không ai thức dậy. Không có ai.|rỗng"
     },
     {
+      "source": "Nobody's coming.",
+      "target": "Không ai đến."
+    },
+    {
       "source": "Nobody's coming.|sweet and cruel",
       "target": "Không ai đến.|ngọt ngào và tàn nhẫn"
     },
     {
+      "source": "Nobody's home.",
+      "target": "Không có ai ở nhà."
+    },
+    {
       "source": "Nobody's home.|wooden groan, low",
       "target": "Không có ai ở nhà.|tiếng gỗ rên rỉ, trầm"
+    },
+    {
+      "source": "Nobody. We pulled.",
+      "target": "Không ai cả. Chúng tôi đã kéo."
     },
     {
       "source": "Nobody. We pulled.|shop 19 after SIT CLOSER, simple",
@@ -17221,8 +17893,16 @@
       "target": "Chưa đủ. Tôi sẽ không mua nhịp tim cuối cùng của bạn."
     },
     {
+      "source": "Not enough. No shame in it.",
+      "target": "Chưa đủ thôi. Có gì phải ngại đâu."
+    },
+    {
       "source": "Not enough. No shame in it.|warm, firm on 'no shame'",
       "target": "Chưa đủ. Không xấu hổ chút nào.|Ấm áp, kiên quyết 'không xấu hổ'"
+    },
+    {
+      "source": "Not enough. Not tonight.",
+      "target": "Chưa đủ. Đêm nay chưa được."
     },
     {
       "source": "Not enough. Not tonight.|sorry, soft",
@@ -17245,6 +17925,10 @@
       "target": "Không phải mọi thứ bị lãng quên đều muốn được mua lại. Một số muốn được tìm thấy."
     },
     {
+      "source": "Not for keeping. Walk together.",
+      "target": "Không phải để sở hữu. Hãy cùng nhau đi."
+    },
+    {
       "source": "Not for keeping. Walk together.|firm on the first half, gentle on the second",
       "target": "Không phải để giữ. Cùng nhau bước đi.|vững vàng ở nửa đầu, nhẹ nhàng ở nửa sau"
     },
@@ -17255,6 +17939,10 @@
     {
       "source": "Not found yet",
       "target": "Chưa tìm thấy"
+    },
+    {
+      "source": "Not like last time.",
+      "target": "Không giống lần trước."
     },
     {
       "source": "Not like last time.|remembering the last loop",
@@ -17273,20 +17961,40 @@
       "target": "Chưa sẵn sàng"
     },
     {
+      "source": "Not that chair. Please.",
+      "target": "Đừng ngồi chiếc ghế đó. Làm ơn."
+    },
+    {
       "source": "Not that chair. Please.|strained calm",
       "target": "Không phải cái ghế đó. Làm ơn.|căng thẳng bình tĩnh"
+    },
+    {
+      "source": "Not that one!",
+      "target": "Đừng ngồi chiếc đó!"
     },
     {
       "source": "Not that one!|shop 13: the first time he looks straight at the chair and shouts at it, not at you",
       "target": "Không phải cái đó!|shop 13: lần đầu tiên anh ấy nhìn thẳng vào cái ghế và hét vào nó chứ không phải vào bạn"
     },
     {
+      "source": "Not that one.",
+      "target": "Đừng chọn cái đó."
+    },
+    {
       "source": "Not that one.|flat, quick, eyes fixed elsewhere",
       "target": "Không phải cái đó.|phẳng, nhanh, mắt dán vào chỗ khác"
     },
     {
+      "source": "Not those? Fair.",
+      "target": "Chưa ưng à? Được thôi."
+    },
+    {
       "source": "Not those? Fair.|accepting, no offence taken",
       "target": "Không phải những cái đó à? Công bằng.|chấp nhận, không có hành vi xúc phạm nào"
+    },
+    {
+      "source": "Not today, I'm afraid.",
+      "target": "E là hôm nay chưa được rồi."
     },
     {
       "source": "Not today, I'm afraid.|apologetic, gentle",
@@ -17313,6 +18021,10 @@
       "target": "Không có gì thay đổi."
     },
     {
+      "source": "Nothing gets past the left.",
+      "target": "Không có gì vượt qua được bên trái."
+    },
+    {
       "source": "Nothing gets past the left.|certain",
       "target": "Không có gì vượt qua được bên trái.|chắc chắn"
     },
@@ -17327,6 +18039,10 @@
     {
       "source": "Nothing in the dark is this bright.",
       "target": "Không có gì trong bóng tối lại sáng như thế này."
+    },
+    {
+      "source": "Nothing is free.",
+      "target": "Không có gì là miễn phí."
     },
     {
       "source": "Nothing is free.|the house rule",
@@ -17347,6 +18063,10 @@
     {
       "source": "Now that's a big branch!",
       "target": "Bây giờ đó là một nhánh lớn!"
+    },
+    {
+      "source": "Now that's worth the walk.",
+      "target": "Đi xa đến đây cũng đáng rồi đấy."
     },
     {
       "source": "Now that's worth the walk.|a rare warm chuckle in the voice",
@@ -17513,6 +18233,10 @@
       "target": "Tắt"
     },
     {
+      "source": "Off your feet.",
+      "target": "Bực mình."
+    },
+    {
       "source": "Off your feet.|effort",
       "target": "Bực mình.|nỗ lực"
     },
@@ -17549,6 +18273,10 @@
       "target": "Ồ, ngọt ngào hơn. Tôi sẽ cứu bạn một viên ngọc trai."
     },
     {
+      "source": "Oh. That one.",
+      "target": "Ồ. Món đó à."
+    },
+    {
       "source": "Oh. That one.|genuinely impressed, a hush",
       "target": "Ồ. Cái đó.|thực sự ấn tượng, im lặng"
     },
@@ -17563,6 +18291,10 @@
     {
       "source": "Old stock into my belly, new stock onto the stands!",
       "target": "Hàng cũ nhét vào bụng, hàng mới lên kệ!"
+    },
+    {
+      "source": "Old stock. Very old.",
+      "target": "Hàng cũ. Cũ lắm rồi."
     },
     {
       "source": "Old stock. Very old.|remembering",
@@ -17729,6 +18461,10 @@
       "target": "Một chiến binh ·"
     },
     {
+      "source": "One flame left. Mine.",
+      "target": "Còn lại một ngọn lửa. Của tôi."
+    },
+    {
       "source": "One flame left. Mine.|cold flicker",
       "target": "Còn lại một ngọn lửa. Của tôi.|lạnh lùng nhấp nháy"
     },
@@ -17787,6 +18523,10 @@
     {
       "source": "One more offer in every shop",
       "target": "Thêm một ưu đãi nữa tại mỗi cửa hàng"
+    },
+    {
+      "source": "One more test. Then I give.",
+      "target": "Thêm một bài kiểm tra nữa. Rồi tôi cho."
     },
     {
       "source": "One more test. Then I give.|patient",
@@ -17849,6 +18589,10 @@
       "target": "Hiện tại chỉ còn một chiếc ghế."
     },
     {
+      "source": "Only a little blood.",
+      "target": "Chỉ một chút máu thôi."
+    },
+    {
       "source": "Only a little blood. Keep the rest for dreaming.",
       "target": "Chỉ có một ít máu. Giữ phần còn lại để mơ ước."
     },
@@ -17859,6 +18603,10 @@
     {
       "source": "Only as a gift or a special reward.",
       "target": "Chỉ là một món quà hoặc một phần thưởng đặc biệt."
+    },
+    {
+      "source": "Only for you.",
+      "target": "Chỉ dành cho bạn."
     },
     {
       "source": "Only for you.|intimate",
@@ -17875,6 +18623,10 @@
     {
       "source": "Only this price. Not your name. Never your name.",
       "target": "Chỉ có giá này thôi. Không phải tên của bạn. Không bao giờ tên của bạn."
+    },
+    {
+      "source": "Only what it costs.",
+      "target": "Chỉ lấy đúng cái giá thôi."
     },
     {
       "source": "Only what it costs.|honest, reassuring",
@@ -17903,6 +18655,10 @@
     {
       "source": "Open it to read your journal",
       "target": "Mở nó ra để đọc nhật ký của bạn"
+    },
+    {
+      "source": "Open the window to the real night.",
+      "target": "Mở cửa sổ đón màn đêm ngoài kia."
     },
     {
       "source": "Open the window to the real night.|Ask a companion which view they want.",
@@ -18001,6 +18757,10 @@
       "target": "Đơn hàng"
     },
     {
+      "source": "Orders changed. I didn't.",
+      "target": "Đơn hàng đã thay đổi. Tôi đã không."
+    },
+    {
       "source": "Orders changed. I didn't.|dry",
       "target": "Đơn hàng đã thay đổi. Tôi đã không.|khô"
     },
@@ -18055,6 +18815,10 @@
     {
       "source": "Overtime exhaustion",
       "target": "Kiệt sức khi làm thêm giờ"
+    },
+    {
+      "source": "Ow. Old joints.",
+      "target": "Ôi. Các khớp cũ."
     },
     {
       "source": "Ow. Old joints.|creak",
@@ -18489,6 +19253,10 @@
       "target": "Người cầm đồ"
     },
     {
+      "source": "Pay attention.",
+      "target": "Chú ý."
+    },
+    {
       "source": "Pay attention.|cold underneath",
       "target": "Chú ý.|lạnh bên dưới"
     },
@@ -18509,8 +19277,16 @@
       "target": "Thanh toán kèm lãi suất!"
     },
     {
+      "source": "Pay.",
+      "target": "Trả tiền."
+    },
+    {
       "source": "Pay.|clipped",
       "target": "Trả tiền.|đã cắt"
+    },
+    {
+      "source": "Payment is due, traveller.",
+      "target": "Đến hạn thanh toán rồi lữ khách."
     },
     {
       "source": "Payment is due, traveller.|silken, counting coins",
@@ -19137,6 +19913,10 @@
       "target": "Mũi khâu kéo"
     },
     {
+      "source": "Pull them up. All of them.",
+      "target": "Kéo chúng lên. Tất cả bọn họ."
+    },
+    {
       "source": "Pull them up. All of them.|a last order, its true one",
       "target": "Kéo chúng lên. Tất cả bọn họ.| mệnh lệnh cuối cùng, đó là mệnh lệnh thực sự"
     },
@@ -19173,6 +19953,10 @@
       "target": "Ví III"
     },
     {
+      "source": "Purse is light, friend.",
+      "target": "Túi tiền còn nhẹ quá, bạn à."
+    },
+    {
       "source": "Purse is light, friend.|sympathetic",
       "target": "Ví nhẹ lắm bạn.|thông cảm"
     },
@@ -19183,6 +19967,10 @@
     {
       "source": "Push ordinary enemies within the push cap. Basic damage is reduced by 70%.",
       "target": "Đẩy kẻ thù bình thường vào trong nắp đẩy. Sát thương cơ bản giảm đi 70%."
+    },
+    {
+      "source": "Put them down... gently.",
+      "target": "Đặt chúng xuống... nhẹ nhàng."
     },
     {
       "source": "Put them down... gently.|collapsing, careful to the end",
@@ -19235,6 +20023,10 @@
     {
       "source": "Quiet Hour",
       "target": "Giờ Yên Tĩnh"
+    },
+    {
+      "source": "Quiet. They'll hear you.",
+      "target": "Yên tĩnh. Họ sẽ nghe thấy bạn."
     },
     {
       "source": "Quiet. They'll hear you.|hiss through the letterbox",
@@ -20321,6 +21113,10 @@
       "target": "Tem cao su Titan"
     },
     {
+      "source": "Rude.",
+      "target": "Thô lỗ."
+    },
+    {
       "source": "Rude.|clipped",
       "target": "Thô lỗ.|cắt bớt"
     },
@@ -20909,6 +21705,10 @@
       "target": "Đã niêm phong"
     },
     {
+      "source": "Sealed and stamped.",
+      "target": "Đóng dấu và đóng dấu."
+    },
+    {
       "source": "Sealed and stamped.|crisp",
       "target": "Đóng dấu và đóng dấu.|sắc nét"
     },
@@ -20967,6 +21767,10 @@
     {
       "source": "Secret reward",
       "target": "Phần thưởng bí mật"
+    },
+    {
+      "source": "Secret rooms found ×",
+      "target": "Phòng bí mật đã tìm thấy ×"
     },
     {
       "source": "Secret rooms found:",
@@ -21141,6 +21945,10 @@
       "target": "Bước bóng"
     },
     {
+      "source": "Shake the dark off. Come.",
+      "target": "Phủi bóng tối đi nào. Vào đây."
+    },
+    {
       "source": "Shake the dark off. Come.|gentle, like brushing snow off a coat",
       "target": "Lắc bóng tối đi. Hãy đến.|dịu dàng, như phủi tuyết khỏi áo khoác"
     },
@@ -21151,6 +21959,10 @@
     {
       "source": "Shall we pretend that refresh never happened?",
       "target": "Chúng ta có nên coi như việc làm mới chưa từng xảy ra không?"
+    },
+    {
+      "source": "Shall we settle the bill?",
+      "target": "Chúng ta thanh toán hóa đơn nhé?"
     },
     {
       "source": "Shall we settle the bill?|polite menace",
@@ -21183,6 +21995,10 @@
     {
       "source": "Sharp turns leave bubbles that slow and gently push enemies.",
       "target": "Những cú xoay người đột ngột để lại bong bóng làm chậm và đẩy nhẹ kẻ thù."
+    },
+    {
+      "source": "Sharper. On your side now.",
+      "target": "Sắc nét hơn. Bây giờ hãy đứng về phía bạn."
     },
     {
       "source": "Sharper. On your side now.|grim",
@@ -21237,16 +22053,32 @@
       "target": "Nơi trú ẩn|Gai|Thu hoạch"
     },
     {
+      "source": "Shh, shh, shh.",
+      "target": "Suỵt, suỵt, suỵt."
+    },
+    {
       "source": "Shh, shh, shh.|rocking",
       "target": "Suỵt, suỵt, suỵt.| rung chuyển"
+    },
+    {
+      "source": "Shh. A dream opened an eye.",
+      "target": "Suỵt. Một giấc mơ vừa hé mắt."
     },
     {
       "source": "Shh. A dream opened an eye.|whisper, delighted",
       "target": "Suỵt. Một giấc mơ đã mở mắt.|thì thầm, vui mừng"
     },
     {
+      "source": "Shh. It's only me.",
+      "target": "Suỵt. Chỉ có tôi thôi."
+    },
+    {
       "source": "Shh. It's only me.|close-mic whisper",
       "target": "Suỵt. Chỉ có tôi thôi.|thì thầm gần mic"
+    },
+    {
+      "source": "Shh. Their voice is mine now.",
+      "target": "Suỵt. Giọng nói của họ bây giờ là của tôi."
     },
     {
       "source": "Shh. Their voice is mine now.|lullaby, hushed",
@@ -21317,6 +22149,10 @@
       "target": "Bộ đếm mã thông báo cửa hàng đã cạn kiệt"
     },
     {
+      "source": "Shop's open. Take your time.",
+      "target": "Cửa hàng mở rồi. Cứ thong thả xem nhé."
+    },
+    {
       "source": "Shop's open. Take your time.|unhurried, settling in",
       "target": "Cửa hàng mở cửa. Hãy dành thời gian của bạn.|không vội vàng, ổn định cuộc sống"
     },
@@ -21335,6 +22171,10 @@
     {
       "source": "Shore",
       "target": "Bờ biển"
+    },
+    {
+      "source": "Short a coin or two.",
+      "target": "Còn thiếu một hai đồng."
     },
     {
       "source": "Short a coin or two.|kind, matter-of-fact",
@@ -21407,6 +22247,10 @@
     {
       "source": "Shuffle, shuffle! Fancier, pricier!",
       "target": "Xáo trộn, xáo trộn! Đẹp hơn, đắt hơn!"
+    },
+    {
+      "source": "Shut. Shut. Shut.",
+      "target": "Im đi. Im đi. Im đi."
     },
     {
       "source": "Shut. Shut. Shut.|slamming rhythm",
@@ -21525,12 +22369,24 @@
       "target": "Ngài Purrcival"
     },
     {
+      "source": "Sit anywhere else.",
+      "target": "Ngồi chỗ nào khác cũng được."
+    },
+    {
       "source": "Sit anywhere else.|gentle but firm",
       "target": "Ngồi chỗ khác.|nhẹ nhàng nhưng cương quyết"
     },
     {
+      "source": "Sit anywhere you like. Not that one. Never the warm one.",
+      "target": "Cứ ngồi đâu bạn thích. Trừ chiếc đó. Đừng bao giờ ngồi chiếc còn ấm."
+    },
+    {
       "source": "Sit anywhere you like. Not that one. Never the warm one.|shop 1: the only rule, said kindly, never looking at the chair",
       "target": "Ngồi bất cứ đâu bạn thích. Không phải cái đó. Không bao giờ là ấm áp.|shop 1: quy tắc duy nhất, nói lời tử tế, không bao giờ nhìn vào ghế"
+    },
+    {
+      "source": "Sit anywhere. Well. Almost.",
+      "target": "Cứ ngồi đâu cũng được. À... gần như vậy."
     },
     {
       "source": "Sit anywhere. Well. Almost.|the pause matters; do not glance anywhere",
@@ -21555,6 +22411,10 @@
     {
       "source": "Sit, sit. Have you heard about the lamp that waited?",
       "target": "Ngồi đi, ngồi đi. Bạn đã nghe nói về ngọn đèn chờ đợi chưa?"
+    },
+    {
+      "source": "Sit. It's easier.",
+      "target": "Ngồi đi. Nó dễ dàng hơn."
     },
     {
       "source": "Sit. It's easier.|tired persuasion",
@@ -21781,6 +22641,10 @@
       "target": "Chiếc thìa tuyết"
     },
     {
+      "source": "So many eyes. All for you.",
+      "target": "Biết bao con mắt. Đều dành cho con."
+    },
+    {
       "source": "So many eyes. All for you.|dreamy, layered",
       "target": "Nhiều ánh mắt quá. Tất cả dành cho bạn.|mơ mộng, nhiều lớp"
     },
@@ -21819,6 +22683,10 @@
     {
       "source": "Sold! Take good care of that small impossibility.",
       "target": "Đã bán! Hãy cẩn thận với điều không thể nhỏ đó."
+    },
+    {
+      "source": "Sold. Carry it well.",
+      "target": "Bán rồi. Giữ cho cẩn thận nhé."
     },
     {
       "source": "Sold. Carry it well.|ceremonial, soft",
@@ -21889,6 +22757,10 @@
       "target": "Có người nhìn xuống. Thế là đủ để nở hoa."
     },
     {
+      "source": "Somebody's on the step.",
+      "target": "Ai đó đang ở trên bậc thềm."
+    },
+    {
       "source": "Somebody's on the step.|dread",
       "target": "Ai đó đang ở trên bậc thềm.|kinh hãi"
     },
@@ -21923,6 +22795,10 @@
     {
       "source": "Something breathed into me from the wrong side.",
       "target": "Có thứ gì đó thổi vào tôi từ phía bên trái."
+    },
+    {
+      "source": "Something else woke up.",
+      "target": "Có thứ khác vừa thức giấc."
     },
     {
       "source": "Something else woke up.|curious, slightly wary",
@@ -22157,6 +23033,10 @@
       "target": "Splinter Imp"
     },
     {
+      "source": "Splinters...",
+      "target": "Mảnh vụn..."
+    },
+    {
       "source": "Splinters...|crack",
       "target": "Mảnh vụn...|vết nứt"
     },
@@ -22385,12 +23265,20 @@
       "target": "Đứng yên trong 2 giây để phản lại tối đa 3 viên đạn gần đó. Di chuyển phí đặt lại."
     },
     {
+      "source": "Stand up straight.",
+      "target": "Đứng thẳng."
+    },
+    {
       "source": "Stand up straight.|pushing, heavy",
       "target": "Đứng thẳng.|đẩy, nặng"
     },
     {
       "source": "Stand witness while they give up the guard's key.",
       "target": "Đứng làm nhân chứng khi họ giao chìa khóa của lính canh."
+    },
+    {
+      "source": "Stand. Show me.",
+      "target": "Đứng. Chỉ cho tôi."
     },
     {
       "source": "Stand. Show me.|a gate speaking",
@@ -22589,6 +23477,10 @@
       "target": "Đứng yên trong chiến đấu. Xe bán tải toàn đấu trường và một phường làm chậm. Đi dạo trong các cửa hàng."
     },
     {
+      "source": "Stay away from the door.",
+      "target": "Tránh xa khỏi cửa."
+    },
+    {
       "source": "Stay away from the door.|warning",
       "target": "Tránh xa khỏi cửa.|cảnh báo"
     },
@@ -22609,6 +23501,10 @@
       "target": "Hãy ở trong ánh sáng!"
     },
     {
+      "source": "Stay in the light.",
+      "target": "Hãy ở trong ánh sáng."
+    },
+    {
       "source": "Stay in the light. I will keep it steady.",
       "target": "Ở trong ánh sáng. Tôi sẽ giữ nó ổn định."
     },
@@ -22621,6 +23517,10 @@
       "target": "Luôn nổi bật: màu sắc của nó là điểm nhấn của bạn."
     },
     {
+      "source": "Stay inside.",
+      "target": "Ở bên trong."
+    },
+    {
       "source": "Stay inside.|chains settling",
       "target": "Ở bên trong.|xiềng xích ổn định"
     },
@@ -22629,8 +23529,16 @@
       "target": "Luôn tham gia chiến đấu và thu thập chiến lợi phẩm trên khắp đấu trường. Cửa hàng giảm giá +30%. Không thể né tránh; phát hiện kho báu -100%."
     },
     {
+      "source": "Stay where you are owed.",
+      "target": "Ở nơi bạn nợ."
+    },
+    {
       "source": "Stay where you are owed.|the Customer's order, recited",
       "target": "Ở nơi bạn nợ.|Lệnh của Khách hàng, được đọc"
+    },
+    {
+      "source": "Stay. Stay with me.",
+      "target": "Ở lại. Ở lại với tôi."
     },
     {
       "source": "Stay. Stay with me.|clinging",
@@ -22693,6 +23601,10 @@
       "target": "Bám vào kẻ địch, kéo nó lại gần, sau đó bật ra 110%, hất kẻ địch sang bên cạnh (55%) và đẩy nó ra xa."
     },
     {
+      "source": "Still knocking. Still knocking.",
+      "target": "Vẫn gõ cửa. Vẫn gõ cửa."
+    },
+    {
       "source": "Still knocking. Still knocking.|unravelling",
       "target": "Vẫn gõ cửa. Vẫn gõ cửa.|làm sáng tỏ"
     },
@@ -22701,12 +23613,20 @@
       "target": "Vẫn mở cửa lúc nửa đêm"
     },
     {
+      "source": "Still open. Still here.",
+      "target": "Vẫn mở cửa. Vẫn ở đây."
+    },
+    {
       "source": "Still open. Still here.|tired but steady",
       "target": "Vẫn mở. Vẫn ở đây.|mệt nhưng vững vàng"
     },
     {
       "source": "Still ticking. Still together.",
       "target": "Vẫn đang tích tắc. Vẫn bên nhau."
+    },
+    {
+      "source": "Still you. Good.",
+      "target": "Vẫn là bạn. Tốt quá."
     },
     {
       "source": "Still you. Good.|checking you over, relieved",
@@ -22841,6 +23761,10 @@
       "target": "Sải bước"
     },
     {
+      "source": "Strike it from the record!",
+      "target": "Hãy phá kỷ lục!"
+    },
+    {
       "source": "Strike it from the record!|scratching quill",
       "target": "Hãy phá kỷ lục!|cào bút lông"
     },
@@ -22867,6 +23791,10 @@
     {
       "source": "Stronger. Still walking with you.",
       "target": "Mạnh mẽ hơn. Vẫn đi cùng bạn."
+    },
+    {
+      "source": "Stronger. Still watching it.",
+      "target": "Mạnh mẽ hơn. Vẫn đang xem."
     },
     {
       "source": "Stronger. Still watching it.|eyes on the chair",
@@ -23805,6 +24733,10 @@
       "target": "Vay tiền"
     },
     {
+      "source": "Take it. It wants out.",
+      "target": "Mang nó đi đi. Nó cũng muốn ra ngoài rồi."
+    },
+    {
       "source": "Take it. It wants out.|conspiratorial, low",
       "target": "Hãy nắm lấy nó. Nó muốn thoát ra.|âm mưu, thấp hèn"
     },
@@ -23837,12 +24769,20 @@
       "target": "Hãy đón nhận sự ấm áp. Tôi sẽ nhớ sương giá."
     },
     {
+      "source": "Take them. All the colours.",
+      "target": "Đưa họ đi. Tất cả các màu sắc."
+    },
+    {
       "source": "Take them. All the colours.|giving",
       "target": "Đưa họ đi. Tất cả các màu sắc.|cho"
     },
     {
       "source": "Take this shift while they rest.",
       "target": "Đảm nhận ca này trong khi họ nghỉ ngơi."
+    },
+    {
+      "source": "Take your time.",
+      "target": "Cứ thong thả nhé."
     },
     {
       "source": "Take your time. The shelf is not going anywhere.",
@@ -23959,6 +24899,10 @@
     {
       "source": "Tea Party",
       "target": "Tiệc trà"
+    },
+    {
+      "source": "Tea first. Then the road.",
+      "target": "Trà trước. Rồi lên đường."
     },
     {
       "source": "Tea first. Then the road.|hearth spirit, cosy, brisk",
@@ -24101,8 +25045,16 @@
       "target": "Phép màu đó tốt hơn nên đến cùng với sự thay đổi."
     },
     {
+      "source": "That one chose you back.",
+      "target": "Nó cũng đã chọn bạn rồi."
+    },
+    {
       "source": "That one chose you back.|soft wonder",
       "target": "Người đó đã chọn lại em.|ngạc nhiên mềm mại"
+    },
+    {
+      "source": "That one costs more.",
+      "target": "Món đó đắt hơn một chút."
     },
     {
       "source": "That one costs more.|soft, not stern",
@@ -24121,6 +25073,10 @@
       "target": "Người đó không còn sợ trời sáng nữa."
     },
     {
+      "source": "That one suits you.",
+      "target": "Món đó hợp với bạn đấy."
+    },
+    {
       "source": "That one suits you.|warm, sincere",
       "target": "Người đó hợp với bạn.|ấm áp, chân thành"
     },
@@ -24129,8 +25085,16 @@
       "target": "Cái đó sẽ phù hợp với gia đình nhỏ đặc biệt của bạn."
     },
     {
+      "source": "That one's been waiting.",
+      "target": "Món đó đã đợi lâu rồi."
+    },
+    {
       "source": "That one's been waiting.|knowing, a little sad",
       "target": "Người ấy đợi.|biết, hơi buồn"
+    },
+    {
+      "source": "That one's not for you.",
+      "target": "Cái đó không dành cho bạn."
     },
     {
       "source": "That one's not for you.|steady, kind, final",
@@ -24193,6 +25157,10 @@
       "target": "Thế là gần rồi. Kiểm tra các mũi khâu của bạn."
     },
     {
+      "source": "That will cost you.",
+      "target": "Điều đó sẽ khiến bạn phải trả giá."
+    },
+    {
       "source": "That will cost you.|offended",
       "target": "Điều đó sẽ khiến bạn phải trả giá.|bị xúc phạm"
     },
@@ -24203,6 +25171,10 @@
     {
       "source": "That's help we can use. Save a portion for the cooks.",
       "target": "Đó là sự trợ giúp mà chúng ta có thể sử dụng. Để dành một phần cho người nấu."
+    },
+    {
+      "source": "That's not them. Hide.",
+      "target": "Không phải họ. Ẩn."
     },
     {
       "source": "That's not them. Hide.|canon, urgent whisper",
@@ -24419,6 +25391,10 @@
     {
       "source": "The Keeper stands at the open gate and lets every traveller through.",
       "target": "Người canh giữ đứng ở cánh cổng mở và cho mọi du khách đi qua."
+    },
+    {
+      "source": "The Keeper ·",
+      "target": "Người Canh Giữ ·"
     },
     {
       "source": "The Keeper's reward. Take one of the three; the others go back into the dark.",
@@ -24709,6 +25685,10 @@
       "target": "Câu thơ cuối cùng bị giữ lại"
     },
     {
+      "source": "The account... is closed.",
+      "target": "Tài khoản... đã bị đóng."
+    },
+    {
       "source": "The account... is closed.|a last sigh",
       "target": "Tài khoản... đã bị đóng.|tiếng thở dài cuối cùng"
     },
@@ -24813,12 +25793,24 @@
       "target": "Con mèo đi kèm căn phòng. Không ai nhớ nó là của ai."
     },
     {
+      "source": "The chain holds.",
+      "target": "Dây xích giữ nguyên."
+    },
+    {
       "source": "The chain holds.|rattling",
       "target": "Dây xích giữ nguyên.|lạch cạch"
     },
     {
+      "source": "The chain is slipping.",
+      "target": "Dây xích bị trượt."
+    },
+    {
       "source": "The chain is slipping.|alarmed",
       "target": "Dây xích bị trượt.|báo động"
+    },
+    {
+      "source": "The chains are paid in full.",
+      "target": "Dây chuyền được thanh toán đầy đủ."
     },
     {
       "source": "The chains are paid in full.|clutching",
@@ -24903,6 +25895,10 @@
     {
       "source": "The contract needs you to say it again.",
       "target": "Hợp đồng cần bạn nói lại."
+    },
+    {
+      "source": "The contract... burns.",
+      "target": "Hợp đồng... cháy rụi."
     },
     {
       "source": "The contract... burns.|disbelief",
@@ -25041,6 +26037,10 @@
       "target": "Người ngăn kéo thở dài. Tôi nghĩ nó muốn bạn chọn cái đó."
     },
     {
+      "source": "The dream can wait.",
+      "target": "Giấc mơ có thể chờ."
+    },
+    {
       "source": "The dream can wait.|patient",
       "target": "Giấc mơ có thể chờ đợi.|kiên nhẫn"
     },
@@ -25067,6 +26067,10 @@
     {
       "source": "The echo stays where the first slash was cast.",
       "target": "Tiếng vang vẫn còn ở nơi phát ra dấu gạch đầu tiên."
+    },
+    {
+      "source": "The eggs will remember you.",
+      "target": "Những quả trứng sẽ nhớ con."
     },
     {
       "source": "The eggs will remember you.|fond",
@@ -25173,6 +26177,10 @@
       "target": "Khu vườn giữ cho bạn một ánh sáng nhỏ thức giấc."
     },
     {
+      "source": "The gate is closed. I closed it.",
+      "target": "Cổng đóng rồi. Tôi đã đóng nó lại."
+    },
+    {
       "source": "The gate is closed. I closed it.|polite, proprietary",
       "target": "Cổng đóng rồi. Tôi đã đóng nó lại.|lịch sự, độc quyền"
     },
@@ -25249,6 +26257,10 @@
       "target": "Người ẩn giấu"
     },
     {
+      "source": "The hinge... the hinge.",
+      "target": "Bản lề... bản lề."
+    },
+    {
       "source": "The hinge... the hinge.|straining",
       "target": "Bản lề... bản lề.| căng"
     },
@@ -25269,6 +26281,10 @@
       "target": "Ấm vẫn còn ấm."
     },
     {
+      "source": "The kettle will be on.",
+      "target": "Ấm trà sẽ luôn nóng chờ bạn."
+    },
+    {
       "source": "The kettle will be on.|warm, homely",
       "target": "Ấm đun nước sẽ bật.|ấm áp, giản dị"
     },
@@ -25287,6 +26303,10 @@
     {
       "source": "The knocking stopped",
       "target": "Tiếng gõ cửa đã dừng lại"
+    },
+    {
+      "source": "The knocking will stop.",
+      "target": "Tiếng gõ cửa sẽ dừng lại."
     },
     {
       "source": "The knocking will stop.|soothing, threatening",
@@ -25549,6 +26569,10 @@
       "target": "Lỗ kim nhức nhối khi có gió thổi qua."
     },
     {
+      "source": "The pipes... go quiet...",
+      "target": "Tiếng ống... im bặt..."
+    },
+    {
       "source": "The pipes... go quiet...|wheezing last chord",
       "target": "Tiếng ống... im bặt...|khò khè hợp âm cuối"
     },
@@ -25633,6 +26657,10 @@
       "target": "Vết nứt dẫn trở lại cửa hàng."
     },
     {
+      "source": "The road was never mine to keep.",
+      "target": "Con đường chưa bao giờ là của tôi để giữ."
+    },
+    {
       "source": "The road was never mine to keep.|slower",
       "target": "Con đường chưa bao giờ là của tôi để giữ.|chậm hơn"
     },
@@ -25715,6 +26743,10 @@
     {
       "source": "The shelf is dreaming of a spine. Walk carefully.",
       "target": "Kệ mơ thấy cột sống. Đi lại cẩn thận."
+    },
+    {
+      "source": "The shell is yours.",
+      "target": "Vỏ trứng thuộc về con."
     },
     {
       "source": "The shell is yours.|ceremonial",
@@ -25897,6 +26929,10 @@
       "target": "Hộp đựng dụng cụ để ở bên ngoài mà không có địa chỉ trả lại. Vào lúc bình minh, họ tìm kiếm công việc lương thiện hơn là một lịch sử trong sạch."
     },
     {
+      "source": "The tower's leaning.",
+      "target": "Tháp nghiêng."
+    },
+    {
       "source": "The tower's leaning.|panic rising",
       "target": "Tháp nghiêng.| hoảng loạn dâng cao"
     },
@@ -26013,6 +27049,10 @@
       "target": "Quà tặng của họ sẽ trở thành của bạn (+50%):"
     },
     {
+      "source": "Their name... still on the card.",
+      "target": "Tên của họ... vẫn còn trên thẻ."
+    },
+    {
       "source": "Their name... still on the card.|whisper",
       "target": "Tên của họ... vẫn còn trên thẻ.|thì thầm"
     },
@@ -26027,6 +27067,10 @@
     {
       "source": "Their underground library grows books from witnessed events, keeping contradictory accounts on adjacent shelves. A borrower who never returned left a gap they refuse to fill with a convenient ending. They seek the borrower rather than a replacement story.",
       "target": "Thư viện ngầm của họ phát triển sách từ các sự kiện được chứng kiến, lưu giữ những tài khoản trái ngược nhau trên các kệ liền kề. Một người đi vay không bao giờ quay trở lại đã để lại một khoảng trống mà họ từ chối lấp đầy bằng một kết thúc thuận lợi. Họ tìm kiếm người đi vay hơn là một câu chuyện thay thế."
+    },
+    {
+      "source": "Then burn for them.",
+      "target": "Rồi đốt cháy cho họ."
     },
     {
       "source": "Then burn for them.|fading glow",
@@ -26093,8 +27137,16 @@
       "target": "Ở đây có gió nhưng không thể nào lọt vào được."
     },
     {
+      "source": "There was someone there.",
+      "target": "Có ai đó ở đó."
+    },
+    {
       "source": "There was someone there.|a confession",
       "target": "Có ai đó ở đó.|lời thú nhận"
+    },
+    {
+      "source": "There you are.",
+      "target": "Bạn đây rồi."
     },
     {
       "source": "There you are. Still yourselves. All of you.",
@@ -26161,6 +27213,10 @@
       "target": "Họ đã chọn lối đi này cùng với lữ đoàn. Cuộc sống của họ tiếp tục vượt ra ngoài cuộc hành trình này; nguồn gốc của chúng được ghi lại ở trên."
     },
     {
+      "source": "They chose to come.",
+      "target": "Họ đã chọn đi cùng bạn."
+    },
+    {
       "source": "They chose to come.|respectful",
       "target": "Họ đã chọn đến.|tôn trọng"
     },
@@ -26170,7 +27226,7 @@
     },
     {
       "source": "They do not owe you a word. Put down the receipt.",
-      "target": "Họ không nợ bạn một lời nào. Đặt biên lai xuống."
+      "target": "Họ chẳng nợ ngươi lời nào. Đặt tờ biên nhận xuống."
     },
     {
       "source": "They do not owe you a word. Put down the receipt.|final fight: standing up to the Last Customer",
@@ -26273,6 +27329,10 @@
       "target": "Họ đi bên cạnh bạn. Lời kể của họ mở ra trong nhật ký khi bạn cùng nhau khám phá con đường."
     },
     {
+      "source": "They waited so long.",
+      "target": "Họ đã chờ đợi quá lâu."
+    },
+    {
       "source": "They waited so long.|sorrow",
       "target": "Họ đã chờ đợi quá lâu.|sorrow"
     },
@@ -26347,6 +27407,10 @@
     {
       "source": "This one opens something good.",
       "target": "Cái này mở ra điều gì đó hay ho."
+    },
+    {
+      "source": "This one suits me better.",
+      "target": "Cái này hợp với mình hơn."
     },
     {
       "source": "This one suits me better.|admiring himself",
@@ -26481,12 +27545,20 @@
       "target": "Ba câu chuyện nhỏ. Một vũ khí để ghi nhớ họ."
     },
     {
+      "source": "Three little histories. One.",
+      "target": "Ba câu chuyện nhỏ. Hợp thành một."
+    },
+    {
       "source": "Three little histories. One.|wonder",
       "target": "Ba câu chuyện nhỏ. Một.|kỳ quan"
     },
     {
       "source": "Three measured pours make a slowing tea garden. Higher forms add satellite cups.",
       "target": "Ba lần đổ đo làm cho vườn chè chậm lại. Hình thức cao hơn có thêm cốc vệ tinh."
+    },
+    {
+      "source": "Three more, still warm.",
+      "target": "Thêm ba giấc nữa, vẫn còn ấm."
     },
     {
       "source": "Three more, still warm.|pleased",
@@ -26773,12 +27845,20 @@
       "target": "Phí cầu đường"
     },
     {
+      "source": "Tonight only! Your last act!",
+      "target": "Chỉ đêm nay thôi! Tiết mục cuối cùng của bạn!"
+    },
+    {
       "source": "Tonight only! Your last act!|showman roar",
       "target": "Chỉ đêm nay thôi! Tiết mục cuối cùng của bạn!|showman gầm lên"
     },
     {
       "source": "Tonight's dream ·",
       "target": "Giấc mơ đêm nay ·"
+    },
+    {
+      "source": "Too many chairs. Too many.",
+      "target": "Quá nhiều ghế. Quá nhiều."
     },
     {
       "source": "Too many chairs. Too many.|overwhelmed",
@@ -26977,6 +28057,10 @@
       "target": "Hãy thử tay cầm. Một công cụ tốt nên biết bàn tay của bạn."
     },
     {
+      "source": "Tsk. My face.",
+      "target": "Tsk. Khuôn mặt của tôi."
+    },
+    {
       "source": "Tsk. My face.|vain, rearranging",
       "target": "Tsk. Khuôn mặt của tôi.|vô ích, sắp xếp lại"
     },
@@ -27095,6 +28179,10 @@
     {
       "source": "Two names sink. One name wakes.",
       "target": "Hai cái tên chìm nghỉm. Một cái tên thức dậy."
+    },
+    {
+      "source": "Two names sink. One wakes.",
+      "target": "Hai cái tên chìm xuống. Một cái tên thức giấc."
     },
     {
       "source": "Two names sink. One wakes.|ritual, slow",
@@ -27271,6 +28359,10 @@
     {
       "source": "Up early, up ready!",
       "target": "Dậy sớm, dậy sẵn sàng nào!"
+    },
+    {
+      "source": "Up you go. On the pile.",
+      "target": "Cố lên nào. Trên đống."
     },
     {
       "source": "Up you go. On the pile.|grunting lift",
@@ -27681,6 +28773,10 @@
       "target": "Hãy đánh thức tôi khi tất cả chúng ta có thể nghỉ ngơi."
     },
     {
+      "source": "Wake up, little one.",
+      "target": "Thức dậy nào, bé con."
+    },
+    {
       "source": "Wake up, little one.|joyful whisper",
       "target": "Dậy đi em bé.|thì thầm vui sướng"
     },
@@ -27777,6 +28873,10 @@
       "target": "Trà ấm mãi mãi"
     },
     {
+      "source": "Warmer now. Stay close.",
+      "target": "Ấm hơn rồi. Ở gần."
+    },
+    {
       "source": "Warmer now. Stay close.|protective",
       "target": "Ấm hơn rồi. Ở gần.|bảo vệ"
     },
@@ -27851,6 +28951,10 @@
     {
       "source": "Wave1 requires an unlocked contact enemy",
       "target": "Wave1 yêu cầu mở khóa kẻ thù liên lạc"
+    },
+    {
+      "source": "Waves survived ×",
+      "target": "Đợt đã vượt qua ×"
     },
     {
       "source": "Wax Admiral",
@@ -27941,6 +29045,10 @@
       "target": "Chúng tôi cũng sợ. Dù sao chúng tôi cũng ở lại."
     },
     {
+      "source": "We'll be seeing a lot of each other.",
+      "target": "Chúng ta sẽ gặp nhau nhiều hơn."
+    },
+    {
       "source": "We'll be seeing a lot of each other.|canon line, silk",
       "target": "Chúng ta sẽ gặp nhau nhiều hơn.|canon line, lụa"
     },
@@ -27989,6 +29097,10 @@
       "target": "Cơm nắm kỳ lạ"
     },
     {
+      "source": "Welcome in, traveller.",
+      "target": "Mời vào, người lữ khách."
+    },
+    {
       "source": "Welcome in, traveller.|old-fashioned courtesy",
       "target": "Chào mừng quý khách đến.|lịch sự cổ điển"
     },
@@ -28003,6 +29115,10 @@
     {
       "source": "Well earned.",
       "target": "Kiếm được nhiều tiền."
+    },
+    {
+      "source": "Well struck.",
+      "target": "Thành công tốt."
     },
     {
       "source": "Well struck.|approval",
@@ -28093,6 +29209,10 @@
       "target": "Khi bạn nhặt được một đồng xu"
     },
     {
+      "source": "When you stop asking.",
+      "target": "Khi bạn ngừng hỏi."
+    },
+    {
       "source": "When you stop asking.|reading the board, slower",
       "target": "Khi bạn ngừng hỏi.|đọc bảng, chậm hơn"
     },
@@ -28167,6 +29287,10 @@
     {
       "source": "Whose name shall I carve?",
       "target": "Tôi sẽ khắc tên ai?"
+    },
+    {
+      "source": "Why would you do that?",
+      "target": "Tại sao bạn lại làm vậy?"
     },
     {
       "source": "Why would you do that?|wounded",
@@ -28413,6 +29537,10 @@
       "target": "Kết thúc. Chạy nhanh hơn khi bạn ấm."
     },
     {
+      "source": "Wrapped. No ribbon, sorry.",
+      "target": "Gói xong rồi. Tiếc là hết ruy băng."
+    },
+    {
       "source": "Wrapped. No ribbon, sorry.|small tired humour, still kind",
       "target": "Đã gói. Không có ruy băng, xin lỗi.|hơi mệt, hài hước, vẫn tử tế"
     },
@@ -28509,12 +29637,20 @@
       "target": "Bạn đã lựa chọn quay lại. Tôi nhớ nhiều lắm."
     },
     {
+      "source": "You came back for the colours.",
+      "target": "Bạn đã quay trở lại vì màu sắc."
+    },
+    {
       "source": "You came back for the colours.|ancient recognition",
       "target": "Bạn đã quay trở lại vì màu sắc.|sự công nhận cổ xưa"
     },
     {
       "source": "You came back for the thing under the shelf.",
       "target": "Bạn quay lại lấy thứ dưới kệ."
+    },
+    {
+      "source": "You came back to bed.",
+      "target": "Bạn đã quay lại giường."
     },
     {
       "source": "You came back to bed.|tender, wrong",
@@ -28585,6 +29721,10 @@
       "target": "Bạn không tấn công. Sát thương cá nhân, tốc độ tấn công, cơ hội chí mạng và phần thưởng về đường đạn của bạn cũng giúp ích cho đồng minh. Các cửa hàng có thể bán những người bạn đồng hành đã tiến hóa. Nhiều kẻ thù xuất hiện hơn."
     },
     {
+      "source": "You do not have to forgive me to use this.",
+      "target": "Bạn không cần tha thứ cho tôi để dùng thứ này."
+    },
+    {
       "source": "You do not have to forgive me to use this.|shop 16: he sets down the key; ashamed, steady",
       "target": "Bạn không cần phải tha thứ cho tôi để sử dụng cái này.|cửa hàng 16: anh ta đặt chìa khóa xuống; xấu hổ, kiên định"
     },
@@ -28635,6 +29775,10 @@
     {
       "source": "You have a journey in progress.\nStarting a new one puts it safely aside first; your records and your Waiting Room stay as they are.",
       "target": "Bạn đang có một hành trình.\nBắt đầu một cái mới trước tiên hãy đặt nó sang một bên một cách an toàn; hồ sơ của bạn và Phòng chờ của bạn vẫn giữ nguyên như cũ."
+    },
+    {
+      "source": "You have grown strong.",
+      "target": "Bạn đã trưởng thành mạnh mẽ."
     },
     {
       "source": "You have grown strong.|surprised respect",
@@ -28741,6 +29885,10 @@
       "target": "Bạn chỉ anh hùng; Đồng hành chỉ các thành viên đi cùng; không ghi đối tượng thì áp dụng cho tất cả."
     },
     {
+      "source": "You need me.",
+      "target": "Bạn cần tôi."
+    },
+    {
       "source": "You need me.|insistent",
       "target": "Bạn cần tôi.|kiên quyết"
     },
@@ -28763,6 +29911,10 @@
     {
       "source": "You organised every arrival so nobody would be left uncollected. This body carries the sound of a whole march. You are allowed to follow another person's lead for a while.",
       "target": "Bạn đã tổ chức mỗi lần đến để không ai bị bỏ sót. Cơ thể này mang âm thanh của cả một cuộc hành quân. Bạn được phép làm theo sự dẫn dắt của người khác trong một thời gian."
+    },
+    {
+      "source": "You owe for the road.",
+      "target": "Bạn nợ con đường."
     },
     {
       "source": "You owe for the road.|matter-of-fact",
@@ -28929,6 +30081,10 @@
       "target": "Bạn ·"
     },
     {
+      "source": "You'll be so alone.",
+      "target": "Bạn sẽ rất cô đơn."
+    },
+    {
       "source": "You'll be so alone.|last attempt",
       "target": "Bạn sẽ rất cô đơn.|lần thử cuối cùng"
     },
@@ -28991,6 +30147,10 @@
     {
       "source": "Your case and mine, same exhibit.",
       "target": "Trường hợp của bạn và của tôi, cùng một vật trưng bày."
+    },
+    {
+      "source": "Your chair's at the top.",
+      "target": "Ghế của bạn ở trên cùng."
     },
     {
       "source": "Your chair's at the top.|matter-of-fact, unsettling",
@@ -29119,6 +30279,10 @@
     {
       "source": "Your lamp becomes a lighthouse: a beam sweeps the field striking what it crosses; friends in the light get +50% attack speed; you gain 20% damage reduction.",
       "target": "Ngọn đèn của bạn trở thành ngọn hải đăng: một chùm tia quét qua cánh đồng và chạm vào những gì nó đi qua; bạn bè trong ánh sáng nhận được +50% tốc độ tấn công; bạn được giảm 20% sát thương."
+    },
+    {
+      "source": "Your last heartbeat stays yours.",
+      "target": "Nhịp tim cuối cùng vẫn thuộc về con."
     },
     {
       "source": "Your last heartbeat stays yours.|protective",

@@ -27,10 +27,577 @@ PASS Older profile without language defaults to English
 PASS Offline Vietnamese catalogue covers authored runtime and content text
 PASS Translation keys are unique
 PASS No empty translation entries
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/enter_01
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/enter_01
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/enter_02
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/enter_02
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/enter_03
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/enter_03
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/enter_04
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/enter_04
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/enter_05
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/enter_05
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/enter_06
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/enter_06
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/enter_07
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/enter_07
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/enter_08
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/enter_08
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/enter_09
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/enter_09
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/enter_10
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/enter_10
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/purchase_01
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/purchase_01
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/purchase_02
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/purchase_02
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/purchase_03
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/purchase_03
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/purchase_04
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/purchase_04
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/purchase_05
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/purchase_05
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/purchase_06
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/purchase_06
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/purchase_07
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/purchase_07
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/purchase_08
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/purchase_08
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/purchase_09
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/purchase_09
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/purchase_10
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/purchase_10
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/purchase_11
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/purchase_11
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/purchase_12
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/purchase_12
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/purchase_rare_01
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/purchase_rare_01
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/purchase_rare_02
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/purchase_rare_02
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/purchase_rare_03
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/purchase_rare_03
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/purchase_rare_04
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/purchase_rare_04
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/purchase_rare_05
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/purchase_rare_05
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/purchase_rare_06
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/purchase_rare_06
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/purchase_rare_07
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/purchase_rare_07
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/purchase_rare_08
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/purchase_rare_08
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/purchase_companion_01
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/purchase_companion_01
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/purchase_companion_02
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/purchase_companion_02
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/purchase_companion_03
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/purchase_companion_03
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/purchase_companion_04
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/purchase_companion_04
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/purchase_companion_05
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/purchase_companion_05
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/purchase_companion_06
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/purchase_companion_06
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/reroll_01
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/reroll_01
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/reroll_02
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/reroll_02
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/reroll_03
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/reroll_03
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/reroll_04
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/reroll_04
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/reroll_05
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/reroll_05
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/reroll_06
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/reroll_06
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/reroll_07
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/reroll_07
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/reroll_08
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/reroll_08
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/cant_afford_01
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/cant_afford_01
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/cant_afford_02
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/cant_afford_02
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/cant_afford_03
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/cant_afford_03
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/cant_afford_04
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/cant_afford_04
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/cant_afford_05
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/cant_afford_05
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/cant_afford_06
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/cant_afford_06
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/cant_afford_07
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/cant_afford_07
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/cant_afford_08
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/cant_afford_08
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/leave_01
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/leave_01
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/leave_02
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/leave_02
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/leave_03
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/leave_03
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/leave_04
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/leave_04
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/leave_05
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/leave_05
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/leave_06
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/leave_06
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/leave_07
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/leave_07
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/leave_08
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/leave_08
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/idle_01
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/idle_01
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/idle_02
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/idle_02
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/idle_03
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/idle_03
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/idle_04
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/idle_04
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/idle_05
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/idle_05
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/idle_06
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/idle_06
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/chair_01
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/chair_01
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/chair_02
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/chair_02
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/chair_03
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/chair_03
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/chair_04
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/chair_04
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/chair_05
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/chair_05
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/chair_06
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/chair_06
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/blood_01
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/blood_01
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/blood_02
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/blood_02
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/blood_03
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/blood_03
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/blood_04
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/blood_04
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/story_01
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/story_01
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/story_02
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/story_02
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/story_03
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/story_03
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/story_04
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/story_04
+PASS Spoken subtitle has its own Vietnamese entry: Shopkeeper/story_05
+PASS Runtime resolves the spoken field without delivery metadata: Shopkeeper/story_05
+PASS Spoken subtitle has its own Vietnamese entry: DreamMother/enter_01
+PASS Runtime resolves the spoken field without delivery metadata: DreamMother/enter_01
+PASS Spoken subtitle has its own Vietnamese entry: DreamMother/enter_02
+PASS Runtime resolves the spoken field without delivery metadata: DreamMother/enter_02
+PASS Spoken subtitle has its own Vietnamese entry: DreamMother/enter_03
+PASS Runtime resolves the spoken field without delivery metadata: DreamMother/enter_03
+PASS Spoken subtitle has its own Vietnamese entry: DreamMother/enter_04
+PASS Runtime resolves the spoken field without delivery metadata: DreamMother/enter_04
+PASS Spoken subtitle has its own Vietnamese entry: DreamMother/purchase_01
+PASS Runtime resolves the spoken field without delivery metadata: DreamMother/purchase_01
+PASS Spoken subtitle has its own Vietnamese entry: DreamMother/purchase_02
+PASS Runtime resolves the spoken field without delivery metadata: DreamMother/purchase_02
+PASS Spoken subtitle has its own Vietnamese entry: DreamMother/purchase_03
+PASS Runtime resolves the spoken field without delivery metadata: DreamMother/purchase_03
+PASS Spoken subtitle has its own Vietnamese entry: DreamMother/purchase_04
+PASS Runtime resolves the spoken field without delivery metadata: DreamMother/purchase_04
+PASS Spoken subtitle has its own Vietnamese entry: DreamMother/cant_afford_01
+PASS Runtime resolves the spoken field without delivery metadata: DreamMother/cant_afford_01
+PASS Spoken subtitle has its own Vietnamese entry: DreamMother/cant_afford_02
+PASS Runtime resolves the spoken field without delivery metadata: DreamMother/cant_afford_02
+PASS Spoken subtitle has its own Vietnamese entry: DreamMother/cant_afford_03
+PASS Runtime resolves the spoken field without delivery metadata: DreamMother/cant_afford_03
+PASS Spoken subtitle has its own Vietnamese entry: DreamMother/reroll_01
+PASS Runtime resolves the spoken field without delivery metadata: DreamMother/reroll_01
+PASS Spoken subtitle has its own Vietnamese entry: DreamMother/reroll_02
+PASS Runtime resolves the spoken field without delivery metadata: DreamMother/reroll_02
+PASS Spoken subtitle has its own Vietnamese entry: DreamMother/reroll_03
+PASS Runtime resolves the spoken field without delivery metadata: DreamMother/reroll_03
+PASS Spoken subtitle has its own Vietnamese entry: DreamMother/fuse_01
+PASS Runtime resolves the spoken field without delivery metadata: DreamMother/fuse_01
+PASS Spoken subtitle has its own Vietnamese entry: DreamMother/fuse_02
+PASS Runtime resolves the spoken field without delivery metadata: DreamMother/fuse_02
+PASS Spoken subtitle has its own Vietnamese entry: DreamMother/fuse_03
+PASS Runtime resolves the spoken field without delivery metadata: DreamMother/fuse_03
+PASS Spoken subtitle has its own Vietnamese entry: DreamMother/fuse_04
+PASS Runtime resolves the spoken field without delivery metadata: DreamMother/fuse_04
+PASS Spoken subtitle has its own Vietnamese entry: DreamMother/blood_01
+PASS Runtime resolves the spoken field without delivery metadata: DreamMother/blood_01
+PASS Spoken subtitle has its own Vietnamese entry: DreamMother/blood_02
+PASS Runtime resolves the spoken field without delivery metadata: DreamMother/blood_02
+PASS Spoken subtitle has its own Vietnamese entry: DreamMother/blood_03
+PASS Runtime resolves the spoken field without delivery metadata: DreamMother/blood_03
+PASS Spoken subtitle has its own Vietnamese entry: DreamMother/leave_01
+PASS Runtime resolves the spoken field without delivery metadata: DreamMother/leave_01
+PASS Spoken subtitle has its own Vietnamese entry: DreamMother/leave_02
+PASS Runtime resolves the spoken field without delivery metadata: DreamMother/leave_02
+PASS Spoken subtitle has its own Vietnamese entry: DreamMother/leave_03
+PASS Runtime resolves the spoken field without delivery metadata: DreamMother/leave_03
+PASS Spoken subtitle has its own Vietnamese entry: CoinWidow/enter_01
+PASS Runtime resolves the spoken field without delivery metadata: CoinWidow/enter_01
+PASS Spoken subtitle has its own Vietnamese entry: CoinWidow/enter_02
+PASS Runtime resolves the spoken field without delivery metadata: CoinWidow/enter_02
+PASS Spoken subtitle has its own Vietnamese entry: CoinWidow/enter_03
+PASS Runtime resolves the spoken field without delivery metadata: CoinWidow/enter_03
+PASS Spoken subtitle has its own Vietnamese entry: CoinWidow/enter_04
+PASS Runtime resolves the spoken field without delivery metadata: CoinWidow/enter_04
+PASS Spoken subtitle has its own Vietnamese entry: CoinWidow/attack_01
+PASS Runtime resolves the spoken field without delivery metadata: CoinWidow/attack_01
+PASS Spoken subtitle has its own Vietnamese entry: CoinWidow/attack_02
+PASS Runtime resolves the spoken field without delivery metadata: CoinWidow/attack_02
+PASS Spoken subtitle has its own Vietnamese entry: CoinWidow/attack_03
+PASS Runtime resolves the spoken field without delivery metadata: CoinWidow/attack_03
+PASS Spoken subtitle has its own Vietnamese entry: CoinWidow/attack_04
+PASS Runtime resolves the spoken field without delivery metadata: CoinWidow/attack_04
+PASS Spoken subtitle has its own Vietnamese entry: CoinWidow/attack_05
+PASS Runtime resolves the spoken field without delivery metadata: CoinWidow/attack_05
+PASS Spoken subtitle has its own Vietnamese entry: CoinWidow/attack_06
+PASS Runtime resolves the spoken field without delivery metadata: CoinWidow/attack_06
+PASS Spoken subtitle has its own Vietnamese entry: CoinWidow/hurt_01
+PASS Runtime resolves the spoken field without delivery metadata: CoinWidow/hurt_01
+PASS Spoken subtitle has its own Vietnamese entry: CoinWidow/hurt_02
+PASS Runtime resolves the spoken field without delivery metadata: CoinWidow/hurt_02
+PASS Spoken subtitle has its own Vietnamese entry: CoinWidow/hurt_03
+PASS Runtime resolves the spoken field without delivery metadata: CoinWidow/hurt_03
+PASS Spoken subtitle has its own Vietnamese entry: CoinWidow/phase_01
+PASS Runtime resolves the spoken field without delivery metadata: CoinWidow/phase_01
+PASS Spoken subtitle has its own Vietnamese entry: CoinWidow/phase_02
+PASS Runtime resolves the spoken field without delivery metadata: CoinWidow/phase_02
+PASS Spoken subtitle has its own Vietnamese entry: CoinWidow/phase_03
+PASS Runtime resolves the spoken field without delivery metadata: CoinWidow/phase_03
+PASS Spoken subtitle has its own Vietnamese entry: CoinWidow/defeat_01
+PASS Runtime resolves the spoken field without delivery metadata: CoinWidow/defeat_01
+PASS Spoken subtitle has its own Vietnamese entry: CoinWidow/defeat_02
+PASS Runtime resolves the spoken field without delivery metadata: CoinWidow/defeat_02
+PASS Spoken subtitle has its own Vietnamese entry: CoinWidow/defeat_03
+PASS Runtime resolves the spoken field without delivery metadata: CoinWidow/defeat_03
+PASS Spoken subtitle has its own Vietnamese entry: CoinWidow/story_01
+PASS Runtime resolves the spoken field without delivery metadata: CoinWidow/story_01
+PASS Spoken subtitle has its own Vietnamese entry: Keeper/enter_01
+PASS Runtime resolves the spoken field without delivery metadata: Keeper/enter_01
+PASS Spoken subtitle has its own Vietnamese entry: Keeper/enter_02
+PASS Runtime resolves the spoken field without delivery metadata: Keeper/enter_02
+PASS Spoken subtitle has its own Vietnamese entry: Keeper/enter_03
+PASS Runtime resolves the spoken field without delivery metadata: Keeper/enter_03
+PASS Spoken subtitle has its own Vietnamese entry: Keeper/enter_04
+PASS Runtime resolves the spoken field without delivery metadata: Keeper/enter_04
+PASS Spoken subtitle has its own Vietnamese entry: Keeper/attack_01
+PASS Runtime resolves the spoken field without delivery metadata: Keeper/attack_01
+PASS Spoken subtitle has its own Vietnamese entry: Keeper/attack_02
+PASS Runtime resolves the spoken field without delivery metadata: Keeper/attack_02
+PASS Spoken subtitle has its own Vietnamese entry: Keeper/attack_03
+PASS Runtime resolves the spoken field without delivery metadata: Keeper/attack_03
+PASS Spoken subtitle has its own Vietnamese entry: Keeper/attack_04
+PASS Runtime resolves the spoken field without delivery metadata: Keeper/attack_04
+PASS Spoken subtitle has its own Vietnamese entry: Keeper/attack_05
+PASS Runtime resolves the spoken field without delivery metadata: Keeper/attack_05
+PASS Spoken subtitle has its own Vietnamese entry: Keeper/attack_06
+PASS Runtime resolves the spoken field without delivery metadata: Keeper/attack_06
+PASS Spoken subtitle has its own Vietnamese entry: Keeper/hurt_01
+PASS Runtime resolves the spoken field without delivery metadata: Keeper/hurt_01
+PASS Spoken subtitle has its own Vietnamese entry: Keeper/hurt_02
+PASS Runtime resolves the spoken field without delivery metadata: Keeper/hurt_02
+PASS Spoken subtitle has its own Vietnamese entry: Keeper/hurt_03
+PASS Runtime resolves the spoken field without delivery metadata: Keeper/hurt_03
+PASS Spoken subtitle has its own Vietnamese entry: Keeper/hurt_04
+PASS Runtime resolves the spoken field without delivery metadata: Keeper/hurt_04
+PASS Spoken subtitle has its own Vietnamese entry: Keeper/phase_01
+PASS Runtime resolves the spoken field without delivery metadata: Keeper/phase_01
+PASS Spoken subtitle has its own Vietnamese entry: Keeper/phase_02
+PASS Runtime resolves the spoken field without delivery metadata: Keeper/phase_02
+PASS Spoken subtitle has its own Vietnamese entry: Keeper/phase_03
+PASS Runtime resolves the spoken field without delivery metadata: Keeper/phase_03
+PASS Spoken subtitle has its own Vietnamese entry: Keeper/defeat_01
+PASS Runtime resolves the spoken field without delivery metadata: Keeper/defeat_01
+PASS Spoken subtitle has its own Vietnamese entry: Keeper/defeat_02
+PASS Runtime resolves the spoken field without delivery metadata: Keeper/defeat_02
+PASS Spoken subtitle has its own Vietnamese entry: Keeper/defeat_03
+PASS Runtime resolves the spoken field without delivery metadata: Keeper/defeat_03
+PASS Spoken subtitle has its own Vietnamese entry: Keeper/story_01
+PASS Runtime resolves the spoken field without delivery metadata: Keeper/story_01
+PASS Spoken subtitle has its own Vietnamese entry: Keeper/story_02
+PASS Runtime resolves the spoken field without delivery metadata: Keeper/story_02
+PASS Spoken subtitle has its own Vietnamese entry: ChairPorter/enter_01
+PASS Runtime resolves the spoken field without delivery metadata: ChairPorter/enter_01
+PASS Spoken subtitle has its own Vietnamese entry: ChairPorter/enter_02
+PASS Runtime resolves the spoken field without delivery metadata: ChairPorter/enter_02
+PASS Spoken subtitle has its own Vietnamese entry: ChairPorter/enter_03
+PASS Runtime resolves the spoken field without delivery metadata: ChairPorter/enter_03
+PASS Spoken subtitle has its own Vietnamese entry: ChairPorter/enter_04
+PASS Runtime resolves the spoken field without delivery metadata: ChairPorter/enter_04
+PASS Spoken subtitle has its own Vietnamese entry: ChairPorter/attack_01
+PASS Runtime resolves the spoken field without delivery metadata: ChairPorter/attack_01
+PASS Spoken subtitle has its own Vietnamese entry: ChairPorter/attack_02
+PASS Runtime resolves the spoken field without delivery metadata: ChairPorter/attack_02
+PASS Spoken subtitle has its own Vietnamese entry: ChairPorter/attack_03
+PASS Runtime resolves the spoken field without delivery metadata: ChairPorter/attack_03
+PASS Spoken subtitle has its own Vietnamese entry: ChairPorter/attack_04
+PASS Runtime resolves the spoken field without delivery metadata: ChairPorter/attack_04
+PASS Spoken subtitle has its own Vietnamese entry: ChairPorter/attack_05
+PASS Runtime resolves the spoken field without delivery metadata: ChairPorter/attack_05
+PASS Spoken subtitle has its own Vietnamese entry: ChairPorter/attack_06
+PASS Runtime resolves the spoken field without delivery metadata: ChairPorter/attack_06
+PASS Spoken subtitle has its own Vietnamese entry: ChairPorter/hurt_01
+PASS Runtime resolves the spoken field without delivery metadata: ChairPorter/hurt_01
+PASS Spoken subtitle has its own Vietnamese entry: ChairPorter/hurt_02
+PASS Runtime resolves the spoken field without delivery metadata: ChairPorter/hurt_02
+PASS Spoken subtitle has its own Vietnamese entry: ChairPorter/hurt_03
+PASS Runtime resolves the spoken field without delivery metadata: ChairPorter/hurt_03
+PASS Spoken subtitle has its own Vietnamese entry: ChairPorter/hurt_04
+PASS Runtime resolves the spoken field without delivery metadata: ChairPorter/hurt_04
+PASS Spoken subtitle has its own Vietnamese entry: ChairPorter/phase_01
+PASS Runtime resolves the spoken field without delivery metadata: ChairPorter/phase_01
+PASS Spoken subtitle has its own Vietnamese entry: ChairPorter/phase_02
+PASS Runtime resolves the spoken field without delivery metadata: ChairPorter/phase_02
+PASS Spoken subtitle has its own Vietnamese entry: ChairPorter/phase_03
+PASS Runtime resolves the spoken field without delivery metadata: ChairPorter/phase_03
+PASS Spoken subtitle has its own Vietnamese entry: ChairPorter/defeat_01
+PASS Runtime resolves the spoken field without delivery metadata: ChairPorter/defeat_01
+PASS Spoken subtitle has its own Vietnamese entry: ChairPorter/defeat_02
+PASS Runtime resolves the spoken field without delivery metadata: ChairPorter/defeat_02
+PASS Spoken subtitle has its own Vietnamese entry: ChairPorter/defeat_03
+PASS Runtime resolves the spoken field without delivery metadata: ChairPorter/defeat_03
+PASS Spoken subtitle has its own Vietnamese entry: ChairPorter/story_01
+PASS Runtime resolves the spoken field without delivery metadata: ChairPorter/story_01
+PASS Spoken subtitle has its own Vietnamese entry: ChairPorter/story_02
+PASS Runtime resolves the spoken field without delivery metadata: ChairPorter/story_02
+PASS Spoken subtitle has its own Vietnamese entry: Door/enter_01
+PASS Runtime resolves the spoken field without delivery metadata: Door/enter_01
+PASS Spoken subtitle has its own Vietnamese entry: Door/enter_02
+PASS Runtime resolves the spoken field without delivery metadata: Door/enter_02
+PASS Spoken subtitle has its own Vietnamese entry: Door/enter_03
+PASS Runtime resolves the spoken field without delivery metadata: Door/enter_03
+PASS Spoken subtitle has its own Vietnamese entry: Door/enter_04
+PASS Runtime resolves the spoken field without delivery metadata: Door/enter_04
+PASS Spoken subtitle has its own Vietnamese entry: Door/attack_01
+PASS Runtime resolves the spoken field without delivery metadata: Door/attack_01
+PASS Spoken subtitle has its own Vietnamese entry: Door/attack_02
+PASS Runtime resolves the spoken field without delivery metadata: Door/attack_02
+PASS Spoken subtitle has its own Vietnamese entry: Door/attack_03
+PASS Runtime resolves the spoken field without delivery metadata: Door/attack_03
+PASS Spoken subtitle has its own Vietnamese entry: Door/attack_04
+PASS Runtime resolves the spoken field without delivery metadata: Door/attack_04
+PASS Spoken subtitle has its own Vietnamese entry: Door/attack_05
+PASS Runtime resolves the spoken field without delivery metadata: Door/attack_05
+PASS Spoken subtitle has its own Vietnamese entry: Door/attack_06
+PASS Runtime resolves the spoken field without delivery metadata: Door/attack_06
+PASS Spoken subtitle has its own Vietnamese entry: Door/hurt_01
+PASS Runtime resolves the spoken field without delivery metadata: Door/hurt_01
+PASS Spoken subtitle has its own Vietnamese entry: Door/hurt_02
+PASS Runtime resolves the spoken field without delivery metadata: Door/hurt_02
+PASS Spoken subtitle has its own Vietnamese entry: Door/hurt_03
+PASS Runtime resolves the spoken field without delivery metadata: Door/hurt_03
+PASS Spoken subtitle has its own Vietnamese entry: Door/hurt_04
+PASS Runtime resolves the spoken field without delivery metadata: Door/hurt_04
+PASS Spoken subtitle has its own Vietnamese entry: Door/phase_01
+PASS Runtime resolves the spoken field without delivery metadata: Door/phase_01
+PASS Spoken subtitle has its own Vietnamese entry: Door/phase_02
+PASS Runtime resolves the spoken field without delivery metadata: Door/phase_02
+PASS Spoken subtitle has its own Vietnamese entry: Door/phase_03
+PASS Runtime resolves the spoken field without delivery metadata: Door/phase_03
+PASS Spoken subtitle has its own Vietnamese entry: Door/defeat_01
+PASS Runtime resolves the spoken field without delivery metadata: Door/defeat_01
+PASS Spoken subtitle has its own Vietnamese entry: Door/defeat_02
+PASS Runtime resolves the spoken field without delivery metadata: Door/defeat_02
+PASS Spoken subtitle has its own Vietnamese entry: Door/defeat_03
+PASS Runtime resolves the spoken field without delivery metadata: Door/defeat_03
+PASS Spoken subtitle has its own Vietnamese entry: Door/story_01
+PASS Runtime resolves the spoken field without delivery metadata: Door/story_01
+PASS Spoken subtitle has its own Vietnamese entry: Door/story_02
+PASS Runtime resolves the spoken field without delivery metadata: Door/story_02
+PASS Spoken subtitle has its own Vietnamese entry: SleepCollector/enter_01
+PASS Runtime resolves the spoken field without delivery metadata: SleepCollector/enter_01
+PASS Spoken subtitle has its own Vietnamese entry: SleepCollector/phase_01
+PASS Runtime resolves the spoken field without delivery metadata: SleepCollector/phase_01
+PASS Spoken subtitle has its own Vietnamese entry: SleepCollector/defeat_01
+PASS Runtime resolves the spoken field without delivery metadata: SleepCollector/defeat_01
+PASS Spoken subtitle has its own Vietnamese entry: ChoirEngine/enter_01
+PASS Runtime resolves the spoken field without delivery metadata: ChoirEngine/enter_01
+PASS Spoken subtitle has its own Vietnamese entry: ChoirEngine/phase_01
+PASS Runtime resolves the spoken field without delivery metadata: ChoirEngine/phase_01
+PASS Spoken subtitle has its own Vietnamese entry: ChoirEngine/defeat_01
+PASS Runtime resolves the spoken field without delivery metadata: ChoirEngine/defeat_01
+PASS Spoken subtitle has its own Vietnamese entry: WaxAdmiral/enter_01
+PASS Runtime resolves the spoken field without delivery metadata: WaxAdmiral/enter_01
+PASS Spoken subtitle has its own Vietnamese entry: WaxAdmiral/phase_01
+PASS Runtime resolves the spoken field without delivery metadata: WaxAdmiral/phase_01
+PASS Spoken subtitle has its own Vietnamese entry: WaxAdmiral/defeat_01
+PASS Runtime resolves the spoken field without delivery metadata: WaxAdmiral/defeat_01
+PASS Spoken subtitle has its own Vietnamese entry: LastLantern/enter_01
+PASS Runtime resolves the spoken field without delivery metadata: LastLantern/enter_01
+PASS Spoken subtitle has its own Vietnamese entry: LastLantern/phase_01
+PASS Runtime resolves the spoken field without delivery metadata: LastLantern/phase_01
+PASS Spoken subtitle has its own Vietnamese entry: LastLantern/defeat_01
+PASS Runtime resolves the spoken field without delivery metadata: LastLantern/defeat_01
+PASS Spoken subtitle has its own Vietnamese entry: MarqueeMaw/enter_01
+PASS Runtime resolves the spoken field without delivery metadata: MarqueeMaw/enter_01
+PASS Spoken subtitle has its own Vietnamese entry: MarqueeMaw/phase_01
+PASS Runtime resolves the spoken field without delivery metadata: MarqueeMaw/phase_01
+PASS Spoken subtitle has its own Vietnamese entry: MarqueeMaw/defeat_01
+PASS Runtime resolves the spoken field without delivery metadata: MarqueeMaw/defeat_01
+PASS Spoken subtitle has its own Vietnamese entry: ScarletIndex/enter_01
+PASS Runtime resolves the spoken field without delivery metadata: ScarletIndex/enter_01
+PASS Spoken subtitle has its own Vietnamese entry: ScarletIndex/phase_01
+PASS Runtime resolves the spoken field without delivery metadata: ScarletIndex/phase_01
+PASS Spoken subtitle has its own Vietnamese entry: ScarletIndex/defeat_01
+PASS Runtime resolves the spoken field without delivery metadata: ScarletIndex/defeat_01
+PASS Spoken subtitle has its own Vietnamese entry: LastCustomer/enter_01
+PASS Runtime resolves the spoken field without delivery metadata: LastCustomer/enter_01
+PASS Spoken subtitle has its own Vietnamese entry: LastCustomer/enter_02
+PASS Runtime resolves the spoken field without delivery metadata: LastCustomer/enter_02
+PASS Spoken subtitle has its own Vietnamese entry: LastCustomer/enter_03
+PASS Runtime resolves the spoken field without delivery metadata: LastCustomer/enter_03
+PASS Spoken subtitle has its own Vietnamese entry: LastCustomer/enter_04
+PASS Runtime resolves the spoken field without delivery metadata: LastCustomer/enter_04
+PASS Spoken subtitle has its own Vietnamese entry: LastCustomer/attack_01
+PASS Runtime resolves the spoken field without delivery metadata: LastCustomer/attack_01
+PASS Spoken subtitle has its own Vietnamese entry: LastCustomer/attack_02
+PASS Runtime resolves the spoken field without delivery metadata: LastCustomer/attack_02
+PASS Spoken subtitle has its own Vietnamese entry: LastCustomer/attack_03
+PASS Runtime resolves the spoken field without delivery metadata: LastCustomer/attack_03
+PASS Spoken subtitle has its own Vietnamese entry: LastCustomer/attack_04
+PASS Runtime resolves the spoken field without delivery metadata: LastCustomer/attack_04
+PASS Spoken subtitle has its own Vietnamese entry: LastCustomer/attack_05
+PASS Runtime resolves the spoken field without delivery metadata: LastCustomer/attack_05
+PASS Spoken subtitle has its own Vietnamese entry: LastCustomer/attack_06
+PASS Runtime resolves the spoken field without delivery metadata: LastCustomer/attack_06
+PASS Spoken subtitle has its own Vietnamese entry: LastCustomer/hurt_01
+PASS Runtime resolves the spoken field without delivery metadata: LastCustomer/hurt_01
+PASS Spoken subtitle has its own Vietnamese entry: LastCustomer/hurt_02
+PASS Runtime resolves the spoken field without delivery metadata: LastCustomer/hurt_02
+PASS Spoken subtitle has its own Vietnamese entry: LastCustomer/hurt_03
+PASS Runtime resolves the spoken field without delivery metadata: LastCustomer/hurt_03
+PASS Spoken subtitle has its own Vietnamese entry: LastCustomer/hurt_04
+PASS Runtime resolves the spoken field without delivery metadata: LastCustomer/hurt_04
+PASS Spoken subtitle has its own Vietnamese entry: LastCustomer/phase_01
+PASS Runtime resolves the spoken field without delivery metadata: LastCustomer/phase_01
+PASS Spoken subtitle has its own Vietnamese entry: LastCustomer/phase_02
+PASS Runtime resolves the spoken field without delivery metadata: LastCustomer/phase_02
+PASS Spoken subtitle has its own Vietnamese entry: LastCustomer/phase_03
+PASS Runtime resolves the spoken field without delivery metadata: LastCustomer/phase_03
+PASS Spoken subtitle has its own Vietnamese entry: LastCustomer/defeat_01
+PASS Runtime resolves the spoken field without delivery metadata: LastCustomer/defeat_01
+PASS Spoken subtitle has its own Vietnamese entry: LastCustomer/defeat_02
+PASS Runtime resolves the spoken field without delivery metadata: LastCustomer/defeat_02
+PASS Spoken subtitle has its own Vietnamese entry: LastCustomer/defeat_03
+PASS Runtime resolves the spoken field without delivery metadata: LastCustomer/defeat_03
+PASS Spoken subtitle has its own Vietnamese entry: LastCustomer/story_01
+PASS Runtime resolves the spoken field without delivery metadata: LastCustomer/story_01
+PASS Spoken subtitle has its own Vietnamese entry: LastCustomer/story_02
+PASS Runtime resolves the spoken field without delivery metadata: LastCustomer/story_02
+PASS Spoken subtitle has its own Vietnamese entry: LastCustomer/story_03
+PASS Runtime resolves the spoken field without delivery metadata: LastCustomer/story_03
+PASS Spoken subtitle has its own Vietnamese entry: LastCustomer/story_04
+PASS Runtime resolves the spoken field without delivery metadata: LastCustomer/story_04
+PASS Spoken subtitle has its own Vietnamese entry: Bedside/enter_01
+PASS Runtime resolves the spoken field without delivery metadata: Bedside/enter_01
+PASS Spoken subtitle has its own Vietnamese entry: Bedside/enter_02
+PASS Runtime resolves the spoken field without delivery metadata: Bedside/enter_02
+PASS Spoken subtitle has its own Vietnamese entry: Bedside/enter_03
+PASS Runtime resolves the spoken field without delivery metadata: Bedside/enter_03
+PASS Spoken subtitle has its own Vietnamese entry: Bedside/enter_04
+PASS Runtime resolves the spoken field without delivery metadata: Bedside/enter_04
+PASS Spoken subtitle has its own Vietnamese entry: Bedside/attack_01
+PASS Runtime resolves the spoken field without delivery metadata: Bedside/attack_01
+PASS Spoken subtitle has its own Vietnamese entry: Bedside/attack_02
+PASS Runtime resolves the spoken field without delivery metadata: Bedside/attack_02
+PASS Spoken subtitle has its own Vietnamese entry: Bedside/attack_03
+PASS Runtime resolves the spoken field without delivery metadata: Bedside/attack_03
+PASS Spoken subtitle has its own Vietnamese entry: Bedside/attack_04
+PASS Runtime resolves the spoken field without delivery metadata: Bedside/attack_04
+PASS Spoken subtitle has its own Vietnamese entry: Bedside/attack_05
+PASS Runtime resolves the spoken field without delivery metadata: Bedside/attack_05
+PASS Spoken subtitle has its own Vietnamese entry: Bedside/attack_06
+PASS Runtime resolves the spoken field without delivery metadata: Bedside/attack_06
+PASS Spoken subtitle has its own Vietnamese entry: Bedside/hurt_01
+PASS Runtime resolves the spoken field without delivery metadata: Bedside/hurt_01
+PASS Spoken subtitle has its own Vietnamese entry: Bedside/hurt_02
+PASS Runtime resolves the spoken field without delivery metadata: Bedside/hurt_02
+PASS Spoken subtitle has its own Vietnamese entry: Bedside/hurt_03
+PASS Runtime resolves the spoken field without delivery metadata: Bedside/hurt_03
+PASS Spoken subtitle has its own Vietnamese entry: Bedside/hurt_04
+PASS Runtime resolves the spoken field without delivery metadata: Bedside/hurt_04
+PASS Spoken subtitle has its own Vietnamese entry: Bedside/phase_01
+PASS Runtime resolves the spoken field without delivery metadata: Bedside/phase_01
+PASS Spoken subtitle has its own Vietnamese entry: Bedside/phase_02
+PASS Runtime resolves the spoken field without delivery metadata: Bedside/phase_02
+PASS Spoken subtitle has its own Vietnamese entry: Bedside/phase_03
+PASS Runtime resolves the spoken field without delivery metadata: Bedside/phase_03
+PASS Spoken subtitle has its own Vietnamese entry: Bedside/defeat_01
+PASS Runtime resolves the spoken field without delivery metadata: Bedside/defeat_01
+PASS Spoken subtitle has its own Vietnamese entry: Bedside/defeat_02
+PASS Runtime resolves the spoken field without delivery metadata: Bedside/defeat_02
+PASS Spoken subtitle has its own Vietnamese entry: Bedside/defeat_03
+PASS Runtime resolves the spoken field without delivery metadata: Bedside/defeat_03
+PASS Spoken subtitle has its own Vietnamese entry: Bedside/story_01
+PASS Runtime resolves the spoken field without delivery metadata: Bedside/story_01
+PASS Spoken subtitle has its own Vietnamese entry: Bedside/story_02
+PASS Runtime resolves the spoken field without delivery metadata: Bedside/story_02
+PASS Spoken subtitle has its own Vietnamese entry: Hob/join_01
+PASS Runtime resolves the spoken field without delivery metadata: Hob/join_01
+PASS Spoken subtitle has its own Vietnamese entry: Hob/join_02
+PASS Runtime resolves the spoken field without delivery metadata: Hob/join_02
+PASS Spoken subtitle has its own Vietnamese entry: Hob/join_03
+PASS Runtime resolves the spoken field without delivery metadata: Hob/join_03
+PASS Spoken subtitle has its own Vietnamese entry: Hob/starup_01
+PASS Runtime resolves the spoken field without delivery metadata: Hob/starup_01
+PASS Spoken subtitle has its own Vietnamese entry: Hob/starup_02
+PASS Runtime resolves the spoken field without delivery metadata: Hob/starup_02
+PASS Spoken subtitle has its own Vietnamese entry: Hob/starup_03
+PASS Runtime resolves the spoken field without delivery metadata: Hob/starup_03
+PASS Spoken subtitle has its own Vietnamese entry: Hob/story_01
+PASS Runtime resolves the spoken field without delivery metadata: Hob/story_01
+PASS Spoken subtitle has its own Vietnamese entry: Hob/story_02
+PASS Runtime resolves the spoken field without delivery metadata: Hob/story_02
+PASS Spoken subtitle has its own Vietnamese entry: Latch/join_01
+PASS Runtime resolves the spoken field without delivery metadata: Latch/join_01
+PASS Spoken subtitle has its own Vietnamese entry: Latch/join_02
+PASS Runtime resolves the spoken field without delivery metadata: Latch/join_02
+PASS Spoken subtitle has its own Vietnamese entry: Latch/join_03
+PASS Runtime resolves the spoken field without delivery metadata: Latch/join_03
+PASS Spoken subtitle has its own Vietnamese entry: Latch/starup_01
+PASS Runtime resolves the spoken field without delivery metadata: Latch/starup_01
+PASS Spoken subtitle has its own Vietnamese entry: Latch/starup_02
+PASS Runtime resolves the spoken field without delivery metadata: Latch/starup_02
+PASS Spoken subtitle has its own Vietnamese entry: Latch/starup_03
+PASS Runtime resolves the spoken field without delivery metadata: Latch/starup_03
+PASS Spoken subtitle has its own Vietnamese entry: Postscript/join_01
+PASS Runtime resolves the spoken field without delivery metadata: Postscript/join_01
+PASS Spoken subtitle has its own Vietnamese entry: Postscript/join_02
+PASS Runtime resolves the spoken field without delivery metadata: Postscript/join_02
+PASS Spoken subtitle has its own Vietnamese entry: Postscript/join_03
+PASS Runtime resolves the spoken field without delivery metadata: Postscript/join_03
+PASS Spoken subtitle has its own Vietnamese entry: Postscript/starup_01
+PASS Runtime resolves the spoken field without delivery metadata: Postscript/starup_01
+PASS Spoken subtitle has its own Vietnamese entry: Postscript/starup_02
+PASS Runtime resolves the spoken field without delivery metadata: Postscript/starup_02
+PASS Spoken subtitle has its own Vietnamese entry: Postscript/starup_03
+PASS Runtime resolves the spoken field without delivery metadata: Postscript/starup_03
+PASS Spoken subtitle has its own Vietnamese entry: Tally/join_01
+PASS Runtime resolves the spoken field without delivery metadata: Tally/join_01
+PASS Spoken subtitle has its own Vietnamese entry: Tally/join_02
+PASS Runtime resolves the spoken field without delivery metadata: Tally/join_02
+PASS Spoken subtitle has its own Vietnamese entry: Tally/join_03
+PASS Runtime resolves the spoken field without delivery metadata: Tally/join_03
+PASS Spoken subtitle has its own Vietnamese entry: Tally/starup_01
+PASS Runtime resolves the spoken field without delivery metadata: Tally/starup_01
+PASS Spoken subtitle has its own Vietnamese entry: Tally/starup_02
+PASS Runtime resolves the spoken field without delivery metadata: Tally/starup_02
+PASS Spoken subtitle has its own Vietnamese entry: Tally/starup_03
+PASS Runtime resolves the spoken field without delivery metadata: Tally/starup_03
+PASS Spoken subtitle has its own Vietnamese entry: Tally/story_01
+PASS Runtime resolves the spoken field without delivery metadata: Tally/story_01
+PASS Reported shop reroll line has a reviewed translation
+PASS English spoken subtitles remain unchanged
+Voiced subtitle occurrences: 282
 PASS Vietnamese glyph coverage: AlegreyaSans-Body
 PASS Vietnamese glyph coverage: Fraunces-Heading
 PASS Vietnamese glyph coverage: Fraunces-Display
 PASS Vietnamese glyph coverage: Caveat-Hand
 PASS Vietnamese glyph coverage: AlegreyaSans-Numbers
 PASS Localization never mutates gameplay assets
-Entries: 8017
+Entries: 8308

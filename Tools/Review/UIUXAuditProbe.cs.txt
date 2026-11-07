@@ -203,6 +203,10 @@ namespace ArcaneBrigade
                         for (int move = 0; move < c.number; move++) nav.Move(1);
                         break;
                     case "glossary": GlossaryUI.Show(c.value); break;
+                    case "chat":
+                        SpeechBubbles.ClearAll();
+                        SpeechBubbles.Show(owner.Shop.Dialogue.BubbleKey, "THE SHOPKEEPER", c.value, owner.Shop.Dialogue.Anchor, SpeechTone.Shopkeeper, 30, 10, BubbleSide.Right);
+                        break;
                     case "quit": File.WriteAllText(Path.Combine(bridge, "response.json"), JsonUtility.ToJson(new Snapshot { id = c.id, status = "ok" })); Application.Quit(0); yield break;
                 }
             }
