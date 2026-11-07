@@ -1,0 +1,4 @@
+- Vietnamese language (Settings); English stays the default
+- Vietnamese text fits menus, headers and buttons
+- Chat lines translated separately from voice notes
+- Faster brigade menu; painted journal button

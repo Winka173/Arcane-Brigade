@@ -1,0 +1,4 @@
+- Thêm tiếng Việt (trong Cài đặt); mặc định vẫn là tiếng Anh
+- Chữ tiếng Việt vừa khít menu, tiêu đề và nút
+- Lời thoại được dịch riêng với ghi chú giọng đọc
+- Menu đội nhanh hơn; nút nhật ký được vẽ lại
