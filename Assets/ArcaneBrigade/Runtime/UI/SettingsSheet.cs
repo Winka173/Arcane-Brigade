@@ -22,6 +22,9 @@ namespace ArcaneBrigade
         public static readonly string[] WindowNames = { "Fullscreen", "Borderless", "Windowed" };
 
         private static Vector2 scroll;
+        /// <summary>Review captures: show the foot of the sheet (the legal row), or its top again.</summary>
+        public static void ScrollToEnd() => scroll.y = 100000;
+        public static void ScrollToTop() => scroll.y = 0;
         private static float contentHeight = 1500;
         /// <summary>The settings in four groups (Sound, Screen, Comfort, Play). UI standard (Docs/UI_Standard.md): every row is its label on
         /// the left and its choices on the right as a segmented row, the chosen one lit gold; nothing is changed by tapping the same

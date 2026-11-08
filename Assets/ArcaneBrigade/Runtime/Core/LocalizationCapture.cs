@@ -44,6 +44,10 @@ namespace ArcaneBrigade
             var storage = new RunStorage(RunPaths.Root);
             SettingsSheet.TrySetLanguage(profile, "vi", () => { storage.SaveProfile(profile); return true; });
             yield return Shot("02-settings-vi");
+            SettingsSheet.ScrollToEnd(); yield return Shot("02b-settings-legal-vi"); // the legal row sits at the foot of the sheet
+            SettingsSheet.TrySetLanguage(profile, "en", () => { storage.SaveProfile(profile); return true; });
+            yield return Shot("02c-settings-legal-en");
+            SettingsSheet.TrySetLanguage(profile, "vi", () => { storage.SaveProfile(profile); return true; }); SettingsSheet.ScrollToTop();
             menu.ShowPage(RunMenu.Page.Landing); yield return Shot("03-menu-vi");
             menu.ShowPage(RunMenu.Page.Roster); yield return Shot("04-roster-vi");
             menu.ShowPage(RunMenu.Page.Help); yield return Shot("05-help-vi");

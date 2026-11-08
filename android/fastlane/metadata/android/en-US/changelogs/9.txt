@@ -1,0 +1,2 @@
+- Settings now opens the Privacy Policy, Terms of Service and data deletion pages
+- Fixed a blast that could wash the whole screen cream in big late fights

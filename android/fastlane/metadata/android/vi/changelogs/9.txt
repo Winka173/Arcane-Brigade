@@ -1,0 +1,2 @@
+- Cài đặt có thêm Quyền riêng tư, Điều khoản và Xoá dữ liệu
+- Sửa vụ nổ làm cả màn hình loé trắng trong các trận đông quái cuối game
