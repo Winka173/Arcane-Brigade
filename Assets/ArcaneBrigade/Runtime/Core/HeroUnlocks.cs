@@ -58,6 +58,27 @@ namespace ArcaneBrigade
             return rule.Gate != HeroGate.Act || rule.N <= ActsReleased;
         }
 
+        /// <summary>A weapon only a hidden hero carries (requirement 8/11/2026: the Collection counted the signature weapons of heroes
+        /// still held for a later update or act, so "45 / 117" gave them away). Weapons a listed hero or any friend can carry are kept.</summary>
+        public static bool HiddenWeapon(RunCatalog catalog, WeaponDefinition weapon)
+        {
+            if (catalog == null || weapon == null) return false;
+            bool hiddenOwner = false;
+            foreach (UnitDefinition c in catalog.Champions)
+                if (c != null && c.Weapon == weapon) { if (Listed(c)) return false; hiddenOwner = true; }
+            if (!hiddenOwner) return false;
+            foreach (UnitDefinition u in catalog.Companions) if (u != null && u.Weapon == weapon) return false;
+            return true;
+        }
+
+        /// <summary>A hero relic of a hidden hero (the shop never offers it; the Collection and the Museum must not list it either).</summary>
+        public static bool HiddenItem(RunCatalog catalog, ItemDefinition item)
+        {
+            if (catalog == null || item == null || item.Id == null || !item.Id.StartsWith(WiseHeroItems.Prefix, System.StringComparison.Ordinal)) return false;
+            UnitDefinition hero = catalog.Unit(item.Id.Substring(WiseHeroItems.Prefix.Length));
+            return hero != null && !Listed(hero);
+        }
+
         public static HeroRule RuleOf(UnitDefinition hero) =>
             hero != null && hero.Id != null && Rules.TryGetValue(hero.Id, out HeroRule rule) ? rule : R(HeroGate.Wave, hero != null ? hero.UnlockWave : 0);
 

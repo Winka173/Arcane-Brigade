@@ -49,12 +49,13 @@ namespace ArcaneBrigade
             if (tab == 0)
                 foreach (WeaponDefinition weapon in catalog.Weapons)
                 {
+                    if (HeroUnlocks.HiddenWeapon(catalog, weapon)) continue; // a hidden hero's weapon stays a surprise
                     string tiers = "Most stars reached: ";
                     for (int tier = 1; tier <= catalog.MaximumTier; tier++) if (profile.SeenTiers.Contains(weapon.Id + "/" + tier)) tiers += tier + " ";
                     exhibits.Add(new Exhibit { Id = weapon.Id, Name = RunUICopy.WeaponName(weapon.Id), Icon = weapon.Sprite, Seen = profile.SeenWeapons.Contains(weapon.Id), Detail = tiers + "\n\n" + weapon.Kind + " / " + weapon.Element + "\n" + FriendlyWeaponBalance.BaseDamage(weapon).ToString("0.#") + " damage · attacks every " + weapon.Cooldown.ToString("0.##") + "s · reach " + weapon.Range.ToString("0.#") + "\n\n" + SignatureDescription.Describe(weapon, 1) });
                 }
             if (tab == 1)
-                foreach (ItemDefinition item in catalog.Items) exhibits.Add(new Exhibit { Id = item.Id, Name = item.Name, Icon = item.Icon, Seen = profile.SeenItems.Contains(item.Id), Detail = RelicDescriptions.Describe(item,1,catalog) });
+                foreach (ItemDefinition item in catalog.Items) if (!HeroUnlocks.HiddenItem(catalog, item)) exhibits.Add(new Exhibit { Id = item.Id, Name = item.Name, Icon = item.Icon, Seen = profile.SeenItems.Contains(item.Id), Detail = RelicDescriptions.Describe(item,1,catalog) });
             if (tab == 2)
                 foreach (UnitDefinition unit in catalog.Companions) exhibits.Add(new Exhibit { Id = unit.Id, Name = unit.DisplayName, Icon = unit.Body, Unit = unit, Seen = profile.SeenUnits.Contains(unit.Id), Detail = CompanionDescriptions.Describe(unit,1,catalog.TierSupportMultiplier) });
             if (tab == 3)

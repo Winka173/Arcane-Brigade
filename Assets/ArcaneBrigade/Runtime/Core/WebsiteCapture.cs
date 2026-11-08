@@ -47,7 +47,12 @@ namespace ArcaneBrigade
         private void Update()
         {
             if (root != null && Time.realtimeSinceStartup - lastStep > 150) { checks.Add("FAIL stuck after the last step"); File.WriteAllLines(Path.Combine(root, "Checks.txt"), checks); Application.Quit(2); }
-            if (keepAlive && owner != null && owner.Simulation?.Champion != null) owner.Simulation.Champion.Health = owner.Simulation.Champion.Definition.Health; // a staged fight: the hero never falls
+            if (keepAlive && owner != null && owner.Simulation?.Champion != null)
+            {
+                // the hero's health rises and falls as in play; only a hidden floor keeps a recorded night from ending in a fall
+                UnitState hero = owner.Simulation.Champion; float floor = hero.Definition.Health * .6f; // high enough that one heavy blow cannot end the night
+                if (hero.Health < floor) hero.Health = floor;
+            }
         }
         private IEnumerator Wait(float seconds) { yield return new WaitForSecondsRealtime(seconds); }
 
@@ -56,29 +61,39 @@ namespace ArcaneBrigade
         private UnitDefinition[] Friends => catalog.Companions.Where(u => !u.GiftOnly && !u.SpecialRecruit && u.Weapon != null && u.ReferenceCompanion != "Evil" && !u.Id.StartsWith("Secret")).ToArray();
         private ItemDefinition[] Relics => catalog.Items.Where(i => i.ShopWeight > 0 && !i.Id.StartsWith("Secret") && i.Rarity < ItemRarity.Crimson).ToArray();
 
-        /// <summary>A brigade a player would hold at that night: more friends and stars, and more relics, as the nights go on; one pair
-        /// that forms a duet.</summary>
+        /// <summary>A brigade a good player would hold at that night: one bond family filled towards its 2/4/6 marks, a named combo
+        /// group, a duet pair, stars that climb as the nights go on, and the stronger relics a player keeps (the website's fights must
+        /// look like real play: the crowd falls in droves).</summary>
         private void Brigade(RunSnapshot state, int wave, int seed)
         {
             var random = new System.Random(seed);
             UnitDefinition[] pool = Friends.OrderBy(_ => random.Next()).ToArray();
-            int count = Mathf.Clamp(2 + wave / 2, 3, 10);
+            int count = Mathf.Clamp(3 + wave / 2, 4, 11);
             state.Roster.RemoveAll(r => true);
-            var duet = Duets.All.FirstOrDefault(d => pool.Any(u => u.Id == d.A) && pool.Any(u => u.Id == d.B));
             var chosen = new List<UnitDefinition>();
-            if (duet != null && wave >= 3) { chosen.Add(catalog.Unit(duet.A)); chosen.Add(catalog.Unit(duet.B)); }
-            foreach (UnitDefinition u in pool) { if (chosen.Count >= count) break; if (!chosen.Contains(u)) chosen.Add(u); }
+            void Take(UnitDefinition u) { if (u != null && chosen.Count < count && !chosen.Contains(u)) chosen.Add(u); }
+            if (wave >= 5)
+            {
+                ComboDefinition combo = Combos.All.Where(c => c.Members.Length <= 3 && c.Members.All(m => pool.Any(u => u.Id == m))).OrderBy(_ => random.Next()).FirstOrDefault();
+                if (combo != null) foreach (string m in combo.Members) Take(pool.First(u => u.Id == m));
+            }
+            string bond = pool.SelectMany(u => u.Tags ?? new string[0]).GroupBy(t => t).Where(g => g.Count() >= 6).OrderBy(_ => random.Next()).Select(g => g.Key).FirstOrDefault();
+            if (bond != null) foreach (UnitDefinition u in pool.Where(u => u.Tags != null && u.Tags.Contains(bond)).Take(Mathf.Clamp(2 + wave / 4, 2, 6))) Take(u);
+            var duet = Duets.All.FirstOrDefault(d => pool.Any(u => u.Id == d.A) && pool.Any(u => u.Id == d.B));
+            if (duet != null && wave >= 3) { Take(catalog.Unit(duet.A)); Take(catalog.Unit(duet.B)); }
+            foreach (UnitDefinition u in pool) Take(u);
             for (int i = 0; i < chosen.Count; i++)
             {
-                int tier = 1;
-                if (wave >= 8 && i % 3 == 0) tier = 2;
-                if (wave >= 14 && i % 4 == 1) tier = 2;
-                if (wave >= 17 && i == 0) tier = 3;
+                int tier = wave >= 4 && i % 2 == 0 ? 2 : 1;
+                if (wave >= 8) tier = 2;
+                if (wave >= 11 && i % 3 == 0) tier = 3;
+                if (wave >= 15 && i % 2 == 0) tier = 3;
                 state.Roster.Add(new RosterEntry { UnitId = chosen[i].Id, WeaponId = chosen[i].Weapon.Id, Tier = tier });
             }
             state.Items.Clear();
-            foreach (ItemDefinition relic in Relics.OrderBy(_ => random.Next()).Take(Mathf.Clamp(wave / 2 + 1, 1, 11)))
-                state.Items.Add(new ItemStack { Id = relic.Id, Count = random.Next(5) == 0 ? 2 : 1 });
+            int relics = Mathf.Clamp(wave / 2 + 2, 2, 12);
+            foreach (ItemDefinition relic in Relics.OrderByDescending(r => (int)r.Rarity * (wave / 6 + 1) + random.Next(4)).Take(relics))
+                state.Items.Add(new ItemStack { Id = relic.Id, Count = random.Next(4) == 0 ? 2 : 1 });
         }
 
         private PlayerProfile PlayedProfile()
@@ -86,6 +101,7 @@ namespace ArcaneBrigade
             var p = new PlayerProfile { TutorialSeen = true, StoryPagesAutoOpen = false };
             if (vietnamese) p.Language = GameLocalization.Vietnamese;
             if (Array.IndexOf(Environment.GetCommandLineArgs(), "-website-no-music") >= 0) p.MusicVolume = 0; // effects only: a trailer lays its own music over them
+            if (Array.IndexOf(Environment.GetCommandLineArgs(), "-website-no-numbers") >= 0) p.ShowDamageNumbers = false; // cinematic shots: the art, not the arithmetic
             MetaProgression.Ensure(p);
             // hero, difficulty, the night reached, won
             var runs = new (int hero, int difficulty, int wave, bool won)[]
@@ -109,7 +125,7 @@ namespace ArcaneBrigade
                     s.TotalKills = plan.wave * plan.wave * 26 + plan.wave * 120 + random.Next(380);
                     s.BossKills = plan.wave / 4 - (!plan.won && plan.wave % 4 == 0 ? 1 : 0);
                     s.CombatSeconds = plan.wave * 61 + random.Next(90);
-                    s.DefeatedBosses.Clear(); foreach (UnitDefinition boss in catalog.Bosses.Take(s.BossKills)) s.DefeatedBosses.Add(boss.Id);
+                    s.DefeatedBosses.Clear(); foreach (string boss in new[] { "CoinWidow", "SuitcaseLeviathan" }.Take(s.BossKills)) if (catalog.Bosses.Any(b => b.Id == boss)) s.DefeatedBosses.Add(boss); // later bosses stay a surprise
                     s.Contributions.Clear();
                     float damage = 9000f * plan.wave * plan.wave * (1 + plan.difficulty * .35f);
                     s.Contributions.Add(new ContributionEntry { UnitId = s.ChampionId, WeaponId = hero.Weapon != null ? hero.Weapon.Id : "", EffectId = "primary", Tier = 1, Damage = damage, Kills = s.TotalKills / 3, Coins = plan.wave * 95 });
@@ -123,6 +139,7 @@ namespace ArcaneBrigade
                 MetaProgression.Light(p, id);
             foreach (string id in new[] { "letter.boss", "letter.ten" }) MetaProgression.ReadLetter(p, id);
             MetaProgression.TogglePact(p, MetaProgression.PactSwift);
+            p.LastDifficulty = 1; // the menus open on Wandering, the difficulty most players pick
             storage.SaveProfile(p);
             Check(p.History.Count >= 10 && p.Wins >= 3, "Played save: " + p.History.Count + " runs, " + p.Wins + " wins, best wave " + p.BestWave + ", oil " + p.Meta.LampOil + ", keepsakes " + p.Meta.Keepsakes + ", seen friends " + p.SeenUnits.Count + ", relics " + p.SeenItems.Count + ", achievements " + p.Achievements.Count);
             return p;
@@ -191,12 +208,37 @@ namespace ArcaneBrigade
             {
                 float t = Time.unscaledTime - start;
                 bool fighting = owner != null && owner.Simulation != null && owner.Simulation.Phase == RunPhase.Combat && owner.Session != null && owner.Session.State.Phase == SessionPhase.Combat;
-                ArenaController.ScriptedMove = fighting ? new Vector2(Mathf.Cos(t * .85f), Mathf.Sin(t * 1.3f) * .75f) : (Vector2?)null;
+                ArenaController.ScriptedMove = fighting ? Steer(owner.Simulation, t) : (Vector2?)null;
                 yield return null;
             }
             if (id == roamId) ArenaController.ScriptedMove = null;
         }
         private void StopRoaming() { roaming = false; roamId++; ArenaController.ScriptedMove = null; }
+
+        /// <summary>Where a player would steer now: a weaving loop that drags the crowd, bent towards coins and chests close by, away
+        /// from a boss that is too close, and sideways out of a boss's warned strike.</summary>
+        private static Vector2 Steer(CombatSimulation sim, float t)
+        {
+            UnitState hero = sim.Champion;
+            Vector2 move = new Vector2(Mathf.Cos(t * .85f), Mathf.Sin(t * 1.3f) * .75f);
+            PickupState nearest = null; float best = 3.5f;
+            foreach (PickupState pick in sim.Pickups) { float d = Vector2.Distance(pick.Position, hero.Position); if (d < best) { best = d; nearest = pick; } }
+            if (nearest != null) move += (nearest.Position - hero.Position).normalized * 1.4f;
+            UnitState boss = sim.Boss;
+            if (boss != null && boss.Alive)
+            {
+                Vector2 away = hero.Position - boss.Position; float d = away.magnitude;
+                if (d < 3f) move += away.normalized * (3f - d) * 1.2f;
+                if (boss.TelegraphUntil > sim.Elapsed && boss.TelegraphDirection.sqrMagnitude > .01f)
+                {
+                    // step sideways out of the warned line, on the side the hero already stands
+                    Vector2 dir = boss.TelegraphDirection.normalized, side = new Vector2(-dir.y, dir.x);
+                    if (Vector2.Dot(side, away) < 0) side = -side;
+                    move = side * 2.2f + move * .3f;
+                }
+            }
+            return Vector2.ClampMagnitude(move, 1f);
+        }
 
         /// <summary>Plays as a player does for a while: weaves through the night; in the shop walks to the stalls it can afford and
         /// buys (friends first), then starts the next night.</summary>
@@ -228,6 +270,17 @@ namespace ArcaneBrigade
             }
         }
 
+        /// <summary>How much a player wants an offer (lower first): a copy of a friend already owned (a star-up), a friend that shares
+        /// the brigade's bonds, another friend, a relic.</summary>
+        private int Want(RunSnapshot s, ShopOffer offer)
+        {
+            if (offer.Kind != OfferKind.Companion) return 3;
+            if (s.Roster.Any(r => r.UnitId == offer.Id && r.Tier == offer.Tier)) return 0;
+            UnitDefinition unit = catalog.Unit(offer.Id);
+            var bonds = new HashSet<string>(s.Roster.Select(r => catalog.Unit(r.UnitId)).Where(u => u?.Tags != null).SelectMany(u => u.Tags));
+            return unit?.Tags != null && unit.Tags.Any(bonds.Contains) ? 1 : 2;
+        }
+
         /// <summary>Walks to the stalls the brigade can pay for (friends first, nearest next) and buys up to <paramref name="most"/>.</summary>
         private IEnumerator Buy(float from, float seconds, int most)
         {
@@ -235,7 +288,7 @@ namespace ArcaneBrigade
             {
                 RunSnapshot s = owner.Session.State;
                 WorldShop.Station stall = owner.Shop.Stations.Where(st => st.Offer != null && !st.Offer.Sold && (st.Offer.Currency == ShopCurrency.Gold && st.Offer.Price <= s.Gold || st.Offer.Currency == ShopCurrency.Eggs && st.Offer.Price <= s.Eggs))
-                    .OrderBy(st => st.Offer.Kind == OfferKind.Companion ? 0 : 1).ThenBy(st => Vector2.Distance(st.Position, owner.Simulation.Champion.Position)).FirstOrDefault();
+                    .OrderBy(st => Want(s, st.Offer)).ThenBy(st => Vector2.Distance(st.Position, owner.Simulation.Champion.Position)).FirstOrDefault();
                 if (stall == null) break;
                 yield return Walk(stall.Position + new Vector2(0, -.8f));
                 yield return Wait(1.1f); // a look at the card, as a player reads it
@@ -306,6 +359,8 @@ namespace ArcaneBrigade
             // starfall; the fights, bosses and places take turns between them
             string mainHero = "LanternKnight", cometHero = "CometRunner";
             string[] stars = { mainHero, cometHero };
+            // more heroes whose skills look grand, for the trailer's gallery and some of the gameplay
+            string[] guests = { "TideSinger", "VelvetRegent", "TinVirtuoso", "LoneJelly" };
 
             // a run left at night 13, so the menu offers to continue it
             using (var session = new RunSession(catalog))
@@ -328,6 +383,7 @@ namespace ArcaneBrigade
                 }
                 // the Waiting Room between runs and each of its stations
                 menu.ShowPage(RunMenu.Page.Hub); menu.Hub.Approach(MetaStation.Lantern); yield return Wait(1f);
+                if (ffmpeg != null) yield return Clip("clip-hub-waiting-room", 6f, null);
                 yield return Shot("hub-00-waiting-room");
                 int n = 1;
                 foreach (MetaStation station in (MetaStation[])Enum.GetValues(typeof(MetaStation)))
@@ -359,7 +415,9 @@ namespace ArcaneBrigade
             if (!vietnamese)
             {
                 owner.Session.ForceVisitor("Sandman"); yield return Stand(new Vector2(4.2f, -.4f));
-                owner.GetComponent<VisitorCard>().Show(); yield return Wait(.5f); yield return Shot("shop-06-visitor"); owner.VisitorDecline(); yield return Wait(.3f);
+                IEnumerator Knock() { yield return Wait(1.2f); owner.GetComponent<VisitorCard>().Show(); }
+                if (ffmpeg != null) yield return Clip("clip-visitor", 6f, Knock()); else { owner.GetComponent<VisitorCard>().Show(); yield return Wait(.5f); }
+                yield return Shot("shop-06-visitor"); owner.VisitorDecline(); yield return Wait(.3f);
                 if (owner.Session.OfferPrismGift(true)) { yield return Wait(.9f); yield return Shot("shop-07-keeper-gifts"); }
             }
             owner.TogglePause();
@@ -404,13 +462,14 @@ namespace ArcaneBrigade
 
             yield break; }
             IEnumerator S3() {
-            // the dream market: blood prices, Dreamsand, the ferry, the Last Customer
+            // the dream market: blood prices, Dreamsand, the ferry (the Last Customer's trade is not shown: it is the last boss)
             if (!vietnamese)
             {
                 yield return Open(mainHero, 12, 236, 6, 1213, null, true);
                 yield return Wait(.6f);
                 if (owner.Shop.Special)
                 {
+                    if (ffmpeg != null) yield return Clip("clip-dream-market", 6f, null);
                     yield return Shot("market-01-dream-market");
                     yield return Focus(o => o.Currency == ShopCurrency.Health || o.Currency == ShopCurrency.Eggs); yield return Shot("market-02-dream-price");
                     var ferry = owner.GetComponent<FerryDock>();
@@ -420,7 +479,6 @@ namespace ArcaneBrigade
                         ferry.ShowForCapture(owner.Session.PartingSpecies().FirstOrDefault()); yield return Wait(.6f); yield return Shot("market-03-ferry");
                         typeof(FerryDock).GetMethod("Close", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(ferry, null); yield return Wait(.2f);
                     }
-                    owner.Session.ForceMemorySale(); yield return Wait(.8f); yield return Shot("market-04-last-customer"); owner.DeclineMemorySale(); yield return Wait(.3f);
                 }
                 else Check(false, "Dream market at wave 12");
 
@@ -439,7 +497,11 @@ namespace ArcaneBrigade
                 {
                     RunLaunch.Resume = true; SceneManager.LoadScene("RunArena"); yield return Wait(2.6f);
                     owner = FindAnyObjectByType<ArenaController>();
-                    if (owner.EnterSecret(shown)) { yield return Wait(.8f); yield return Shot("secret-01-" + shown.ToString().ToLowerInvariant()); }
+                    if (owner.EnterSecret(shown))
+                    {
+                        if (ffmpeg != null) yield return Clip("clip-secret-room", 6f, null); else yield return Wait(.8f);
+                        yield return Shot("secret-01-" + shown.ToString().ToLowerInvariant());
+                    }
                     else Check(false, "Secret room opens");
                 }
             }
@@ -472,12 +534,12 @@ namespace ArcaneBrigade
             IEnumerator S6() {
             // ---- the bosses: one at the end of every fourth night ----
             if (!vietnamese)
-                foreach (int wave in new[] { 4, 8, 12, 16, 20 })
+                foreach (int wave in new[] { 4, 8 }) // only the first two bosses: the later ones stay a surprise
                 {
                     yield return Open(stars[(wave / 4 + 1) % 2], wave - 1, 150, 3, 4000 + wave);
                     keepAlive = true; owner.NextWave(); yield return Roaming();
-                    bool filmed = ffmpeg != null && (wave == 4 || wave == 16 || wave == 20);
-                    if (filmed) yield return Clip("clip-" + (wave == 4 ? "04" : wave == 16 ? "05" : "06") + "-boss-night-" + wave, 12f, Roaming());
+                    bool filmed = ffmpeg != null;
+                    if (filmed) yield return Clip("clip-" + (wave == 4 ? "04" : "05") + "-boss-night-" + wave, 12f, Roaming());
                     else yield return Wait(2.2f);
                     yield return Shot("boss-night-" + wave.ToString("00") + "-a");
                     yield return Wait(3f); yield return Shot("boss-night-" + wave.ToString("00") + "-b");
@@ -542,34 +604,38 @@ namespace ArcaneBrigade
             IEnumerator S10() {
             // ---- the two heroes in a late crowd: their skill again and again, then the transformation ----
             if (!vietnamese)
-                foreach (var (hero, wave, name) in new[] { (mainHero, 17, "lantern-knight"), (cometHero, 18, "comet-runner") })
+                foreach (var (hero, wave, name) in new[] { (mainHero, 17, "lantern-knight"), (cometHero, 18, "comet-runner"), (guests[0], 13, "tide-singer"), (guests[1], 14, "velvet-regent"), (guests[2], 15, "tin-virtuoso"), (guests[3], 10, "lone-jelly") })
                 {
+                    bool lead = hero == mainHero || hero == cometHero; float length = lead ? 15f : 10f;
                     yield return Open(hero, wave - 1, 160, 3, 8100 + wave);
                     yield return Fight(2f);
                     CombatSimulation sim = owner.Simulation;
                     IEnumerator Show()
                     {
-                        float from = Time.realtimeSinceStartup, nudged = from;
-                        while (Time.realtimeSinceStartup - from < 15)
+                        // the skill comes on its own in a real fight; only if it has not come for a while is it called, and only the two
+                        // lead heroes transform (late in the clip, when a full gauge would be near anyway)
+                        float from = Time.realtimeSinceStartup; int seen = sim.HeroIdentityActivations; float lastCast = from;
+                        while (Time.realtimeSinceStartup - from < length)
                         {
                             float t = Time.realtimeSinceStartup - from;
-                            if (t > 7.5f && !sim.HeroAwakening) sim.FillGaugeForCapture();
-                            else if (Time.realtimeSinceStartup - nudged > 2.2f) { sim.NudgeMechanicCapture(); nudged = Time.realtimeSinceStartup; }
+                            if (sim.HeroIdentityActivations != seen) { seen = sim.HeroIdentityActivations; lastCast = Time.realtimeSinceStartup; }
+                            if (lead && t > 8.5f && !sim.HeroAwakening) sim.FillGaugeForCapture();
+                            else if (Time.realtimeSinceStartup - lastCast > 4.5f) { sim.NudgeMechanicCapture(); lastCast = Time.realtimeSinceStartup; }
                             yield return null;
                         }
                     }
                     int casts = sim.HeroIdentityActivations;
-                    if (ffmpeg != null) yield return Clip("clip-hero-" + name, 15f, Show());
+                    if (ffmpeg != null) yield return Clip("clip-hero-" + name, length, Show());
                     else yield return Show();
                     Check(sim.HeroIdentityActivations > casts, "Hero skill in a crowd: " + hero + " x" + (sim.HeroIdentityActivations - casts));
-                    // stills: the skill landing in the crowd, and the transformation
+                    // stills: the skill landing in the crowd, and the transformation (shop 17's Keeper offer is never reached: no gameplay starts there)
                     casts = sim.HeroIdentityActivations; float wait = Time.realtimeSinceStartup;
                     while (sim.HeroIdentityActivations == casts && Time.realtimeSinceStartup - wait < 8) { sim.NudgeMechanicCapture(); yield return null; }
                     yield return Wait(.3f); yield return Shot("hero-" + name + "-skill-a");
                     yield return Wait(.6f); yield return Shot("hero-" + name + "-skill-b");
                     wait = Time.realtimeSinceStartup;
-                    while (!sim.HeroAwakening && Time.realtimeSinceStartup - wait < 8) { sim.FillGaugeForCapture(); yield return null; }
-                    if (sim.HeroAwakening) { yield return Wait(.8f); yield return Shot("hero-" + name + "-transformed"); }
+                    while (lead && !sim.HeroAwakening && Time.realtimeSinceStartup - wait < 8) { sim.FillGaugeForCapture(); yield return null; }
+                    if (lead && sim.HeroAwakening) { yield return Wait(.8f); yield return Shot("hero-" + name + "-transformed"); }
                     keepAlive = false;
                 }
             yield break; }
@@ -577,10 +643,12 @@ namespace ArcaneBrigade
             // ---- long gameplay: a night to its end, the shop (walk to stalls, buy), the next night; no cuts ----
             if (!vietnamese && ffmpeg != null)
                 foreach (var (hero, wave, seconds, name) in new[] {
-                    (mainHero, 5, 100f, "gameplay-01-lantern-knight-night-5"), (cometHero, 10, 100f, "gameplay-02-comet-runner-night-10"),
-                    (mainHero, 12, 75f, "gameplay-03-lantern-knight-boss-night-12"), (cometHero, 15, 100f, "gameplay-04-comet-runner-night-15"),
-                    (mainHero, 19, 100f, "gameplay-05-lantern-knight-night-19"), (cometHero, 20, 75f, "gameplay-06-comet-runner-dawn-boss") })
+                    (mainHero, 3, 100f, "gameplay-01-lantern-knight-night-3"), (cometHero, 7, 100f, "gameplay-02-comet-runner-night-7"),
+                    (guests[0], 9, 100f, "gameplay-03-tide-singer-night-9"), (guests[1], 13, 100f, "gameplay-04-velvet-regent-night-13"),
+                    (mainHero, 14, 100f, "gameplay-05-lantern-knight-night-14"), (cometHero, 18, 100f, "gameplay-06-comet-runner-night-18") }) // a fall is fine: it is real play
                 {
+                    int pick = Array.IndexOf(args, "-website-gameplay"); // re-take some clips only: -website-gameplay 06
+                    if (pick >= 0 && pick + 1 < args.Length && !args[pick + 1].Split(',').Any(n => name.StartsWith("gameplay-" + n, StringComparison.Ordinal))) continue;
                     yield return Open(hero, wave - 1, 260, 9, 9100 + wave);
                     keepAlive = true; owner.NextWave();
                     for (float t = 0; t < 8 && owner.Simulation.Phase != RunPhase.Combat; t += .1f) yield return Wait(.1f);
@@ -599,6 +667,10 @@ namespace ArcaneBrigade
                     s.State.Wave = end == SessionPhase.Defeat ? 11 : 20; s.State.Phase = end; s.State.Difficulty = 1;
                     Brigade(s.State, s.State.Wave, 77);
                     s.State.TotalKills = end == SessionPhase.Defeat ? 3842 : 11906; s.State.BossKills = end == SessionPhase.Defeat ? 2 : 5; s.State.CombatSeconds = end == SessionPhase.Defeat ? 702 : 1288;
+                    // what each one did, so the result's bars are filled as after a real run
+                    s.State.Contributions.Clear(); float share = end == SessionPhase.Defeat ? 410000 : 1462310;
+                    s.State.Contributions.Add(new ContributionEntry { UnitId = s.State.ChampionId, WeaponId = "", EffectId = "primary", Tier = 1, Damage = share, Kills = (int)(share / 360), Coins = 1800 });
+                    foreach (RosterEntry r in s.State.Roster) { share *= .8f; s.State.Contributions.Add(new ContributionEntry { UnitId = r.UnitId, WeaponId = r.WeaponId, EffectId = "primary", Tier = r.Tier, Damage = share, Kills = (int)(share / 410) }); }
                     storage.SaveRun(s.State);
                 }
                 RunLaunch.Resume = true; SceneManager.LoadScene("RunArena"); yield return Wait(3.6f);
@@ -651,8 +723,9 @@ namespace ArcaneBrigade
         {
             var facts = new FactSheet
             {
-                Heroes = catalog.Champions.Count(HeroUnlocks.Listed), Friends = Friends.Length, Relics = Relics.Length, Weapons = catalog.Weapons.Length,
-                Enemies = catalog.Enemies.Length, Bosses = catalog.Bosses.Length, Duets = Duets.All.Count(),
+                Heroes = catalog.Champions.Count(HeroUnlocks.Listed), Friends = Friends.Length, Relics = Relics.Length,
+                Weapons = catalog.Weapons.Length - catalog.Champions.Where(c => !HeroUnlocks.Listed(c) && c.Weapon != null).Select(c => c.Weapon).Distinct().Count(),
+                Enemies = catalog.Enemies.Length, Bosses = 2, Duets = Duets.All.Count(), // the bosses the website shows
             };
             foreach (UnitDefinition c in catalog.Champions.Where(HeroUnlocks.Listed)) // heroes held for a later update or act stay a surprise
             {
@@ -660,7 +733,9 @@ namespace ArcaneBrigade
                 facts.HeroList.Add(new Hero { Id = c.Id, Name = c.DisplayName, Description = c.Description, Skill = id?.Name, SkillResource = id?.Resource, SkillDescription = id?.Description, Approaches = id?.Approaches });
             }
             foreach (UnitDefinition u in Friends) facts.FriendList.Add(new Friend { Id = u.Id, Name = u.DisplayName, Description = u.Description, Rarity = u.Rarity.ToString(), Tags = u.Tags });
-            foreach (UnitDefinition b in catalog.Bosses) facts.BossList.Add(new Thing { Id = b.Id, Name = b.DisplayName, Description = b.Description });
+            // only the first two bosses (the later ones stay a surprise): the Coin Widow from the catalogue, the Chair Porter from Act I's own bosses
+            foreach (UnitDefinition b in catalog.Bosses.Where(b => b.Id == "CoinWidow")) facts.BossList.Add(new Thing { Id = b.Id, Name = b.DisplayName, Description = b.Description });
+            facts.BossList.Add(new Thing { Id = "ChairPorter", Name = "The Chair Porter", Description = "Night 8. Carries a tower of chairs on his back, the travellers still sitting in them." });
             foreach (ItemDefinition i in Relics) facts.RelicList.Add(new Thing { Id = i.Id, Name = i.Name, Description = i.Description });
             facts.CompanionSkills.AddRange(CombatSimulation.CompanionSkillIds);
             File.WriteAllText(Path.Combine(root, "facts.json"), JsonUtility.ToJson(facts, true));

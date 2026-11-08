@@ -134,7 +134,7 @@ namespace ArcaneBrigade
                     foreach (UnitDefinition u in c.Companions) if (u != null && u.Body != null && !RunSession.StorySpecies(u.Id)) list.Add(new MuseumPiece { Id = u.Id, Name = RunUICopy.UnitName(u), Icon = u.Body, Seen = p.SeenUnits.Contains(u.Id) });
                     break;
                 case MuseumShelf.Relics:
-                    foreach (ItemDefinition i in c.Items) if (i != null && i.Icon != null) list.Add(new MuseumPiece { Id = i.Id, Name = i.Name, Icon = i.Icon, Seen = p.SeenItems.Contains(i.Id) });
+                    foreach (ItemDefinition i in c.Items) if (i != null && i.Icon != null && !HeroUnlocks.HiddenItem(c, i)) list.Add(new MuseumPiece { Id = i.Id, Name = i.Name, Icon = i.Icon, Seen = p.SeenItems.Contains(i.Id) });
                     break;
                 case MuseumShelf.Enemies:
                     foreach (UnitDefinition u in c.Enemies) if (u != null && u.Body != null) list.Add(new MuseumPiece { Id = u.Id, Name = RunUICopy.UnitName(u), Icon = u.Body, Seen = p.BestWave >= Mathf.Max(1, u.UnlockWave) });
