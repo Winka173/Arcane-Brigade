@@ -1,0 +1,3 @@
+- Cloud save: a run left on one phone continues on another, and the reward reaches every phone
+- Each wave is saved to Drive right away
+- Starting a run waits a moment for the newest save

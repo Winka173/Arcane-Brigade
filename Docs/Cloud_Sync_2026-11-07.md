@@ -159,5 +159,5 @@ Changes take minutes, sometimes an hour, to reach devices.
 | Merge, conflicts, run, settings, checkpoints, restore points (`CloudSyncChecks`, 49 cases: the wave-10 → other device → win at wave 20 journey, a sync that never landed, a run ended offline, a spend during a run elsewhere, the same run on two devices, reinstall, reconnect) | **Passed** 8/11/2026 |
 | Localization checks after the new strings | **Passed** |
 | Android bundle with `DriveAuth.androidlib` | **Built** (Unity 6000.6, AGP 9.1.1) |
-| Real Google Drive, two devices | Waiting for the dedicated project (steps A–E); build 7 is on closed testing |
+| Real Google Drive, two devices | Dedicated Cloud project done 8/11; closed-testing build 8 has the sync fixes; waiting for the two-phone test |
 | iPhone | **Not built** (needs a Mac and the iOS client) |

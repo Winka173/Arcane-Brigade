@@ -1,0 +1,3 @@
+- Lưu đám mây: chơi dở trên máy này, chơi tiếp trên máy khác, phần thưởng có trên mọi máy
+- Mỗi wave được lưu lên Drive ngay
+- Bắt đầu chơi sẽ chờ một chút để lấy bản lưu mới nhất
