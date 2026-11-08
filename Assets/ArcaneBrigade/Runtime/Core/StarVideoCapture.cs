@@ -12,25 +12,35 @@ namespace ArcaneBrigade
     /// it (the altar's fusion and the lucid rite), each with a caption. Run with -arcane-k7-capture -arcane-star-video -capturePath DIR
     /// -ffmpegPath ffmpeg.exe -videoPath out.mp4 at 1920x1080 (the framebuffer recorder needs it).</summary>
     /// <summary>Records what the listener hears (the game's whole mix) into a 16-bit stereo WAV beside the video, so the clip can carry
-    /// sound: each frame it reads the newest samples the listener output (the listener's object carries several audio sources, so a
-    /// filter cannot sit on it).</summary>
+    /// sound. The listener's object carries several audio sources, so a filter cannot sit on it: each frame it reads the newest samples
+    /// the listener output, exactly as many as the mixer produced since the last read (counted on the audio clock, not the frame
+    /// clock, so the pieces join without gaps or repeats; requirement 8/11/2026: the website trailer crackled).</summary>
     public sealed class StarVideoAudioTap : MonoBehaviour
     {
         private readonly List<short> samples = new List<short>(48000 * 2 * 120);
-        private readonly float[] left = new float[4096], right = new float[4096];
+        private readonly float[] left = new float[16384], right = new float[16384];
         private int rate = 48000;
         private bool recording;
-        private double carry;
+        private long mixed;
 
-        public void Begin() { rate = AudioSettings.outputSampleRate; samples.Clear(); recording = true; carry = 0; }
+        public void Begin() { rate = AudioSettings.outputSampleRate; samples.Clear(); recording = true; mixed = Mixed(); }
+        private long Mixed() => (long)Math.Round(AudioSettings.dspTime * rate);
 
         private void Update()
         {
             if (!recording) return;
-            carry += Time.unscaledDeltaTime * rate;
-            int n = Mathf.Min(left.Length, (int)carry); carry -= n;
+            long before, after;
+            int guard = 0;
+            do
+            {
+                before = Mixed();
+                AudioListener.GetOutputData(left, 0); AudioListener.GetOutputData(right, 1);
+                after = Mixed();
+            } while (before != after && ++guard < 4); // the mixer ran between the reads: read again
+            int n = (int)Math.Min(left.Length, after - mixed);
+            if (after - mixed > left.Length) for (long i = left.Length; i < after - mixed; i++) { samples.Add(0); samples.Add(0); } // a long stall: keep the timing
+            mixed = after;
             if (n <= 0) return;
-            AudioListener.GetOutputData(left, 0); AudioListener.GetOutputData(right, 1);
             for (int i = left.Length - n; i < left.Length; i++) { samples.Add((short)(Mathf.Clamp(left[i], -1f, 1f) * 32767f)); samples.Add((short)(Mathf.Clamp(right[i], -1f, 1f) * 32767f)); }
         }
 

@@ -3026,7 +3026,7 @@
     },
     {
       "source": "Advance|Fan out|Hold ground",
-      "target": "Tiến lên|Tấn công|Giữ vững"
+      "target": "Tiến công|Tỏa rộng|Giữ vị trí"
     },
     {
       "source": "After 3s without being hit, the hero's healing per second is tripled.",
@@ -16282,7 +16282,7 @@
     },
     {
       "source": "METEOR SHOWER",
-      "target": "SẮC SẮC TINH THẦN"
+      "target": "MƯA SAO BĂNG"
     },
     {
       "source": "MIEN CHO / LIVES ALONGSIDE YOURS",
@@ -16675,6 +16675,10 @@
     {
       "source": "Met every friend",
       "target": "Gặp gỡ mọi người bạn"
+    },
+    {
+      "source": "Meteor shower",
+      "target": "Mưa sao băng"
     },
     {
       "source": "Meteors rain down along the route you run; +50% move speed and +25% attack speed.",
@@ -21610,7 +21614,7 @@
     },
     {
       "source": "STARFALL!",
-      "target": "SAO SAO!"
+      "target": "SAO RƠI!"
     },
     {
       "source": "STARS",
@@ -24294,7 +24298,7 @@
     },
     {
       "source": "THE COMET'S WAKE",
-      "target": "SỰ THỨC CỦA SAO CHUYỂN"
+      "target": "VỆT SAO CHỔI"
     },
     {
       "source": "THE CONTRABAND EXPRESS",
@@ -24410,7 +24414,7 @@
     },
     {
       "source": "THE GUIDING LAMP",
-      "target": "ĐÈN HƯỚNG DẪN"
+      "target": "NGỌN ĐÈN DẪN LỐI"
     },
     {
       "source": "THE HAND THAT OPENED",
@@ -25466,7 +25470,11 @@
     },
     {
       "source": "The Comet Courier",
-      "target": "Chuyển phát nhanh sao chổi"
+      "target": "Người Đưa Thư Sao Chổi"
+    },
+    {
+      "source": "The Comet's Wake",
+      "target": "Vệt Sao Chổi"
     },
     {
       "source": "The Contraband Collector",
@@ -28170,7 +28178,7 @@
     },
     {
       "source": "Trail|Twin tails|Closed orbit",
-      "target": "Đường mòn|Đôi đuôi|Quỹ đạo kín"
+      "target": "Vệt đường|Đuôi kép|Quỹ đạo khép kín"
     },
     {
       "source": "Transaction counter exhausted",

@@ -15,7 +15,7 @@ namespace ArcaneBrigade
     /// played: fourteen finished runs go through the game's own progress code (history, records, Lamp Oil, finds, mastery,
     /// achievements), then the Lamp Tree is lit with the oil they earned. Runs in play hold friends, relics and gold a player of that
     /// night would hold. Diagnostic save folder only.
-    /// -arcane-website -capturePath DIR [-arcane-phone] [-website-vi] [-website-clips -ffmpegPath ffmpeg.exe]
+    /// -arcane-website -capturePath DIR [-arcane-phone] [-website-vi] [-website-no-music] [-website-clips -ffmpegPath ffmpeg.exe]
     /// Writes DIR/shots/*.png, DIR/clips/*.mp4 with a .wav of the game's sound beside each, DIR/facts.json and DIR/Checks.txt.</summary>
     public sealed class WebsiteCapture : MonoBehaviour
     {
@@ -85,6 +85,7 @@ namespace ArcaneBrigade
         {
             var p = new PlayerProfile { TutorialSeen = true, StoryPagesAutoOpen = false };
             if (vietnamese) p.Language = GameLocalization.Vietnamese;
+            if (Array.IndexOf(Environment.GetCommandLineArgs(), "-website-no-music") >= 0) p.MusicVolume = 0; // effects only: a trailer lays its own music over them
             MetaProgression.Ensure(p);
             // hero, difficulty, the night reached, won
             var runs = new (int hero, int difficulty, int wave, bool won)[]
@@ -189,13 +190,61 @@ namespace ArcaneBrigade
             while (roaming && id == roamId)
             {
                 float t = Time.unscaledTime - start;
-                bool fighting = owner != null && owner.Simulation != null && owner.Simulation.Phase == RunPhase.Combat;
+                bool fighting = owner != null && owner.Simulation != null && owner.Simulation.Phase == RunPhase.Combat && owner.Session != null && owner.Session.State.Phase == SessionPhase.Combat;
                 ArenaController.ScriptedMove = fighting ? new Vector2(Mathf.Cos(t * .85f), Mathf.Sin(t * 1.3f) * .75f) : (Vector2?)null;
                 yield return null;
             }
             if (id == roamId) ArenaController.ScriptedMove = null;
         }
         private void StopRoaming() { roaming = false; roamId++; ArenaController.ScriptedMove = null; }
+
+        /// <summary>Plays as a player does for a while: weaves through the night; in the shop walks to the stalls it can afford and
+        /// buys (friends first), then starts the next night.</summary>
+        private IEnumerator Play(float seconds)
+        {
+            float from = Time.realtimeSinceStartup;
+            while (Time.realtimeSinceStartup - from < seconds)
+            {
+                if (owner == null || owner.Session == null) { yield return null; continue; }
+                bool shop = owner.Session.State.Phase == SessionPhase.Shop; // the session's phase: the fight's own phase lags behind it
+                if (!shop && owner.Simulation != null && owner.Simulation.Phase == RunPhase.Combat) { yield return Roaming(); yield return Wait(.25f); continue; }
+                StopRoaming();
+                if (!shop || owner.Shop == null) { yield return Wait(.25f); continue; }
+                // the night's end plays out, the keeper rolls the rug out and the stalls fill: wait for all of it, then a moment to take the shop in
+                for (float t = 0; t < 10 && (owner.TransitionPending || owner.Simulation.Phase != RunPhase.Rest); t += .2f) yield return Wait(.2f);
+                yield return Wait(2.2f);
+                if (owner.Shop.Special)
+                {
+                    // the dream market opens first: a look, a buy in Dreamsand when there is enough, then on to the keeper's own shop
+                    yield return Buy(from, seconds, 1);
+                    owner.FinishSpecialShop();
+                    for (float t = 0; t < 10 && (owner.TransitionPending || owner.Shop.Special); t += .2f) yield return Wait(.2f);
+                    yield return Wait(2f);
+                }
+                yield return Buy(from, seconds, 3);
+                yield return Wait(1f);
+                owner.NextWave();
+                for (float t = 0; t < 6 && owner.Simulation.Phase != RunPhase.Combat; t += .1f) yield return Wait(.1f);
+            }
+        }
+
+        /// <summary>Walks to the stalls the brigade can pay for (friends first, nearest next) and buys up to <paramref name="most"/>.</summary>
+        private IEnumerator Buy(float from, float seconds, int most)
+        {
+            for (int bought = 0; bought < most && Time.realtimeSinceStartup - from < seconds - 6; bought++)
+            {
+                RunSnapshot s = owner.Session.State;
+                WorldShop.Station stall = owner.Shop.Stations.Where(st => st.Offer != null && !st.Offer.Sold && (st.Offer.Currency == ShopCurrency.Gold && st.Offer.Price <= s.Gold || st.Offer.Currency == ShopCurrency.Eggs && st.Offer.Price <= s.Eggs))
+                    .OrderBy(st => st.Offer.Kind == OfferKind.Companion ? 0 : 1).ThenBy(st => Vector2.Distance(st.Position, owner.Simulation.Champion.Position)).FirstOrDefault();
+                if (stall == null) break;
+                yield return Walk(stall.Position + new Vector2(0, -.8f));
+                yield return Wait(1.1f); // a look at the card, as a player reads it
+                ShopOffer offer = stall.Offer;
+                for (int tries = 0; tries < 30 && offer != null && !offer.Sold; tries++) { owner.Shop.Interact(); yield return Wait(.1f); }
+                Check(offer != null && offer.Sold, "Gameplay buys " + offer?.Kind + " " + offer?.Id + " on night " + owner.Session.State.Wave);
+                yield return Wait(offer != null && offer.Kind == OfferKind.Companion ? 2.2f : 1.2f);
+            }
+        }
 
         private RunHud Hud => (RunHud)typeof(ArenaController).GetField("runHud", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(owner);
         private IEnumerator Focus(Func<ShopOffer, bool> which)
@@ -227,7 +276,7 @@ namespace ArcaneBrigade
             string path = Path.Combine(clips, name + ".mp4");
             recorder.Begin(ffmpeg, path, seconds); tap.Begin();
             if (action != null) StartCoroutine(action);
-            while (!recorder.Complete) yield return null;
+            while (!recorder.Complete) { lastStep = Time.realtimeSinceStartup; yield return null; } // a long clip is progress, not a stall
             tap.Save(Path.Combine(clips, name + ".wav"));
             Check(recorder.Passed, "Clip " + name);
             Destroy(recorder); Destroy(tap);
@@ -253,12 +302,15 @@ namespace ArcaneBrigade
 
             PlayerProfile profile = PlayedProfile();
             UnitDefinition[] heroes = catalog.Champions.Where(c => HeroUnlocks.Open(profile, c)).ToArray();
-            string mainHero = heroes[0].Id;
+            // the website shows two heroes in play: the Lantern Knight (the game's face) and the Comet Runner, whose wake ends in a
+            // starfall; the fights, bosses and places take turns between them
+            string mainHero = "LanternKnight", cometHero = "CometRunner";
+            string[] stars = { mainHero, cometHero };
 
             // a run left at night 13, so the menu offers to continue it
             using (var session = new RunSession(catalog))
             {
-                session.Start(heroes[Mathf.Min(1, heroes.Length - 1)].Id, 913);
+                session.Start(cometHero, 913);
                 session.State.Wave = 13; session.State.Phase = SessionPhase.Shop; session.State.Gold = 214; session.State.Difficulty = 1;
                 Brigade(session.State, 13, 913); storage.SaveRun(session.State);
             }
@@ -397,10 +449,10 @@ namespace ArcaneBrigade
             // ---- the nights ----
             foreach (var (wave, name) in new[] { (5, "fight-01-early-night"), (14, "fight-02-mid-night"), (18, "fight-03-late-night") })
             {
-                yield return Open(heroes[wave % heroes.Length].Id, wave - 1, 120, 2, 3000 + wave);
+                yield return Open(stars[wave % 2], wave - 1, 120, 2, 3000 + wave);
                 yield return Fight(5f); yield return Shot(name + "-a");
                 yield return Wait(3.5f); yield return Shot(name + "-b");
-                if (ffmpeg != null && wave >= 14 && !vietnamese) yield return Clip("clip-0" + (wave == 14 ? "2" : "3") + "-fight-wave-" + wave, 12f, Roaming(12f));
+                if (ffmpeg != null && wave >= 14 && !vietnamese) yield return Clip("clip-0" + (wave == 14 ? "2" : "3") + "-fight-wave-" + wave, 12f, Roaming());
                 keepAlive = false;
             }
             yield break; }
@@ -422,10 +474,10 @@ namespace ArcaneBrigade
             if (!vietnamese)
                 foreach (int wave in new[] { 4, 8, 12, 16, 20 })
                 {
-                    yield return Open(heroes[(wave / 4) % heroes.Length].Id, wave - 1, 150, 3, 4000 + wave);
+                    yield return Open(stars[(wave / 4 + 1) % 2], wave - 1, 150, 3, 4000 + wave);
                     keepAlive = true; owner.NextWave(); yield return Roaming();
-                    bool filmed = ffmpeg != null && (wave == 4 || wave == 16);
-                    if (filmed) yield return Clip("clip-0" + (wave == 4 ? "4" : "5") + "-boss-night-" + wave, 11f, Roaming(11f, 3.2f));
+                    bool filmed = ffmpeg != null && (wave == 4 || wave == 16 || wave == 20);
+                    if (filmed) yield return Clip("clip-" + (wave == 4 ? "04" : wave == 16 ? "05" : "06") + "-boss-night-" + wave, 12f, Roaming());
                     else yield return Wait(2.2f);
                     yield return Shot("boss-night-" + wave.ToString("00") + "-a");
                     yield return Wait(3f); yield return Shot("boss-night-" + wave.ToString("00") + "-b");
@@ -441,11 +493,11 @@ namespace ArcaneBrigade
             if (!vietnamese)
                 foreach (var (wave, name) in new[] { (3, "waiting-room"), (7, "post-office"), (9, "glasshouse"), (13, "lamp-hall"), (17, "theatre"), (19, "archive-vault") })
                 {
-                    yield return Open(heroes[wave % heroes.Length].Id, wave - 1, 120, 2, 5000 + wave);
+                    yield return Open(stars[wave % 2], wave - 1, 120, 2, 5000 + wave);
                     yield return Fight(2.5f);
                     owner.Simulation.MapEnvironmentCaptureFixture(); yield return Wait(.8f);
                     yield return Shot("place-" + name);
-                    if (ffmpeg != null) yield return Clip("clip-place-" + name, 6f, Roaming(6f));
+                    if (ffmpeg != null) yield return Clip("clip-place-" + name, 6f, Roaming());
                     keepAlive = false;
                 }
 
@@ -454,11 +506,13 @@ namespace ArcaneBrigade
             // ---- every hero's own skill, and the transformation ----
             if (!vietnamese)
             {
-                int index = 0;
+                int index = 0, shown = 0;
                 foreach (HeroIdentityDefinition identity in HeroIdentities.All)
                 {
                     index++;
-                    if (catalog.Unit(identity.Id) == null) continue;
+                    UnitDefinition hero = catalog.Unit(identity.Id);
+                    if (hero == null || !HeroUnlocks.Listed(hero)) continue; // heroes held for a later update or act stay a surprise
+                    shown++;
                     yield return Open(identity.Id, 6, 120, 2, 6000 + index);
                     yield return Fight(3.8f); // past the night's opening badge
                     CombatSimulation sim = owner.Simulation;
@@ -466,25 +520,74 @@ namespace ArcaneBrigade
                     int casts = sim.HeroIdentityActivations; float started = Time.realtimeSinceStartup;
                     while (sim.HeroIdentityActivations == casts && !sim.HeroAwakening && Time.realtimeSinceStartup - started < 10) { sim.NudgeMechanicCapture(); if (Time.realtimeSinceStartup - started > 4) sim.FillGaugeForCapture(); yield return null; }
                     yield return Wait(.25f);
-                    string stem = "skill-" + index.ToString("00") + "-" + identity.Id;
+                    string stem = "skill-" + shown.ToString("00") + "-" + identity.Id;
                     yield return Shot(stem);
                     Check(sim.HeroIdentityActivations > casts || sim.HeroAwakening, "Hero skill fires: " + identity.Id + " (" + identity.Name + ")");
-                    if (index <= 4)
+                    if (Array.IndexOf(stars, identity.Id) >= 0)
                     {
                         // the transformation: a full gauge
                         float wait = Time.realtimeSinceStartup;
                         while (!sim.HeroAwakening && Time.realtimeSinceStartup - wait < 8) { sim.FillGaugeForCapture(); yield return null; }
                         if (sim.HeroAwakening)
                         {
-                            if (ffmpeg != null && index == 1) yield return Clip("clip-06-transformation", 9f, Roaming(9f, 2f));
-                            else { yield return Wait(.5f); }
-                            yield return Shot("transform-" + index.ToString("00") + "-" + identity.Id);
+                            yield return Wait(.5f);
+                            yield return Shot("transform-" + identity.Id);
                         }
                     }
                     keepAlive = false;
                 }
             }
 
+            yield break; }
+            IEnumerator S10() {
+            // ---- the two heroes in a late crowd: their skill again and again, then the transformation ----
+            if (!vietnamese)
+                foreach (var (hero, wave, name) in new[] { (mainHero, 17, "lantern-knight"), (cometHero, 18, "comet-runner") })
+                {
+                    yield return Open(hero, wave - 1, 160, 3, 8100 + wave);
+                    yield return Fight(2f);
+                    CombatSimulation sim = owner.Simulation;
+                    IEnumerator Show()
+                    {
+                        float from = Time.realtimeSinceStartup, nudged = from;
+                        while (Time.realtimeSinceStartup - from < 15)
+                        {
+                            float t = Time.realtimeSinceStartup - from;
+                            if (t > 7.5f && !sim.HeroAwakening) sim.FillGaugeForCapture();
+                            else if (Time.realtimeSinceStartup - nudged > 2.2f) { sim.NudgeMechanicCapture(); nudged = Time.realtimeSinceStartup; }
+                            yield return null;
+                        }
+                    }
+                    int casts = sim.HeroIdentityActivations;
+                    if (ffmpeg != null) yield return Clip("clip-hero-" + name, 15f, Show());
+                    else yield return Show();
+                    Check(sim.HeroIdentityActivations > casts, "Hero skill in a crowd: " + hero + " x" + (sim.HeroIdentityActivations - casts));
+                    // stills: the skill landing in the crowd, and the transformation
+                    casts = sim.HeroIdentityActivations; float wait = Time.realtimeSinceStartup;
+                    while (sim.HeroIdentityActivations == casts && Time.realtimeSinceStartup - wait < 8) { sim.NudgeMechanicCapture(); yield return null; }
+                    yield return Wait(.3f); yield return Shot("hero-" + name + "-skill-a");
+                    yield return Wait(.6f); yield return Shot("hero-" + name + "-skill-b");
+                    wait = Time.realtimeSinceStartup;
+                    while (!sim.HeroAwakening && Time.realtimeSinceStartup - wait < 8) { sim.FillGaugeForCapture(); yield return null; }
+                    if (sim.HeroAwakening) { yield return Wait(.8f); yield return Shot("hero-" + name + "-transformed"); }
+                    keepAlive = false;
+                }
+            yield break; }
+            IEnumerator S11() {
+            // ---- long gameplay: a night to its end, the shop (walk to stalls, buy), the next night; no cuts ----
+            if (!vietnamese && ffmpeg != null)
+                foreach (var (hero, wave, seconds, name) in new[] {
+                    (mainHero, 5, 100f, "gameplay-01-lantern-knight-night-5"), (cometHero, 10, 100f, "gameplay-02-comet-runner-night-10"),
+                    (mainHero, 12, 75f, "gameplay-03-lantern-knight-boss-night-12"), (cometHero, 15, 100f, "gameplay-04-comet-runner-night-15"),
+                    (mainHero, 19, 100f, "gameplay-05-lantern-knight-night-19"), (cometHero, 20, 75f, "gameplay-06-comet-runner-dawn-boss") })
+                {
+                    yield return Open(hero, wave - 1, 260, 9, 9100 + wave);
+                    keepAlive = true; owner.NextWave();
+                    for (float t = 0; t < 8 && owner.Simulation.Phase != RunPhase.Combat; t += .1f) yield return Wait(.1f);
+                    yield return Clip(name, seconds, Play(seconds));
+                    Check(true, "Gameplay " + name + " reached night " + owner.Session.State.Wave + " (" + owner.Session.State.Phase + ")");
+                    StopRoaming(); keepAlive = false;
+                }
             yield break; }
             IEnumerator S9() {
             // ---- the end of a run ----
@@ -515,7 +618,7 @@ namespace ArcaneBrigade
             drawSummary = true; yield return Wait(.5f); yield return Shot("result-03-night-summary"); drawSummary = false;
 
             yield break; }
-            var sections = new (string, Func<IEnumerator>)[] { ("menus", S0), ("shop", S1), ("star-up", S2), ("dream-market", S3), ("nights", S4), ("chest", S5), ("bosses", S6), ("places", S7), ("hero-skills", S8), ("results", S9) };
+            var sections = new (string, Func<IEnumerator>)[] { ("menus", S0), ("shop", S1), ("star-up", S2), ("dream-market", S3), ("nights", S4), ("chest", S5), ("bosses", S6), ("places", S7), ("hero-skills", S8), ("results", S9), ("hero-clips", S10), ("gameplay", S11) };
             int only = Array.IndexOf(args, "-website-sections"); string[] wanted = only >= 0 && only + 1 < args.Length ? args[only + 1].Split(',') : null; // re-take some parts only
             foreach (var (name, body) in sections) if (wanted == null || Array.IndexOf(wanted, name) >= 0) yield return Section(name, body());
             Check(true, "Capture finished");
@@ -548,10 +651,10 @@ namespace ArcaneBrigade
         {
             var facts = new FactSheet
             {
-                Heroes = catalog.Champions.Length, Friends = Friends.Length, Relics = Relics.Length, Weapons = catalog.Weapons.Length,
+                Heroes = catalog.Champions.Count(HeroUnlocks.Listed), Friends = Friends.Length, Relics = Relics.Length, Weapons = catalog.Weapons.Length,
                 Enemies = catalog.Enemies.Length, Bosses = catalog.Bosses.Length, Duets = Duets.All.Count(),
             };
-            foreach (UnitDefinition c in catalog.Champions)
+            foreach (UnitDefinition c in catalog.Champions.Where(HeroUnlocks.Listed)) // heroes held for a later update or act stay a surprise
             {
                 HeroIdentityDefinition id = HeroIdentities.All.FirstOrDefault(h => h.Id == c.Id);
                 facts.HeroList.Add(new Hero { Id = c.Id, Name = c.DisplayName, Description = c.Description, Skill = id?.Name, SkillResource = id?.Resource, SkillDescription = id?.Description, Approaches = id?.Approaches });
