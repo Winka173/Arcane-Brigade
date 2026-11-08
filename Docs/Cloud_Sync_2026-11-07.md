@@ -103,10 +103,10 @@ History: on 7/11/2026 the two Android clients were first created in the shared p
 1. *Get started* wizard: app name `Arcane Brigade`; support email `apps.winka.studio@gmail.com`; Audience **External**; contact `apps.winka.studio@gmail.com`; accept the policy; *Create*.
 2. *Branding*:
    - **No logo.** A logo makes Google verify the app.
-   - Home page: `https://github.com/Winka173/Arcane-Brigade`
-   - Privacy policy: `https://github.com/Winka173/Arcane-Brigade/blob/main/PRIVACY.md`
-   - Terms: leave empty.
-   - Authorized domain: `github.com`
+   - Home page: `https://winka.top/en/games/arcane-brigade/`
+   - Privacy policy: `https://winka.top/en/games/arcane-brigade/privacy/`
+   - Terms of service: `https://winka.top/en/games/arcane-brigade/terms/`
+   - Authorized domain: `winka.top` (the studio site that hosts the pages above; updated 09/11/2026 from the old GitHub links)
    - Developer contact: `apps.winka.studio@gmail.com`
 3. *Data Access*: add `.../auth/drive.appdata`. It is non-sensitive, so no assessment is needed.
 4. *Audience*: **Publish app**, so status becomes *In production*. Test users would shut out the Play testers' Google Group.

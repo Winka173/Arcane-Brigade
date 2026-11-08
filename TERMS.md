@@ -2,6 +2,8 @@
 
 *Last updated: 8 November 2026*
 
+Published at https://winka.top/en/games/arcane-brigade/terms/ (Tiếng Việt: https://winka.top/vi/games/arcane-brigade/terms/).
+
 These terms cover your use of Arcane Brigade, a game by Winka Studio ("we"). By installing or playing the game you agree to them. If you do not agree, please do not use the game.
 
 ## The game
@@ -25,7 +27,7 @@ These terms cover your use of Arcane Brigade, a game by Winka Studio ("we"). By 
 ## Your save and cloud save
 
 - Your progress is saved on your device. If you uninstall the game without cloud save turned on, your progress is lost.
-- Cloud save is optional. When you connect it, your save is stored in your own Google Drive under Google's terms. Our [Privacy Policy](PRIVACY.md) explains exactly what is stored and how to delete it.
+- Cloud save is optional. When you connect it, your save is stored in your own Google Drive under Google's terms. Our [Privacy Policy](https://winka.top/en/games/arcane-brigade/privacy/) explains exactly what is stored and how to delete it.
 - We work hard to keep saves safe, but we cannot guarantee that a save will never be lost or damaged. Restore points on your device help you recover from mistakes.
 
 ## Updates and availability
@@ -78,7 +80,7 @@ Các điều khoản này áp dụng khi bạn dùng Arcane Brigade, trò chơi 
 ## Bản lưu và lưu đám mây
 
 - Tiến độ được lưu trên thiết bị của bạn. Nếu gỡ trò chơi khi chưa bật lưu đám mây, tiến độ sẽ mất.
-- Lưu đám mây là tuỳ chọn. Khi bạn kết nối, bản lưu nằm trong Google Drive của chính bạn và tuân theo điều khoản của Google. [Chính sách quyền riêng tư](PRIVACY.md) nói rõ những gì được lưu và cách xoá.
+- Lưu đám mây là tuỳ chọn. Khi bạn kết nối, bản lưu nằm trong Google Drive của chính bạn và tuân theo điều khoản của Google. [Chính sách quyền riêng tư](https://winka.top/vi/games/arcane-brigade/privacy/) nói rõ những gì được lưu và cách xoá.
 - Chúng tôi cố gắng giữ bản lưu an toàn nhưng không thể đảm bảo bản lưu không bao giờ mất hay hỏng. Các điểm khôi phục trên máy giúp bạn lấy lại khi có sự cố.
 
 ## Cập nhật và cung cấp dịch vụ

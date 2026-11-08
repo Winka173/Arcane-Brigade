@@ -111,11 +111,25 @@ namespace ArcaneBrigade
                 Changed(() => { profile.TipsSeen.AddRange(tips); profile.TutorialSeen = coach; });
             }
             y += RowStep;
+            // the published privacy policy, terms and data deletion steps open from inside the game (Google Play user data policy)
+            Header(label, ref y, "Legal");
+            if (Button(new Rect(75, y, 360, RowControl), "Privacy Policy")) OpenLegal("privacy");
+            if (Button(new Rect(460, y, 360, RowControl), "Terms of Service")) OpenLegal("terms");
+            if (Button(new Rect(845, y, 360, RowControl), "Data deletion")) OpenLegal("data-deletion");
+            y += RowStep;
             contentHeight = y - 150 + 40;
             ScrollPanel.End();
             origin = at;
         }
         private const float RowStep = 66, RowControl = 50;
+        /// <summary>The game's legal page on the studio site, in the language the game is shown in (English otherwise).</summary>
+        public static string LegalUrl(string page, string language) =>
+            "https://winka.top/" + (language == GameLocalization.Vietnamese ? "vi" : "en") + "/games/arcane-brigade/" + page + "/";
+        private static void OpenLegal(string page)
+        {
+            CheckpointAudio.PlayInterfaceId("ui.setting");
+            Application.OpenURL(LegalUrl(page, profile.Language));
+        }
         /// <summary>Cloud save: connect or disconnect Google, automatic sync, the last sync with Sync now, and the restore points.</summary>
         private static void CloudRows(Action<Rect, string> label, ref float y)
         {

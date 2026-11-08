@@ -7861,6 +7861,10 @@
       "target": "La bàn phi tiêu"
     },
     {
+      "source": "Data deletion",
+      "target": "Xoá dữ liệu"
+    },
+    {
       "source": "Dawn Has Come",
       "target": "Bình minh đã đến"
     },
@@ -15557,6 +15561,10 @@
       "target": "Rời đi mà không có thỏa thuận."
     },
     {
+      "source": "Legal",
+      "target": "Pháp lý"
+    },
+    {
       "source": "Legendary",
       "target": "Huyền thoại"
     },
@@ -19971,6 +19979,10 @@
     {
       "source": "Prism ring",
       "target": "Vòng lăng kính"
+    },
+    {
+      "source": "Privacy Policy",
+      "target": "Quyền riêng tư"
     },
     {
       "source": "Prizefighters",
@@ -25203,6 +25215,10 @@
     {
       "source": "Tentacle",
       "target": "Xúc tu"
+    },
+    {
+      "source": "Terms of Service",
+      "target": "Điều khoản"
     },
     {
       "source": "Terracotta",

@@ -2,6 +2,8 @@
 
 *Last updated: 7 November 2026*
 
+Published at https://winka.top/en/games/arcane-brigade/privacy/ (Tiếng Việt: https://winka.top/vi/games/arcane-brigade/privacy/). How to delete your data: https://winka.top/en/games/arcane-brigade/data-deletion/
+
 Arcane Brigade is a game by Winka Studio. This policy explains what the game does with your information.
 
 ## What the game collects
