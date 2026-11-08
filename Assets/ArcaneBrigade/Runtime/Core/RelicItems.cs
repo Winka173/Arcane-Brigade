@@ -76,6 +76,7 @@ namespace ArcaneBrigade
             if (!enemy.Alive || enemy.SealAt > Elapsed || RelicCount(RelicMechanic.SealBurst) == 0 || collision <= 0) return;
             enemy.SealAt = Elapsed + 1; enemy.SealDamage = collision * 3;
         }
+        private const float SealReach = 1.2f;
         private void RelicSeals()
         {
             if (RelicCount(RelicMechanic.SealBurst) == 0) return;
@@ -84,9 +85,10 @@ namespace ArcaneBrigade
                 if (sealed_.SealAt < 0 || sealed_.SealAt > Elapsed) continue;
                 float damage = sealed_.SealDamage; Vector2 at = sealed_.Position; sealed_.SealAt = -1;
                 CombatCause cause = NewCause(Champion.Id).Child("curio-seal");
-                events.Add(new CombatEvent(CombatEventKind.Detonation, at, Faction.Champion, damage, cause: cause));
+                // a detonation event carries the blast's reach, never its damage (damage there painted a blast hundreds of units wide)
+                events.Add(new CombatEvent(CombatEventKind.Detonation, at, Faction.Champion, SealReach, cause: cause));
                 foreach (UnitState enemy in units.ToArray())
-                    if (enemy.Alive && enemy.Faction == Faction.Enemy && (enemy.Position - at).sqrMagnitude <= 1.2f * 1.2f)
+                    if (enemy.Alive && enemy.Faction == Faction.Enemy && (enemy.Position - at).sqrMagnitude <= SealReach * SealReach)
                         ApplyDamage(enemy, damage, Faction.Champion, "Crimson seal", enemy.Position - at, cause: cause);
             }
         }

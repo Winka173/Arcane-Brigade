@@ -11,6 +11,7 @@ namespace ArcaneBrigade
     public sealed class ExplosionFeedback : MonoBehaviour
     {
         private enum Kind { Blast, Burst, Smudge, Shock, Pop }
+        private const float MaxBlastRadius = 4.5f;
         private sealed class Blast
         {
             public Kind Kind;
@@ -110,7 +111,8 @@ namespace ArcaneBrigade
                 case CombatEventKind.Detonation when value.Cause.ItemId != null && value.Cause.ItemId.StartsWith("hero-identity-", System.StringComparison.Ordinal):
                     break; // a hero skill paints its own strike (requirement 23/10/2026: the blast disc over it read as film)
                 case CombatEventKind.Detonation:
-                    Spawn(Kind.Blast, value.Position, Mathf.Max(0.8f, value.Value), Tint(value.Element, value.Faction), true, value.Faction == Faction.Enemy);
+                    // the painted blast stays a local burst: a blast never washes over the whole screen, whatever reach it reports
+                    Spawn(Kind.Blast, value.Position, Mathf.Clamp(value.Value, 0.8f, MaxBlastRadius), Tint(value.Element, value.Faction), true, value.Faction == Faction.Enemy);
                     break;
                 case CombatEventKind.BossLanded:
                     Spawn(Kind.Shock, value.Position, 2.6f, new Color(0.86f, 0.74f, 0.55f), true, true);
