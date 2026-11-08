@@ -85,44 +85,53 @@ Same design as Sticky Wall (`Sticky-Wall/docs/release/PLAY_CONSOLE_API_GUIDE.md`
 
 ## Owner setup in Google Cloud Console (manual, once)
 
-Until this is done, *Connect Google* shows Google's error and the game keeps saving locally.
+This follows `Sticky-Wall/docs/release/PLAY_CONSOLE_API_GUIDE.md` section 10.1 (8 Nov 2026 version). Until it is done, *Connect Google* shows Google's error and the game keeps saving locally.
 
-**Done 7/11/2026:** both Android clients, *Arcane Brigade (Play signing)* and *Arcane Brigade (upload key)*, were created in the shared Winka Studio project `938253534652`. Sticky Wall and Handy Bookmark use the same project. The Drive API, the `drive.appdata` scope and the consent screen come from that project, so the consent screen shows that project's app name. An iOS client must go into the same project.
+**One Google Cloud project for Arcane Brigade alone.** A project has one consent screen (one app name), and Drive's hidden app folder belongs to the project. Android and iPhone clients must be in this same project. Never use `play-publisher-513712`.
 
-1. **Project.** Create a dedicated project, for example **Arcane Brigade**. Do not reuse `play-publisher-513712`: its consent screen is set up for Sticky Wall, and the consent screen shows the project's app name. Use the same project for Android and iPhone so they share one save.
-2. **APIs & Services → Library:** enable the **Google Drive API**.
-3. **Google Auth Platform (OAuth consent screen):**
-   - Audience: **External**.
-   - Branding:
-     - App name **Arcane Brigade**
-     - Support email `apps.winka.studio@gmail.com`
-     - App logo: `Assets/ArcaneBrigade/Art/Store/AppIcon.png` (optional)
-     - Privacy policy `https://github.com/Winka173/Arcane-Brigade/blob/main/PRIVACY.md`
-     - Developer email
-   - Data access: add `https://www.googleapis.com/auth/drive.appdata`. It is not a sensitive or restricted scope, so no security assessment is needed.
-   - While the screen is in *Testing*, only listed **test users** can connect (up to 100). Add the closed testers' Google accounts, or *Publish app* before the public release.
-4. **Credentials → Create credentials → OAuth client ID → Android**, twice:
+History: on 7/11/2026 the two Android clients were first created in the shared project `938253534652`, the same project as Sticky Wall and Handy Bookmark. A package + SHA-1 pair can belong to one OAuth client in all of Google Cloud, so they must be deleted there (step D) before being created in the new project. Nothing in the build changes, and closed-test build 7 works with the new project as it is.
 
-   | Client | Package | SHA-1 |
-   |---|---|---|
-   | Play app signing (every install from Play, testers included) | `com.winka.arcanebrigade` | `2B:F2:8F:B3:F2:A6:F8:36:BA:F4:AA:EF:B3:F3:EA:17:7F:E4:F2:20` |
-   | Upload key (locally built or sideloaded release builds) | `com.winka.arcanebrigade` | `E7:4F:28:74:B6:A3:98:F2:55:20:45:A6:5C:D5:2C:6A:9D:02:59:CF` |
+**A. Project.** Go to https://console.cloud.google.com/projectcreate.
+- Name: `Arcane Brigade`. Note the project id.
+- Location: *No organization*.
 
-   - The Play signing SHA-1 was read from the universal APK Play generated for version 6. Its SHA-256 `EF:1B:0B:EF:89:0D:51:3D:54:62:F0:5B:4D:C8:02:1D:7C:6E:20:28:13:B7:FB:85:3D:AC:F4:92:D7:39:31:3A` matches Play Console → App integrity.
-   - Nothing goes into the Android build: no `google-services.json` and no client id. Google matches package and certificate.
-5. **iPhone (when there is an iOS build):** *Create OAuth client ID → iOS* in the same project.
-   - Bundle ID: the iOS bundle id in Player Settings.
-   - Team ID: from the Apple developer account.
-   - Put the client id (`<number>-<id>.apps.googleusercontent.com`) into `Assets/ArcaneBrigade/Resources/CloudSyncConfig.json` → `iosClientId`.
-   - The build adds the URL scheme `com.googleusercontent.apps.<number>-<id>` by itself.
-   - Needs a Mac to build and test. It has never been run.
-6. **Play Console → Data safety:** the data goes only to the player's own Google Drive, at their request, and never to the developer. Answer the same way as for Sticky Wall. `PRIVACY.md` already describes it.
+**B. Drive API.** Go to `https://console.cloud.google.com/apis/library/drive.googleapis.com?project=PROJECT` and click *Enable*. No billing is needed.
 
-Changes in Google Cloud can take minutes, sometimes hours, to reach devices.
+**C. Consent screen.**
+1. *Get started* wizard: app name `Arcane Brigade`; support email `apps.winka.studio@gmail.com`; Audience **External**; contact `apps.winka.studio@gmail.com`; accept the policy; *Create*.
+2. *Branding*:
+   - **No logo.** A logo makes Google verify the app.
+   - Home page: `https://github.com/Winka173/Arcane-Brigade`
+   - Privacy policy: `https://github.com/Winka173/Arcane-Brigade/blob/main/PRIVACY.md`
+   - Terms: leave empty.
+   - Authorized domain: `github.com`
+   - Developer contact: `apps.winka.studio@gmail.com`
+3. *Data Access*: add `.../auth/drive.appdata`. It is non-sensitive, so no assessment is needed.
+4. *Audience*: **Publish app**, so status becomes *In production*. Test users would shut out the Play testers' Google Group.
+
+**D. Delete the old clients.** In `https://console.cloud.google.com/auth/clients?project=938253534652`, delete only *Arcane Brigade (Play signing)* and *Arcane Brigade (upload key)*. Sticky Wall's and Handy Bookmark's clients stay.
+
+**E. Android clients.** In `https://console.cloud.google.com/auth/clients?project=PROJECT`, choose *Create client → Android* and create two clients. Leave *Enable custom URI scheme* off.
+
+| Name | Package | SHA-1 |
+|---|---|---|
+| `Arcane Brigade (Play signing)`: installs from Play, testers included | `com.winka.arcanebrigade` | `2B:F2:8F:B3:F2:A6:F8:36:BA:F4:AA:EF:B3:F3:EA:17:7F:E4:F2:20` |
+| `Arcane Brigade (upload key)`: locally built or sideloaded release builds | `com.winka.arcanebrigade` | `E7:4F:28:74:B6:A3:98:F2:55:20:45:A6:5C:D5:2C:6A:9D:02:59:CF` |
+
+- No debug client: every Android build is signed with the upload key.
+- The Play signing SHA-1 matches Play Console → App integrity (its SHA-256 is `EF:1B:0B:EF:89:0D:51:3D:54:62:F0:5B:4D:C8:02:1D:7C:6E:20:28:13:B7:FB:85:3D:AC:F4:92:D7:39:31:3A`).
+- Nothing goes into the build: no `google-services.json` and no client id.
+- *Already in use*: the pair is still in the old project (step D). Wait a few minutes and retry.
+
+**F. iPhone (later, needs a Mac).** In the same project, *Create client → iOS*: bundle id from Player Settings, Team ID from Apple. Put the client id into `Assets/ArcaneBrigade/Resources/CloudSyncConfig.json` → `iosClientId`. The build adds the URL scheme.
+
+**G. Play Console → Data safety:** the data goes only to the player's own Drive, at their request. Answer as for Sticky Wall.
+
+Changes take minutes, sometimes an hour, to reach devices.
 
 ## Testing on real Drive
 
-1. Install the closed-testing build on two Android devices signed in to a Google account that is a test user.
+1. Install the closed-testing build on two Android devices signed in to the same Google account.
 2. Settings → Cloud save → *Connect Google* → allow.
 3. Check each case:
    - progress and a setting changed on each device
@@ -137,9 +146,9 @@ Changes in Google Cloud can take minutes, sometimes hours, to reach devices.
 | What you see | Cause | Fix |
 |---|---|---|
 | *Allow access again* right after allowing; logcat `api-10` / `DEVELOPER_ERROR` | No Android client for this package + SHA-1 | Add the client for the key that signed this install |
-| `access_denied` / app not verified | The account is not a test user | Add it, or publish the consent screen |
-| *Couldn't sync*, logcat `HTTP 403` | Drive API not enabled in the project | Step 2 |
-| iPhone returns to the game without connecting | URL scheme or client id missing | Step 5 |
+| `access_denied` / app not verified | Consent screen still in Testing | Audience → Publish app (step C4) |
+| *Couldn't sync*, logcat `HTTP 403` | Drive API not enabled in the project | Step B |
+| iPhone returns to the game without connecting | URL scheme or client id missing | Step F |
 
 ## Verification
 
@@ -148,5 +157,5 @@ Changes in Google Cloud can take minutes, sometimes hours, to reach devices.
 | Merge, conflicts, run, settings, checkpoints, restore points (`CloudSyncChecks`, 32 cases) | **Passed** 7/11/2026 |
 | Localization checks after the new strings | **Passed** |
 | Android bundle with `DriveAuth.androidlib` | **Built** (Unity 6000.6, AGP 9.1.1) |
-| Real Google Drive, two devices | Android clients created 7/11; closed-testing build 7 carries cloud save, waiting for a device test |
+| Real Google Drive, two devices | Waiting for the dedicated project (steps A–E); build 7 is on closed testing |
 | iPhone | **Not built** (needs a Mac and the iOS client) |
