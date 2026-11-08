@@ -1352,13 +1352,13 @@ namespace ArcaneBrigade
 
         public void AddLootPresentationFixture(LootKind kind, Vector2 position, int value)
         {
-            if (!RunPaths.K3FinalCapture && !RunPaths.QualityCapture && !RunPaths.K4Capture && !RunPaths.K4FinalCapture && !RunPaths.K5Capture && !RunPaths.K7Capture && !PlaytestFixCapture.Requested) throw new InvalidOperationException("Loot fixture requires isolated capture mode");
+            if (!WebsiteCapture.Requested && !RunPaths.K3FinalCapture && !RunPaths.QualityCapture && !RunPaths.K4Capture && !RunPaths.K4FinalCapture && !RunPaths.K5Capture && !RunPaths.K7Capture && !PlaytestFixCapture.Requested) throw new InvalidOperationException("Loot fixture requires isolated capture mode");
             DropLoot(kind, position, value);
         }
 
         public void ConfigureLootPresentationFixture()
         {
-            if (!RunPaths.K3FinalCapture && !RunPaths.QualityCapture && !RunPaths.K4Capture && !RunPaths.K4FinalCapture && !RunPaths.K5Capture) throw new InvalidOperationException("Loot fixture requires isolated capture mode");
+            if (!WebsiteCapture.Requested && !RunPaths.K3FinalCapture && !RunPaths.QualityCapture && !RunPaths.K4Capture && !RunPaths.K4FinalCapture && !RunPaths.K5Capture) throw new InvalidOperationException("Loot fixture requires isolated capture mode");
             catalog.EnemyBudget = 0;
             nextChest = float.PositiveInfinity;
             if (RunPaths.K4Capture || RunPaths.K4FinalCapture) { catalog.CompanionPatrolSpeed = 0; catalog.CompanionAcceleration = 0; }

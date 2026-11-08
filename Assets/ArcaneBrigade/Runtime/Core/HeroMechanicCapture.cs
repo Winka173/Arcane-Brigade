@@ -243,7 +243,7 @@ namespace ArcaneBrigade
         /// <summary>Capture-only: replaces the wave with fixed harmless dummies and seeds the trigger the hero reads.</summary>
         public void PrepareMechanicCapture(RunCatalog c, int extraFriends = 0)
         {
-            if (!HeroMechanicCapture.Requested && !HowToRecorder.Requested) throw new InvalidOperationException("Isolated mechanic capture required");
+            if (!HeroMechanicCapture.Requested && !HowToRecorder.Requested && !WebsiteCapture.Requested) throw new InvalidOperationException("Isolated mechanic capture required");
             catalog.EnemyBudget = 0; catalog.Armor = 100; Champion.Health = Champion.Definition.Health;
             var dummy = UnityEngine.Object.Instantiate(c.Enemies[0]); dummy.Speed = 0; dummy.Health = 100000; dummy.ContactDamage = 0; dummy.Behavior = EnemyBehavior.Standard;
             Vector2[] offsets = { new Vector2(2.1f, .2f), new Vector2(2.9f, -.9f), new Vector2(3.3f, .9f), new Vector2(1.5f, -1.3f) };
@@ -283,7 +283,7 @@ namespace ArcaneBrigade
         /// reach (one, or a cluster), the hero untouchable.</summary>
         public void PrepareDpsBench(RunCatalog c, int count)
         {
-            if (!HeroMechanicCapture.Requested) throw new InvalidOperationException("Isolated mechanic capture required");
+            if (!HeroMechanicCapture.Requested && !WebsiteCapture.Requested) throw new InvalidOperationException("Isolated mechanic capture required");
             catalog.EnemyBudget = 0; catalog.Armor = 100; Champion.Health = Champion.Definition.Health;
             benchTargets.Clear();
             foreach (UnitState u in StableUnits) if (u.Faction == Faction.Enemy) { u.Health = 0; u.Alive = false; }
@@ -319,12 +319,12 @@ namespace ArcaneBrigade
         /// <summary>Capture-only: keeps the hero's trigger topped up until the real mechanic casts.</summary>
         public void FillGaugeForCapture()
         {
-            if (!HeroMechanicCapture.Requested && !HowToRecorder.Requested || !HeroAwakenEnabled || HeroAwakening) return;
+            if (!HeroMechanicCapture.Requested && !HowToRecorder.Requested && !WebsiteCapture.Requested || !HeroAwakenEnabled || HeroAwakening) return;
             awakenMeter = 1;
         }
         public void NudgeMechanicCapture()
         {
-            if (!HeroMechanicCapture.Requested || !HeroIdentityEnabled) return;
+            if (!HeroMechanicCapture.Requested && !WebsiteCapture.Requested || !HeroIdentityEnabled) return;
             identityAt = Mathf.Min(identityAt, Elapsed); identitySecondAt = Mathf.Min(identitySecondAt, Elapsed);
             switch (IdentityId)
             {

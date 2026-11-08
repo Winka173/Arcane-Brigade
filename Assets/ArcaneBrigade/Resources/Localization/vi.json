@@ -126,7 +126,7 @@
     },
     {
       "source": "% body size this run.",
-      "target": "% kích thước cơ thể trong lần chạy này."
+      "target": "% kích thước cơ thể trong lượt chơi này."
     },
     {
       "source": "% body, range, weapon and bullet size; basic volleys +",
@@ -154,7 +154,7 @@
     },
     {
       "source": "% hero & friends attack-speed bonus this run, before soft caps.",
-      "target": "% phần thưởng tốc độ tấn công của anh hùng và bạn bè trong lần chạy này, trước khi có giới hạn mềm."
+      "target": "% phần thưởng tốc độ tấn công của anh hùng và bạn bè trong lượt chơi này, trước khi có giới hạn mềm."
     },
     {
       "source": "% more damage.",
@@ -566,7 +566,7 @@
     },
     {
       "source": "+3% Lamp Oil from runs",
-      "target": "+3% Dầu đèn từ các lần chạy"
+      "target": "+3% Dầu đèn từ các lượt chơi"
     },
     {
       "source": "+3% attack speed (hero)",
@@ -606,7 +606,7 @@
     },
     {
       "source": "+4% Lamp Oil from runs",
-      "target": "+4% Dầu đèn từ các lần chạy"
+      "target": "+4% Dầu đèn từ các lượt chơi"
     },
     {
       "source": "+4% chance a friend comes at 2★",
@@ -646,7 +646,7 @@
     },
     {
       "source": "+45% dodge, 50% less HP. Dodge cap: 90%. Dodges add treasure detection for this run. Crossing Knights deal double damage and +10 contact damage.",
-      "target": "+45% né tránh, giảm 50% HP. Nắp né tránh: 90%. Dodges thêm tính năng phát hiện kho báu cho lần chạy này. Crossing Knights gây sát thương gấp đôi và +10 sát thương khi tiếp xúc."
+      "target": "+45% né tránh, giảm 50% HP. Giới hạn né tránh: 90%. Mỗi lần né thêm tính năng phát hiện kho báu cho lượt chơi này. Crossing Knights gây sát thương gấp đôi và +10 sát thương khi tiếp xúc."
     },
     {
       "source": "+5 melee damage. +6% critical chance.",
@@ -1822,7 +1822,7 @@
     },
     {
       "source": "A lamplighter who circled a homeward beacon until discovering its keeper turned it to prevent arrivals. They now guide by several independent lights. They want routes no single keeper can own.",
-      "target": "Một người thắp đèn đã đi vòng quanh ngọn hải đăng về nhà cho đến khi phát hiện ra người trông coi nó đã quay nó để ngăn cản những người đến. Bây giờ chúng được hướng dẫn bởi một số đèn độc lập. Họ muốn những tuyến đường mà không một thủ môn nào có thể sở hữu được."
+      "target": "Một người thắp đèn đã đi vòng quanh ngọn hải đăng về nhà cho đến khi phát hiện ra người trông coi nó đã quay nó để ngăn cản những người đến. Bây giờ chúng được hướng dẫn bởi một số đèn độc lập. Họ muốn những tuyến đường mà không một người canh giữ nào có thể sở hữu được."
     },
     {
       "source": "A lantern can only be chosen after standing up from the warm chair",
@@ -2402,7 +2402,7 @@
     },
     {
       "source": "A sky fisher whose safety line was tied to the wrong shore. A keeper called the tightening tether protection. They carry their own spool now and search for the crew on the other side.",
-      "target": "Một tay câu cá trên bầu trời bị buộc dây an toàn vào nhầm bờ. Một thủ môn gọi là bảo vệ dây buộc chặt. Bây giờ họ mang theo ống chỉ của riêng mình và tìm kiếm thủy thủ đoàn ở phía bên kia."
+      "target": "Một tay câu cá trên bầu trời bị buộc dây an toàn vào nhầm bờ. Một người canh giữ gọi là bảo vệ dây buộc chặt. Bây giờ họ mang theo ống chỉ của riêng mình và tìm kiếm thủy thủ đoàn ở phía bên kia."
     },
     {
       "source": "A sleepy tuning-bell oracle. Stand still to chill nearby threats and",
@@ -2922,7 +2922,7 @@
     },
     {
       "source": "Absorb 8 companion memories in one run.",
-      "target": "Hấp thụ 8 ký ức đồng hành trong một lần chạy."
+      "target": "Hấp thụ 8 ký ức đồng hành trong một lượt chơi."
     },
     {
       "source": "Absorbing a memory refunds 2 gold.",
@@ -3402,7 +3402,7 @@
     },
     {
       "source": "Another lantern is gone. You can no longer remember the way they knocked.\n\nThe shop has opened beside the front door. Rain falls past the window.\n\nThe warm chair is beside the exit now. To leave, you will have to walk past it.\n\nThe hall gives way to an eye: a keyhole as tall as the shop, which looks at you once and lets you through. On the other side there is applause, and nobody clapping. The Keeper's voice is very close.\n\nTHE KEEPER: 'Before the end I will ask to see what you carry.'",
-      "target": "Lại một chiếc đèn lồng nữa đã biến mất. Bạn không còn có thể nhớ cách họ gõ cửa.\n\nQuán đã mở cạnh cửa trước. Mưa rơi qua cửa sổ.\n\nChiếc ghế ấm áp giờ đã ở cạnh lối ra. Để rời đi, bạn sẽ phải đi bộ qua nó.\n\nHành lang nhường chỗ cho một con mắt: một lỗ khóa cao bằng cửa hàng, nó nhìn bạn một cái rồi cho bạn đi qua. Bên kia có tiếng vỗ tay, không có ai vỗ tay. Giọng của Thủ môn rất gần.\n\nNGƯỜI GIỮ: 'Trước khi kết thúc, tôi sẽ hỏi xem bạn mang theo những gì.'"
+      "target": "Lại một chiếc đèn lồng nữa đã biến mất. Bạn không còn có thể nhớ cách họ gõ cửa.\n\nQuán đã mở cạnh cửa trước. Mưa rơi qua cửa sổ.\n\nChiếc ghế ấm áp giờ đã ở cạnh lối ra. Để rời đi, bạn sẽ phải đi bộ qua nó.\n\nHành lang nhường chỗ cho một con mắt: một lỗ khóa cao bằng cửa hàng, nó nhìn bạn một cái rồi cho bạn đi qua. Bên kia có tiếng vỗ tay, không có ai vỗ tay. Giọng của Người Canh Giữ rất gần.\n\nNGƯỜI GIỮ: 'Trước khi kết thúc, tôi sẽ hỏi xem bạn mang theo những gì.'"
     },
     {
       "source": "Another lantern is out. In the journal, the letter's handwriting fades into plain print while you watch. You can no longer remember their handwriting.\n\nIn the shop, the shopkeeper sits down for the first time: on an ordinary stool by the stove, because they chose to.\n\nYou ask whether they need anything.\n\nTHE SHOPKEEPER: 'Yes. For you to stop asking for a minute.'",
@@ -3702,7 +3702,7 @@
     },
     {
       "source": "At every wave start, permanently gain +3 flat melee damage, +3 flat ranged damage and +6% hero & friends damage per copy for this run.",
-      "target": "Mỗi lần bắt đầu đợt, nhận vĩnh viễn +3 sát thương cận chiến cố định, +3 sát thương tầm xa cố định và +6% sát thương tướng và bạn bè trên mỗi bản sao cho lần chạy này."
+      "target": "Mỗi lần bắt đầu đợt, nhận vĩnh viễn +3 sát thương cận chiến cố định, +3 sát thương tầm xa cố định và +6% sát thương tướng và bạn bè trên mỗi bản sao cho lượt chơi này."
     },
     {
       "source": "At the Customer's counter, Tally laid out every name it ever brought back and asked for them to be returned. Nobody promised to forgive it. It came back to the brigade without a word and took its place.",
@@ -3855,6 +3855,10 @@
     {
       "source": "BEAT A BOSS",
       "target": "ĐÁNH BOSS"
+    },
+    {
+      "source": "BELL",
+      "target": "CHUÔNG"
     },
     {
       "source": "BEST RELIC",
@@ -4170,7 +4174,7 @@
     },
     {
       "source": "Base weapon and all listed run modifiers still apply.",
-      "target": "Vũ khí cơ bản và tất cả các công cụ sửa đổi lần chạy được liệt kê vẫn được áp dụng."
+      "target": "Vũ khí cơ bản và tất cả các công cụ sửa đổi lượt chơi được liệt kê vẫn được áp dụng."
     },
     {
       "source": "Basic attacks work while moving or resting; rest to recover 5% max HP each second. Friends strengthen your personal shots and body while their own damage is reduced slightly.",
@@ -4266,7 +4270,7 @@
     },
     {
       "source": "Beat the Keeper",
-      "target": "Đánh bại thủ môn"
+      "target": "Đánh bại Người Canh Giữ"
     },
     {
       "source": "Beat two actors at once",
@@ -4671,6 +4675,10 @@
     {
       "source": "Boss",
       "target": "Ông chủ"
+    },
+    {
+      "source": "Bosses beaten",
+      "target": "Boss đã hạ"
     },
     {
       "source": "Bosses beaten ×",
@@ -5262,7 +5270,7 @@
     },
     {
       "source": "CONTINUE · WAVE",
-      "target": "TIẾP TỤC · WAV"
+      "target": "TIẾP TỤC · ĐỢT"
     },
     {
       "source": "CORONATION",
@@ -5670,7 +5678,7 @@
     },
     {
       "source": "CURIO / RARE / STACKABLE\n\nWHILE OWNED / per copy\nNo direct stat modifier; effects are described below.\n\nSPECIAL EFFECT\nAt every wave start, permanently gain +4 flat melee damage, +4 flat ranged damage and +10% team damage per stack for this run.\n\nOwned effective copies: 1. Stack limit: 8. Values apply before combat limits.",
-      "target": "CURIO / HIẾM / CÓ THỂ XẾP CHỒNG\n\nKHI SỞ HỮU / mỗi bản\nKhông có công cụ sửa đổi chỉ số trực tiếp; hiệu ứng được mô tả dưới đây.\n\nHIỆU QUẢ ĐẶC BIỆT\nỞ mỗi lần bắt đầu đợt, nhận vĩnh viễn +4 sát thương cận chiến cố định, +4 sát thương tầm xa cố định và +10% sát thương đồng đội cho mỗi điểm cộng dồn cho lần chạy này.\n\nSở hữu các bản sao hiệu quả: 1. Giới hạn cộng dồn: 8. Giá trị áp dụng trước giới hạn chiến đấu."
+      "target": "CURIO / HIẾM / CÓ THỂ XẾP CHỒNG\n\nKHI SỞ HỮU / mỗi bản\nKhông có công cụ sửa đổi chỉ số trực tiếp; hiệu ứng được mô tả dưới đây.\n\nHIỆU QUẢ ĐẶC BIỆT\nỞ mỗi lần bắt đầu đợt, nhận vĩnh viễn +4 sát thương cận chiến cố định, +4 sát thương tầm xa cố định và +10% sát thương đồng đội cho mỗi điểm cộng dồn cho lượt chơi này.\n\nSở hữu các bản sao hiệu quả: 1. Giới hạn cộng dồn: 8. Giá trị áp dụng trước giới hạn chiến đấu."
     },
     {
       "source": "CURIO / RARE / STACKABLE\n\nWHILE OWNED / per copy\nNo direct stat modifier; effects are described below.\n\nSPECIAL EFFECT\nDisable passive regeneration and ordinary heart healing. Opening a chest attempts to heal 30 HP per stack. Other explicit healing effects still follow their own rules.\n\nOwned effective copies: 1. Stack limit: 8. Values apply before combat limits.",
@@ -5690,7 +5698,7 @@
     },
     {
       "source": "CURIO / RARE / STACKABLE\n\nWHILE OWNED / per copy\nNo direct stat modifier; effects are described below.\n\nSPECIAL EFFECT\nEvery enemy species defeated in this run gives +1% critical chance (max +20%).\n\nOwned effective copies: 1. Stack limit: 4. Values apply before combat limits.",
-      "target": "CURIO / HIẾM / CÓ THỂ XẾP CHỒNG\n\nKHI SỞ HỮU / mỗi bản\nKhông có công cụ sửa đổi chỉ số trực tiếp; hiệu ứng được mô tả dưới đây.\n\nHIỆU QUẢ ĐẶC BIỆT\nMỗi loài kẻ thù bị đánh bại trong lần chạy này sẽ có +1% cơ hội chí mạng (tối đa +20%).\n\nSở hữu bản sao hiệu quả: 1. Giới hạn cộng dồn: 4. Giá trị áp dụng trước giới hạn chiến đấu."
+      "target": "CURIO / HIẾM / CÓ THỂ XẾP CHỒNG\n\nKHI SỞ HỮU / mỗi bản\nKhông có công cụ sửa đổi chỉ số trực tiếp; hiệu ứng được mô tả dưới đây.\n\nHIỆU QUẢ ĐẶC BIỆT\nMỗi loài kẻ thù bị đánh bại trong lượt chơi này sẽ có +1% cơ hội chí mạng (tối đa +20%).\n\nSở hữu bản sao hiệu quả: 1. Giới hạn cộng dồn: 4. Giá trị áp dụng trước giới hạn chiến đấu."
     },
     {
       "source": "CURIO / RARE / STACKABLE\n\nWHILE OWNED / per copy\nNo direct stat modifier; effects are described below.\n\nSPECIAL EFFECT\nFriends gain +1% attack speed for every 5% movement speed bonus of the hero (max +15%).\n\nOwned effective copies: 1. Stack limit: 4. Values apply before combat limits.",
@@ -5826,7 +5834,7 @@
     },
     {
       "source": "CURIO / UNCOMMON / STACKABLE\n\nWHILE OWNED / per copy\nNo direct stat modifier; effects are described below.\n\nSPECIAL EFFECT\nON EACH DRINK PURCHASE: permanently gain +6% team attack speed per active stack for this run. Drink shop weight also increases 5% per stack.\n\nOwned effective copies: 1. Stack limit: 8. Values apply before combat limits.",
-      "target": "CURIO / KHÔNG PHỔ BIẾN / CÓ THỂ XẾP CHỒNG\n\nKHI SỞ HỮU / mỗi bản\nKhông có công cụ sửa đổi chỉ số trực tiếp; hiệu ứng được mô tả dưới đây.\n\nHIỆU QUẢ ĐẶC BIỆT\nTRÊN MỖI LẦN MUA ĐỒ UỐNG: nhận vĩnh viễn +6% tốc độ tấn công của toàn đội trên mỗi điểm cộng dồn hoạt động cho lần chạy này. Trọng lượng cửa hàng đồ uống cũng tăng 5% mỗi ngăn xếp.\n\nSở hữu các bản sao hiệu quả: 1. Giới hạn cộng dồn: 8. Giá trị áp dụng trước giới hạn chiến đấu."
+      "target": "CURIO / KHÔNG PHỔ BIẾN / CÓ THỂ XẾP CHỒNG\n\nKHI SỞ HỮU / mỗi bản\nKhông có công cụ sửa đổi chỉ số trực tiếp; hiệu ứng được mô tả dưới đây.\n\nHIỆU QUẢ ĐẶC BIỆT\nTRÊN MỖI LẦN MUA ĐỒ UỐNG: nhận vĩnh viễn +6% tốc độ tấn công của toàn đội trên mỗi điểm cộng dồn hoạt động cho lượt chơi này. Trọng lượng cửa hàng đồ uống cũng tăng 5% mỗi ngăn xếp.\n\nSở hữu các bản sao hiệu quả: 1. Giới hạn cộng dồn: 8. Giá trị áp dụng trước giới hạn chiến đấu."
     },
     {
       "source": "CURIO / UNCOMMON / STACKABLE\n\nWHILE OWNED / per copy\nNo direct stat modifier; effects are described below.\n\nSPECIAL EFFECT\nOnce per shop, the last relic you bought can be returned at the refund counter for the full price paid.\n\nOwned effective copies: 1. Values apply before combat limits.",
@@ -5882,7 +5890,7 @@
     },
     {
       "source": "CURIO / UNCOMMON / STACKABLE\n\nWHILE OWNED / per copy\nRun / Treasure detection: +0.25\nTeam / Damage: -5%\n\nSPECIAL EFFECT\nOpening a chest permanently adds +0.06 Luck per active stack for this run.\n\nOwned effective copies: 1. Stack limit: 8. Values apply before combat limits.",
-      "target": "CURIO / KHÔNG PHỔ BIẾN / CÓ THỂ XẾP CHỒNG\n\nKHI SỞ HỮU / mỗi bản\nChạy / Phát hiện kho báu: +0,25\nĐội/Sát thương: -5%\n\nHIỆU QUẢ ĐẶC BIỆT\nMở rương sẽ vĩnh viễn cộng thêm +0,06 May mắn cho mỗi điểm cộng dồn hoạt động cho lần chạy này.\n\nSở hữu các bản sao hiệu quả: 1. Giới hạn cộng dồn: 8. Giá trị áp dụng trước giới hạn chiến đấu."
+      "target": "CURIO / KHÔNG PHỔ BIẾN / CÓ THỂ XẾP CHỒNG\n\nKHI SỞ HỮU / mỗi bản\nChạy / Phát hiện kho báu: +0,25\nĐội/Sát thương: -5%\n\nHIỆU QUẢ ĐẶC BIỆT\nMở rương sẽ vĩnh viễn cộng thêm +0,06 May mắn cho mỗi điểm cộng dồn hoạt động cho lượt chơi này.\n\nSở hữu các bản sao hiệu quả: 1. Giới hạn cộng dồn: 8. Giá trị áp dụng trước giới hạn chiến đấu."
     },
     {
       "source": "CURIO / UNCOMMON / STACKABLE\n\nWHILE OWNED / per copy\nTeam / Attack range: -10%\n\nSPECIAL EFFECT\nA personal basic shot can strike one random enemy for max(2,2 times hero flat ranged bonus) damage per stack. Shared 0.15s cooldown; no recursive response.\n\nOwned effective copies: 1. Stack limit: 8. Values apply before combat limits.",
@@ -6857,6 +6865,10 @@
       "target": "Combo"
     },
     {
+      "source": "Combos found",
+      "target": "Combo đã tìm"
+    },
+    {
       "source": "Combos found ×",
       "target": "Tổ hợp đã tìm thấy ×"
     },
@@ -7474,7 +7486,7 @@
     },
     {
       "source": "Curses for more",
-      "target": "Lời nguyền để biết thêm"
+      "target": "Chịu lời nguyền, thêm thưởng"
     },
     {
       "source": "Curses for this night. Lamp Oil and Keepsakes ×",
@@ -7746,7 +7758,7 @@
     },
     {
       "source": "DRINK / UNCOMMON / STACKABLE\nON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics. No separate use action; the item stays owned.\n\nWHILE OWNED / per copy\nChampion / Collision damage: -1\n\nSPECIAL EFFECT\nON EACH DRINK PURCHASE: permanently gain +4 maximum HP per active stack for this run. A drink carrying this effect counts itself when purchased.\n\nOwned effective copies: 1. Stack limit: 8. Values apply before combat limits.",
-      "target": "UỐNG / KHÔNG PHỔ BIẾN / CÓ THỂ XẾP CHỒNG\nKHI MUA: được tính là 1 đồ uống cho các anh hùng, bạn đồng hành và di tích phản ứng với đồ uống. Không có hành động sử dụng riêng biệt; món đồ vẫn thuộc quyền sở hữu của bạn.\n\nKHI SỞ HỮU / mỗi bản\nTướng/Sát thương va chạm: -1\n\nHIỆU QUẢ ĐẶC BIỆT\nTRÊN MỖI LẦN MUA ĐỒ UỐNG: nhận vĩnh viễn +4 HP tối đa cho mỗi điểm cộng dồn hoạt động cho lần chạy này. Đồ uống mang hiệu ứng này sẽ tự tính khi mua.\n\nSở hữu các bản sao hiệu quả: 1. Giới hạn cộng dồn: 8. Giá trị áp dụng trước giới hạn chiến đấu."
+      "target": "UỐNG / KHÔNG PHỔ BIẾN / CÓ THỂ XẾP CHỒNG\nKHI MUA: được tính là 1 đồ uống cho các anh hùng, bạn đồng hành và di tích phản ứng với đồ uống. Không có hành động sử dụng riêng biệt; món đồ vẫn thuộc quyền sở hữu của bạn.\n\nKHI SỞ HỮU / mỗi bản\nTướng/Sát thương va chạm: -1\n\nHIỆU QUẢ ĐẶC BIỆT\nTRÊN MỖI LẦN MUA ĐỒ UỐNG: nhận vĩnh viễn +4 HP tối đa cho mỗi điểm cộng dồn hoạt động cho lượt chơi này. Đồ uống mang hiệu ứng này sẽ tự tính khi mua.\n\nSở hữu các bản sao hiệu quả: 1. Giới hạn cộng dồn: 8. Giá trị áp dụng trước giới hạn chiến đấu."
     },
     {
       "source": "DRINK / UNCOMMON / STACKABLE\nON PURCHASE: counts as 1 drink for drink-reactive heroes, companions and relics. No separate use action; the item stays owned.\n\nWHILE OWNED / per copy\nChampion / Heart healing: +8\nChampion / Healing per second: +0.5\nChampion / Movement speed: -5%\n\nOwned effective copies: 1. Stack limit: 8. Values apply before combat limits.",
@@ -7870,7 +7882,7 @@
     },
     {
       "source": "Daylight Bonnet",
-      "target": "Nắp ca-pô ban ngày"
+      "target": "Giới hạn ca-pô ban ngày"
     },
     {
       "source": "Dead Letter Cannon",
@@ -8425,6 +8437,10 @@
       "target": "Hãy mơ cùng chúng tôi!"
     },
     {
+      "source": "Dreams",
+      "target": "Giấc mơ"
+    },
+    {
       "source": "Dreamsand",
       "target": "Cát Mơ"
     },
@@ -8614,7 +8630,7 @@
     },
     {
       "source": "Each DRINK purchased during this run adds 4% to this friend's weapon damage, up to +40%. not a brigade-wide damage buff.",
-      "target": "Mỗi UỐNG được mua trong lần chạy này sẽ tăng thêm 4% sát thương vũ khí của người bạn này, tối đa +40%. không phải là một phép tăng sát thương trên toàn lữ đoàn."
+      "target": "Mỗi UỐNG được mua trong lượt chơi này sẽ tăng thêm 4% sát thương vũ khí của người bạn này, tối đa +40%. không phải là một phép tăng sát thương trên toàn lữ đoàn."
     },
     {
       "source": "Each FOOD purchased adds +1 flat melee AND +1 flat ranged hero & friends damage per Roshi talent. Hero maximum HP loses 0.5 per food per talent, up to 20 HP lost. Applied in the next prepared battle.",
@@ -8814,7 +8830,7 @@
     },
     {
       "source": "Each merge in this run gives you +2% damage for good (max 25%).",
-      "target": "Mỗi lần hợp nhất trong lần chạy này mang lại cho bạn +2% sát thương vĩnh viễn (tối đa 25%)."
+      "target": "Mỗi lần hợp nhất trong lượt chơi này mang lại cho bạn +2% sát thương vĩnh viễn (tối đa 25%)."
     },
     {
       "source": "Each one is somebody I brought back.",
@@ -8874,7 +8890,7 @@
     },
     {
       "source": "Each time you are hit, gain one small bonus for the run per copy: +4 max HP, a little HP regen, a little armor, +2% damage, a little Luck or +1% crit.",
-      "target": "Mỗi lần bạn bị tấn công, bạn sẽ nhận được một phần thưởng nhỏ cho lần chạy trên mỗi bản sao: +4 HP tối đa, một ít HP hồi phục, một ít giáp, +2% sát thương, một chút May mắn hoặc +1% chí mạng."
+      "target": "Mỗi lần bạn bị tấn công, bạn sẽ nhận được một phần thưởng nhỏ cho lượt chơi trên mỗi bản sao: +4 HP tối đa, một ít HP hồi phục, một ít giáp, +2% sát thương, một chút May mắn hoặc +1% chí mạng."
     },
     {
       "source": "Each time your lead friend performs, you heal 1 HP (every 4s at most).",
@@ -9087,6 +9103,10 @@
     {
       "source": "Endless: keep your brigade and relics past dawn",
       "target": "Vô tận: giữ lữ đoàn và di tích của bạn qua bình minh"
+    },
+    {
+      "source": "Enemies",
+      "target": "Kẻ thù"
     },
     {
       "source": "Enemies +10% health, +1% more.",
@@ -9590,7 +9610,7 @@
     },
     {
       "source": "Every enemy species defeated in this run gives +1% critical chance (max +20%).",
-      "target": "Mỗi loài kẻ thù bị đánh bại trong lần chạy này sẽ có +1% cơ hội chí mạng (tối đa +20%)."
+      "target": "Mỗi loài kẻ thù bị đánh bại trong lượt chơi này sẽ có +1% cơ hội chí mạng (tối đa +20%)."
     },
     {
       "source": "Every fifth basic attack may release one echo for 40% of this friend's weapon damage. Uses the friend's once every 0.7s; no echo chain.",
@@ -10002,7 +10022,7 @@
     },
     {
       "source": "FOOD / MYTHIC / STACKABLE\nON PURCHASE: counts as 1 food for food-reactive heroes, companions and relics. No separate use action; the item stays owned.\n\nWHILE OWNED / per copy\nChampion / Maximum health: +40\nChampion / Healing per second: +1\nChampion / Champion size: +10%\nChampion / Dodge: -30%\n\nSPECIAL EFFECT\nON EACH FOOD PURCHASE: permanently gain +10 max HP, +0.5 HP/s and +5% hero size per active stack for this run.\n\nOwned effective copies: 1. Stack limit: 8. Values apply before combat limits.",
-      "target": "THỰC PHẨM / THUYỀN THOẠI / CÓ THỂ XẾP CHỒNG\nKHI MUA: được tính là 1 thực phẩm cho các anh hùng, bạn đồng hành và di tích phản ứng với thực phẩm. Không có hành động sử dụng riêng biệt; món đồ vẫn thuộc quyền sở hữu của bạn.\n\nKHI SỞ HỮU / mỗi bản\nTướng / Máu tối đa: +40\nVô địch/Hồi máu mỗi giây: +1\nKích thước vô địch / vô địch: +10%\nTướng/Né tránh: -30%\n\nHIỆU QUẢ ĐẶC BIỆT\nTRÊN MỖI MUA THỰC PHẨM: nhận vĩnh viễn +10 HP tối đa, +0,5 HP/s và +5% kích thước tướng cho mỗi ngăn xếp hoạt động cho lần chạy này.\n\nSở hữu các bản sao hiệu quả: 1. Giới hạn cộng dồn: 8. Giá trị áp dụng trước giới hạn chiến đấu."
+      "target": "THỰC PHẨM / THUYỀN THOẠI / CÓ THỂ XẾP CHỒNG\nKHI MUA: được tính là 1 thực phẩm cho các anh hùng, bạn đồng hành và di tích phản ứng với thực phẩm. Không có hành động sử dụng riêng biệt; món đồ vẫn thuộc quyền sở hữu của bạn.\n\nKHI SỞ HỮU / mỗi bản\nTướng / Máu tối đa: +40\nVô địch/Hồi máu mỗi giây: +1\nKích thước vô địch / vô địch: +10%\nTướng/Né tránh: -30%\n\nHIỆU QUẢ ĐẶC BIỆT\nTRÊN MỖI MUA THỰC PHẨM: nhận vĩnh viễn +10 HP tối đa, +0,5 HP/s và +5% kích thước tướng cho mỗi ngăn xếp hoạt động cho lượt chơi này.\n\nSở hữu các bản sao hiệu quả: 1. Giới hạn cộng dồn: 8. Giá trị áp dụng trước giới hạn chiến đấu."
     },
     {
       "source": "FOOD / MYTHIC / STACKABLE\nON PURCHASE: counts as 1 food for food-reactive heroes, companions and relics. No separate use action; the item stays owned.\n\nWHILE OWNED / per copy\nNo direct stat modifier; effects are described below.\n\nSPECIAL EFFECT\nON FIRST PURCHASE: remember 6 random weapon IDs. Replace ordinary team basic attacks with six phantom weapons fired from the hero. Each uses compiled weapon stats and its own cooldown, minimum 0.2s.\n\nOwned effective copies: 1. Stack limit: 1. Values apply before combat limits.",
@@ -10398,7 +10418,7 @@
     },
     {
       "source": "Find in a run",
-      "target": "Tìm trong một lần chạy"
+      "target": "Tìm trong một lượt chơi"
     },
     {
       "source": "Find this item during a run. Viewing or testing does not unlock it.",
@@ -10502,7 +10522,7 @@
     },
     {
       "source": "First friend bought each run: +1★",
-      "target": "Người bạn đầu tiên mua mỗi lần chạy: +1★"
+      "target": "Người bạn đầu tiên mua mỗi lượt chơi: +1★"
     },
     {
       "source": "First light · clear hall 10",
@@ -10518,7 +10538,7 @@
     },
     {
       "source": "First shop each run holds a rare relic",
-      "target": "Cửa hàng đầu tiên mỗi lần chạy sẽ giữ một di vật quý hiếm"
+      "target": "Cửa hàng đầu tiên mỗi lượt chơi sẽ giữ một di vật quý hiếm"
     },
     {
       "source": "Fish Cracker",
@@ -10751,6 +10771,10 @@
     {
       "source": "Foresight: every shop shows one more offer.",
       "target": "Tầm nhìn xa: mỗi cửa hàng hiển thị thêm một ưu đãi."
+    },
+    {
+      "source": "Forge",
+      "target": "Lò rèn"
     },
     {
       "source": "Forge fire",
@@ -11222,7 +11246,7 @@
     },
     {
       "source": "From the Lamp Tree's Cradle: one of these three friends can start the run at your side. They change every run. Tap one to bring it.",
-      "target": "Từ Cái nôi của Cây đèn: một trong ba người bạn này có thể bắt đầu cuộc chạy cùng bạn. Họ thay đổi mỗi lần chạy. Nhấn vào một để mang nó."
+      "target": "Từ Cái nôi của Cây đèn: một trong ba người bạn này có thể bắt đầu cuộc chạy cùng bạn. Họ thay đổi mỗi lượt chơi. Nhấn vào một để mang nó."
     },
     {
       "source": "From the archive!",
@@ -12965,6 +12989,10 @@
       "target": "Đói, đói quá!"
     },
     {
+      "source": "Hunt",
+      "target": "Săn"
+    },
+    {
       "source": "Hunt for him",
       "target": "Săn lùng anh ấy"
     },
@@ -13758,7 +13786,7 @@
     },
     {
       "source": "In the shop, nobody speaks. The shopkeeper brings a blanket, an ordinary one, and puts it round your shoulders. Tally sits under the counter where it cannot be seen.\n\nPostscript gives you the letter from Thursday.\n\nPOSTSCRIPT: 'It's addressed to you. It always was.'\n\nWhen you look up, a long red carpet has unrolled under the shop like a tongue and is carrying everything, chairs and all, down the glass hall toward the front door.\n\nLATCH: 'It is still the Keeper. All of it is.'",
-      "target": "Trong quán không ai lên tiếng. Người bán hàng mang đến một chiếc chăn, một loại bình thường, và quàng nó quanh vai bạn. Tally ngồi dưới quầy nơi không thể nhìn thấy được.\n\nPostscript đưa cho bạn lá thư từ thứ năm.\n\nPOSTSCRIPT: 'Nó được gửi cho bạn. Luôn luôn như vậy.”\n\nKhi bạn nhìn lên, một tấm thảm đỏ dài đã trải ra dưới cửa hàng như một cái lưỡi và mang theo mọi thứ, từ ghế ngồi, dọc theo hành lang kính về phía cửa trước.\n\nLATCH: 'Nó vẫn là Thủ môn. Tất cả đều như vậy.”"
+      "target": "Trong quán không ai lên tiếng. Người bán hàng mang đến một chiếc chăn, một loại bình thường, và quàng nó quanh vai bạn. Tally ngồi dưới quầy nơi không thể nhìn thấy được.\n\nPostscript đưa cho bạn lá thư từ thứ năm.\n\nPOSTSCRIPT: 'Nó được gửi cho bạn. Luôn luôn như vậy.”\n\nKhi bạn nhìn lên, một tấm thảm đỏ dài đã trải ra dưới cửa hàng như một cái lưỡi và mang theo mọi thứ, từ ghế ngồi, dọc theo hành lang kính về phía cửa trước.\n\nLATCH: 'Nó vẫn là Người Canh Giữ. Tất cả đều như vậy.”"
     },
     {
       "source": "In their own place · grows with the road (stars",
@@ -14497,6 +14525,10 @@
       "target": "Gia nhập lữ đoàn của bạn"
     },
     {
+      "source": "Journal",
+      "target": "Nhật ký"
+    },
+    {
       "source": "Journey",
       "target": "Hành trình"
     },
@@ -14794,7 +14826,7 @@
     },
     {
       "source": "Keep your original automatic skill and themed recruits. Equipment bonuses apply during this run only.",
-      "target": "Giữ kỹ năng tự động ban đầu của bạn và tuyển dụng theo chủ đề. Phần thưởng thiết bị chỉ áp dụng trong lần chạy này."
+      "target": "Giữ kỹ năng tự động ban đầu của bạn và tuyển dụng theo chủ đề. Phần thưởng thiết bị chỉ áp dụng trong lượt chơi này."
     },
     {
       "source": "Keep your own tempo. I'll listen for where we meet.",
@@ -14802,11 +14834,11 @@
     },
     {
       "source": "Keeper",
-      "target": "Thủ môn"
+      "target": "Người Canh Giữ"
     },
     {
       "source": "Keeper's favour",
-      "target": "Sự ưu ái của thủ môn"
+      "target": "Ân huệ của Người Canh Giữ"
     },
     {
       "source": "Keeps",
@@ -15330,7 +15362,7 @@
     },
     {
       "source": "Lasts for this run, including waves/endless. Resets in a new run.",
-      "target": "Kéo dài cho lần chạy này, bao gồm cả các đợt/vô tận. Đặt lại trong lần chạy mới."
+      "target": "Kéo dài cho lượt chơi này, bao gồm cả các đợt/vô tận. Đặt lại trong lượt chơi mới."
     },
     {
       "source": "Lasts until the run ends.",
@@ -15346,7 +15378,7 @@
     },
     {
       "source": "Latch was one of the Keeper's guards. Last time round, it stopped you at the gate; it did what the rewritten orders said. After the Keeper knelt, Latch came with you and took the place on your left without a word.",
-      "target": "Latch là một trong những người bảo vệ của Người canh giữ. Lần trước nó chặn bạn ở cổng; nó đã làm những gì các lệnh viết lại đã nói. Sau khi Thủ môn quỳ xuống, Latch đi cùng bạn và ngồi vào vị trí bên trái bạn mà không nói một lời."
+      "target": "Latch là một trong những người bảo vệ của Người canh giữ. Lần trước nó chặn bạn ở cổng; nó đã làm những gì các lệnh viết lại đã nói. Sau khi Người Canh Giữ quỳ xuống, Latch đi cùng bạn và ngồi vào vị trí bên trái bạn mà không nói một lời."
     },
     {
       "source": "Late Fee",
@@ -15954,7 +15986,7 @@
     },
     {
       "source": "Lock current stat bonuses as minimums for the rest of this run.",
-      "target": "Khóa phần thưởng chỉ số hiện tại ở mức tối thiểu cho phần còn lại của lần chạy này."
+      "target": "Khóa phần thưởng chỉ số hiện tại ở mức tối thiểu cho phần còn lại của lượt chơi này."
     },
     {
       "source": "Locked",
@@ -16617,6 +16649,10 @@
       "target": "Tiền chữa trị: mỗi vết thương trả 1 vàng (tối đa 5 mỗi đợt)."
     },
     {
+      "source": "Merchant",
+      "target": "Thương nhân"
+    },
+    {
       "source": "Mercy Spindle",
       "target": "Trục xoay Mercy"
     },
@@ -17246,11 +17282,11 @@
     },
     {
       "source": "NIGHT PACT",
-      "target": "GIAO ƯỚC ĐÊM"
+      "target": "HIỆP ƯỚC ĐÊM"
     },
     {
       "source": "NIGHT PACT ·",
-      "target": "HỢP ĐỒNG ĐÊM ·"
+      "target": "HIỆP ƯỚC ĐÊM ·"
     },
     {
       "source": "NO ARENA",
@@ -17598,11 +17634,11 @@
     },
     {
       "source": "Night Pact",
-      "target": "Giao Ước Đêm"
+      "target": "Hiệp Ước Đêm"
     },
     {
       "source": "Night Pact ×",
-      "target": "Giao ước đêm ×"
+      "target": "Hiệp ước đêm ×"
     },
     {
       "source": "Night Watch",
@@ -17666,7 +17702,7 @@
     },
     {
       "source": "No discovered weapons yet. Acquire weapons in a real run first.\nDiscovering a companion does not unlock every weapon it might receive.",
-      "target": "Chưa có vũ khí nào được phát hiện. Trước tiên hãy mua vũ khí trong lần chạy thực tế.\nViệc khám phá một người bạn đồng hành không mở khóa được mọi loại vũ khí mà nó có thể nhận được."
+      "target": "Chưa có vũ khí nào được phát hiện. Trước tiên hãy mua vũ khí trong lượt chơi thực tế.\nViệc khám phá một người bạn đồng hành không mở khóa được mọi loại vũ khí mà nó có thể nhận được."
     },
     {
       "source": "No dream shop",
@@ -18202,7 +18238,7 @@
     },
     {
       "source": "ON EACH DRINK PURCHASE: permanently gain +4 maximum HP per active stack for this run. A drink carrying this effect counts itself when purchased.",
-      "target": "TRONG MỖI MUA ĐỒ UỐNG: nhận vĩnh viễn +4 HP tối đa cho mỗi lần xếp chồng hoạt động cho lần chạy này. Đồ uống mang hiệu ứng này sẽ tự tính khi mua."
+      "target": "TRONG MỖI MUA ĐỒ UỐNG: nhận vĩnh viễn +4 HP tối đa cho mỗi lần xếp chồng hoạt động cho lượt chơi này. Đồ uống mang hiệu ứng này sẽ tự tính khi mua."
     },
     {
       "source": "ON EACH DRINK PURCHASE: permanently gain +6% hero & friends attack speed per active stack for this run. Drink shop weight also increases 5% per copy.",
@@ -18210,7 +18246,7 @@
     },
     {
       "source": "ON EACH FOOD PURCHASE: permanently gain +10 max HP, +0.5 HP/s and +5% hero size per active stack for this run.",
-      "target": "TRÊN MỖI MUA THỰC PHẨM: nhận vĩnh viễn +10 HP tối đa, +0,5 HP/s và +5% kích thước anh hùng cho mỗi ngăn xếp hoạt động cho lần chạy này."
+      "target": "TRÊN MỖI MUA THỰC PHẨM: nhận vĩnh viễn +10 HP tối đa, +0,5 HP/s và +5% kích thước anh hùng cho mỗi ngăn xếp hoạt động cho lượt chơi này."
     },
     {
       "source": "ON FIRST PURCHASE: remember 6 random weapons. Replace ordinary hero & friends basic attacks with six phantom weapons fired from the hero. Each uses its own weapon stats.",
@@ -18482,7 +18518,7 @@
     },
     {
       "source": "Once a run, replay a lost wave",
-      "target": "Sau một lần chạy, hãy phát lại đợt bị mất"
+      "target": "Sau một lượt chơi, hãy phát lại đợt bị mất"
     },
     {
       "source": "Once a wave under 30% health: +60% damage and attack speed for 6s.",
@@ -18778,7 +18814,7 @@
     },
     {
       "source": "Opening a chest permanently adds +0.06 Luck per active stack for this run.",
-      "target": "Mở rương vĩnh viễn sẽ cộng thêm +0,06 May mắn cho mỗi ngăn xếp hoạt động cho lần chạy này."
+      "target": "Mở rương vĩnh viễn sẽ cộng thêm +0,06 May mắn cho mỗi ngăn xếp hoạt động cho lượt chơi này."
     },
     {
       "source": "Opening a chest strikes 1-3 different enemies for max(8,100 times Treasure Detection) damage per copy.",
@@ -19075,6 +19111,10 @@
     {
       "source": "POP! SPLAT!",
       "target": "PHÁT! TUYỆT VỜI!"
+    },
+    {
+      "source": "POSTBOX",
+      "target": "HÒM THƯ"
     },
     {
       "source": "POSTSCRIPT",
@@ -19862,7 +19902,7 @@
     },
     {
       "source": "Power cap",
-      "target": "Nắp nguồn"
+      "target": "Giới hạn nguồn"
     },
     {
       "source": "Prefer a ranged enemy as the next bounty. Settlement pays the same capped gold and makes an 85% W forward crescent. 3s cooldown.",
@@ -20822,11 +20862,11 @@
     },
     {
       "source": "Relics cost 20% less. Rerolls cost 2 more gold. Each paid refresh adds 1 income and 1% luck for this run.",
-      "target": "Di vật có giá thấp hơn 20%. Reroll tốn thêm 2 vàng. Mỗi lần làm mới trả phí sẽ thêm 1 thu nhập và 1% may mắn cho lần chạy này."
+      "target": "Di vật có giá thấp hơn 20%. Reroll tốn thêm 2 vàng. Mỗi lần làm mới trả phí sẽ thêm 1 thu nhập và 1% may mắn cho lượt chơi này."
     },
     {
       "source": "Relics cost 20% less. Rerolls cost 5 more gold. Each paid refresh adds 1 income and 1% luck for this run.",
-      "target": "Di vật có giá thấp hơn 20%. Reroll tốn thêm 5 vàng. Mỗi lần làm mới trả phí sẽ thêm 1 thu nhập và 1% may mắn cho lần chạy này."
+      "target": "Di vật có giá thấp hơn 20%. Reroll tốn thêm 5 vàng. Mỗi lần làm mới trả phí sẽ thêm 1 thu nhập và 1% may mắn cho lượt chơi này."
     },
     {
       "source": "Relics cost less gold.",
@@ -22217,6 +22257,10 @@
       "target": "Suỵt... giấc mơ vừa hé mở một mắt."
     },
     {
+      "source": "Shield",
+      "target": "Khiên"
+    },
+    {
       "source": "Shield Blower",
       "target": "Máy thổi lá chắn"
     },
@@ -23542,11 +23586,11 @@
     },
     {
       "source": "Start with +8 contact damage. Each Morning Bells activation gives +0.15 armor. Taking damage adds 0.15 regeneration for this run. Enemies move 10% faster.",
-      "target": "Bắt đầu với sát thương tiếp xúc +8. Mỗi lần kích hoạt Morning Bells sẽ +0,15 giáp. Nhận sát thương sẽ tăng thêm 0,15 khả năng hồi phục cho lần chạy này. Kẻ địch di chuyển nhanh hơn 10%."
+      "target": "Bắt đầu với sát thương tiếp xúc +8. Mỗi lần kích hoạt Morning Bells sẽ +0,15 giáp. Nhận sát thương sẽ tăng thêm 0,15 khả năng hồi phục cho lượt chơi này. Kẻ địch di chuyển nhanh hơn 10%."
     },
     {
       "source": "Start with +8 contact damage. Each Morning Bells activation gives +0.15 armor. Taking damage adds 0.15 regeneration for this run. Enemies move 15% faster.",
-      "target": "Bắt đầu với sát thương tiếp xúc +8. Mỗi lần kích hoạt Morning Bells sẽ +0,15 giáp. Nhận sát thương sẽ tăng thêm 0,15 khả năng hồi phục cho lần chạy này. Kẻ địch di chuyển nhanh hơn 15%."
+      "target": "Bắt đầu với sát thương tiếp xúc +8. Mỗi lần kích hoạt Morning Bells sẽ +0,15 giáp. Nhận sát thương sẽ tăng thêm 0,15 khả năng hồi phục cho lượt chơi này. Kẻ địch di chuyển nhanh hơn 15%."
     },
     {
       "source": "Start with 1 of 3 friends",
@@ -23554,7 +23598,7 @@
     },
     {
       "source": "Start with 35% dodge and 35% less HP. Dodge cap: 75%. Dodges add treasure detection for this run. Toy Knights deal 30% more damage.",
-      "target": "Bắt đầu với 35% né tránh và giảm 35% HP. Nắp né tránh: 75%. Dodges thêm tính năng phát hiện kho báu cho lần chạy này. Toy Knight gây thêm 30% sát thương."
+      "target": "Bắt đầu với 35% né tránh và giảm 35% HP. Giới hạn né tránh: 75%. Mỗi lần né thêm tính năng phát hiện kho báu cho lượt chơi này. Toy Knight gây thêm 30% sát thương."
     },
     {
       "source": "Starting gold",
@@ -24185,6 +24229,10 @@
       "target": "BÊN GIƯỜNG"
     },
     {
+      "source": "THE BELL",
+      "target": "CHIẾC CHUÔNG"
+    },
+    {
       "source": "THE BLANK SIGN",
       "target": "DẤU TRỐNG"
     },
@@ -24501,8 +24549,16 @@
       "target": "CƠ THỂ KÝ ỨC"
     },
     {
+      "source": "THE MUSEUM",
+      "target": "BẢO TÀNG"
+    },
+    {
       "source": "THE NIGHT IS RECORDED",
       "target": "ĐÊM ĐƯỢC GHI LẠI"
+    },
+    {
+      "source": "THE NIGHT PACT",
+      "target": "HIỆP ƯỚC ĐÊM"
     },
     {
       "source": "THE NIGHT WAITS WITH YOU",
@@ -24535,6 +24591,10 @@
     {
       "source": "THE PERFECT ROOM",
       "target": "PHÒNG HOÀN HẢO"
+    },
+    {
+      "source": "THE POSTBOX",
+      "target": "HÒM THƯ"
     },
     {
       "source": "THE PROMISE YOU DO NOT RENEW",
@@ -24653,6 +24713,10 @@
       "target": "PHÒNG CHỜ"
     },
     {
+      "source": "THE WARDROBE",
+      "target": "TỦ ÁO"
+    },
+    {
       "source": "THE WARM CHAIR",
       "target": "GHẾ NẤM"
     },
@@ -24671,6 +24735,10 @@
     {
       "source": "THE WEATHER BOOK",
       "target": "SÁCH THỜI TIẾT"
+    },
+    {
+      "source": "THE WINDOW",
+      "target": "Ô CỬA SỔ"
     },
     {
       "source": "THE WITHHELD REPLY",
@@ -25353,6 +25421,10 @@
       "target": "Người đổi hàng"
     },
     {
+      "source": "The Bell",
+      "target": "Chiếc Chuông"
+    },
+    {
       "source": "The Big Pot",
       "target": "Chiếc Nồi Lớn"
     },
@@ -25653,6 +25725,10 @@
       "target": "Đồng tiền bị thiếu"
     },
     {
+      "source": "The Museum",
+      "target": "Bảo Tàng"
+    },
+    {
       "source": "The Music Box Winder",
       "target": "Máy cuốn hộp nhạc"
     },
@@ -25699,6 +25775,10 @@
     {
       "source": "The Post Office's elite.",
       "target": "Tinh hoa của Bưu điện."
+    },
+    {
+      "source": "The Postbox",
+      "target": "Hòm Thư"
     },
     {
       "source": "The Promise Seller",
@@ -25817,12 +25897,20 @@
       "target": "Người hát rong lang thang"
     },
     {
+      "source": "The Wardrobe",
+      "target": "Tủ Áo"
+    },
+    {
       "source": "The Weather Teller",
       "target": "Người dự báo thời tiết"
     },
     {
       "source": "The Well-Water Carrier",
       "target": "Người vận chuyển nước giếng"
+    },
+    {
+      "source": "The Window",
+      "target": "Ô Cửa Sổ"
     },
     {
       "source": "The Withheld Last Verse",
@@ -26414,7 +26502,7 @@
     },
     {
       "source": "The instruction is legible from either side. No keeper can hide the handle behind a title.",
-      "target": "Hướng dẫn có thể đọc được từ cả hai phía. Không thủ môn nào có thể giấu tay cầm đằng sau một danh hiệu."
+      "target": "Hướng dẫn có thể đọc được từ cả hai phía. Không người canh giữ nào có thể giấu tay cầm đằng sau một danh hiệu."
     },
     {
       "source": "The journal keeps this page: open the sealed note any time.",
@@ -26666,7 +26754,7 @@
     },
     {
       "source": "The notice on the gate reads HOLD THE CROSSING OPEN UNTIL EVERY TRAVELLER HAS CHOSEN. Someone has written CLOSED over OPEN in brown receipt ink.\n\nThe one who wrote it is still there: the Coin Widow, who collects for the Last Customer. She is counting the Keeper out of its own gate like a debt, and its great hands are chained to the arch with receipts.\n\nWhen she falls, the receipts go slack. The Keeper does not stand. It kneels, slowly, the way a gate settles on its hinges, and turns its open hand toward you.\n\nTHE KEEPER: 'Last time, you did not get this far.'\n\nThere are coins on the warm chair again. Nobody saw anyone come in.",
-      "target": "Thông báo trên cổng có nội dung GIỮ MỞ CỬA ĐƯỜNG CHO ĐẾN KHI MỌI DU LỊCH ĐÃ CHỌN. Ai đó đã viết ĐÓNG lên trên MỞ bằng mực biên nhận màu nâu.\n\nNgười viết nó vẫn còn ở đó: Coin Widow, người thu thập cho Khách hàng Cuối cùng. Cô ấy đang đếm Người canh giữ ra khỏi cổng của chính mình như một món nợ, và đôi bàn tay to lớn của nó bị xích vào vòm cùng với các biên lai.\n\nKhi cô ấy ngã, số tiền thu được sẽ giảm đi. Thủ môn không đứng vững. Nó quỳ xuống, từ từ, như cách một cánh cổng đặt trên bản lề và hướng bàn tay mở về phía bạn.\n\nTHỦ THỦ: 'Lần trước, bạn đã không tiến xa được đến mức này.'\n\nLại có những đồng xu trên chiếc ghế ấm áp. Không ai thấy ai đi vào."
+      "target": "Thông báo trên cổng có nội dung GIỮ MỞ CỬA ĐƯỜNG CHO ĐẾN KHI MỌI DU LỊCH ĐÃ CHỌN. Ai đó đã viết ĐÓNG lên trên MỞ bằng mực biên nhận màu nâu.\n\nNgười viết nó vẫn còn ở đó: Coin Widow, người thu thập cho Khách hàng Cuối cùng. Cô ấy đang đếm Người canh giữ ra khỏi cổng của chính mình như một món nợ, và đôi bàn tay to lớn của nó bị xích vào vòm cùng với các biên lai.\n\nKhi cô ấy ngã, số tiền thu được sẽ giảm đi. Người Canh Giữ không đứng vững. Nó quỳ xuống, từ từ, như cách một cánh cổng đặt trên bản lề và hướng bàn tay mở về phía bạn.\n\nTHỦ THỦ: 'Lần trước, bạn đã không tiến xa được đến mức này.'\n\nLại có những đồng xu trên chiếc ghế ấm áp. Không ai thấy ai đi vào."
     },
     {
       "source": "The nursery: sprouts still grow into a chosen kind of friend.",
@@ -28534,11 +28622,11 @@
     },
     {
       "source": "Upgrade stacks for this run.",
-      "target": "Nâng cấp ngăn xếp cho lần chạy này."
+      "target": "Nâng cấp ngăn xếp cho lượt chơi này."
     },
     {
       "source": "Upgrades for every run",
-      "target": "Nâng cấp cho mỗi lần chạy"
+      "target": "Nâng cấp cho mọi lượt chơi"
     },
     {
       "source": "Upgrades the fielded friend to",
@@ -28777,6 +28865,10 @@
       "target": "LANG THANG"
     },
     {
+      "source": "WARDROBE",
+      "target": "TỦ ÁO"
+    },
+    {
       "source": "WASD / arrows on PC. Drag the lower-left area on touch.\nPrototype: no shop, merge, final balance or complete content yet.",
       "target": "WASD/mũi tên trên PC. Kéo khu vực phía dưới bên trái khi chạm vào.\nNguyên mẫu: chưa có cửa hàng, hợp nhất, số dư cuối cùng hoặc nội dung hoàn chỉnh."
     },
@@ -28875,6 +28967,10 @@
     {
       "source": "WIN WITH A HERO",
       "target": "CHIẾN THẮNG VỚI MỘT ANH HÙNG"
+    },
+    {
+      "source": "WINDOW",
+      "target": "Ô CỬA SỔ"
     },
     {
       "source": "WINTER",
@@ -29115,6 +29211,10 @@
     {
       "source": "Wave1 requires an unlocked contact enemy",
       "target": "Wave1 yêu cầu mở khóa kẻ thù liên lạc"
+    },
+    {
+      "source": "Waves survived",
+      "target": "Đợt sống sót"
     },
     {
       "source": "Waves survived ×",
@@ -30306,7 +30406,7 @@
     },
     {
       "source": "Your brigade's portrait is kept with this run.",
-      "target": "Chân dung lữ đoàn của bạn được lưu giữ trong lần chạy này."
+      "target": "Chân dung lữ đoàn của bạn được lưu giữ trong lượt chơi này."
     },
     {
       "source": "Your case and mine, same exhibit.",
@@ -31822,7 +31922,7 @@
     },
     {
       "source": "keeper",
-      "target": "thủ môn"
+      "target": "người canh giữ"
     },
     {
       "source": "keep|Combos found ×",
@@ -31938,7 +32038,7 @@
     },
     {
       "source": "loaded supplied run:",
-      "target": "lần chạy được cung cấp đã tải:"
+      "target": "lượt chơi được cung cấp đã tải:"
     },
     {
       "source": "loaves the Mouse baked crumble and slow a crowd",
@@ -31978,11 +32078,11 @@
     },
     {
       "source": "max HP for this run",
-      "target": "HP tối đa cho lần chạy này"
+      "target": "HP tối đa cho lượt chơi này"
     },
     {
       "source": "maximum HP this run.",
-      "target": "HP tối đa trong lần chạy này."
+      "target": "HP tối đa trong lượt chơi này."
     },
     {
       "source": "maximum HP, +",

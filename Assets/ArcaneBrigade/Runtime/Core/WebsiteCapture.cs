@@ -1,0 +1,648 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Threading;
+using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
+
+namespace ArcaneBrigade
+{
+    /// <summary>Pictures and clips for the game's website, taken in the Windows player from the real game. The save has really been
+    /// played: fourteen finished runs go through the game's own progress code (history, records, Lamp Oil, finds, mastery,
+    /// achievements), then the Lamp Tree is lit with the oil they earned. Runs in play hold friends, relics and gold a player of that
+    /// night would hold. Diagnostic save folder only.
+    /// -arcane-website -capturePath DIR [-arcane-phone] [-website-vi] [-website-clips -ffmpegPath ffmpeg.exe]
+    /// Writes DIR/shots/*.png, DIR/clips/*.mp4 with a .wav of the game's sound beside each, DIR/facts.json and DIR/Checks.txt.</summary>
+    public sealed class WebsiteCapture : MonoBehaviour
+    {
+        public static bool Requested => Array.IndexOf(Environment.GetCommandLineArgs(), "-arcane-website") >= 0;
+        private readonly List<string> checks = new List<string>();
+        private string root, shots, clips, ffmpeg;
+        private RunCatalog catalog; private ArenaController owner; private RunStorage storage;
+        private bool keepAlive, vietnamese;
+        private RunSnapshot summary; private bool drawSummary;
+        private readonly RunInvoice invoice = new RunInvoice();
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+        private static void Init()
+        {
+            if (!Requested || FindAnyObjectByType<WebsiteCapture>() != null) return;
+            var go = new GameObject("WebsiteCapture"); DontDestroyOnLoad(go); go.AddComponent<WebsiteCapture>();
+        }
+
+        private float lastStep;
+        private void Check(bool pass, string label) { lastStep = Time.realtimeSinceStartup; checks.Add((pass ? "PASS " : "FAIL ") + label); File.WriteAllLines(Path.Combine(root, "Checks.txt"), checks); }
+        private IEnumerator Shot(string name)
+        {
+            yield return new WaitForEndOfFrame();
+            Texture2D image = ScreenCapture.CaptureScreenshotAsTexture();
+            File.WriteAllBytes(Path.Combine(shots, name + ".png"), image.EncodeToPNG());
+            Check(image.width == Screen.width && image.height == Screen.height, "Shot " + name + " " + image.width + "x" + image.height);
+            Destroy(image);
+        }
+        private void Update()
+        {
+            if (root != null && Time.realtimeSinceStartup - lastStep > 150) { checks.Add("FAIL stuck after the last step"); File.WriteAllLines(Path.Combine(root, "Checks.txt"), checks); Application.Quit(2); }
+            if (keepAlive && owner != null && owner.Simulation?.Champion != null) owner.Simulation.Champion.Health = owner.Simulation.Champion.Definition.Health; // a staged fight: the hero never falls
+        }
+        private IEnumerator Wait(float seconds) { yield return new WaitForSecondsRealtime(seconds); }
+
+        // ---- the save: really played ----
+
+        private UnitDefinition[] Friends => catalog.Companions.Where(u => !u.GiftOnly && !u.SpecialRecruit && u.Weapon != null && u.ReferenceCompanion != "Evil" && !u.Id.StartsWith("Secret")).ToArray();
+        private ItemDefinition[] Relics => catalog.Items.Where(i => i.ShopWeight > 0 && !i.Id.StartsWith("Secret") && i.Rarity < ItemRarity.Crimson).ToArray();
+
+        /// <summary>A brigade a player would hold at that night: more friends and stars, and more relics, as the nights go on; one pair
+        /// that forms a duet.</summary>
+        private void Brigade(RunSnapshot state, int wave, int seed)
+        {
+            var random = new System.Random(seed);
+            UnitDefinition[] pool = Friends.OrderBy(_ => random.Next()).ToArray();
+            int count = Mathf.Clamp(2 + wave / 2, 3, 10);
+            state.Roster.RemoveAll(r => true);
+            var duet = Duets.All.FirstOrDefault(d => pool.Any(u => u.Id == d.A) && pool.Any(u => u.Id == d.B));
+            var chosen = new List<UnitDefinition>();
+            if (duet != null && wave >= 3) { chosen.Add(catalog.Unit(duet.A)); chosen.Add(catalog.Unit(duet.B)); }
+            foreach (UnitDefinition u in pool) { if (chosen.Count >= count) break; if (!chosen.Contains(u)) chosen.Add(u); }
+            for (int i = 0; i < chosen.Count; i++)
+            {
+                int tier = 1;
+                if (wave >= 8 && i % 3 == 0) tier = 2;
+                if (wave >= 14 && i % 4 == 1) tier = 2;
+                if (wave >= 17 && i == 0) tier = 3;
+                state.Roster.Add(new RosterEntry { UnitId = chosen[i].Id, WeaponId = chosen[i].Weapon.Id, Tier = tier });
+            }
+            state.Items.Clear();
+            foreach (ItemDefinition relic in Relics.OrderBy(_ => random.Next()).Take(Mathf.Clamp(wave / 2 + 1, 1, 11)))
+                state.Items.Add(new ItemStack { Id = relic.Id, Count = random.Next(5) == 0 ? 2 : 1 });
+        }
+
+        private PlayerProfile PlayedProfile()
+        {
+            var p = new PlayerProfile { TutorialSeen = true, StoryPagesAutoOpen = false };
+            if (vietnamese) p.Language = GameLocalization.Vietnamese;
+            MetaProgression.Ensure(p);
+            // hero, difficulty, the night reached, won
+            var runs = new (int hero, int difficulty, int wave, bool won)[]
+            {
+                (0, 0, 6, false), (0, 0, 11, false), (0, 0, 14, false), (0, 0, 20, true), (1, 0, 9, false), (1, 0, 17, false),
+                (2, 0, 20, true), (0, 1, 13, false), (3, 1, 20, true), (2, 1, 15, false), (4, 1, 18, false), (1, 1, 20, true),
+                (5, 2, 10, false), (3, 2, 16, false),
+            };
+            for (int i = 0; i < runs.Length; i++)
+            {
+                var plan = runs[i];
+                UnitDefinition hero = catalog.Champions[plan.hero % catalog.Champions.Length];
+                if (!HeroUnlocks.Open(p, hero)) hero = catalog.Champions.First(c => HeroUnlocks.Open(p, c));
+                var random = new System.Random(4100 + i * 37);
+                using (var session = new RunSession(catalog))
+                {
+                    session.Start(hero.Id, 4100 + i * 37);
+                    RunSnapshot s = session.State;
+                    s.Difficulty = plan.difficulty; s.Wave = plan.wave; s.Phase = plan.won ? SessionPhase.Victory : SessionPhase.Defeat;
+                    Brigade(s, plan.wave, 4100 + i * 37);
+                    s.TotalKills = plan.wave * plan.wave * 26 + plan.wave * 120 + random.Next(380);
+                    s.BossKills = plan.wave / 4 - (!plan.won && plan.wave % 4 == 0 ? 1 : 0);
+                    s.CombatSeconds = plan.wave * 61 + random.Next(90);
+                    s.DefeatedBosses.Clear(); foreach (UnitDefinition boss in catalog.Bosses.Take(s.BossKills)) s.DefeatedBosses.Add(boss.Id);
+                    s.Contributions.Clear();
+                    float damage = 9000f * plan.wave * plan.wave * (1 + plan.difficulty * .35f);
+                    s.Contributions.Add(new ContributionEntry { UnitId = s.ChampionId, WeaponId = hero.Weapon != null ? hero.Weapon.Id : "", EffectId = "primary", Tier = 1, Damage = damage, Kills = s.TotalKills / 3, Coins = plan.wave * 95 });
+                    float share = damage * .62f;
+                    foreach (RosterEntry r in s.Roster) { s.Contributions.Add(new ContributionEntry { UnitId = r.UnitId, WeaponId = r.WeaponId, EffectId = "primary", Tier = r.Tier, Damage = share * (.8f + (float)random.NextDouble() * .4f), Kills = (int)(share / 420) }); share *= .78f; }
+                    storage.RecordProgress(p, s, catalog);
+                }
+            }
+            // the Lamp Tree lit with the oil those runs earned, cheapest first, as a player tends to
+            foreach (string id in new[] { "hero.wick", "gold.purse", "friends.stork", "luck.chest", "dream.oil", "hero.stride", "friends.cradle", "gold.pockets", "luck.clover", "dream.quick", "hero.reach", "gold.purse2", "friends.stork2", "luck.chest2", "dream.oil2", "hero.wick2" })
+                MetaProgression.Light(p, id);
+            foreach (string id in new[] { "letter.boss", "letter.ten" }) MetaProgression.ReadLetter(p, id);
+            MetaProgression.TogglePact(p, MetaProgression.PactSwift);
+            storage.SaveProfile(p);
+            Check(p.History.Count >= 10 && p.Wins >= 3, "Played save: " + p.History.Count + " runs, " + p.Wins + " wins, best wave " + p.BestWave + ", oil " + p.Meta.LampOil + ", keepsakes " + p.Meta.Keepsakes + ", seen friends " + p.SeenUnits.Count + ", relics " + p.SeenItems.Count + ", achievements " + p.Achievements.Count);
+            return p;
+        }
+
+        /// <summary>A run in play at that night, saved and opened in the arena (the shop, unless the fight is started).</summary>
+        private IEnumerator Open(string heroId, int wave, int gold, int sand, int seed, Action<RunSnapshot> setup = null, bool special = false)
+        {
+            StopRoaming();
+            using (var session = new RunSession(catalog))
+            {
+                session.Start(heroId, seed);
+                RunSnapshot s = session.State;
+                s.Wave = wave; s.Phase = SessionPhase.Shop; s.Gold = gold; s.Eggs = sand; s.Difficulty = 1;
+                s.TotalKills = wave * wave * 24 + wave * 90; s.CombatSeconds = wave * 60;
+                s.MienCho.ReadMask = (1 << MienChoStory.Available(s)) - 1;
+                s.ActOne ??= new ActOneProgress(); if (wave >= 8) s.ActOne.Offer = ActOneProgress.Refused;
+                Brigade(s, wave, seed);
+                if (!special) s.SpecialShopVisited = true;
+                else
+                {
+                    // the dream market's wares: a relic paid in blood, one in Dreamsand, a friend in gold
+                    s.SpecialShopVisited = false; s.SpecialOffers.Clear();
+                    ItemDefinition blood = Relics.First(i => i.EffectiveModifiers.Any(m => m.Value < 0) && i.EffectiveModifiers.Any(m => m.Value > 0));
+                    ItemDefinition dream = Relics.Where(i => i.Mechanic != RelicMechanic.None).Skip(seed % 7).First();
+                    s.SpecialOffers.Add(new ShopOffer { Token = ++s.NextOffer, Kind = OfferKind.Item, Id = blood.Id, Price = 6, BasePrice = 6, Currency = ShopCurrency.Health });
+                    s.SpecialOffers.Add(new ShopOffer { Token = ++s.NextOffer, Kind = OfferKind.Item, Id = dream.Id, Price = 3, BasePrice = 3, Currency = ShopCurrency.Eggs });
+                }
+                setup?.Invoke(s);
+                storage.SaveRun(s);
+            }
+            RunLaunch.Resume = true; SceneManager.LoadScene("RunArena");
+            owner = null;
+            for (float t = 0; t < 8 && (owner == null || owner.Session == null || owner.Shop == null); t += .2f) { yield return Wait(.2f); owner = FindAnyObjectByType<ArenaController>(); }
+            yield return Wait(1.2f);
+            Check(owner != null && owner.Session != null, "Run opens at wave " + wave + " (" + heroId + ")");
+            if (owner != null && owner.Session.State.Phase == SessionPhase.Shop && owner.Session.State.Offers.Count(o => !o.Sold) == 0)
+            {
+                // a shop opened from a save shows the wares it rolled: roll them as the night's end would, at no cost
+                int keep = owner.Session.State.Gold; owner.Session.Reroll(); owner.Session.State.Gold = keep; owner.Shop.Display(); yield return Wait(.6f);
+            }
+        }
+        private IEnumerator Fight(float seconds) { keepAlive = true; owner.NextWave(); for (float t = 0; t < 8 && owner.Simulation.Phase != RunPhase.Combat; t += .1f) yield return Wait(.1f); yield return Roaming(); yield return Wait(seconds); }
+        private IEnumerator Stand(Vector2 at)
+        {
+            owner.GetComponent<ShopInspect>()?.Close();
+            owner.Simulation.Champion.Position = owner.Simulation.Champion.PreviousPosition = at;
+            FindAnyObjectByType<ArenaCamera>()?.Snap(); yield return Wait(.6f);
+        }
+        /// <summary>The hero walks to a point the way a player steers (the game's own movement input, so its walk and its friends follow).</summary>
+        private IEnumerator Walk(Vector2 to, float unused = 0)
+        {
+            UnitState hero = owner.Simulation.Champion;
+            for (float t = 0; t < 6 && Vector2.Distance(hero.Position, to) > .2f; t += Time.unscaledDeltaTime)
+            { ArenaController.ScriptedMove = Vector2.ClampMagnitude((to - hero.Position) * 2.5f, 1f); yield return null; }
+            ArenaController.ScriptedMove = null;
+        }
+        private bool roaming; private int roamId;
+        /// <summary>Through a fight the hero keeps moving as a player does: weaving loops across the field, pulling the crowd after
+        /// it while the friends fight on their own.</summary>
+        private IEnumerator Roaming(float unusedSeconds = 0, float unusedRadius = 0) { if (!roaming) StartCoroutine(Roam(++roamId)); yield break; }
+        private IEnumerator Roam(int id)
+        {
+            roaming = true; float start = Time.unscaledTime;
+            while (roaming && id == roamId)
+            {
+                float t = Time.unscaledTime - start;
+                bool fighting = owner != null && owner.Simulation != null && owner.Simulation.Phase == RunPhase.Combat;
+                ArenaController.ScriptedMove = fighting ? new Vector2(Mathf.Cos(t * .85f), Mathf.Sin(t * 1.3f) * .75f) : (Vector2?)null;
+                yield return null;
+            }
+            if (id == roamId) ArenaController.ScriptedMove = null;
+        }
+        private void StopRoaming() { roaming = false; roamId++; ArenaController.ScriptedMove = null; }
+
+        private RunHud Hud => (RunHud)typeof(ArenaController).GetField("runHud", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(owner);
+        private IEnumerator Focus(Func<ShopOffer, bool> which)
+        {
+            WorldShop.Station station = owner.Shop.Stations.FirstOrDefault(s => s.Offer != null && which(s.Offer));
+            if (station == null) { Check(false, "Stall found"); yield break; }
+            yield return Stand(station.Position + new Vector2(0, -.3f));
+        }
+
+        /// <summary>One part of the capture: if it fails or stalls, it is recorded and the next part goes on.</summary>
+        private IEnumerator Section(string name, IEnumerator body)
+        {
+            bool done = false; keepAlive = false; StopRoaming();
+            IEnumerator Run() { yield return body; done = true; }
+            Coroutine running = StartCoroutine(Run());
+            lastStep = Time.realtimeSinceStartup;
+            while (!done && Time.realtimeSinceStartup - lastStep < 45) yield return null;
+            if (!done) { StopCoroutine(running); Check(false, "Section stopped: " + name); }
+            Time.timeScale = 1; keepAlive = false; StopRoaming();
+        }
+
+        // ---- clips ----
+
+        private IEnumerator Clip(string name, float seconds, IEnumerator action)
+        {
+            if (ffmpeg == null) { if (action != null) yield return action; yield break; }
+            var recorder = gameObject.AddComponent<WebsiteClipRecorder>();
+            var tap = gameObject.AddComponent<StarVideoAudioTap>();
+            string path = Path.Combine(clips, name + ".mp4");
+            recorder.Begin(ffmpeg, path, seconds); tap.Begin();
+            if (action != null) StartCoroutine(action);
+            while (!recorder.Complete) yield return null;
+            tap.Save(Path.Combine(clips, name + ".wav"));
+            Check(recorder.Passed, "Clip " + name);
+            Destroy(recorder); Destroy(tap);
+        }
+
+        // ---- the capture ----
+
+        private IEnumerator Start()
+        {
+            string[] args = Environment.GetCommandLineArgs();
+            int at = Array.IndexOf(args, "-capturePath");
+            if (at < 0 || at + 1 >= args.Length || !RunPaths.Diagnostic) { Application.Quit(1); yield break; }
+            root = Path.GetFullPath(args[at + 1]); shots = Path.Combine(root, "shots"); clips = Path.Combine(root, "clips");
+            Directory.CreateDirectory(shots);
+            int f = Array.IndexOf(args, "-ffmpegPath");
+            if (Array.IndexOf(args, "-website-clips") >= 0 && f >= 0 && f + 1 < args.Length) { ffmpeg = args[f + 1]; Directory.CreateDirectory(clips); }
+            vietnamese = Array.IndexOf(args, "-website-vi") >= 0;
+            Application.runInBackground = true;
+            catalog = Resources.Load<RunCatalog>("RunCatalog");
+            storage = new RunStorage(RunPaths.Root);
+            foreach (string stale in new[] { "run.json", "run.json.bak" }) { string file = Path.Combine(RunPaths.Root, stale); if (File.Exists(file)) File.Delete(file); }
+            if (!vietnamese && !RunUIHints.Phone) Facts();
+
+            PlayerProfile profile = PlayedProfile();
+            UnitDefinition[] heroes = catalog.Champions.Where(c => HeroUnlocks.Open(profile, c)).ToArray();
+            string mainHero = heroes[0].Id;
+
+            // a run left at night 13, so the menu offers to continue it
+            using (var session = new RunSession(catalog))
+            {
+                session.Start(heroes[Mathf.Min(1, heroes.Length - 1)].Id, 913);
+                session.State.Wave = 13; session.State.Phase = SessionPhase.Shop; session.State.Gold = 214; session.State.Difficulty = 1;
+                Brigade(session.State, 13, 913); storage.SaveRun(session.State);
+            }
+            SceneManager.LoadScene("RunFrontend"); yield return Wait(3f);
+
+            IEnumerator S0() {
+            // ---- the menus ----
+            RunMenu menu = FindAnyObjectByType<RunMenu>();
+            Check(menu != null, "Menu opens");
+            if (menu != null)
+            {
+                foreach (var (page, name) in new[] { (RunMenu.Page.Landing, "menu-01-main"), (RunMenu.Page.Roster, "menu-02-hero-select"), (RunMenu.Page.Resume, "menu-03-continue"), (RunMenu.Page.Museum, "menu-04-collection"), (RunMenu.Page.Achievements, "menu-05-achievements"), (RunMenu.Page.Records, "menu-06-records"), (RunMenu.Page.Settings, "menu-07-settings"), (RunMenu.Page.Help, "menu-08-how-to-play") })
+                {
+                    menu.ShowPage(page); yield return Wait(.9f); yield return Shot(name);
+                }
+                // the Waiting Room between runs and each of its stations
+                menu.ShowPage(RunMenu.Page.Hub); menu.Hub.Approach(MetaStation.Lantern); yield return Wait(1f);
+                yield return Shot("hub-00-waiting-room");
+                int n = 1;
+                foreach (MetaStation station in (MetaStation[])Enum.GetValues(typeof(MetaStation)))
+                {
+                    if (!MetaProgression.Works(station)) continue; // stations still to come have no place in the room yet
+                    menu.Hub.Close(); menu.Hub.Approach(station); menu.Hub.OpenStation(station); yield return Wait(.7f);
+                    if (menu.Hub.PanelOpen) yield return Shot("hub-" + (n++).ToString("00") + "-" + station.ToString().ToLowerInvariant());
+                    else Check(false, "Station opens: " + station);
+                }
+                menu.Hub.Close();
+            }
+
+            yield break; }
+            IEnumerator S1() {
+            // ---- the shop between nights ----
+            yield return Open(mainHero, 12, 236, 4, 1212);
+            yield return Wait(.8f); yield return Shot("shop-01-overview");
+            yield return Focus(o => o.Kind == OfferKind.Item); yield return Shot("shop-02-relic-card");
+            yield return Focus(o => o.Kind == OfferKind.Companion); yield return Shot("shop-03-friend-card");
+            string bond = owner.Session.BondCounts.Keys.FirstOrDefault(k => owner.Session.BondCounts[k] > 0);
+            if (bond != null)
+            {
+                typeof(RunHud).GetField("selectedBond", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(Hud, bond);
+                typeof(RunHud).GetField("bondTooltipUntil", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(Hud, Time.unscaledTime + 30);
+                yield return Wait(.4f); yield return Shot("shop-04-bond");
+                typeof(RunHud).GetField("bondTooltipUntil", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(Hud, -1f);
+            }
+            owner.ToggleDetails(); owner.Details.SelectTab(0); yield return Wait(.6f); yield return Shot("shop-05-brigade-details"); owner.ToggleDetails();
+            if (!vietnamese)
+            {
+                owner.Session.ForceVisitor("Sandman"); yield return Stand(new Vector2(4.2f, -.4f));
+                owner.GetComponent<VisitorCard>().Show(); yield return Wait(.5f); yield return Shot("shop-06-visitor"); owner.VisitorDecline(); yield return Wait(.3f);
+                if (owner.Session.OfferPrismGift(true)) { yield return Wait(.9f); yield return Shot("shop-07-keeper-gifts"); }
+            }
+            owner.TogglePause();
+            for (int page = 0; page < 5; page++)
+            {
+                typeof(RunHud).GetField("pausePage", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(Hud, page);
+                yield return Wait(.35f); yield return Shot("pause-0" + page);
+            }
+            typeof(RunHud).GetField("pausePage", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(Hud, 0); owner.TogglePause();
+
+            yield break; }
+            IEnumerator S2() {
+            // buying: the hero walks to a friend's stall and buys it; a third copy merges into a higher star
+            yield return Open(mainHero, 9, 168, 3, 909, s =>
+            {
+                UnitDefinition friend = Friends.FirstOrDefault(u => u.Id == "TeapotPilgrim") ?? Friends[0];
+                s.Roster.RemoveAll(r => r.UnitId == friend.Id);
+                s.Roster.Add(new RosterEntry { UnitId = friend.Id, WeaponId = friend.Weapon.Id, Tier = 2 }); s.Roster.Add(new RosterEntry { UnitId = friend.Id, WeaponId = friend.Weapon.Id, Tier = 2 });
+                if (s.Offers.Count == 0) s.Offers.Add(new ShopOffer { Token = ++s.NextOffer });
+                ShopOffer offer = s.Offers[0]; offer.Kind = OfferKind.Companion; offer.Id = friend.Id; offer.Tier = 2; offer.Price = 48; offer.BasePrice = 48; offer.Currency = ShopCurrency.Gold; offer.Sold = false;
+                s.NewRecruitsThisWave = 0;
+            });
+            {
+                ShopOffer offer = owner.Session.State.Offers.FirstOrDefault(o => o.Kind == OfferKind.Companion && o.Tier == 2 && !o.Sold);
+                WorldShop.Station stall = offer == null ? null : owner.Shop.Stations.FirstOrDefault(st => st.Offer == offer);
+                if (stall != null)
+                {
+                    yield return Stand(stall.Position + new Vector2(-4.4f, -2.1f));
+                    IEnumerator Buy()
+                    {
+                        yield return Walk(stall.Position + new Vector2(0, -.8f), 3.4f);
+                        yield return Wait(.5f);
+                        for (int tries = 0; tries < 60 && !offer.Sold; tries++) { owner.Shop.Interact(); yield return Wait(.1f); }
+                    }
+                    if (ffmpeg != null) yield return Clip("clip-01-buy-and-star-up", 11f, Buy());
+                    else { StartCoroutine(Buy()); yield return Wait(3.2f); yield return Shot("shop-08-star-up"); yield return Wait(3f); }
+                    if (ffmpeg != null) { yield return Shot("shop-09-after-star-up"); }
+                    Check(offer.Sold, "The third copy is bought and merges");
+                }
+                else Check(false, "Star-up stall");
+            }
+
+            yield break; }
+            IEnumerator S3() {
+            // the dream market: blood prices, Dreamsand, the ferry, the Last Customer
+            if (!vietnamese)
+            {
+                yield return Open(mainHero, 12, 236, 6, 1213, null, true);
+                yield return Wait(.6f);
+                if (owner.Shop.Special)
+                {
+                    yield return Shot("market-01-dream-market");
+                    yield return Focus(o => o.Currency == ShopCurrency.Health || o.Currency == ShopCurrency.Eggs); yield return Shot("market-02-dream-price");
+                    var ferry = owner.GetComponent<FerryDock>();
+                    if (ferry != null && ferry.Visible && ferry.Spot(0, out Vector2 jetty, out _))
+                    {
+                        yield return Stand(jetty + new Vector2(.6f, .2f));
+                        ferry.ShowForCapture(owner.Session.PartingSpecies().FirstOrDefault()); yield return Wait(.6f); yield return Shot("market-03-ferry");
+                        typeof(FerryDock).GetMethod("Close", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(ferry, null); yield return Wait(.2f);
+                    }
+                    owner.Session.ForceMemorySale(); yield return Wait(.8f); yield return Shot("market-04-last-customer"); owner.DeclineMemorySale(); yield return Wait(.3f);
+                }
+                else Check(false, "Dream market at wave 12");
+
+                // a secret room: the doors open every third night
+                bool saved = false; SecretEventKind shown = SecretEventKind.ImpossibleTailor;
+                for (int seed = 0; seed < 400 && !saved; seed++)
+                    using (var s = new RunSession(catalog))
+                    {
+                        s.Start(mainHero, seed); s.State.Wave = 9; s.State.Phase = SessionPhase.Shop; s.State.Gold = 190;
+                        s.State.MienCho.ReadMask = (1 << MienChoStory.Available(s.State)) - 1; s.State.ActOne ??= new ActOneProgress(); s.State.ActOne.Offer = ActOneProgress.Refused;
+                        Brigade(s.State, 9, seed);
+                        SecretEventKind[] portals = s.SecretPortals(); if (portals.Length == 0) continue;
+                        shown = portals[0]; storage.SaveRun(s.State); saved = true;
+                    }
+                if (saved)
+                {
+                    RunLaunch.Resume = true; SceneManager.LoadScene("RunArena"); yield return Wait(2.6f);
+                    owner = FindAnyObjectByType<ArenaController>();
+                    if (owner.EnterSecret(shown)) { yield return Wait(.8f); yield return Shot("secret-01-" + shown.ToString().ToLowerInvariant()); }
+                    else Check(false, "Secret room opens");
+                }
+            }
+
+            yield break; }
+            IEnumerator S4() {
+            // ---- the nights ----
+            foreach (var (wave, name) in new[] { (5, "fight-01-early-night"), (14, "fight-02-mid-night"), (18, "fight-03-late-night") })
+            {
+                yield return Open(heroes[wave % heroes.Length].Id, wave - 1, 120, 2, 3000 + wave);
+                yield return Fight(5f); yield return Shot(name + "-a");
+                yield return Wait(3.5f); yield return Shot(name + "-b");
+                if (ffmpeg != null && wave >= 14 && !vietnamese) yield return Clip("clip-0" + (wave == 14 ? "2" : "3") + "-fight-wave-" + wave, 12f, Roaming(12f));
+                keepAlive = false;
+            }
+            yield break; }
+            IEnumerator S5() {
+            // chest and coins
+            {
+                yield return Open(mainHero, 6, 140, 2, 3006);
+                yield return Fight(4f);
+                Vector2 hero = owner.Simulation.Champion.Position;
+                for (int i = 0; i < 9; i++) owner.Simulation.AddLootPresentationFixture(LootKind.Coin, hero + new Vector2(1.2f + i * .35f, -.6f + (i % 2) * .3f), 3);
+                owner.GetComponent<PacingFeedback>()?.Observe(new[] { new CombatEvent(CombatEventKind.ChestOpened, hero + Vector2.right, Faction.Champion, 186, new Vector2(1, 12)) }, owner.PresentationClock);
+                yield return Wait(1f); yield return Shot("fight-04-chest-and-coins");
+                keepAlive = false;
+            }
+
+            yield break; }
+            IEnumerator S6() {
+            // ---- the bosses: one at the end of every fourth night ----
+            if (!vietnamese)
+                foreach (int wave in new[] { 4, 8, 12, 16, 20 })
+                {
+                    yield return Open(heroes[(wave / 4) % heroes.Length].Id, wave - 1, 150, 3, 4000 + wave);
+                    keepAlive = true; owner.NextWave(); yield return Roaming();
+                    bool filmed = ffmpeg != null && (wave == 4 || wave == 16);
+                    if (filmed) yield return Clip("clip-0" + (wave == 4 ? "4" : "5") + "-boss-night-" + wave, 11f, Roaming(11f, 3.2f));
+                    else yield return Wait(2.2f);
+                    yield return Shot("boss-night-" + wave.ToString("00") + "-a");
+                    yield return Wait(3f); yield return Shot("boss-night-" + wave.ToString("00") + "-b");
+                    UnitState boss = owner.Simulation.Boss;
+                    if (wave == 4 && boss != null && boss.Alive) { owner.Simulation.BossTelegraphCaptureFixture(); yield return Wait(.9f); yield return Shot("boss-night-04-attack-warning"); }
+                    Check(boss != null, "Boss on night " + wave + ": " + boss?.Definition?.DisplayName);
+                    keepAlive = false;
+                }
+
+            yield break; }
+            IEnumerator S7() {
+            // ---- the six places ----
+            if (!vietnamese)
+                foreach (var (wave, name) in new[] { (3, "waiting-room"), (7, "post-office"), (9, "glasshouse"), (13, "lamp-hall"), (17, "theatre"), (19, "archive-vault") })
+                {
+                    yield return Open(heroes[wave % heroes.Length].Id, wave - 1, 120, 2, 5000 + wave);
+                    yield return Fight(2.5f);
+                    owner.Simulation.MapEnvironmentCaptureFixture(); yield return Wait(.8f);
+                    yield return Shot("place-" + name);
+                    if (ffmpeg != null) yield return Clip("clip-place-" + name, 6f, Roaming(6f));
+                    keepAlive = false;
+                }
+
+            yield break; }
+            IEnumerator S8() {
+            // ---- every hero's own skill, and the transformation ----
+            if (!vietnamese)
+            {
+                int index = 0;
+                foreach (HeroIdentityDefinition identity in HeroIdentities.All)
+                {
+                    index++;
+                    if (catalog.Unit(identity.Id) == null) continue;
+                    yield return Open(identity.Id, 6, 120, 2, 6000 + index);
+                    yield return Fight(3.8f); // past the night's opening badge
+                    CombatSimulation sim = owner.Simulation;
+                    sim.PrepareMechanicCapture(catalog, 0);
+                    int casts = sim.HeroIdentityActivations; float started = Time.realtimeSinceStartup;
+                    while (sim.HeroIdentityActivations == casts && !sim.HeroAwakening && Time.realtimeSinceStartup - started < 10) { sim.NudgeMechanicCapture(); if (Time.realtimeSinceStartup - started > 4) sim.FillGaugeForCapture(); yield return null; }
+                    yield return Wait(.25f);
+                    string stem = "skill-" + index.ToString("00") + "-" + identity.Id;
+                    yield return Shot(stem);
+                    Check(sim.HeroIdentityActivations > casts || sim.HeroAwakening, "Hero skill fires: " + identity.Id + " (" + identity.Name + ")");
+                    if (index <= 4)
+                    {
+                        // the transformation: a full gauge
+                        float wait = Time.realtimeSinceStartup;
+                        while (!sim.HeroAwakening && Time.realtimeSinceStartup - wait < 8) { sim.FillGaugeForCapture(); yield return null; }
+                        if (sim.HeroAwakening)
+                        {
+                            if (ffmpeg != null && index == 1) yield return Clip("clip-06-transformation", 9f, Roaming(9f, 2f));
+                            else { yield return Wait(.5f); }
+                            yield return Shot("transform-" + index.ToString("00") + "-" + identity.Id);
+                        }
+                    }
+                    keepAlive = false;
+                }
+            }
+
+            yield break; }
+            IEnumerator S9() {
+            // ---- the end of a run ----
+            foreach (SessionPhase end in new[] { SessionPhase.Victory, SessionPhase.Defeat })
+            {
+                using (var s = new RunSession(catalog))
+                {
+                    s.Start(mainHero, end == SessionPhase.Victory ? 7720 : 7709);
+                    s.State.Wave = end == SessionPhase.Defeat ? 11 : 20; s.State.Phase = end; s.State.Difficulty = 1;
+                    Brigade(s.State, s.State.Wave, 77);
+                    s.State.TotalKills = end == SessionPhase.Defeat ? 3842 : 11906; s.State.BossKills = end == SessionPhase.Defeat ? 2 : 5; s.State.CombatSeconds = end == SessionPhase.Defeat ? 702 : 1288;
+                    storage.SaveRun(s.State);
+                }
+                RunLaunch.Resume = true; SceneManager.LoadScene("RunArena"); yield return Wait(3.6f);
+                owner = FindAnyObjectByType<ArenaController>();
+                yield return Shot("result-" + (end == SessionPhase.Victory ? "01-dawn-reached" : "02-brigade-fallen"));
+            }
+            // the night's invoice: what each friend did and what the Waiting Room receives
+            summary = JsonUtility.FromJson<RunSnapshot>(JsonUtility.ToJson(owner.Session.State));
+            summary.Phase = SessionPhase.Victory; summary.Wave = 20; summary.TotalKills = 11906; summary.BossKills = 5; summary.CombatSeconds = 1288;
+            Brigade(summary, 20, 77);
+            summary.Contributions.Clear();
+            summary.Contributions.Add(new ContributionEntry { UnitId = summary.ChampionId, WeaponId = "", EffectId = "primary", Tier = 1, Damage = 1462310, Kills = 4120, Coins = 2210 });
+            float shareLeft = 820000;
+            foreach (RosterEntry r in summary.Roster) { summary.Contributions.Add(new ContributionEntry { UnitId = r.UnitId, WeaponId = r.WeaponId, EffectId = "primary", Tier = r.Tier, Damage = shareLeft, Kills = (int)(shareLeft / 410) }); shareLeft *= .76f; }
+            summary.Meta ??= new MetaRunState(); summary.Meta.FoundUnits = 2; summary.Meta.FoundItems = 3; summary.Difficulty = 1;
+            var earner = new PlayerProfile(); MetaProgression.Ensure(earner); MetaProgression.Credit(earner, summary, catalog);
+            drawSummary = true; yield return Wait(.5f); yield return Shot("result-03-night-summary"); drawSummary = false;
+
+            yield break; }
+            var sections = new (string, Func<IEnumerator>)[] { ("menus", S0), ("shop", S1), ("star-up", S2), ("dream-market", S3), ("nights", S4), ("chest", S5), ("bosses", S6), ("places", S7), ("hero-skills", S8), ("results", S9) };
+            int only = Array.IndexOf(args, "-website-sections"); string[] wanted = only >= 0 && only + 1 < args.Length ? args[only + 1].Split(',') : null; // re-take some parts only
+            foreach (var (name, body) in sections) if (wanted == null || Array.IndexOf(wanted, name) >= 0) yield return Section(name, body());
+            Check(true, "Capture finished");
+            File.WriteAllLines(Path.Combine(root, "Checks.txt"), checks);
+            Application.Quit(0);
+        }
+
+        private void OnGUI()
+        {
+            if (!drawSummary || summary == null) return;
+            GUI.depth = -200; Matrix4x4 previous = GUI.matrix; GUI.matrix = Matrix4x4.Scale(new Vector3(Screen.width / 1920f, Screen.height / 1080f, 1));
+            RunHud.Fill(new Rect(0, 0, 1920, 1080), new Color(.03f, .03f, .06f, 1));
+            invoice.Draw(new Rect(430, 120, 1060, 860), summary, catalog);
+            GUI.matrix = previous;
+        }
+
+        // ---- facts for the website copy, read from the game's own catalogue ----
+
+        [Serializable] private sealed class Hero { public string Id, Name, Description, Skill, SkillResource, SkillDescription; public string[] Approaches; }
+        [Serializable] private sealed class Friend { public string Id, Name, Description, Rarity; public string[] Tags; }
+        [Serializable] private sealed class Thing { public string Id, Name, Description; }
+        [Serializable] private sealed class FactSheet
+        {
+            public int Heroes, Friends, Relics, Weapons, Enemies, Bosses, Duets;
+            public List<Hero> HeroList = new List<Hero>(); public List<Friend> FriendList = new List<Friend>();
+            public List<Thing> BossList = new List<Thing>(); public List<Thing> RelicList = new List<Thing>();
+            public List<string> CompanionSkills = new List<string>();
+        }
+        private void Facts()
+        {
+            var facts = new FactSheet
+            {
+                Heroes = catalog.Champions.Length, Friends = Friends.Length, Relics = Relics.Length, Weapons = catalog.Weapons.Length,
+                Enemies = catalog.Enemies.Length, Bosses = catalog.Bosses.Length, Duets = Duets.All.Count(),
+            };
+            foreach (UnitDefinition c in catalog.Champions)
+            {
+                HeroIdentityDefinition id = HeroIdentities.All.FirstOrDefault(h => h.Id == c.Id);
+                facts.HeroList.Add(new Hero { Id = c.Id, Name = c.DisplayName, Description = c.Description, Skill = id?.Name, SkillResource = id?.Resource, SkillDescription = id?.Description, Approaches = id?.Approaches });
+            }
+            foreach (UnitDefinition u in Friends) facts.FriendList.Add(new Friend { Id = u.Id, Name = u.DisplayName, Description = u.Description, Rarity = u.Rarity.ToString(), Tags = u.Tags });
+            foreach (UnitDefinition b in catalog.Bosses) facts.BossList.Add(new Thing { Id = b.Id, Name = b.DisplayName, Description = b.Description });
+            foreach (ItemDefinition i in Relics) facts.RelicList.Add(new Thing { Id = i.Id, Name = i.Name, Description = i.Description });
+            facts.CompanionSkills.AddRange(CombatSimulation.CompanionSkillIds);
+            File.WriteAllText(Path.Combine(root, "facts.json"), JsonUtility.ToJson(facts, true));
+        }
+    }
+
+    /// <summary>Records the game's own picture (any window size) into an MP4 at 30 frames a second through ffmpeg, in real time.</summary>
+    public sealed class WebsiteClipRecorder : MonoBehaviour
+    {
+        private readonly object sync = new object();
+        private readonly Queue<byte[]> free = new Queue<byte[]>();
+        private readonly Queue<(byte[] pixels, int frame)> packets = new Queue<(byte[], int)>();
+        private System.Diagnostics.Process encoder;
+        private Thread writer;
+        private RenderTexture surface;
+        private bool finishing; private volatile bool failed, writerDone;
+        private int pending, encoded, goal, width, height;
+        private double started;
+        public bool Complete { get; private set; }
+        public bool Passed => Complete && !failed && encoded == goal;
+
+        public void Begin(string ffmpeg, string destination, float seconds)
+        {
+            width = Screen.width & ~1; height = Screen.height & ~1; goal = Mathf.RoundToInt(seconds * 30);
+            var settings = new System.Diagnostics.ProcessStartInfo(ffmpeg, "-y -hide_banner -loglevel error -f rawvideo -pixel_format rgba -video_size " + width + "x" + height + " -framerate 30 -i pipe:0 -an -c:v libx264 -preset veryfast -crf 20 -pix_fmt yuv420p -movflags +faststart \"" + destination + "\"")
+            { UseShellExecute = false, CreateNoWindow = true, RedirectStandardInput = true, RedirectStandardError = true };
+            encoder = System.Diagnostics.Process.Start(settings); encoder.ErrorDataReceived += (s, e) => { if (!string.IsNullOrEmpty(e.Data)) failed = true; }; encoder.BeginErrorReadLine();
+            for (int i = 0; i < 6; i++) free.Enqueue(new byte[width * height * 4]);
+            surface = new RenderTexture(width, height, 0, RenderTextureFormat.ARGB32); surface.Create();
+            writer = new Thread(Write) { IsBackground = true }; writer.Start(); started = Time.realtimeSinceStartupAsDouble;
+            StartCoroutine(Capture(seconds));
+        }
+        private IEnumerator Capture(float seconds)
+        {
+            var end = new WaitForEndOfFrame();
+            while (Time.realtimeSinceStartupAsDouble - started < seconds && !failed)
+            {
+                yield return end;
+                byte[] buffer = null; lock (sync) { if (free.Count > 0) buffer = free.Dequeue(); }
+                if (buffer == null) continue;
+                int frame = Mathf.Min(goal - 1, (int)Math.Floor((Time.realtimeSinceStartupAsDouble - started) * 30));
+                ScreenCapture.CaptureScreenshotIntoRenderTexture(surface); pending++;
+                AsyncGPUReadback.Request(surface, 0, TextureFormat.RGBA32, request =>
+                {
+                    pending--;
+                    if (request.hasError) { failed = true; lock (sync) free.Enqueue(buffer); return; }
+                    request.GetData<byte>().CopyTo(buffer);
+                    lock (sync) { packets.Enqueue((buffer, frame)); Monitor.Pulse(sync); }
+                });
+            }
+            while (pending > 0) yield return null;
+            lock (sync) { finishing = true; Monitor.Pulse(sync); }
+            while (!writerDone) yield return null;
+            encoder.WaitForExit(); failed |= encoder.ExitCode != 0;
+            surface.Release(); Destroy(surface); surface = null; Complete = true;
+        }
+        private void Write()
+        {
+            byte[] previous = null;
+            try
+            {
+                Stream stream = encoder.StandardInput.BaseStream;
+                while (true)
+                {
+                    (byte[] pixels, int frame) packet;
+                    lock (sync)
+                    {
+                        while (packets.Count == 0 && !finishing) Monitor.Wait(sync);
+                        if (packets.Count == 0 && finishing) break;
+                        packet = packets.Dequeue();
+                    }
+                    while (encoded <= packet.frame && encoded < goal) { stream.Write(packet.pixels, 0, packet.pixels.Length); encoded++; }
+                    lock (sync) { if (previous != null) free.Enqueue(previous); previous = packet.pixels; }
+                }
+                while (previous != null && encoded < goal) { stream.Write(previous, 0, previous.Length); encoded++; }
+                encoder.StandardInput.Close();
+            }
+            catch { failed = true; }
+            finally { writerDone = true; }
+        }
+        private void OnDestroy()
+        {
+            lock (sync) { finishing = true; Monitor.PulseAll(sync); }
+            if (encoder != null && !encoder.HasExited && !Complete) encoder.Kill();
+            if (surface != null) { surface.Release(); Destroy(surface); }
+        }
+    }
+}
