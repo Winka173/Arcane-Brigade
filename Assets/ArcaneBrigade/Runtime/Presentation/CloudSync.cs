@@ -33,7 +33,7 @@ namespace ArcaneBrigade
         private static readonly Dictionary<string, CloudDeviceFile> cache = new Dictionary<string, CloudDeviceFile>();
         private static bool working, again;
         private static CloudChoice nextChoice;
-        private static float nextCheck, lastCheckpoint = -999;
+        private static float nextCheck, lastCheckpoint = -999, startedAt;
 
         public static CloudStatus Status { get; private set; } = CloudStatus.Off;
         /// <summary>The clash waiting for the player's choice (Status Conflict).</summary>
@@ -43,6 +43,9 @@ namespace ArcaneBrigade
         public static bool Connected => State.Enabled;
         public static bool Auto => State.Auto;
         public static bool Busy => working;
+        /// <summary>A menu sync is landing (for up to 10 seconds): starting a run waits for it, so the run and the progress begin from
+        /// the other device's newer save rather than from the copy it is about to replace.</summary>
+        public static bool Settling => working && menu && Time.unscaledTime - startedAt < 10f;
 
         private static CloudSyncState State
         {
@@ -93,15 +96,17 @@ namespace ArcaneBrigade
         }
         public static void Detach(PlayerProfile current) { if (ReferenceEquals(profile, current)) { profile = null; storage = null; applied = null; runArrived = null; menu = false; } }
 
-        /// <summary>A checkpoint in a run (a wave, a purchase, the game going to the background): uploads at most once a minute, or at
-        /// once when <paramref name="force"/>. Nothing from other devices is applied during a run.</summary>
+        /// <summary>A checkpoint in a run: every wave's end and the run's end (<paramref name="force"/>, so the save another device
+        /// continues from is the newest one), purchases at most once a minute, the game going to the background. One arriving while a
+        /// sync is in flight runs right after it. Nothing from other devices is applied during a run.</summary>
         public static void Checkpoint(PlayerProfile current, RunStorage currentStorage, bool force)
         {
-            if (!Offered || !State.Enabled || !State.Auto || menu || working) return;
+            if (!Offered || !State.Enabled || !State.Auto || menu) return;
             if (!force && Time.unscaledTime - lastCheckpoint < 60) return;
             lastCheckpoint = Time.unscaledTime;
             profile = current; storage = currentStorage;
             EnsureInstance();
+            if (working) { again = true; return; }
             Run();
         }
 
@@ -157,7 +162,7 @@ namespace ArcaneBrigade
 
         private static async void Run()
         {
-            working = true; again = false;
+            working = true; again = false; startedAt = Time.unscaledTime;
             Status = CloudStatus.Working;
             bool apply = menu;
             CloudChoice choice = nextChoice; nextChoice = CloudChoice.None;
@@ -168,17 +173,25 @@ namespace ArcaneBrigade
                 string run = CurrentRun();
                 string before = CloudSave.ProgressJson(current) + CloudSave.SettingsJson(current) + run;
                 CloudResult result = await CloudSave.Sync(backend, State, new CloudLocal { Profile = CloudSave.Clone(current), Run = run }, cache, apply, choice);
-                SaveState();
-                if (result.Conflict != null)
+                bool used = false;
+                try
                 {
-                    Conflict = result.Conflict; Status = CloudStatus.Conflict;
-                    if (menu) CloudSaveCard.OpenConflict();
-                    return;
+                    if (result.Conflict != null)
+                    {
+                        Conflict = result.Conflict; Status = CloudStatus.Conflict;
+                        if (menu) CloudSaveCard.OpenConflict();
+                        return;
+                    }
+                    if (!result.Deferred && apply && ReferenceEquals(current, profile))
+                    {
+                        if (CloudSave.ProgressJson(current) + CloudSave.SettingsJson(current) + CurrentRun() != before) again = true; // changed while syncing: it goes next
+                        else { ApplyResult(current, result); used = true; }
+                    }
                 }
-                if (!result.Deferred && apply && ReferenceEquals(current, profile))
+                finally
                 {
-                    if (CloudSave.ProgressJson(current) + CloudSave.SettingsJson(current) + CurrentRun() != before) again = true; // changed while syncing: it goes next
-                    else ApplyResult(current, result);
+                    if (!used) CloudSave.Abandon(State, result); // not applied here: the next sync must still see the other devices' save as new
+                    SaveState();
                 }
                 Status = result.NewerSeen ? CloudStatus.NewerVersion : CloudStatus.Idle;
             }

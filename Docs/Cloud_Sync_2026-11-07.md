@@ -17,7 +17,7 @@ Same design as Sticky Wall (`Sticky-Wall/docs/release/PLAY_CONSOLE_API_GUIDE.md`
 | Upload at checkpoints | `Assets/ArcaneBrigade/Runtime/Core/ArenaController.cs` (`PersistBoundary`, `OnApplicationPause`) |
 | iOS URL scheme added at build time | `Assets/ArcaneBrigade/Editor/CloudSyncIosBuild.cs` |
 | iOS client id (public) | `Assets/ArcaneBrigade/Resources/CloudSyncConfig.json` |
-| Simulated devices (32 cases) | `Assets/ArcaneBrigade/Editor/CloudSyncChecks.cs` (menu *Arcane Brigade/Checks/Cloud sync*) |
+| Simulated devices (49 cases) | `Assets/ArcaneBrigade/Editor/CloudSyncChecks.cs` (menu *Arcane Brigade/Checks/Cloud sync*) |
 
 ## Behaviour
 
@@ -31,9 +31,10 @@ Same design as Sticky Wall (`Sticky-Wall/docs/release/PLAY_CONSOLE_API_GUIDE.md`
 - **When it syncs (Auto sync on):**
   - when the main menu opens and when the game comes back to the front
   - a minute after a change in the menu
-  - at checkpoints in a run: a wave or a purchase, at most once a minute
+  - in a run: at the end of every wave and of the run, at once (the save another device continues from is always the newest); purchases at most once a minute; a checkpoint that arrives during a sync runs right after it
   - at once when the game goes to the background
-  - In a run it only uploads. Changes from other devices are applied in the menu, never mid-fight.
+  - In a run it only uploads this device's own changes; a part changed only elsewhere keeps its old record, so a setting or a find made on another device never holds the uploads back. Only a real clash (a spend elsewhere, or the same run moved on both) waits for the menu. Changes from other devices are applied in the menu, never mid-fight.
+  - Starting or continuing a run while a menu sync is landing waits for it (up to 10 s, "Syncing…"), so the run starts from the newest save. If that journey ended on another device, the menu says so; if a journey arrived, it asks before setting it aside.
 - **What travels.** Three parts, each with its own Lamport revision:
   1. **Progress**: Lamp Oil, Keepsakes, the Lamp Tree, mastery, finds, records, history, achievements and story flags.
   2. **Settings that suit any device**: sound, language, comfort, display toggles and UI style.
@@ -61,6 +62,7 @@ Same design as Sticky Wall (`Sticky-Wall/docs/release/PLAY_CONSOLE_API_GUIDE.md`
   - A file from a newer game version is left alone, with *Update the game* shown.
   - A merge the save would refuse is never applied.
   - A change made while a sync is in flight is never lost; it syncs next.
+  - A sync result that is never applied (the player left the menu or changed the save meanwhile) is forgotten, so the next sync still takes the other devices' changes as new instead of letting this device's older copy win.
 
 ### Restore points
 
@@ -154,7 +156,7 @@ Changes take minutes, sometimes an hour, to reach devices.
 
 | Level | Status |
 |---|---|
-| Merge, conflicts, run, settings, checkpoints, restore points (`CloudSyncChecks`, 32 cases) | **Passed** 7/11/2026 |
+| Merge, conflicts, run, settings, checkpoints, restore points (`CloudSyncChecks`, 49 cases: the wave-10 → other device → win at wave 20 journey, a sync that never landed, a run ended offline, a spend during a run elsewhere, the same run on two devices, reinstall, reconnect) | **Passed** 8/11/2026 |
 | Localization checks after the new strings | **Passed** |
 | Android bundle with `DriveAuth.androidlib` | **Built** (Unity 6000.6, AGP 9.1.1) |
 | Real Google Drive, two devices | Waiting for the dedicated project (steps A–E); build 7 is on closed testing |

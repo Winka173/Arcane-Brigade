@@ -38,6 +38,9 @@ namespace ArcaneBrigade
         private Vector2 scroll;
         // a short plain note for the player; technical detail goes to the log only (UI standard: no exception text on screen)
         private string errorText;
+        private bool? pendingLaunch; // a start tapped while the cloud save was landing (true = continue)
+        private bool pendingHadSave;
+        private Page pendingPage;
         private float errorAt;
         private string error { get => errorText; set { errorText = value; errorAt = Time.unscaledTime; } }
         private bool existingSave;
@@ -275,6 +278,14 @@ namespace ArcaneBrigade
 
         private void Update()
         {
+            if (pendingLaunch.HasValue && (CurrentPage != pendingPage || !CloudSync.Settling))
+            {
+                bool resume = pendingLaunch.Value; pendingLaunch = null; error = "";
+                if (CurrentPage != pendingPage || CloudSync.Status == CloudStatus.Conflict) { } // the player went elsewhere, or the choice card is open
+                else if (resume && !CanResume) error = "This journey ended on another device.";
+                else if (!resume && existingSave && !pendingHadSave) ShowPage(Page.ConfirmOverwrite); // a journey arrived: ask before setting it aside
+                else Launch(resume);
+            }
             if (music != null) music.ForceScene(CurrentPage == Page.Roster ? ArcaneCueLibrary.SceneSelect : CurrentPage == Page.Hub ? ArcaneCueLibrary.SceneHub : null);
             RunUIHints.Refresh();
             if (CurrentPage == Page.Hub)
@@ -328,6 +339,8 @@ namespace ArcaneBrigade
         private void Launch(bool resume)
         {
             if (resume && !CanResume || !resume && (!HeroUnlocks.Open(profile, catalog.Champions[selection]) || difficulty > RunMeta.UnlockedDifficulty(profile) || Deluxe.DifficultyLocked(difficulty))) return;
+            // another device's save may be landing: the journey starts from it, never from the copy it is about to replace
+            if (CloudSync.Settling) { pendingLaunch = resume; pendingHadSave = existingSave; pendingPage = CurrentPage; error = "Syncing…"; return; }
             CheckpointAudio.PlayInterfaceId("ui.confirm");
             if (!resume && existingSave)
             {

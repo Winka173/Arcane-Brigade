@@ -429,7 +429,7 @@ namespace ArcaneBrigade
                     simulation.Champion.Health = session.State.Health;
                     if (restored > 0 && paintedEffects != null) paintedEffects.Play(new CombatEvent(CombatEventKind.Heal, simulation.Champion.Position, Faction.Champion, restored));
                 }
-                PersistBoundary();
+                PersistBoundary(true); // a wave's end or the run's end: the cloud copy follows at once
                 movement.Reset();
                 // requirement 25/10/2026 (stuck a few seconds after the fight): only a boss that fell just now holds the scene, and briefly
                 if (session.State.Phase == SessionPhase.Shop) transitionRemaining = simulation.BossDefeated ? Mathf.Max(0.45f, BossFallHold - (simulation.Elapsed - simulation.BossFellAt)) : 0.45f;
@@ -479,7 +479,8 @@ namespace ArcaneBrigade
         public void RequestMenuReturn() { pauseGate.Navigation = true; ApplyPause(); }
         public void CancelMenuReturn() { pauseGate.Navigation = false; ApplyPause(); }
 
-        private bool PersistBoundary()
+        private bool PersistBoundary() => PersistBoundary(false);
+        private bool PersistBoundary(bool cloudNow)
         {
             if (storage == null || session == null) return true;
             try
@@ -501,7 +502,7 @@ namespace ArcaneBrigade
                 MetaNotice = delta > 0 ? (delta == 1 ? "1 NEW FIND" : delta + " NEW FINDS") + " IN THE MUSEUM" : "";
             }
             catch (Exception exception) { SaveError = "Run saved; profile save failed: " + exception.Message; }
-            CloudSync.Checkpoint(profile, storage, false); // cloud save: an upload at most once a minute during a run
+            CloudSync.Checkpoint(profile, storage, cloudNow); // cloud save: every wave's end at once, other boundaries at most once a minute
             return true;
         }
 
@@ -695,7 +696,7 @@ namespace ArcaneBrigade
         }
 
         private void OnApplicationFocus(bool focus) { if (!RunPaths.Diagnostic) { pauseGate.FocusLost = !focus; AudioListener.pause = pauseGate.FocusLost || pauseGate.Backgrounded; if (simulation != null) ApplyPause(); } }
-        private void OnApplicationPause(bool paused) { pauseGate.Backgrounded = paused; AudioListener.pause = pauseGate.FocusLost || pauseGate.Backgrounded; if (simulation != null) ApplyPause(); if (paused && PersistBoundary()) CloudSync.Checkpoint(profile, storage, true); }
+        private void OnApplicationPause(bool paused) { pauseGate.Backgrounded = paused; AudioListener.pause = pauseGate.FocusLost || pauseGate.Backgrounded; if (simulation != null) ApplyPause(); if (paused) PersistBoundary(true); }
 
         /// <summary>The views of everything that moves (units, shots, coins): never part of the room.</summary>
         private bool OnScreen(Vector2 at) { Vector3 v = arenaCamera.WorldToViewportPoint(at); return v.x > -.05f && v.x < 1.05f && v.y > -.05f && v.y < 1.05f; }

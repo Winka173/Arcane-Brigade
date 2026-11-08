@@ -94,6 +94,8 @@ namespace ArcaneBrigade
         public string Run;
         public bool NewerSeen, Deferred;
         public CloudConflict Conflict;
+        /// <summary>The sync state before this sync, put back by <see cref="CloudSave.Abandon"/> when the result is never applied.</summary>
+        public string StateBefore;
     }
 
     /// <summary>The merge (requirement 7/11/2026, after Sticky Wall's Drive sync). Three parts travel, each with its own revision:
@@ -240,7 +242,7 @@ namespace ArcaneBrigade
 
         /// <summary>One sync: reads the other devices' files that changed, merges each part, and writes this device's file when it
         /// has something new. Never touches the local save: the caller applies the result. With <paramref name="canApply"/> false
-        /// (during a run) it only uploads, and stops without writing (Deferred) when another device has something newer.</summary>
+        /// (during a run) it only uploads this device's own changes, and stops without writing (Deferred) only on a clash.</summary>
         public static async Task<CloudResult> Sync(ICloudBackend backend, CloudSyncState state, CloudLocal local, Dictionary<string, CloudDeviceFile> cache, bool canApply = true, CloudChoice choice = CloudChoice.None)
         {
             var result = new CloudResult();
@@ -264,6 +266,7 @@ namespace ArcaneBrigade
             foreach (string gone in cache.Keys.Where(k => !listed.ContainsKey(k)).ToList()) cache.Remove(gone);
 
             string before = JsonUtility.ToJson(state); // put back whenever this sync stops without writing
+            result.StateBefore = before;
             List<CloudDeviceFile> files = cache.Values.ToList();
             var profiles = new Dictionary<CloudDeviceFile, PlayerProfile>();
             foreach (CloudDeviceFile f in files) { PlayerProfile p = string.IsNullOrEmpty(f.Progress.Payload) ? null : Validated(f.Progress.Payload); if (p != null) profiles[f] = p; }
@@ -331,6 +334,18 @@ namespace ArcaneBrigade
                 parts[i].Revision = top + 1; parts[i].Origin = me;
             }
 
+            if (!canApply)
+            {
+                // during a run: this device's own changes go up exactly as it holds them; nothing from the other devices is merged in or
+                // applied (the menu does that). An unchanged part keeps the record this device last wrote, so a setting or a find made
+                // elsewhere never holds back the run's uploads.
+                bool upload = !listed.ContainsKey(me);
+                for (int i = 0; i < 3; i++) { upload |= changed[i]; parts[i].LastHash = Hash(payload[i]); }
+                if (upload) await backend.WriteDevice(me, JsonUtility.ToJson(DeviceFile(parts, payload)));
+                state.LastSyncUtc = DateTime.UtcNow.ToString("o");
+                return result;
+            }
+
             // each part's winner: the newest change
             var winners = new CloudRecord[3];
             var winnerFile = new CloudDeviceFile[3];
@@ -355,10 +370,6 @@ namespace ArcaneBrigade
             CopyLocal(mine, merged);
             if (Validated(JsonUtility.ToJson(merged)) == null) merged = Clone(mine); // a merge the save would refuse: keep this device's own
             string[] mergedPayload = { ProgressJson(merged), SettingsJson(merged), InPlay(winners[2].Payload) };
-            bool differs = false;
-            for (int i = 0; i < 3; i++) differs |= mergedPayload[i] != payload[i];
-            if (!canApply && differs) { JsonUtility.FromJsonOverwrite(before, state); result.Deferred = true; return result; }
-
             bool needWrite = !listed.ContainsKey(me);
             for (int i = 0; i < 3; i++)
             {
@@ -367,21 +378,28 @@ namespace ArcaneBrigade
                 needWrite |= hash != parts[i].LastHash || changed[i];
                 parts[i].LastHash = hash;
             }
-            if (needWrite)
-            {
-                var file = new CloudDeviceFile
-                {
-                    DeviceName = SystemInfo.deviceModel ?? "", WrittenUtc = DateTime.UtcNow.ToString("o"),
-                    Progress = new CloudRecord { Revision = parts[0].Revision, Origin = parts[0].Origin, Payload = mergedPayload[0] },
-                    Settings = new CloudRecord { Revision = parts[1].Revision, Origin = parts[1].Origin, Payload = mergedPayload[1] },
-                    Run = new CloudRecord { Revision = parts[2].Revision, Origin = parts[2].Origin, Payload = mergedPayload[2] },
-                };
-                await backend.WriteDevice(me, JsonUtility.ToJson(file));
-            }
+            if (needWrite) await backend.WriteDevice(me, JsonUtility.ToJson(DeviceFile(parts, mergedPayload)));
             state.LastSyncUtc = DateTime.UtcNow.ToString("o");
             if (mergedPayload[0] != payload[0] || mergedPayload[1] != payload[1]) result.Profile = merged;
             if (mergedPayload[2] != payload[2]) result.Run = mergedPayload[2];
             return result;
+        }
+
+        private static CloudDeviceFile DeviceFile(CloudPartState[] parts, string[] payload) => new CloudDeviceFile
+        {
+            DeviceName = SystemInfo.deviceModel ?? "", WrittenUtc = DateTime.UtcNow.ToString("o"),
+            Progress = new CloudRecord { Revision = parts[0].Revision, Origin = parts[0].Origin, Payload = payload[0] },
+            Settings = new CloudRecord { Revision = parts[1].Revision, Origin = parts[1].Origin, Payload = payload[1] },
+            Run = new CloudRecord { Revision = parts[2].Revision, Origin = parts[2].Origin, Payload = payload[2] },
+        };
+
+        /// <summary>A result that was never applied (the player left the menu, or changed the save while it synced): the sync state goes
+        /// back to before it, so the next sync still treats the other devices' changes as new instead of taking this device's older copy
+        /// for a newer change and winning with it.</summary>
+        public static void Abandon(CloudSyncState state, CloudResult result)
+        {
+            if (state == null || result == null || string.IsNullOrEmpty(result.StateBefore) || result.Profile == null && result.Run == null) return;
+            JsonUtility.FromJsonOverwrite(result.StateBefore, state);
         }
     }
 }
