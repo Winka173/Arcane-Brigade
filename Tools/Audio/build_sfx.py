@@ -37,7 +37,7 @@ C('cmb.windup', g.windup, 3, 'Combat', 150, -17, 0.12, 2, 0.02)
 C('cmb.miss', g.miss, 4, 'Combat', 190, -22, 0.08, 2, 0.04)
 for m in MATS:
     C('cmb.hit.' + m, g.impact, 6, 'Combat', 140, -15, 0.04, 3, 0.03, material=m)
-    C('enemy.die.' + m, g.enemy_die, 3, 'Combat', 120, -13, 0.07, 3, 0.03)
+    C('enemy.die.' + m, g.enemy_die, 3, 'Combat', 120, -13, 0.07, 3, 0.08)  # wide pitch spread: a falling crowd never repeats one clip
 CUES[-1]  # (enemy.die.* share generator; variations differ by index -> material cycle below)
 C('cmb.crit', g.crit_sting, 5, 'Combat', 100, -13, 0.1, 2, 0.0, material='wood')
 

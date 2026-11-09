@@ -58,7 +58,7 @@ namespace ArcaneBrigade
         }
         private void AddTrauma(float amount, bool routine) { trauma = routine ? Mathf.Max(trauma, Mathf.Min(RoutineTraumaCap, trauma + amount)) : Mathf.Min(1f, trauma + amount); }
         /// <summary>A big enemy: the kind whose fall deserves a stronger shake (large bodies such as the crab, the toad, the coffin).</summary>
-        public static bool BigEnemy(UnitState unit) => unit != null && unit.Definition != null && !unit.Definition.IsBoss && unit.Faction == Faction.Enemy && unit.Definition.Radius >= 0.4f;
+        public static bool BigEnemy(UnitState unit) => unit != null && unit.Definition != null && !unit.Definition.IsBoss && unit.Faction == Faction.Enemy && (unit.Definition.Radius >= 0.4f || unit.Elite);
         /// <summary>A critical hit that lands as a beat: the hero's own, or one that takes a real bite (6% or more) out of its target.</summary>
         public static bool HeavyCritical(CombatEvent value, int championId) => value.Kind == CombatEventKind.Hit && value.Critical && value.Value > 0 && value.Faction == Faction.Enemy
             && (championId != 0 && value.Cause.SourceUnitId == championId || value.Subject != null && value.Subject.Definition != null && value.Value >= value.Subject.Definition.Health * 0.06f);

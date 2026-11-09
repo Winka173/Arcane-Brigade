@@ -98,11 +98,14 @@ namespace ArcaneBrigade
             blasts.Pop(catalog.Unit("UndeliveredKing") ?? owner.Simulation.Champion.Definition, hero + new Vector2(2.2f, 0.6f), true, 1.4f, DamageElement.Ember);
             blasts.BossFinale(hero + new Vector2(-2.6f, 0.4f), 2.4f);
             UnitDefinition ordinary = null;
-            foreach (UnitState unit in owner.Simulation.Units) if (unit.Faction == Faction.Enemy && !unit.Definition.IsBoss) { ordinary = unit.Definition; break; }
+            foreach (UnitState unit in owner.Simulation.Units) if (unit.Faction == Faction.Enemy && !unit.Definition.IsBoss && !ExplosionFeedback.Drifts(unit.Definition) && unit.Definition.Radius < 0.4f && unit.Definition.BodyHeight < 1.4f) { ordinary = unit.Definition; break; } // a body that burns (things of air come apart as vapour)
             blasts.Pop(ordinary, hero + new Vector2(0.6f, -1.9f), false, 0.1f, DamageElement.Physical);
             blasts.Pop(ordinary, hero + new Vector2(1.9f, -1.6f), false, 1.2f, DamageElement.Frost);
+            // an elite's big blast with its pillar of light, and a thing of air coming apart into vapour
+            blasts.Pop(ordinary, hero + new Vector2(-1.4f, -1.7f), false, 0.3f, DamageElement.Arcane, true, true);
+            blasts.Pop(catalog.Unit("CurtainWisp") ?? ordinary, hero + new Vector2(3.4f, -0.4f), false, 0.2f, DamageElement.Arcane);
             started = Time.realtimeSinceStartup;
-            foreach (float t in new[] { 0.04f, 0.12f, 0.25f, 0.45f })
+            foreach (float t in new[] { 0.04f, 0.12f, 0.25f, 0.45f, 0.7f, 1.0f })
             {
                 while (Time.realtimeSinceStartup - started < t) yield return null;
                 yield return Shot("E-crit-and-boss-" + Mathf.RoundToInt(t * 1000) + "ms");

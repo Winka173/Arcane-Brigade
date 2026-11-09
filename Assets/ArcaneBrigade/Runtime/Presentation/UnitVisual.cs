@@ -416,6 +416,7 @@ namespace ArcaneBrigade
             if (drawHand != null) drawHand.color = Color.white;
             if (bowString != null) bowString.startColor = bowString.endColor = new Color(1, 0.92f, 0.68f);
             transform.position = Vector2.Lerp(state.PreviousPosition, state.Position, interpolation);
+            if (state.Faction == Faction.Enemy && !state.Definition.IsBoss && !ReducedMotion) transform.position += (Vector3)ExplosionFeedback.Shove(transform.position); // a big death blast rocks the bodies round it (the picture only)
             drawnAt[state.Id] = (transform.position, Time.frameCount); live[state.Id] = this;
             if (state.Faction == Faction.Enemy && !ReducedMotion)
             {

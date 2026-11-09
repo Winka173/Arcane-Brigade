@@ -41,6 +41,38 @@ namespace ArcaneBrigade
         public static ExplosionFeedback Active { get; private set; }
         private float skidWindow;
         private int skidsInWindow;
+
+        // ---- what a death leaves behind (all code-drawn and pooled): sparks, flame tongues, smoke, dust, vapour, a burn on the
+        // floor, an elite's pillar of light; the chain of rim bursts after a big blast; the shove it gives the bodies round it ----
+        private enum MoteKind { Ember, Flame, Spark, Smoke, Dust, Vapor, Glow, Pillar }
+        private sealed class Mote
+        {
+            public SpriteRenderer View; public MoteKind Kind;
+            public Vector2 Position, Velocity; public float Height, Lift, Age = 1, Life = 1, Size, Width, Phase;
+            public Color Hot, Cool;
+        }
+        private readonly List<Mote> motes = new List<Mote>();
+        /// <summary>Most death motes alive at once; a big blast spends about forty, a small one four to six.</summary>
+        public const int MoteCapacity = 520;
+        private int moteCursor;
+        private sealed class Scorch { public SpriteRenderer View; public Vector2 Position; public float Age = 1, Life = 1, Size, Alpha; }
+        private readonly List<Scorch> scorches = new List<Scorch>();
+        public const int ScorchCapacity = 48;
+        private int scorchCursor;
+        private readonly List<(float at, Vector2 position, float radius, Color color)> echoes = new List<(float, Vector2, float, Color)>();
+        private readonly List<(Vector2 at, float radius, float strength, float born)> shoves = new List<(Vector2, float, float, float)>();
+        private float clock;
+        private Sprite burn;
+        /// <summary>Most big death blasts started per fifth of a second (the rest go up as small ones).</summary>
+        public const int BigPerWindow = 4, ReducedBigPerWindow = 2;
+        public const float MaxPopRadius = 1.0f, MaxBigPopRadius = 1.35f;
+        private float bigWindow;
+        private int bigInWindow;
+        public int BigPopsShown { get; private set; }
+        /// <summary>Kills in an unbroken run (no gap over a second): each one lands a little bigger and brighter.</summary>
+        public int Streak { get; private set; }
+        private float streakAt = -10;
+        public const float ShoveSeconds = 0.34f;
         private void OnDestroy() { if (Active == this) Active = null; }
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)] private static void ResetActive() => Active = null;
         /// <summary>A puff of floor dust where a knocked-back body skids.</summary>
@@ -65,6 +97,8 @@ namespace ArcaneBrigade
             // a hot streak: a long thin diamond, brightest along its spine, drawn along each spark's flight
             spark = Make("ExplosionSpark", 64, (d, a) => { float x = Mathf.Abs(d * Mathf.Cos(a)), y = Mathf.Abs(d * Mathf.Sin(a)); return Mathf.Clamp01((1 - x - y * 3.4f) * 1.8f); });
             deathBlast = LoadDeathBlast();
+            // a burn on the floor: an ink blot with ragged lobes, soft at its rim
+            burn = Make("ExplosionBurn", 128, (d, a) => { float lobes = 1 + 0.18f * Mathf.Sin(a * 5 + 1.3f) + 0.1f * Mathf.Cos(a * 11) + 0.06f * Mathf.Sin(a * 17 + 0.4f); return Mathf.Clamp01((1 - d * lobes) * 2.4f) * (0.55f + 0.45f * Mathf.Clamp01(1 - d * 1.5f)); });
             puff = Make("ExplosionSmudge", 96, (d, a) => { float wobble = 1 + 0.12f * Mathf.Sin(a * 5) + 0.06f * Mathf.Cos(a * 9); return Mathf.Clamp01((1 - d * wobble) * 1.6f) * (0.65f + 0.35f * Mathf.Clamp01(1 - d * 1.4f)); });
         }
         /// <summary>The painted golden blast every ordinary kill goes up in (Resources/Effects/DeathBlast_f0..3, one world
@@ -99,6 +133,9 @@ namespace ArcaneBrigade
         public void Clear()
         {
             foreach (Blast blast in pool) { blast.Age = blast.Duration; Hide(blast); }
+            foreach (Mote mote in motes) { mote.Age = mote.Life; mote.View.enabled = false; }
+            foreach (Scorch scorch in scorches) { scorch.Age = scorch.Life; scorch.View.enabled = false; }
+            echoes.Clear(); shoves.Clear(); Streak = 0;
             ActiveCount = 0;
         }
 
@@ -122,25 +159,338 @@ namespace ArcaneBrigade
                     Spawn(Kind.Blast, value.Position, 2.2f, new Color(1f, 0.82f, 0.48f), true);
                     break;
                 case CombatEventKind.Kill when value.Faction == Faction.Enemy && value.Subject?.Flung != true:
-                    Pop(value.Subject?.Definition, value.Position, value.Critical, value.Value, value.Element, deathShown);
+                    Pop(value.Subject?.Definition, value.Position, value.Critical, value.Value, value.Element, deathShown, value.Subject?.Elite == true);
                     break;
             }
         }
-        /// <summary>An ordinary enemy goes pop: a brief white flash, an ink burst sized by the body (bigger for overkill
-        /// and crits), a thin snap ring, a spray of ink and paper chips and a small puff of smoke. ~0.35 s, no lingering.</summary>
-        public void Pop(UnitDefinition unit, Vector2 position, bool critical, float overkill, DamageElement element, bool bodyShown = true)
+        /// <summary>An enemy goes up in one of two blasts, or drifts apart if it is a thing of air (a wisp, a moth, a shade).
+        /// Small (an ordinary body): a white-hot snap, the golden fireball, sparks, motes in the killing element's colour drifting
+        /// up, a burn on the floor that glows and cools to ink. Big (an elite, a large body, or a crit with real overkill): a bigger
+        /// fireball cracking open in a chain of three rim bursts, flame tongues, hot sparks thrown up that fall and bounce, a dust
+        /// skirt along the floor, a smoke column, a wide burn, a deep boom, and a shove that rocks the bodies round it. An elite
+        /// also sends up a pillar of gold light. Kills in an unbroken run land a little bigger each time; 10, 25 and 50 ring out.</summary>
+        public void Pop(UnitDefinition unit, Vector2 position, bool critical, float overkill, DamageElement element, bool bodyShown = true, bool elite = false)
         {
-            if (Time.unscaledTime > popWindow) { popWindow = Time.unscaledTime + 0.1f; popsInWindow = 0; }
+            float now = Time.unscaledTime;
+            Streak = now - streakAt > 1f ? 1 : Streak + 1; streakAt = now;
+            float surge = 1f + Mathf.Min(Streak, 40) * 0.008f;
+            if (now > popWindow) { popWindow = now + 0.1f; popsInWindow = 0; }
             bool budget = ++popsInWindow <= (PresentationSettings.ReducedEffects ? ReducedPopsPerWindow : PopsPerWindow);
-            // a crit always lands; when no body could be shown the burst has to carry the death on its own
-            if (!budget && !critical && bodyShown) return;
+            bool big = elite || unit != null && (unit.Radius >= 0.4f || unit.BodyHeight >= 1.4f) || critical && overkill > 0.6f;
+            if (big)
+            {
+                if (now > bigWindow) { bigWindow = now + 0.2f; bigInWindow = 0; }
+                big = ++bigInWindow <= (PresentationSettings.ReducedEffects ? ReducedBigPerWindow : BigPerWindow);
+            }
             float height = unit != null ? Mathf.Max(0.3f, unit.BodyHeight) : 0.8f;
-            float force = 1f + (critical ? 0.45f : 0f) + Mathf.Clamp(overkill, 0f, 1.5f) * 0.35f;
-            float radius = Mathf.Clamp(height * 0.6f, 0.36f, 1.15f) * force;
             Vector2 centre = position + Vector2.up * height * 0.3f;
-            Color tint = critical ? new Color(1f, 0.93f, 0.7f) : Color.Lerp(new Color(1f, 0.86f, 0.62f), Tint(element, Faction.Companion), 0.35f);
-            if (Spawn(Kind.Pop, centre, radius, tint, critical || !bodyShown)) PopsShown++;
+            if (Streak == 10 || Streak == 25 || Streak == 50) Milestone(centre, Streak);
+            // a crit or a big body always lands; when no body could be shown the burst has to carry the death on its own
+            if (!budget && !critical && !big && bodyShown) return;
+            float force = (1f + (critical ? 0.45f : 0f) + Mathf.Clamp(overkill, 0f, 1.5f) * 0.35f) * (big ? 1.3f : 1f) * surge;
+            // every multiplier together still ends in a local burst: the painted fireball is 2.3 radii wide, so a big one stays about
+            // three units across and never washes over the crowd
+            float radius = Mathf.Min(Mathf.Clamp(height * 0.6f, 0.36f, big ? 1.5f : 1.15f) * force, big ? MaxBigPopRadius : MaxPopRadius);
+            Color elementColour = Tint(element, Faction.Companion);
+            if (Drifts(unit))
+            {
+                if (Vapour(position, centre, radius, elementColour, big)) PopsShown++;
+            }
+            else
+            {
+                Color tint = critical ? new Color(1f, 0.93f, 0.7f) : Color.Lerp(new Color(1f, 0.86f, 0.62f), elementColour, 0.35f);
+                if (!Spawn(Kind.Pop, centre, radius, tint, critical || !bodyShown || big)) return;
+                PopsShown++;
+                if (big) BigAftermath(position, centre, radius, elementColour);
+                else SmallAftermath(position, centre, radius, elementColour, critical);
+            }
+            if (big)
+            {
+                BigPopsShown++;
+                if (!PresentationSettings.ReducedMotion) shoves.Add((position, 2.2f * Mathf.Sqrt(radius) + 0.8f, 0.22f * Mathf.Sqrt(radius), clock));
+                CheckpointAudio.PlayWorldId("sig.alarm.boom", position);
+                if (!Drifts(unit)) CheckpointAudio.PlayWorldId("fx.burn", position);
+            }
+            if (elite) Pillar(position, centre, radius);
         }
+
+        /// <summary>Things of air (wisps, moths, wraiths, shades, bats, lost souls) do not burn: they come apart into vapour.</summary>
+        private static readonly string[] AirWords = { "Wisp", "Moth", "Wraith", "Soul", "Shade", "Ghost", "Phantom", "Spirit" };
+        public static bool Drifts(UnitDefinition unit)
+        {
+            if (unit == null || string.IsNullOrEmpty(unit.Id)) return false;
+            if (unit.Id.EndsWith("Bat", System.StringComparison.Ordinal)) return true;
+            foreach (string word in AirWords) if (unit.Id.IndexOf(word, System.StringComparison.Ordinal) >= 0) return true;
+            return false;
+        }
+
+        /// <summary>The body bursts into pale vapour round a soft cold glow: curls that swell and swirl up, then thin away,
+        /// with a few motes in the killing element's colour drifting up through them. No fire and no burn.</summary>
+        private bool Vapour(Vector2 feet, Vector2 centre, float r, Color element, bool big)
+        {
+            bool sparse = PresentationSettings.ReducedEffects, still = PresentationSettings.ReducedMotion;
+            float root = Mathf.Sqrt(r);
+            int seed = Mathf.Abs(Mathf.RoundToInt(centre.x * 47 + centre.y * 23));
+            Color pale = new Color(0.9f, 0.95f, 1f), haze = new Color(0.62f, 0.58f, 0.86f);
+            // a cold white flash where the body was
+            Mote flash = Spawn(MoteKind.Glow, centre, Vector2.zero, big ? 0.28f : 0.2f, (big ? 2.6f : 2f) * r, new Color(0.95f, 0.97f, 1f, PresentationSettings.ReducedFlashes ? 0.3f : 0.85f), Color.Lerp(pale, element, 0.35f));
+            // curls rising in a twisting column, each a moment after the last, the lowest widest
+            int curls = sparse ? 3 : big ? 9 : 6;
+            for (int i = 0; i < curls; i++)
+            {
+                float side = (i % 2 == 0 ? 1 : -1) * (0.25f + 0.1f * (i % 3));
+                Vector2 velocity = still ? Vector2.up * 0.4f : new Vector2(side * 1.3f, 1.1f + 0.35f * i) * root;
+                Mote m = Spawn(MoteKind.Vapor, centre + new Vector2(side * 0.3f * r, 0.12f * i * r), velocity, 0.6f + 0.05f * i, (0.75f - 0.04f * i) * r, pale, Color.Lerp(haze, element, 0.25f));
+                if (m != null) { m.Phase = (i % 2 == 0 ? 1 : -1) * (110 + 30 * (i % 3)); m.Age = -0.035f * i; }
+            }
+            // wisp streaks: thin pale threads curling up out of the column
+            if (!still)
+                for (int i = 0, n = sparse ? 2 : big ? 6 : 4; i < n; i++)
+                {
+                    float angle = (60 + 60f * i / Mathf.Max(1, n - 1)) * Mathf.Deg2Rad + Mathf.Sin(seed + i) * 0.2f;
+                    Mote m = Spawn(MoteKind.Flame, centre, new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * 4.2f * root, 0.34f, 0.32f * root, new Color(1f, 1f, 1f), Color.Lerp(pale, element, 0.5f));
+                    if (m != null) m.Phase = i * 1.3f;
+                }
+            for (int i = 0, n = sparse ? 2 : big ? 7 : 4; i < n; i++) Ember(centre, r, Color.Lerp(pale, element, 0.6f), i + seed, 0.55f, 0.95f);
+            return flash != null;
+        }
+
+        /// <summary>An elite's last light: a pillar of gold shooting up out of the body, motes racing up it, then thinning away.</summary>
+        private void Pillar(Vector2 feet, Vector2 centre, float r)
+        {
+            Color gold = new Color(1f, 0.95f, 0.72f), deep = new Color(1f, 0.62f, 0.2f);
+            Mote shaft = Spawn(MoteKind.Pillar, feet, Vector2.zero, 0.7f, 3.4f + r * 1.4f, new Color(1f, 0.82f, 0.45f), deep);
+            if (shaft != null) { shaft.Width = 1.1f + 0.25f * r; shaft.View.sprite = glow; shaft.View.sortingOrder = 2453; }
+            Mote beam = Spawn(MoteKind.Pillar, feet, Vector2.zero, 0.62f, 3.2f + r * 1.4f, gold, deep);
+            if (beam != null) beam.Width = 0.5f + 0.12f * r;
+            Spawn(MoteKind.Glow, feet + Vector2.up * 0.2f, Vector2.zero, 0.35f, 1.8f * r + 0.6f, new Color(1f, 0.9f, 0.6f, PresentationSettings.ReducedFlashes ? 0.2f : 0.5f), deep);
+            if (PresentationSettings.ReducedMotion) return;
+            for (int i = 0; i < (PresentationSettings.ReducedEffects ? 2 : 5); i++)
+            {
+                Mote m = Spawn(MoteKind.Ember, feet + new Vector2((i - 2) * 0.07f, 0.2f + i * 0.25f), new Vector2((i - 2) * 0.05f, 3.4f + 0.5f * i), 0.5f + 0.06f * i, 0.13f, new Color(1f, 1f, 0.9f), gold);
+                if (m != null) m.Phase = i * 2.1f;
+            }
+        }
+
+        /// <summary>An unbroken run of kills reaching 10, 25 or 50: a warm swell of light over the kill and a rising note.</summary>
+        private void Milestone(Vector2 centre, int streak)
+        {
+            Spawn(MoteKind.Glow, centre, Vector2.zero, 0.42f, 3.4f + streak * 0.04f, new Color(1f, 0.86f, 0.55f, PresentationSettings.ReducedFlashes ? 0.15f : 0.38f), new Color(1f, 0.7f, 0.35f));
+            CheckpointAudio.PlayInterfaceId(streak >= 50 ? "up.note.5" : streak >= 25 ? "up.note.3" : "up.note.2");
+        }
+
+        private void SmallAftermath(Vector2 feet, Vector2 centre, float r, Color element, bool critical)
+        {
+            bool sparse = PresentationSettings.ReducedEffects;
+            Burn(feet, r * 1.5f, 0.9f, 0.32f);
+            int embers = sparse ? 2 : critical ? 6 : 4;
+            for (int i = 0; i < embers; i++) Ember(centre, r, element, i + Mathf.RoundToInt(centre.x * 7), 0.45f, 0.75f);
+        }
+
+        private void BigAftermath(Vector2 feet, Vector2 centre, float r, Color element)
+        {
+            bool still = PresentationSettings.ReducedMotion, sparse = PresentationSettings.ReducedEffects;
+            float root = Mathf.Sqrt(r);
+            int seed = Mathf.Abs(Mathf.RoundToInt(centre.x * 53 + centre.y * 29));
+            Burn(feet, r * 2.4f, 1.8f, 0.46f);
+            // the chain: three rim bursts cracking open one after another round the main blast
+            Color white = new Color(1f, 0.95f, 0.8f);
+            for (int i = 0; i < (sparse ? 1 : 3); i++)
+            {
+                float angle = (seed % 360) * Mathf.Deg2Rad + i * 2.3f;
+                Vector2 at = centre + new Vector2(Mathf.Cos(angle), Mathf.Sin(angle) * 0.75f) * r * (0.55f + 0.12f * i);
+                echoes.Add((clock + 0.07f + i * 0.065f, at, r * (0.55f - i * 0.05f), Color.Lerp(white, element, 0.25f + 0.15f * i)));
+            }
+            Color hot = new Color(1f, 0.97f, 0.85f), ember = new Color(1f, 0.42f, 0.12f), smoke = new Color(0.17f, 0.12f, 0.18f), dust = new Color(0.62f, 0.53f, 0.44f);
+            if (!still)
+            {
+                // flame tongues licking out of the blast, fast, then dragged to nothing
+                for (int i = 0, n = sparse ? 4 : 7; i < n; i++)
+                {
+                    float angle = (i + (seed % 5) * 0.2f) * Mathf.PI * 2f / n + Mathf.Sin(seed + i) * 0.3f;
+                    Mote m = Spawn(MoteKind.Flame, centre, new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * 6.2f * root * (0.8f + 0.3f * Mathf.Abs(Mathf.Sin(seed * 0.7f + i))), 0.26f + 0.04f * (i % 3), 0.42f * root, hot, Color.Lerp(ember, element, 0.3f));
+                    if (m != null) m.Phase = i;
+                }
+                // hot sparks thrown up: they arc, fall, bounce once on the floor and fizzle
+                for (int i = 0, n = sparse ? 5 : 11; i < n; i++)
+                {
+                    float angle = (i + 0.5f + (seed % 3) * 0.3f) * Mathf.PI * 2f / n + Mathf.Cos(seed + i * 1.7f) * 0.4f;
+                    Mote m = Spawn(MoteKind.Spark, feet, new Vector2(Mathf.Cos(angle), Mathf.Sin(angle) * 0.55f) * 2.6f * root * (0.7f + 0.5f * Mathf.Abs(Mathf.Sin(seed * 0.3f + i))), 0.75f + 0.1f * (i % 3), 0.2f * root, new Color(1f, 0.9f, 0.55f), ember);
+                    if (m != null) { m.Height = r * 0.6f; m.Lift = (3.2f + 1.6f * Mathf.Abs(Mathf.Sin(seed + i * 2.1f))) * root; }
+                }
+                // a dust skirt kicked out low along the floor
+                for (int i = 0, n = sparse ? 3 : 5; i < n; i++)
+                {
+                    float angle = (i + 0.25f) * Mathf.PI * 2f / n + (seed % 7) * 0.1f;
+                    Spawn(MoteKind.Dust, feet + Vector2.up * 0.05f, new Vector2(Mathf.Cos(angle), Mathf.Sin(angle) * 0.35f) * 2.4f * root, 0.55f, 0.75f * r, dust, dust);
+                }
+            }
+            // a column of smoke rising after the fire, each curl a moment after the last
+            for (int i = 0, n = sparse ? 2 : 3; i < n; i++)
+            {
+                Mote m = Spawn(MoteKind.Smoke, centre + new Vector2((i - 1) * 0.18f * r, 0.1f * r), new Vector2((i - 1) * 0.15f, 0.55f + 0.2f * i) * root, 0.95f + 0.1f * i, 0.95f * r, smoke, smoke);
+                if (m != null) m.Age = -0.12f - i * 0.08f;
+            }
+            for (int i = 0, n = sparse ? 3 : 8; i < n; i++) Ember(centre, r, element, i + seed, 0.6f, 1.05f);
+        }
+
+        /// <summary>A mote in the killing element's colour (gold for plain hits) thrown out and drifting up as it flickers out.</summary>
+        private void Ember(Vector2 centre, float r, Color element, int index, float shortest, float longest)
+        {
+            float angle = index * 2.399963f + 0.4f, root = Mathf.Sqrt(r);
+            Mote m = Spawn(MoteKind.Ember, centre, new Vector2(Mathf.Cos(angle), Mathf.Sin(angle) * 0.6f + 0.5f) * (1.1f + 0.5f * Mathf.Abs(Mathf.Sin(index * 1.3f))) * root,
+                Mathf.Lerp(shortest, longest, Mathf.Abs(Mathf.Sin(index * 0.77f))), 0.11f * root, new Color(1f, 0.97f, 0.82f), Color.Lerp(element, new Color(1f, 0.45f, 0.15f), 0.3f));
+            if (m != null) m.Phase = index * 1.7f;
+        }
+
+        private Mote Spawn(MoteKind kind, Vector2 position, Vector2 velocity, float life, float size, Color hot, Color cool)
+        {
+            Mote mote = null;
+            for (int n = 0; n < motes.Count; n++)
+            {
+                Mote candidate = motes[(moteCursor + n) % motes.Count];
+                if (candidate.Age >= candidate.Life) { mote = candidate; moteCursor = (moteCursor + n + 1) % motes.Count; break; }
+            }
+            if (mote == null)
+            {
+                if (motes.Count >= MoteCapacity) return null;
+                mote = new Mote { View = Part("Mote" + motes.Count, glow, 2456) };
+                motes.Add(mote);
+            }
+            mote.Kind = kind; mote.Position = position; mote.Velocity = velocity; mote.Height = 0; mote.Lift = 0; mote.Age = 0; mote.Life = life; mote.Size = size; mote.Width = 0; mote.Phase = 0; mote.Hot = hot; mote.Cool = cool;
+            mote.View.sprite = kind == MoteKind.Flame || kind == MoteKind.Spark || kind == MoteKind.Pillar ? spark : kind == MoteKind.Ember || kind == MoteKind.Glow ? glow : puff;
+            mote.View.sortingOrder = kind == MoteKind.Spark ? 2458 : kind == MoteKind.Smoke || kind == MoteKind.Vapor ? 2432 : kind == MoteKind.Dust ? 2425 : kind == MoteKind.Glow ? 2452 : kind == MoteKind.Pillar ? 2457 : 2456;
+            mote.View.enabled = false;
+            return mote;
+        }
+
+        /// <summary>A burn on the floor under the body: it glows ember-hot for a moment, cools to ink, then fades.</summary>
+        private void Burn(Vector2 position, float size, float life, float alpha)
+        {
+            Scorch scorch = null;
+            for (int n = 0; n < scorches.Count; n++)
+            {
+                Scorch candidate = scorches[(scorchCursor + n) % scorches.Count];
+                if (candidate.Age >= candidate.Life) { scorch = candidate; scorchCursor = (scorchCursor + n + 1) % scorches.Count; break; }
+            }
+            if (scorch == null)
+            {
+                if (scorches.Count >= ScorchCapacity) { scorch = scorches[scorchCursor]; scorchCursor = (scorchCursor + 1) % scorches.Count; } // the oldest burn gives way
+                else { scorch = new Scorch { View = Part("Burn" + scorches.Count, burn, 60) }; scorches.Add(scorch); } // on the floor, under every body
+            }
+            scorch.Position = position; scorch.Size = size; scorch.Life = life; scorch.Alpha = alpha; scorch.Age = 0;
+            scorch.View.transform.rotation = Quaternion.Euler(0, 0, Mathf.Repeat(position.x * 131 + position.y * 71, 360));
+        }
+
+        /// <summary>How far a big blast rocks the drawing of a body standing at <paramref name="position"/> (out from the blast, then
+        /// back): the picture only, the body itself never moves.</summary>
+        public static Vector2 Shove(Vector2 position)
+        {
+            ExplosionFeedback self = Active;
+            if (self == null || self.shoves.Count == 0) return Vector2.zero;
+            Vector2 total = Vector2.zero;
+            foreach (var shove in self.shoves)
+            {
+                Vector2 away = position - shove.at; float distance = away.magnitude;
+                if (distance >= shove.radius || distance < 0.05f) continue;
+                float t = (self.clock - shove.born) / ShoveSeconds;
+                if (t < 0 || t >= 1) continue;
+                float envelope = t < 0.22f ? Ease(t / 0.22f) : 1 - Mathf.SmoothStep(0, 1, (t - 0.22f) / 0.78f);
+                total += away / distance * shove.strength * (1 - distance / shove.radius) * envelope;
+            }
+            return Vector2.ClampMagnitude(total, 0.35f);
+        }
+
+        private void AdvanceAftermath(float delta)
+        {
+            clock += delta;
+            for (int i = echoes.Count - 1; i >= 0; i--)
+            {
+                if (echoes[i].at > clock) continue;
+                var echo = echoes[i]; echoes.RemoveAt(i);
+                Spawn(Kind.Pop, echo.position, echo.radius, echo.color, false);
+            }
+            shoves.RemoveAll(shove => clock - shove.born >= ShoveSeconds);
+            foreach (Mote m in motes)
+            {
+                if (m.Age >= m.Life) continue;
+                m.Age += delta;
+                if (m.Age >= m.Life || m.Age < 0) { m.View.enabled = false; continue; }
+                float t = m.Age / m.Life;
+                Color c = Color.Lerp(m.Hot, m.Cool, Mathf.Clamp01(t * 1.4f));
+                Transform view = m.View.transform;
+                switch (m.Kind)
+                {
+                    case MoteKind.Ember:
+                        m.Velocity *= Mathf.Max(0, 1 - 2.6f * delta); m.Velocity.y += 1.4f * delta; m.Position += m.Velocity * delta;
+                        view.position = m.Position; view.rotation = Quaternion.identity;
+                        view.localScale = Vector3.one * m.Size * (1 - 0.45f * t);
+                        c.a = (1 - t) * (0.65f + 0.35f * Mathf.Sin(m.Age * 38 + m.Phase));
+                        break;
+                    case MoteKind.Flame:
+                        m.Velocity *= Mathf.Max(0, 1 - 7.5f * delta); m.Position += m.Velocity * delta;
+                        view.position = m.Position;
+                        view.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(m.Velocity.y, m.Velocity.x) * Mathf.Rad2Deg + Mathf.Sin(m.Age * 30 + m.Phase) * 8);
+                        view.localScale = new Vector3(m.Size * (2.4f - 1.5f * t), m.Size * 0.42f * (1 - t * 0.7f), 1);
+                        c.a = 1 - t * t;
+                        break;
+                    case MoteKind.Spark:
+                        m.Velocity *= Mathf.Max(0, 1 - 1.1f * delta); m.Position += m.Velocity * delta;
+                        m.Lift -= 15f * delta; m.Height += m.Lift * delta;
+                        if (m.Height < 0) { m.Height = 0; m.Lift = -m.Lift * 0.35f; m.Velocity *= 0.5f; }
+                        Vector2 flight = m.Velocity + Vector2.up * m.Lift;
+                        view.position = m.Position + Vector2.up * m.Height;
+                        view.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(flight.y, flight.x) * Mathf.Rad2Deg);
+                        view.localScale = new Vector3(m.Size * Mathf.Clamp(0.5f + flight.magnitude * 0.12f, 0.5f, 1.6f), m.Size * 0.35f, 1);
+                        c.a = 1 - t * t;
+                        break;
+                    case MoteKind.Smoke:
+                        m.Velocity *= Mathf.Max(0, 1 - 0.8f * delta); m.Position += m.Velocity * delta;
+                        view.position = m.Position; view.rotation = Quaternion.Euler(0, 0, m.Age * 25);
+                        view.localScale = Vector3.one * m.Size * (0.55f + 0.85f * Ease(t));
+                        c.a = Mathf.Sin(Mathf.PI * Mathf.Clamp01(t * 1.15f)) * 0.42f;
+                        break;
+                    case MoteKind.Vapor:
+                        m.Velocity *= Mathf.Max(0, 1 - 2.2f * delta); m.Velocity.y += 0.5f * delta; m.Position += m.Velocity * delta;
+                        view.position = m.Position; view.rotation = Quaternion.Euler(0, 0, m.Age * m.Phase);
+                        view.localScale = new Vector3(m.Size * (0.5f + 1.05f * Ease(t)), m.Size * (0.45f + 0.8f * Ease(t)), 1);
+                        c.a = Mathf.Sin(Mathf.PI * Mathf.Clamp01(t * 1.1f + 0.08f)) * 0.75f;
+                        break;
+                    case MoteKind.Glow:
+                        view.position = m.Position; view.rotation = Quaternion.identity;
+                        view.localScale = Vector3.one * m.Size * (0.6f + 0.55f * Ease(t));
+                        c = Color.Lerp(m.Hot, m.Cool, t); c.a = m.Hot.a * (1 - t) * (1 - t);
+                        break;
+                    case MoteKind.Pillar:
+                        float rise = Ease(Mathf.Clamp01(t / 0.2f)), length = m.Size * rise;
+                        view.position = m.Position + Vector2.up * length * 0.5f; view.rotation = Quaternion.Euler(0, 0, 90);
+                        view.localScale = new Vector3(Mathf.Max(0.01f, length), m.Width * (1 - t * 0.85f) * (1 + 0.08f * Mathf.Sin(m.Age * 40)), 1);
+                        c.a = (1 - t * t) * (PresentationSettings.ReducedFlashes ? 0.5f : 1f);
+                        break;
+                    default: // dust
+                        m.Velocity *= Mathf.Max(0, 1 - 4.5f * delta); m.Position += m.Velocity * delta;
+                        view.position = m.Position; view.rotation = Quaternion.identity;
+                        float grow = 0.55f + 1.1f * Ease(t);
+                        view.localScale = new Vector3(m.Size * grow, m.Size * grow * 0.45f, 1);
+                        c.a = (1 - t) * 0.34f;
+                        break;
+                }
+                m.View.color = c; m.View.enabled = true;
+            }
+            foreach (Scorch b in scorches)
+            {
+                if (b.Age >= b.Life) continue;
+                b.Age += delta;
+                if (b.Age >= b.Life) { b.View.enabled = false; continue; }
+                float t = b.Age / b.Life, cool = Ease(Mathf.Clamp01(b.Age / 0.35f));
+                Color c = Color.Lerp(new Color(1f, 0.5f, 0.18f), new Color(0.07f, 0.045f, 0.06f), cool);
+                c.a = Mathf.Clamp01(b.Alpha * (1 - Mathf.Clamp01((t - 0.55f) / 0.45f)) * (cool < 1 ? 1.3f : 1f));
+                b.View.color = c; b.View.enabled = true;
+                b.View.transform.position = b.Position;
+                b.View.transform.localScale = new Vector3(b.Size * Mathf.Lerp(0.7f, 1f, Ease(Mathf.Clamp01(b.Age / 0.12f))), b.Size * 0.55f, 1);
+            }
+        }
+
         /// <summary>The end of a boss finale: the body goes up in one big blast with a ground shock.</summary>
         public void BossFinale(Vector2 position, float height)
         {
@@ -306,6 +656,7 @@ namespace ArcaneBrigade
         public void Advance(float delta)
         {
             if (delta <= 0 || !float.IsFinite(delta)) return;
+            AdvanceAftermath(delta);
             ActiveCount = 0;
             foreach (Blast blast in pool)
             {
