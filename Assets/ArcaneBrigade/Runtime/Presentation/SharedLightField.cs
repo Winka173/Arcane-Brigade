@@ -88,7 +88,9 @@ namespace ArcaneBrigade
             if ((unit.Position - owner.Simulation.Champion.Position).sqrMagnitude < safeRange * safeRange || unit.PendingAttack || unit.TelegraphUntil > clock || unit.ContactImpactAt > clock || clock - unit.AttackStarted < unit.Definition.Weapon.Windup + unit.Definition.Weapon.Recovery + .65f) return 1;
             float light = Mathf.Max(Strength(unit.Position), NightLanternField.Active?.Illumination(unit.Position) ?? 0);
             float depth = NightmareRules.Depth(owner.Session.State.Wave) / 4f;
-            float minimum = unit.Definition.IsBoss ? .8f : PresentationSettings.HighReadability ? .62f : .16f;
+            // the dark dims a far enemy but never swallows it: its shape still reads at the edge of the light (at .16 the horde
+            // past the lamp was a black smudge)
+            float minimum = unit.Definition.IsBoss ? .8f : PresentationSettings.HighReadability ? .66f : .48f;
             return Mathf.Lerp(1, Mathf.Lerp(minimum, 1, Mathf.SmoothStep(0, 1, light * 1.7f)), depth);
         }
         public float Strength(Vector2 position)
