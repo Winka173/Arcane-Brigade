@@ -44,7 +44,7 @@ namespace ArcaneBrigade
 
         // ---- what a death leaves behind (all code-drawn and pooled): sparks, flame tongues, smoke, dust, vapour, a burn on the
         // floor, an elite's pillar of light; the chain of rim bursts after a big blast; the shove it gives the bodies round it ----
-        private enum MoteKind { Ember, Flame, Spark, Smoke, Dust, Vapor, Glow, Pillar, Shard }
+        private enum MoteKind { Ember, Flame, Spark, Smoke, Dust, Vapor, Glow, Pillar }
         private sealed class Mote
         {
             public SpriteRenderer View; public MoteKind Kind;
@@ -63,7 +63,6 @@ namespace ArcaneBrigade
         private readonly List<(Vector2 at, float radius, float strength, float born)> shoves = new List<(Vector2, float, float, float)>();
         private float clock;
         private Sprite burn;
-        private bool puffPending;
         /// <summary>Most big death blasts started per fifth of a second (the rest go up as small ones).</summary>
         public const int BigPerWindow = 4, ReducedBigPerWindow = 2;
         public const float PopRadius = 0.5f, BigPopRadius = 0.85f, MaxPopRadius = 0.7f, MaxBigPopRadius = 1.0f;
@@ -74,15 +73,9 @@ namespace ArcaneBrigade
         public int Streak { get; private set; }
         private float streakAt = -10;
         public const float ShoveSeconds = 0.34f;
-        /// <summary>The dying body burns away from its heart with a glowing edge (UnitFlash's departure) instead of fading.</summary>
-        public static bool BodyBurn = true;
-        /// <summary>A big blast throws a few shards of the body's own material (wood, brass, wax, cloth, glass, paper).</summary>
-        public static bool Shards = true;
-        /// <summary>Sparks, embers, flame tongues, smoke, dust, vapour and shards are emitted as particles (one system per kind, simulated
-        /// natively) rather than one pooled sprite each; off only to measure the difference.</summary>
-        public static bool ParticleMotes = true;
-        private ParticleSystem emberSystem, flameSystem, sparkSystem, smokeSystem, dustSystem, vapourSystem, shardSystem;
-        private Sprite shard;
+        /// <summary>Nothing of a death outlives its blast by long (requirement 09/11/2026: when the blast is over nothing is left):
+        /// every mote, burn and pillar is gone this long after it starts.</summary>
+        public const float AftermathSeconds = 0.6f;
         private void OnDestroy() { if (Active == this) Active = null; }
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)] private static void ResetActive() => Active = null;
         /// <summary>A puff of floor dust where a knocked-back body skids.</summary>
@@ -107,11 +100,8 @@ namespace ArcaneBrigade
             // a hot streak: a long thin diamond, brightest along its spine, drawn along each spark's flight
             spark = Make("ExplosionSpark", 64, (d, a) => { float x = Mathf.Abs(d * Mathf.Cos(a)), y = Mathf.Abs(d * Mathf.Sin(a)); return Mathf.Clamp01((1 - x - y * 3.4f) * 1.8f); });
             deathBlast = LoadDeathBlast();
-            // a shard: a jagged splinter, longer than wide, heavier at one end
-            shard = Make("ExplosionShard", 48, (d, a) => { float x = d * Mathf.Cos(a), y = d * Mathf.Sin(a); float edge = 1 - Mathf.Abs(y) * (3.2f - x * 1.1f) - Mathf.Abs(x) * 0.9f + 0.12f * Mathf.Sin(a * 7); return Mathf.Clamp01(edge * 3f); });
             // a burn on the floor: an ink blot with ragged lobes, soft at its rim
             burn = Make("ExplosionBurn", 128, (d, a) => { float lobes = 1 + 0.18f * Mathf.Sin(a * 5 + 1.3f) + 0.1f * Mathf.Cos(a * 11) + 0.06f * Mathf.Sin(a * 17 + 0.4f); return Mathf.Clamp01((1 - d * lobes) * 2.4f) * (0.55f + 0.45f * Mathf.Clamp01(1 - d * 1.5f)); });
-            puffPending = true;
             puff = Make("ExplosionSmudge", 96, (d, a) => { float wobble = 1 + 0.12f * Mathf.Sin(a * 5) + 0.06f * Mathf.Cos(a * 9); return Mathf.Clamp01((1 - d * wobble) * 1.6f) * (0.65f + 0.35f * Mathf.Clamp01(1 - d * 1.4f)); });
         }
         /// <summary>The painted golden blast every ordinary kill goes up in (Resources/Effects/DeathBlast_f0..3, one world
@@ -143,51 +133,11 @@ namespace ArcaneBrigade
             return Sprite.Create(texture, new Rect(0, 0, size, size), new Vector2(0.5f, 0.5f), size, 0, SpriteMeshType.FullRect);
         }
 
-        private void Start()
-        {
-            if (!puffPending) return;
-            puffPending = false;
-            // gravity is world units a second squared over Physics' 9.81; drag slows each kind as its own sprite version did
-            emberSystem = MakeSystem("Embers", glow, 2456, false, -0.14f, 2.6f, new AnimationCurve(new Keyframe(0, 1), new Keyframe(1, 0.55f)), true);
-            flameSystem = MakeSystem("Flames", spark, 2456, true, 0f, 7.5f, new AnimationCurve(new Keyframe(0, 1), new Keyframe(1, 0.35f)), false);
-            sparkSystem = MakeSystem("Sparks", spark, 2458, true, 1.5f, 1.1f, new AnimationCurve(new Keyframe(0, 1), new Keyframe(1, 0.6f)), false);
-            smokeSystem = MakeSystem("Smoke", puff, 2432, false, -0.05f, 0.8f, new AnimationCurve(new Keyframe(0, 0.55f), new Keyframe(1, 1.4f)), true, bell: true);
-            dustSystem = MakeSystem("Dust", puff, 2425, false, 0f, 4.5f, new AnimationCurve(new Keyframe(0, 0.55f), new Keyframe(1, 1.65f)), true);
-            vapourSystem = MakeSystem("Vapour", puff, 2432, false, -0.05f, 2.2f, new AnimationCurve(new Keyframe(0, 0.5f), new Keyframe(1, 1.55f)), true, bell: true);
-            shardSystem = MakeSystem("Shards", shard, 2459, false, 1.7f, 0.9f, new AnimationCurve(new Keyframe(0, 1), new Keyframe(0.8f, 1), new Keyframe(1, 0.4f)), false);
-        }
-        private ParticleSystem MakeSystem(string name, Sprite sprite, int order, bool stretch, float gravity, float drag, AnimationCurve size, bool softEnd, bool bell = false)
-        {
-            var child = new GameObject("DeathParticles" + name); child.transform.SetParent(transform, false);
-            var system = child.AddComponent<ParticleSystem>();
-            system.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
-            var main = system.main; main.loop = false; main.playOnAwake = false; main.simulationSpace = ParticleSystemSimulationSpace.World;
-            main.maxParticles = 900; main.gravityModifier = gravity; main.startSpeed = 0; main.scalingMode = ParticleSystemScalingMode.Hierarchy;
-            var emission = system.emission; emission.enabled = false;
-            var shape = system.shape; shape.enabled = false;
-            var limit = system.limitVelocityOverLifetime; limit.enabled = drag > 0; limit.limit = 0; limit.drag = drag; limit.multiplyDragByParticleSize = false; limit.multiplyDragByParticleVelocity = false;
-            var sizeOver = system.sizeOverLifetime; sizeOver.enabled = true; sizeOver.size = new ParticleSystem.MinMaxCurve(1, size);
-            var colour = system.colorOverLifetime; colour.enabled = true;
-            var gradient = new Gradient();
-            gradient.SetKeys(new[] { new GradientColorKey(Color.white, 0), new GradientColorKey(softEnd ? Color.white : new Color(1f, 0.55f, 0.3f), 1) },
-                bell ? new[] { new GradientAlphaKey(0, 0), new GradientAlphaKey(1, 0.25f), new GradientAlphaKey(0.7f, 0.6f), new GradientAlphaKey(0, 1) }
-                     : new[] { new GradientAlphaKey(1, 0), new GradientAlphaKey(softEnd ? 0.6f : 0.85f, 0.55f), new GradientAlphaKey(0, 1) });
-            colour.color = gradient;
-            var renderer = system.GetComponent<ParticleSystemRenderer>();
-            renderer.sortingOrder = order; renderer.renderMode = stretch ? ParticleSystemRenderMode.Stretch : ParticleSystemRenderMode.Billboard;
-            if (stretch) { renderer.velocityScale = 0.09f; renderer.lengthScale = 1.6f; }
-            renderer.material = new Material(Shader.Find("Sprites/Default")) { mainTexture = sprite.texture };
-            renderer.alignment = ParticleSystemRenderSpace.View;
-            system.Play();
-            return system;
-        }
-
         public void Clear()
         {
             foreach (Blast blast in pool) { blast.Age = blast.Duration; Hide(blast); }
             foreach (Mote mote in motes) { mote.Age = mote.Life; mote.View.enabled = false; }
             foreach (Scorch scorch in scorches) { scorch.Age = scorch.Life; scorch.View.enabled = false; }
-            foreach (ParticleSystem system in new[] { emberSystem, flameSystem, sparkSystem, smokeSystem, dustSystem, vapourSystem, shardSystem }) if (system != null) system.Clear();
             echoes.Clear(); shoves.Clear(); Streak = 0;
             ActiveCount = 0;
         }
@@ -212,6 +162,7 @@ namespace ArcaneBrigade
                     Spawn(Kind.Blast, value.Position, 2.2f, new Color(1f, 0.82f, 0.48f), true);
                     break;
                 case CombatEventKind.Kill when value.Faction == Faction.Enemy && value.Subject?.Flung != true:
+                    // the blast goes off at once, while the body acts its death inside it (requirement 09/11/2026: no waiting)
                     Pop(value.Subject?.Definition, value.Position, value.Critical, value.Value, value.Element, deathShown, value.Subject?.Elite == true);
                     break;
             }
@@ -236,7 +187,9 @@ namespace ArcaneBrigade
                 big = ++bigInWindow <= (PresentationSettings.ReducedEffects ? ReducedBigPerWindow : BigPerWindow);
             }
             float height = unit != null ? Mathf.Max(0.3f, unit.BodyHeight) : 0.8f;
-            Vector2 centre = position + Vector2.up * height * 0.3f;
+            // a unit position is the middle of its body (UnitVisual): the blast goes off a little below it, where a slumped body lies,
+            // and its burn, dust and thrown sparks start at the feet (requirement 09/11/2026: big bodies blew up too high)
+            Vector2 centre = position - Vector2.up * height * 0.08f, feet = position - Vector2.up * height * 0.45f;
             if (Streak == 10 || Streak == 25 || Streak == 50) Milestone(centre, Streak);
             // a crit or a big body always lands; when no body could be shown the burst has to carry the death on its own
             if (!budget && !critical && !big && bodyShown) return;
@@ -247,24 +200,24 @@ namespace ArcaneBrigade
             Color elementColour = Tint(element, Faction.Companion);
             if (Drifts(unit))
             {
-                if (Vapour(position, centre, radius, elementColour, big)) PopsShown++;
+                if (Vapour(feet, centre, radius, elementColour, big)) PopsShown++;
             }
             else
             {
                 Color tint = critical ? new Color(1f, 0.93f, 0.7f) : Color.Lerp(new Color(1f, 0.86f, 0.62f), elementColour, 0.35f);
                 if (!Spawn(Kind.Pop, centre, radius, tint, critical || !bodyShown || big)) return;
                 PopsShown++;
-                if (big) BigAftermath(position, centre, radius, elementColour, unit != null ? unit.Material : BodyMaterial.Wood);
-                else SmallAftermath(position, centre, radius, elementColour, critical);
+                if (big) BigAftermath(feet, centre, radius, elementColour);
+                else SmallAftermath(feet, centre, radius, elementColour, critical);
             }
             if (big)
             {
                 BigPopsShown++;
-                if (!PresentationSettings.ReducedMotion) shoves.Add((position, 2.2f * Mathf.Sqrt(radius) + 0.8f, 0.22f * Mathf.Sqrt(radius), clock));
+                if (!PresentationSettings.ReducedMotion) shoves.Add((centre, 2.2f * Mathf.Sqrt(radius) + 0.8f, 0.22f * Mathf.Sqrt(radius), clock));
                 CheckpointAudio.PlayWorldId("sig.alarm.boom", position);
                 if (!Drifts(unit)) CheckpointAudio.PlayWorldId("fx.burn", position);
             }
-            if (elite) Pillar(position, centre, radius);
+            if (elite) Pillar(feet, centre, radius);
         }
 
         /// <summary>Things of air (wisps, moths, wraiths, shades, bats, lost souls) do not burn: they come apart into vapour.</summary>
@@ -277,27 +230,32 @@ namespace ArcaneBrigade
             return false;
         }
 
-        /// <summary>The body bursts into pale vapour round a soft cold glow: curls rising in a twisting column, thin wisps curling
-        /// up out of it, motes in the killing element's colour drifting through. No fire and no burn.</summary>
+        /// <summary>The body bursts into pale vapour round a soft cold glow: curls that swell and swirl up, then thin away,
+        /// with a few motes in the killing element's colour drifting up through them. No fire and no burn.</summary>
         private bool Vapour(Vector2 feet, Vector2 centre, float r, Color element, bool big)
         {
             bool sparse = PresentationSettings.ReducedEffects, still = PresentationSettings.ReducedMotion;
             float root = Mathf.Sqrt(r);
             int seed = Mathf.Abs(Mathf.RoundToInt(centre.x * 47 + centre.y * 23));
             Color pale = new Color(0.9f, 0.95f, 1f), haze = new Color(0.62f, 0.58f, 0.86f);
+            // a cold white flash where the body was
             Mote flash = Spawn(MoteKind.Glow, centre, Vector2.zero, big ? 0.28f : 0.2f, (big ? 2.6f : 2f) * r, new Color(0.95f, 0.97f, 1f, PresentationSettings.ReducedFlashes ? 0.3f : 0.85f), Color.Lerp(pale, element, 0.35f));
+            // curls rising in a twisting column, each a moment after the last, the lowest widest
             int curls = sparse ? 3 : big ? 9 : 6;
             for (int i = 0; i < curls; i++)
             {
                 float side = (i % 2 == 0 ? 1 : -1) * (0.25f + 0.1f * (i % 3));
                 Vector2 velocity = still ? Vector2.up * 0.4f : new Vector2(side * 1.3f, 1.1f + 0.35f * i) * root;
-                Emit(MoteKind.Vapor, centre + new Vector2(side * 0.3f * r, 0.12f * i * r), velocity, 0.6f + 0.05f * i, (0.75f - 0.04f * i) * r, Color.Lerp(pale, haze, 0.3f), Color.Lerp(haze, element, 0.25f), delay: 0.035f * i, phase: (i % 2 == 0 ? 1 : -1) * (110 + 30 * (i % 3)));
+                Mote m = Spawn(MoteKind.Vapor, centre + new Vector2(side * 0.3f * r, 0.12f * i * r), velocity, 0.6f + 0.05f * i, (0.75f - 0.04f * i) * r, pale, Color.Lerp(haze, element, 0.25f));
+                if (m != null) { m.Phase = (i % 2 == 0 ? 1 : -1) * (110 + 30 * (i % 3)); m.Age = -0.035f * i; }
             }
+            // wisp streaks: thin pale threads curling up out of the column
             if (!still)
                 for (int i = 0, n = sparse ? 2 : big ? 6 : 4; i < n; i++)
                 {
                     float angle = (60 + 60f * i / Mathf.Max(1, n - 1)) * Mathf.Deg2Rad + Mathf.Sin(seed + i) * 0.2f;
-                    Emit(MoteKind.Flame, centre, new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * 4.2f * root, 0.34f, 0.32f * root, Color.white, Color.Lerp(pale, element, 0.5f), phase: i * 1.3f);
+                    Mote m = Spawn(MoteKind.Flame, centre, new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * 4.2f * root, 0.34f, 0.32f * root, new Color(1f, 1f, 1f), Color.Lerp(pale, element, 0.5f));
+                    if (m != null) m.Phase = i * 1.3f;
                 }
             for (int i = 0, n = sparse ? 2 : big ? 7 : 4; i < n; i++) Ember(centre, r, Color.Lerp(pale, element, 0.6f), i + seed, 0.55f, 0.95f);
             return flash != null;
@@ -314,7 +272,10 @@ namespace ArcaneBrigade
             Spawn(MoteKind.Glow, feet + Vector2.up * 0.2f, Vector2.zero, 0.35f, 1.8f * r + 0.6f, new Color(1f, 0.9f, 0.6f, PresentationSettings.ReducedFlashes ? 0.2f : 0.5f), deep);
             if (PresentationSettings.ReducedMotion) return;
             for (int i = 0; i < (PresentationSettings.ReducedEffects ? 2 : 5); i++)
-                Emit(MoteKind.Ember, feet + new Vector2((i - 2) * 0.07f, 0.2f + i * 0.25f), new Vector2((i - 2) * 0.05f, 3.4f + 0.5f * i), 0.5f + 0.06f * i, 0.13f, new Color(1f, 1f, 0.9f), gold, phase: i * 2.1f);
+            {
+                Mote m = Spawn(MoteKind.Ember, feet + new Vector2((i - 2) * 0.07f, 0.2f + i * 0.25f), new Vector2((i - 2) * 0.05f, 3.4f + 0.5f * i), 0.5f + 0.06f * i, 0.13f, new Color(1f, 1f, 0.9f), gold);
+                if (m != null) m.Phase = i * 2.1f;
+            }
         }
 
         /// <summary>An unbroken run of kills reaching 10, 25 or 50: a warm swell of light over the kill and a rising note.</summary>
@@ -332,18 +293,7 @@ namespace ArcaneBrigade
             for (int i = 0; i < embers; i++) Ember(centre, r, element, i + Mathf.RoundToInt(centre.x * 7), 0.45f, 0.75f);
         }
 
-        /// <summary>The colours a body's shards come in: its material's two tones.</summary>
-        private static (Color, Color) ShardTones(BodyMaterial material) => material switch
-        {
-            BodyMaterial.Paper => (new Color(0.95f, 0.9f, 0.78f), new Color(0.7f, 0.62f, 0.5f)),
-            BodyMaterial.Metal => (new Color(0.95f, 0.78f, 0.38f), new Color(0.55f, 0.4f, 0.2f)),
-            BodyMaterial.Wax => (new Color(1f, 0.92f, 0.7f), new Color(0.85f, 0.55f, 0.3f)),
-            BodyMaterial.Fabric => (new Color(0.78f, 0.18f, 0.24f), new Color(0.42f, 0.1f, 0.2f)),
-            BodyMaterial.Glass => (new Color(0.78f, 0.95f, 1f), new Color(0.45f, 0.65f, 0.85f)),
-            _ => (new Color(0.66f, 0.42f, 0.24f), new Color(0.38f, 0.22f, 0.12f)),
-        };
-
-        private void BigAftermath(Vector2 feet, Vector2 centre, float r, Color element, BodyMaterial material)
+        private void BigAftermath(Vector2 feet, Vector2 centre, float r, Color element)
         {
             bool still = PresentationSettings.ReducedMotion, sparse = PresentationSettings.ReducedEffects;
             float root = Mathf.Sqrt(r);
@@ -364,36 +314,29 @@ namespace ArcaneBrigade
                 for (int i = 0, n = sparse ? 4 : 7; i < n; i++)
                 {
                     float angle = (i + (seed % 5) * 0.2f) * Mathf.PI * 2f / n + Mathf.Sin(seed + i) * 0.3f;
-                    Emit(MoteKind.Flame, centre, new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * 6.2f * root * (0.8f + 0.3f * Mathf.Abs(Mathf.Sin(seed * 0.7f + i))), 0.26f + 0.04f * (i % 3), 0.42f * root, hot, Color.Lerp(ember, element, 0.3f), phase: i);
+                    Mote m = Spawn(MoteKind.Flame, centre, new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * 6.2f * root * (0.8f + 0.3f * Mathf.Abs(Mathf.Sin(seed * 0.7f + i))), 0.26f + 0.04f * (i % 3), 0.42f * root, hot, Color.Lerp(ember, element, 0.3f));
+                    if (m != null) m.Phase = i;
                 }
-                // hot sparks thrown up: they arc and fall
+                // hot sparks thrown up: they arc, fall, bounce once on the floor and fizzle
                 for (int i = 0, n = sparse ? 5 : 11; i < n; i++)
                 {
                     float angle = (i + 0.5f + (seed % 3) * 0.3f) * Mathf.PI * 2f / n + Mathf.Cos(seed + i * 1.7f) * 0.4f;
-                    Emit(MoteKind.Spark, feet, new Vector2(Mathf.Cos(angle), Mathf.Sin(angle) * 0.55f) * 2.6f * root * (0.7f + 0.5f * Mathf.Abs(Mathf.Sin(seed * 0.3f + i))), 0.75f + 0.1f * (i % 3), 0.2f * root, new Color(1f, 0.9f, 0.55f), ember,
-                        height: r * 0.6f, lift: (3.2f + 1.6f * Mathf.Abs(Mathf.Sin(seed + i * 2.1f))) * root);
+                    Mote m = Spawn(MoteKind.Spark, feet, new Vector2(Mathf.Cos(angle), Mathf.Sin(angle) * 0.55f) * 2.6f * root * (0.7f + 0.5f * Mathf.Abs(Mathf.Sin(seed * 0.3f + i))), 0.75f + 0.1f * (i % 3), 0.2f * root, new Color(1f, 0.9f, 0.55f), ember);
+                    if (m != null) { m.Height = r * 0.6f; m.Lift = (3.2f + 1.6f * Mathf.Abs(Mathf.Sin(seed + i * 2.1f))) * root; }
                 }
                 // a dust skirt kicked out low along the floor
                 for (int i = 0, n = sparse ? 3 : 5; i < n; i++)
                 {
                     float angle = (i + 0.25f) * Mathf.PI * 2f / n + (seed % 7) * 0.1f;
-                    Emit(MoteKind.Dust, feet + Vector2.up * 0.05f, new Vector2(Mathf.Cos(angle), Mathf.Sin(angle) * 0.35f) * 2.4f * root, 0.55f, 0.75f * r, dust, dust);
-                }
-                // shards of the body's own material thrown up and out, spinning, falling away
-                if (Shards)
-                {
-                    var (light, dark) = ShardTones(material);
-                    for (int i = 0, n = sparse ? 3 : 5; i < n; i++)
-                    {
-                        float angle = (i + 0.3f + (seed % 4) * 0.25f) * Mathf.PI * 2f / n + Mathf.Sin(seed * 1.3f + i) * 0.35f;
-                        Emit(MoteKind.Shard, centre, new Vector2(Mathf.Cos(angle), Mathf.Sin(angle) * 0.6f) * (2.4f + 0.8f * (i % 3)) * root, 0.6f + 0.08f * (i % 3), (0.2f + 0.05f * (i % 2)) * root, i % 2 == 0 ? light : dark, i % 2 == 0 ? light : dark,
-                            lift: (2.8f + 1.2f * (i % 3)) * root, phase: (i % 2 == 0 ? 1 : -1) * (540 + 180 * (i % 3)));
-                    }
+                    Spawn(MoteKind.Dust, feet + Vector2.up * 0.05f, new Vector2(Mathf.Cos(angle), Mathf.Sin(angle) * 0.35f) * 2.4f * root, 0.55f, 0.75f * r, dust, dust);
                 }
             }
             // a column of smoke rising after the fire, each curl a moment after the last
             for (int i = 0, n = sparse ? 2 : 3; i < n; i++)
-                Emit(MoteKind.Smoke, centre + new Vector2((i - 1) * 0.18f * r, 0.1f * r), new Vector2((i - 1) * 0.15f, 0.55f + 0.2f * i) * root, 0.95f + 0.1f * i, 0.95f * r, smoke, smoke, delay: 0.12f + i * 0.08f);
+            {
+                Mote m = Spawn(MoteKind.Smoke, centre + new Vector2((i - 1) * 0.18f * r, 0.1f * r), new Vector2((i - 1) * 0.15f, 0.55f + 0.2f * i) * root, 0.95f + 0.1f * i, 0.95f * r, smoke, smoke);
+                if (m != null) m.Age = -0.12f - i * 0.08f;
+            }
             for (int i = 0, n = sparse ? 3 : 8; i < n; i++) Ember(centre, r, element, i + seed, 0.6f, 1.05f);
         }
 
@@ -401,36 +344,9 @@ namespace ArcaneBrigade
         private void Ember(Vector2 centre, float r, Color element, int index, float shortest, float longest)
         {
             float angle = index * 2.399963f + 0.4f, root = Mathf.Sqrt(r);
-            Emit(MoteKind.Ember, centre, new Vector2(Mathf.Cos(angle), Mathf.Sin(angle) * 0.6f + 0.5f) * (1.1f + 0.5f * Mathf.Abs(Mathf.Sin(index * 1.3f))) * root,
-                Mathf.Lerp(shortest, longest, Mathf.Abs(Mathf.Sin(index * 0.77f))), 0.11f * root, new Color(1f, 0.97f, 0.82f), Color.Lerp(element, new Color(1f, 0.45f, 0.15f), 0.3f), phase: index * 1.7f);
-        }
-
-        /// <summary>One piece of a death's aftermath: a particle in its kind's system, or (ParticleMotes off) a pooled sprite.
-        /// height/lift give a thrown piece its arc; delay holds a smoke curl back a moment.</summary>
-        private void Emit(MoteKind kind, Vector2 position, Vector2 velocity, float life, float size, Color hot, Color cool, float height = 0, float lift = 0, float delay = 0, float phase = 0)
-        {
-            ParticleSystem system = !ParticleMotes ? null : kind switch
-            {
-                MoteKind.Ember => emberSystem, MoteKind.Flame => flameSystem, MoteKind.Spark => sparkSystem, MoteKind.Smoke => smokeSystem,
-                MoteKind.Dust => dustSystem, MoteKind.Vapor => vapourSystem, MoteKind.Shard => shardSystem, _ => null
-            };
-            if (system != null)
-            {
-                Color tone = Color.Lerp(hot, cool, kind == MoteKind.Ember || kind == MoteKind.Vapor ? 0.35f : 0.15f);
-                if (kind == MoteKind.Smoke) tone.a = 0.42f; else if (kind == MoteKind.Dust) tone.a = 0.34f; else if (kind == MoteKind.Vapor) tone.a = 0.75f;
-                var emit = new ParticleSystem.EmitParams
-                {
-                    position = position + Vector2.up * height, velocity = velocity + Vector2.up * lift,
-                    startLifetime = life + delay, startSize = kind == MoteKind.Flame ? size * 1.9f : kind == MoteKind.Dust ? size * 1.2f : size,
-                    startColor = tone, rotation = phase * 0.13f, angularVelocity = kind == MoteKind.Shard ? phase : kind == MoteKind.Smoke || kind == MoteKind.Vapor ? 25f * Mathf.Sign(phase + 0.01f) : 0
-                };
-                system.Emit(emit, 1);
-                return;
-            }
-            Mote m = Spawn(kind == MoteKind.Shard ? MoteKind.Spark : kind, position, velocity, life, size, hot, cool);
-            if (m == null) return;
-            m.Height = height; m.Lift = lift; m.Phase = phase; if (delay > 0) m.Age = -delay;
-            if (kind == MoteKind.Shard) { m.View.sprite = shard; m.Hot = m.Cool = hot; }
+            Mote m = Spawn(MoteKind.Ember, centre, new Vector2(Mathf.Cos(angle), Mathf.Sin(angle) * 0.6f + 0.5f) * (1.1f + 0.5f * Mathf.Abs(Mathf.Sin(index * 1.3f))) * root,
+                Mathf.Lerp(shortest, longest, Mathf.Abs(Mathf.Sin(index * 0.77f))), 0.11f * root, new Color(1f, 0.97f, 0.82f), Color.Lerp(element, new Color(1f, 0.45f, 0.15f), 0.3f));
+            if (m != null) m.Phase = index * 1.7f;
         }
 
         private Mote Spawn(MoteKind kind, Vector2 position, Vector2 velocity, float life, float size, Color hot, Color cool)
@@ -447,6 +363,7 @@ namespace ArcaneBrigade
                 mote = new Mote { View = Part("Mote" + motes.Count, glow, 2456) };
                 motes.Add(mote);
             }
+            life = Mathf.Min(life, AftermathSeconds);
             mote.Kind = kind; mote.Position = position; mote.Velocity = velocity; mote.Height = 0; mote.Lift = 0; mote.Age = 0; mote.Life = life; mote.Size = size; mote.Width = 0; mote.Phase = 0; mote.Hot = hot; mote.Cool = cool;
             mote.View.sprite = kind == MoteKind.Flame || kind == MoteKind.Spark || kind == MoteKind.Pillar ? spark : kind == MoteKind.Ember || kind == MoteKind.Glow ? glow : puff;
             mote.View.sortingOrder = kind == MoteKind.Spark ? 2458 : kind == MoteKind.Smoke || kind == MoteKind.Vapor ? 2432 : kind == MoteKind.Dust ? 2425 : kind == MoteKind.Glow ? 2452 : kind == MoteKind.Pillar ? 2457 : 2456;
@@ -468,7 +385,7 @@ namespace ArcaneBrigade
                 if (scorches.Count >= ScorchCapacity) { scorch = scorches[scorchCursor]; scorchCursor = (scorchCursor + 1) % scorches.Count; } // the oldest burn gives way
                 else { scorch = new Scorch { View = Part("Burn" + scorches.Count, burn, 60) }; scorches.Add(scorch); } // on the floor, under every body
             }
-            scorch.Position = position; scorch.Size = size; scorch.Life = life; scorch.Alpha = alpha; scorch.Age = 0;
+            scorch.Position = position; scorch.Size = size; scorch.Life = Mathf.Min(life, AftermathSeconds); scorch.Alpha = alpha; scorch.Age = 0;
             scorch.View.transform.rotation = Quaternion.Euler(0, 0, Mathf.Repeat(position.x * 131 + position.y * 71, 360));
         }
 

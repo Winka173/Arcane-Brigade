@@ -908,42 +908,13 @@ namespace ArcaneBrigade
             finally { ArenaController.CleanFrame = false; ArenaCamera.CaptureFocus = null; ArenaCamera.CaptureHeight = 0; }
             yield break; }
             IEnumerator S13() {
-            // ---- the death-style review: one fight four times (as now, with shards, with the body burning away, with both), then a
-            // storm of deaths timed with motes as particles and as one sprite each ----
+            // ---- the death review: a staged fight where small, large, elite and airy bodies fall beside the hero ----
             if (vietnamese || ffmpeg == null) yield break;
-            var variants = new (string name, bool burn, bool shards)[] { ("deaths-1-now", false, false), ("deaths-2-shards", false, true), ("deaths-3-burn", true, false), ("deaths-4-both", true, true) };
-            try
-            {
-                foreach (var variant in variants)
-                {
-                    ExplosionFeedback.BodyBurn = variant.burn; ExplosionFeedback.Shards = variant.shards;
-                    yield return Open(mainHero, 4, 160, 3, 13016);
-                    keepAlive = true; owner.NextWave(); yield return Wait(2f);
-                    ArenaCamera.CaptureHeight = 3.4f;
-                    yield return Clip(variant.name, 10f, StagedDeaths());
-                    StopRoaming(); keepAlive = false; ArenaCamera.CaptureHeight = 0;
-                }
-                ExplosionFeedback.BodyBurn = true; ExplosionFeedback.Shards = true;
-                UnitDefinition small = catalog.Enemies.First(e => e != null && e.Radius < 0.4f && e.BodyHeight < 1.4f && !ExplosionFeedback.Drifts(e));
-                UnitDefinition large = catalog.Enemies.First(e => e != null && e.BodyHeight >= 1.4f);
-                foreach (bool particles in new[] { false, true })
-                {
-                    ExplosionFeedback.ParticleMotes = particles;
-                    yield return Open(mainHero, 15, 160, 3, 13016);
-                    keepAlive = true; owner.NextWave(); yield return Wait(2f);
-                    ExplosionFeedback blasts = ExplosionFeedback.Active;
-                    float sum = 0, worst = 0; int frames = 0; float from = Time.realtimeSinceStartup;
-                    while (Time.realtimeSinceStartup - from < 4f && blasts != null)
-                    {
-                        Vector2 hero = owner.Simulation.Champion.Position;
-                        for (int i = 0; i < 30; i++) blasts.Pop(i % 6 == 0 ? large : small, hero + UnityEngine.Random.insideUnitCircle * 4f, i % 5 == 0, UnityEngine.Random.value * 1.4f, (DamageElement)(i % 4), true, i % 10 == 0);
-                        yield return null; sum += Time.unscaledDeltaTime; worst = Mathf.Max(worst, Time.unscaledDeltaTime); frames++;
-                    }
-                    Check(frames > 0, "Death storm, " + (particles ? "particles" : "one sprite per piece") + ": mean frame " + (frames == 0 ? 0 : sum / frames * 1000).ToString("0.0") + " ms, worst " + (worst * 1000).ToString("0.0") + " ms over " + frames + " frames");
-                    keepAlive = false;
-                }
-            }
-            finally { ExplosionFeedback.BodyBurn = true; ExplosionFeedback.Shards = true; ExplosionFeedback.ParticleMotes = true; ArenaCamera.CaptureHeight = 0; }
+            yield return Open(mainHero, 4, 160, 3, 13016);
+            keepAlive = true; owner.NextWave(); yield return Wait(2f);
+            ArenaCamera.CaptureHeight = 3.4f;
+            try { yield return Clip("deaths", 10f, StagedDeaths()); }
+            finally { ArenaCamera.CaptureHeight = 0; keepAlive = false; }
             yield break; }
             var sections = new (string, Func<IEnumerator>)[] { ("menus", S0), ("shop", S1), ("star-up", S2), ("dream-market", S3), ("nights", S4), ("chest", S5), ("bosses", S6), ("places", S7), ("hero-skills", S8), ("results", S9), ("hero-clips", S10), ("gameplay", S11), ("trailer", S12), ("deaths", S13) };
             int only = Array.IndexOf(args, "-website-sections"); string[] wanted = only >= 0 && only + 1 < args.Length ? args[only + 1].Split(',') : null; // re-take some parts only
