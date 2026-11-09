@@ -907,9 +907,11 @@ namespace ArcaneBrigade
             }
         }
 
+        /// <summary>Trailer footage only: the world alone, no HUD over it.</summary>
+        public static bool CleanFrame;
         private void OnGUI()
         {
-            if (simulation == null) return;
+            if (simulation == null || CleanFrame) return;
             if (StoryOpen) { if (GetComponent<WaitingJourney>()?.Open == true) GetComponent<WaitingJourney>().Draw(arenaCamera); else GetComponent<MienChoPresentation>().Draw(arenaCamera); return; }
             if (session != null)
             {

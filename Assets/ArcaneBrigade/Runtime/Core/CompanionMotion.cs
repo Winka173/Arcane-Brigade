@@ -8,7 +8,9 @@ namespace ArcaneBrigade
         public static float Leash(UnitState unit, CheckpointCatalog catalog) => catalog.FreeFollowers ? catalog.ArenaSize.magnitude : catalog.CompanionLeash + (unit.Definition.Weapon.Kind == WeaponKind.Melee ? MeleeBalance.RoamBonus : 0);
         public static Vector2 Step(UnitState unit, UnitState champion, IReadOnlyList<UnitState> units, UnitState target, CheckpointCatalog catalog, float elapsed, float deltaTime)
         {
-            if (catalog.StaticFollowers) { unit.Velocity = Vector2.zero; return unit.Position; }
+            // planted friends (a relic) do not walk, but still keep their personal space: dragged on their leashes behind a moving
+            // hero they would otherwise all pile onto the one spot at the leash's end
+            if (catalog.StaticFollowers) { unit.Velocity = Vector2.zero; return unit.Position + Vector2.ClampMagnitude(Separation(unit, units, catalog), 3f) * deltaTime; }
             float leash = Leash(unit, catalog);
             float outer = Mathf.Max(0.1f, Mathf.Min(catalog.CompanionRoamOuterRadius + (unit.Definition.Weapon.Kind == WeaponKind.Melee ? 1.3f : 0), leash * 0.9f));
             float inner = Mathf.Clamp(catalog.CompanionRoamInnerRadius, 0f, outer);
@@ -58,7 +60,18 @@ namespace ArcaneBrigade
             float speed = Mathf.Lerp(Mathf.Min(patrolSpeed, maximumSpeed), maximumSpeed, pursuing ? 1f : catchup);
             Vector2 desired = toDestination.normalized * Mathf.Min(speed, toDestination.magnitude * 3f);
             if (resting && !pursuing) desired = Vector2.zero;
+            // personal space has its own budget on top of the chase: when the hero outruns the brigade (a speed skill) every friend
+            // chases at full speed onto the back of its leash, and a push capped with the chase would leave them all in one heap
+            desired = Vector2.ClampMagnitude(desired, maximumSpeed) + Vector2.ClampMagnitude(Separation(unit, units, catalog), maximumSpeed * 0.75f);
+            unit.Velocity = Vector2.MoveTowards(unit.Velocity, desired, Mathf.Max(0.1f, catalog.CompanionAcceleration) * deltaTime);
+            return unit.Position + unit.Velocity * deltaTime;
+        }
+
+        /// <summary>The push away from friends and the hero standing inside this friend's personal space.</summary>
+        private static Vector2 Separation(UnitState unit, IReadOnlyList<UnitState> units, CheckpointCatalog catalog)
+        {
             float separation = Mathf.Max(0.05f, catalog.CompanionSeparation);
+            Vector2 push = Vector2.zero;
             for (int index = 0; index < units.Count; index++)
             {
                 UnitState other = units[index];
@@ -69,11 +82,9 @@ namespace ArcaneBrigade
                 if (distance >= personalSpace) continue;
                 Vector2 direction = distance > 0.001f ? offset / distance : new Vector2(Mathf.Cos(unit.Id * 2.4f), Mathf.Sin(unit.Id * 2.4f));
                 float strength = other.Faction == Faction.Champion ? 5f : 3f;
-                desired += direction * (1f - distance / personalSpace) * strength;
+                push += direction * (1f - distance / personalSpace) * strength;
             }
-            desired = Vector2.ClampMagnitude(desired, maximumSpeed);
-            unit.Velocity = Vector2.MoveTowards(unit.Velocity, desired, Mathf.Max(0.1f, catalog.CompanionAcceleration) * deltaTime);
-            return unit.Position + unit.Velocity * deltaTime;
+            return push;
         }
     }
 }

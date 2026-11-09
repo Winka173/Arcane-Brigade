@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace ArcaneBrigade
@@ -10,7 +11,10 @@ namespace ArcaneBrigade
         private Vector3 velocity;
         private float heightVelocity;
         private Vector3 trackedPosition;
-        private float DesiredHeight => InShop ? owner.Content.RestViewHeight : owner.Simulation.Boss?.Definition.Id == NightmareRules.CustomerId ? Mathf.Max(6.5f,owner.Content.CombatViewHeight) : owner.Session.State.OutsideStage == OutsideStageStatus.Fighting ? Mathf.Max(7f, owner.Content.CombatViewHeight) : owner.Content.CombatViewHeight;
+        /// <summary>Trailer footage only: a point the view watches instead of the hero, and a view height (0: the game's own).</summary>
+        public static Func<Vector2> CaptureFocus;
+        public static float CaptureHeight;
+        private float DesiredHeight => CaptureHeight > 0 ? CaptureHeight : InShop ? owner.Content.RestViewHeight : owner.Simulation.Boss?.Definition.Id == NightmareRules.CustomerId ? Mathf.Max(6.5f,owner.Content.CombatViewHeight) : owner.Session.State.OutsideStage == OutsideStageStatus.Fighting ? Mathf.Max(7f, owner.Content.CombatViewHeight) : owner.Content.CombatViewHeight;
         private bool InShop => owner.Session.State.Phase == SessionPhase.Shop && !owner.FightStillShown;
         private void Awake() { arenaCamera = GetComponent<Camera>(); Refresh(); }
         private void Update() { Refresh(); }
@@ -32,11 +36,11 @@ namespace ArcaneBrigade
             if (owner == null || owner.Simulation == null) return;
             float height = DesiredHeight;
             if (owner.Simulation.Phase == RunPhase.Paused) return;
-            arenaCamera.orthographicSize = PresentationSettings.ReducedMotion ? height : Mathf.SmoothDamp(arenaCamera.orthographicSize, height, ref heightVelocity, 0.3f, Mathf.Infinity, Time.deltaTime);
+            arenaCamera.orthographicSize = PresentationSettings.ReducedMotion ? height : Mathf.SmoothDamp(arenaCamera.orthographicSize, height, ref heightVelocity, CaptureHeight > 0 ? .9f : 0.3f, Mathf.Infinity, Time.deltaTime);
             height = arenaCamera.orthographicSize;
-            Vector2 target = InShop ? Vector2.zero : owner.VisualChampionPosition + BossLean();
+            Vector2 target = CaptureFocus != null ? CaptureFocus() : InShop ? Vector2.zero : owner.VisualChampionPosition + BossLean();
             Vector2 center = ClampCenter(target, owner.WorldBounds, height, arenaCamera.aspect);
-            Vector3 next = Vector3.SmoothDamp(trackedPosition, new Vector3(center.x, center.y, transform.position.z), ref velocity, 0.16f, Mathf.Infinity, Time.deltaTime);
+            Vector3 next = Vector3.SmoothDamp(trackedPosition, new Vector3(center.x, center.y, transform.position.z), ref velocity, CaptureFocus != null ? .5f : 0.16f, Mathf.Infinity, Time.deltaTime);
             Vector2 clamped = ClampCenter(next, owner.WorldBounds, height, arenaCamera.aspect);
             trackedPosition = new Vector3(clamped.x, clamped.y, next.z);
             Vector2 accented = ClampCenter(clamped + owner.CameraAccent, owner.WorldBounds + Vector2.one * (CombatFeel.MaxShake * 2f), height, arenaCamera.aspect);

@@ -18,6 +18,13 @@ namespace ArcaneBrigade
         public void PickLantern(string id) { treePick = id; treePickAt = Time.unscaledTime; }
         /// <summary>Diagnostics: opens one branch across the panel (-1: the whole tree).</summary>
         public void FocusLampBranch(int branch) { focusBranch = branch; treePick = null; phoneFocused = true; }
+        /// <summary>Diagnostics: lights a lantern as a tap on its card does (its card, the glow and the sound), for trailer footage.</summary>
+        public bool LightForCapture(PlayerProfile profile, string id)
+        {
+            PickLantern(id);
+            if (!MetaProgression.Light(profile, id)) return false;
+            bought = id; boughtAt = Time.unscaledTime; CheckpointAudio.PlayInterfaceId("shop.buy.gold"); return true;
+        }
         private static readonly Color TreeInk = new Color(.16f, .1f, .06f, .95f), TreeBark = new Color(.42f, .28f, .15f, 1), TreeLit = new Color(1f, .82f, .45f, 1);
 
         private static Rect TreeArea => new Rect(PanelRect.x + 16, PanelRect.y + 74, PanelRect.width - 32, PanelRect.height - 84);

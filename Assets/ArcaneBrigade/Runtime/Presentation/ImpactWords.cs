@@ -32,6 +32,7 @@ namespace ArcaneBrigade
         public static bool Pop(string text, Vector2 at, Color colour, int rank, float scale = 1, float angle = -6)
         {
             ImpactWords words = Active;
+            if (ArenaController.CleanFrame) return false; // trailer footage: the world alone, no comic words over it
             return words != null && words.Stamp(text, at, colour, rank, scale, angle);
         }
         private bool Stamp(string text, Vector2 at, Color colour, int rank, float scale, float angle)

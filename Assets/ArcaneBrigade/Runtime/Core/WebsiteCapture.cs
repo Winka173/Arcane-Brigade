@@ -317,6 +317,58 @@ namespace ArcaneBrigade
             while (!done && Time.realtimeSinceStartup - lastStep < 45) yield return null;
             if (!done) { StopCoroutine(running); Check(false, "Section stopped: " + name); }
             Time.timeScale = 1; keepAlive = false; StopRoaming();
+            ArenaController.CleanFrame = false; ArenaCamera.CaptureFocus = null; ArenaCamera.CaptureHeight = 0; // a stopped trailer part leaves no framing behind
+        }
+
+        // ---- trailer framing ----
+
+        private Vector2 crowdAt; private float crowdTime = -10;
+        /// <summary>The middle of the thickest knot of enemies (looked for twice a second, so the view drifts rather than jumps).</summary>
+        private Vector2 Crowd()
+        {
+            CombatSimulation sim = owner != null ? owner.Simulation : null;
+            if (sim == null || sim.Champion == null) return crowdAt;
+            if (Time.unscaledTime - crowdTime < .5f) return crowdAt;
+            crowdTime = Time.unscaledTime;
+            List<Vector2> foes = sim.Units.Where(u => u.Alive && u.Faction == Faction.Enemy).Select(u => u.Position).ToList();
+            if (foes.Count == 0) return crowdAt = sim.Champion.Position;
+            Vector2 best = foes[0]; int most = -1;
+            for (int i = 0; i < foes.Count; i += Mathf.Max(1, foes.Count / 60))
+            {
+                int near = 0; foreach (Vector2 q in foes) if ((q - foes[i]).sqrMagnitude < 6.25f) near++;
+                if (near > most) { most = near; best = foes[i]; }
+            }
+            Vector2 sum = Vector2.zero; int count = 0;
+            foreach (Vector2 q in foes) if ((q - best).sqrMagnitude < 9f) { sum += q; count++; }
+            return crowdAt = sum / Mathf.Max(1, count);
+        }
+
+        /// <summary>Measures how the friends stand while a clip records: their mean distance to the nearest other friend, and how
+        /// often two of them overlap (friends heaped on one spot read as one blob).</summary>
+        private IEnumerator Spacing(string label)
+        {
+            float nearest = 0; int samples = 0, pairs = 0, heaped = 0;
+            for (int n = 0; n < 16 && owner != null && owner.Simulation != null; n++)
+            {
+                yield return Wait(.5f);
+                List<Vector2> friends = owner.Simulation.Units.Where(u => u.Alive && u.Faction == Faction.Companion && u.SummonedBy == 0).Select(u => u.Position).ToList(); // the brigade, not summoned slimes and saplings
+                for (int i = 0; i < friends.Count; i++)
+                {
+                    float best = float.MaxValue;
+                    for (int j = 0; j < friends.Count; j++) if (j != i) best = Mathf.Min(best, (friends[j] - friends[i]).magnitude);
+                    if (best == float.MaxValue) continue;
+                    nearest += best; samples++; pairs++; if (best < .35f) heaped++;
+                }
+            }
+            float share = pairs == 0 ? 0 : heaped / (float)pairs;
+            if (share >= .2f && owner != null && owner.Simulation != null)
+            {
+                // which friends heap, and how each one is moving, so a heap can be traced to its cause
+                UnitState hero = owner.Simulation.Champion;
+                var lines = owner.Simulation.Units.Where(u => u.Alive && u.Faction == Faction.Companion).Select(u => u.Id + " " + u.Definition.Id + " summon " + u.SummonedBy + " mount " + u.MountId + " lift " + u.BodyLift.ToString("0.0") + " mode " + u.TravelMode + " fromHero " + (u.Position - hero.Position).magnitude.ToString("0.00") + " at " + u.Position.ToString("0.00") + " v " + u.Velocity.magnitude.ToString("0.0"));
+                File.WriteAllLines(Path.Combine(root, "spacing-" + label + ".txt"), new[] { "hero " + hero.Position.ToString("0.00") + " step " + ((hero.Position - hero.PreviousPosition).magnitude / Mathf.Max(.001f, Time.deltaTime)).ToString("0.0") }.Concat(lines));
+            }
+            Check(samples > 0 && share < .2f, "Friends spread (" + label + "): mean nearest " + (samples == 0 ? 0 : nearest / samples).ToString("0.00") + ", heaped " + (share * 100).ToString("0") + "%");
         }
 
         // ---- clips ----
@@ -690,7 +742,150 @@ namespace ArcaneBrigade
             drawSummary = true; yield return Wait(.5f); yield return Shot("result-03-night-summary"); drawSummary = false;
 
             yield break; }
-            var sections = new (string, Func<IEnumerator>)[] { ("menus", S0), ("shop", S1), ("star-up", S2), ("dream-market", S3), ("nights", S4), ("chest", S5), ("bosses", S6), ("places", S7), ("hero-skills", S8), ("results", S9), ("hero-clips", S10), ("gameplay", S11) };
+            IEnumerator S12() {
+            // ---- trailer footage: the world alone (no HUD), framed close: the dark, the horde, the bosses, a lost night, the Lamp Tree,
+            // a star-up, the two lead heroes' skills ----
+            if (vietnamese || ffmpeg == null) yield break;
+            int pickAt = Array.IndexOf(args, "-trailer-takes"); // re-take some shots only: -trailer-takes alone,fall
+            string[] takes = pickAt >= 0 && pickAt + 1 < args.Length ? args[pickAt + 1].Split(',') : null;
+            bool Take(string name) => takes == null || Array.IndexOf(takes, name) >= 0;
+            RunMenu menu = FindAnyObjectByType<RunMenu>();
+            if (menu != null && Take("lamp-tree"))
+            {
+                // the Lamp Tree: three lanterns lit one after another
+                var played = (PlayerProfile)typeof(RunMenu).GetField("profile", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(menu);
+                played.Meta.LampOil += 600;
+                menu.ShowPage(RunMenu.Page.Hub); menu.Hub.OpenStation(MetaStation.Lantern); menu.Hub.FocusLampBranch(-1); yield return Wait(1f);
+                IEnumerator LightUp()
+                {
+                    int lit = 0;
+                    foreach (string id in new[] { "hero.spark", "hero.thick", "hero.candle", "friends.sharp", "gold.shelf", "luck.nose", "dream.glow" })
+                    {
+                        if (lit == 3) break;
+                        if (!menu.Hub.LightForCapture(played, id)) continue;
+                        lit++; yield return Wait(2.2f);
+                    }
+                    Check(lit > 0, "Lamp Tree lanterns lit for the trailer: " + lit);
+                }
+                yield return Clip("trailer-lamp-tree", 8f, LightUp());
+                menu.Hub.Close(); yield return Wait(.5f);
+            }
+            ArenaController.CleanFrame = true;
+            try
+            {
+                // alone in the dark: the start of a late night in the Archive Vault, close on the hero as the first shapes come
+                if (Take("alone"))
+                {
+                    yield return Open(mainHero, 18, 40, 0, 12001);
+                    keepAlive = true; owner.NextWave(); ArenaCamera.CaptureHeight = 2.8f; FindAnyObjectByType<ArenaCamera>()?.Snap();
+                    IEnumerator Creep() { yield return Walk(owner.Simulation.Champion.Position + new Vector2(1.6f, .4f)); }
+                    yield return Clip("trailer-alone", 9f, Creep());
+                    StopRoaming(); keepAlive = false;
+                }
+
+                // the horde: late nights framed from the crowd's side, the brigade small at the far edge
+                foreach (int wave in new[] { 14, 18 })
+                {
+                    if (!Take("horde-" + wave)) continue;
+                    yield return Open(wave == 14 ? mainHero : cometHero, wave - 1, 160, 3, 12100 + wave);
+                    keepAlive = true; owner.NextWave(); yield return Wait(4f);
+                    ArenaCamera.CaptureHeight = 3.8f; ArenaCamera.CaptureFocus = () => Vector2.Lerp(Crowd(), owner.Simulation.Champion.Position, .3f);
+                    yield return Clip("trailer-horde-" + wave, 10f, null);
+                    ArenaCamera.CaptureFocus = null; keepAlive = false;
+                }
+
+                // the two first bosses, close, then wide with the brigade around them
+                foreach (int wave in new[] { 4, 8 })
+                {
+                    if (!Take("boss-" + wave)) continue;
+                    yield return Open(stars[(wave / 4 + 1) % 2], wave - 1, 150, 3, 12200 + wave);
+                    keepAlive = true; owner.NextWave(); yield return Roaming();
+                    ArenaCamera.CaptureHeight = 3.4f; ArenaCamera.CaptureFocus = () => owner.Simulation.Boss != null && owner.Simulation.Boss.Alive ? owner.Simulation.Boss.Position : owner.Simulation.Champion.Position;
+                    IEnumerator Widen() { yield return Wait(5.5f); if (owner.Simulation.Boss != null && owner.Simulation.Boss.Alive) owner.Simulation.BossTelegraphCaptureFixture(); yield return Wait(1.5f); ArenaCamera.CaptureHeight = 5.2f; ArenaCamera.CaptureFocus = () => Vector2.Lerp(owner.Simulation.Boss != null && owner.Simulation.Boss.Alive ? owner.Simulation.Boss.Position : owner.Simulation.Champion.Position, owner.Simulation.Champion.Position, .5f); }
+                    StartCoroutine(Widen());
+                    yield return Clip("trailer-boss-" + wave, 13f, null);
+                    Check(owner.Simulation.Boss != null, "Trailer boss on night " + wave + ": " + owner.Simulation.Boss?.Definition?.DisplayName);
+                    ArenaCamera.CaptureFocus = null; StopRoaming(); keepAlive = false;
+                }
+
+                // a lost night: a thin brigade in a late crowd; the hero holds a while as the crowd closes in, then falls
+                if (Take("fall"))
+                {
+                    yield return Open(mainHero, 18, 40, 0, 12319, s => { s.Roster.RemoveRange(2, Mathf.Max(0, s.Roster.Count - 2)); foreach (RosterEntry r in s.Roster) r.Tier = 1; s.Items.Clear(); });
+                    keepAlive = true; owner.NextWave(); yield return Wait(3f);
+                    ArenaCamera.CaptureHeight = 4.8f; FindAnyObjectByType<ArenaCamera>()?.Snap(); ArenaCamera.CaptureHeight = 3.2f; // a slow push in as the crowd closes
+                    IEnumerator Overrun() { yield return Wait(8f); keepAlive = false; owner.Simulation.Champion.Health = owner.Simulation.Champion.Definition.Health * .12f; }
+                    yield return Clip("trailer-fall", 16f, Overrun());
+                    Check(owner.Session.State.Phase == SessionPhase.Defeat, "Trailer lost night ends in a fall (" + owner.Session.State.Phase + ")");
+                }
+
+                // a star-up: the third copy bought and merged, close on the hero
+                if (Take("star-up")) {
+                yield return Open(mainHero, 9, 168, 3, 12409, s =>
+                {
+                    UnitDefinition friend = Friends.FirstOrDefault(u => u.Id == "TeapotPilgrim") ?? Friends[0];
+                    s.Roster.RemoveAll(r => r.UnitId == friend.Id);
+                    s.Roster.Add(new RosterEntry { UnitId = friend.Id, WeaponId = friend.Weapon.Id, Tier = 2 }); s.Roster.Add(new RosterEntry { UnitId = friend.Id, WeaponId = friend.Weapon.Id, Tier = 2 });
+                    if (s.Offers.Count == 0) s.Offers.Add(new ShopOffer { Token = ++s.NextOffer });
+                    ShopOffer o = s.Offers[0]; o.Kind = OfferKind.Companion; o.Id = friend.Id; o.Tier = 2; o.Price = 48; o.BasePrice = 48; o.Currency = ShopCurrency.Gold; o.Sold = false;
+                    s.NewRecruitsThisWave = 0;
+                });
+                {
+                    ShopOffer offer = owner.Session.State.Offers.FirstOrDefault(o => o.Kind == OfferKind.Companion && o.Tier == 2 && !o.Sold);
+                    WorldShop.Station stall = offer == null ? null : owner.Shop.Stations.FirstOrDefault(st => st.Offer == offer);
+                    if (stall != null)
+                    {
+                        yield return Stand(stall.Position + new Vector2(-2.6f, -1.4f));
+                        ArenaCamera.CaptureHeight = 3.2f; ArenaCamera.CaptureFocus = () => Vector2.Lerp(owner.Simulation.Champion.Position, stall.Position, .35f); FindAnyObjectByType<ArenaCamera>()?.Snap();
+                        IEnumerator Buy() { yield return Walk(stall.Position + new Vector2(0, -.8f)); yield return Wait(.4f); for (int tries = 0; tries < 60 && !offer.Sold; tries++) { owner.Shop.Interact(); yield return Wait(.1f); } }
+                        yield return Clip("trailer-star-up", 9f, Buy());
+                        Check(offer.Sold, "Trailer star-up bought");
+                        ArenaCamera.CaptureFocus = null;
+                    }
+                    else Check(false, "Trailer star-up stall");
+                }
+                }
+
+                // the brigade at work: friends spread around the hero (their spacing is measured)
+                if (Take("brigade"))
+                {
+                    yield return Open(mainHero, 12, 160, 3, 12513);
+                    keepAlive = true; owner.NextWave(); yield return Roaming(); yield return Wait(2f);
+                    ArenaCamera.CaptureHeight = 4.4f;
+                    yield return Clip("trailer-brigade", 10f, Spacing("brigade"));
+                    StopRoaming(); keepAlive = false;
+                }
+
+                // the two lead heroes: close on each skill as it lands, then the transformation in a late crowd
+                foreach (var (hero, wave, name) in new[] { (mainHero, 13, "lantern-knight"), (cometHero, 18, "comet-courier"), (mainHero, 19, "lantern-knight-late") })
+                {
+                    if (!Take("skill-" + name)) continue;
+                    yield return Open(hero, wave - 1, 160, 3, 12600 + wave);
+                    keepAlive = true; owner.NextWave(); yield return Roaming(); yield return Wait(2f);
+                    CombatSimulation sim = owner.Simulation; float length = 16f;
+                    ArenaCamera.CaptureHeight = name.EndsWith("late") ? 5f : 3.9f;
+                    IEnumerator Show()
+                    {
+                        StartCoroutine(Spacing(name));
+                        float from = Time.realtimeSinceStartup; int seen = sim.HeroIdentityActivations; float lastCast = from;
+                        while (Time.realtimeSinceStartup - from < length)
+                        {
+                            float t = Time.realtimeSinceStartup - from;
+                            if (sim.HeroIdentityActivations != seen) { seen = sim.HeroIdentityActivations; lastCast = Time.realtimeSinceStartup; }
+                            if (t > 9f && !sim.HeroAwakening) sim.FillGaugeForCapture();
+                            else if (Time.realtimeSinceStartup - lastCast > 3.5f) { sim.NudgeMechanicCapture(); lastCast = Time.realtimeSinceStartup; }
+                            yield return null;
+                        }
+                    }
+                    int casts = sim.HeroIdentityActivations;
+                    yield return Clip("trailer-skill-" + name, length, Show());
+                    Check(sim.HeroIdentityActivations > casts, "Trailer skill: " + hero + " x" + (sim.HeroIdentityActivations - casts) + (sim.HeroAwakening ? ", transformed" : ""));
+                    StopRoaming(); keepAlive = false;
+                }
+            }
+            finally { ArenaController.CleanFrame = false; ArenaCamera.CaptureFocus = null; ArenaCamera.CaptureHeight = 0; }
+            yield break; }
+            var sections = new (string, Func<IEnumerator>)[] { ("menus", S0), ("shop", S1), ("star-up", S2), ("dream-market", S3), ("nights", S4), ("chest", S5), ("bosses", S6), ("places", S7), ("hero-skills", S8), ("results", S9), ("hero-clips", S10), ("gameplay", S11), ("trailer", S12) };
             int only = Array.IndexOf(args, "-website-sections"); string[] wanted = only >= 0 && only + 1 < args.Length ? args[only + 1].Split(',') : null; // re-take some parts only
             foreach (var (name, body) in sections) if (wanted == null || Array.IndexOf(wanted, name) >= 0) yield return Section(name, body());
             Check(true, "Capture finished");
