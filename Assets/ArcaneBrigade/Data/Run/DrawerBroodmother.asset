@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: DrawerBroodmother
   DisplayName: Drawer Broodmother
-  Body: {fileID: -218703222, guid: 3ad2273e827e6c14cae91cc190976600, type: 3}
+  Body: {fileID: 21300000, guid: 7b566b5cafd577d42972d09f175f4c79, type: 3}
   AnimationFrames:
-  - {fileID: -218703222, guid: 3ad2273e827e6c14cae91cc190976600, type: 3}
-  - {fileID: 1061020202, guid: 3ad2273e827e6c14cae91cc190976600, type: 3}
-  - {fileID: -2122505519, guid: 3ad2273e827e6c14cae91cc190976600, type: 3}
-  - {fileID: -2015519848, guid: 3ad2273e827e6c14cae91cc190976600, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 77f51cef72b22fc40a97c24e4d04fde3, type: 2}
+  - {fileID: 21300000, guid: 7b566b5cafd577d42972d09f175f4c79, type: 3}
+  - {fileID: 21300000, guid: 58aada863eac4f24ba9c3cf5059d3c86, type: 3}
+  - {fileID: 21300000, guid: 272f6c1ac036f4641ab7d25c96409eb4, type: 3}
+  - {fileID: 21300000, guid: 6cab102631705ab4c8b30fa0f8205fd7, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 8796f68905e6c6d42a760d466dc17daa, type: 2}
   Weapon: {fileID: 11400000, guid: aa489bd9f9d758c4997d556180c664d1, type: 2}
   Health: 300
   Speed: 0.7

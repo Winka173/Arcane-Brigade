@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: ChoirEngine
   DisplayName: The Howling Organ
-  Body: {fileID: 436456524, guid: f65becd44a166e14e8f44ce522dbfcfc, type: 3}
+  Body: {fileID: 21300000, guid: 1f749ed6b569e4845b6d8968c4ea3431, type: 3}
   AnimationFrames:
-  - {fileID: 436456524, guid: f65becd44a166e14e8f44ce522dbfcfc, type: 3}
-  - {fileID: -1015288546, guid: f65becd44a166e14e8f44ce522dbfcfc, type: 3}
-  - {fileID: -2144774117, guid: f65becd44a166e14e8f44ce522dbfcfc, type: 3}
-  - {fileID: -2052213846, guid: f65becd44a166e14e8f44ce522dbfcfc, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: da793b9aa1c4b3843934b766b9c91d46, type: 2}
+  - {fileID: 21300000, guid: 1f749ed6b569e4845b6d8968c4ea3431, type: 3}
+  - {fileID: 21300000, guid: f825b452f734bf74c8e545bba14c449c, type: 3}
+  - {fileID: 21300000, guid: b38d2b5eb1bc3b649a0d3778ba791827, type: 3}
+  - {fileID: 21300000, guid: c2fbc3a6cf273ac40b1fa3f808540c5c, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 38999d2c1b66cfb4a9000fa96d6a5f8c, type: 2}
   Weapon: {fileID: 11400000, guid: 8c30f325cbdbe2246bdd0e32e78489e1, type: 2}
   Health: 975
   Speed: 0.62
@@ -41,6 +41,10 @@ MonoBehaviour:
   Passive: 0
   PassiveStrength: 1
   Description: Bass Procession. Falling Requiem. Break organs to weaken attacks.
+  ReferenceHero: 
+  ReferenceCompanion: 
+  ExclusiveHero: 
+  GiftOnly: 0
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -50,7 +54,13 @@ MonoBehaviour:
   IsBoss: 1
   BossPattern: 8
   CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
   Behavior: 0
   Shot: 3
   Material: 5
   Motif: 0
+  EvolutionStage: 0
+  Mutation: 0
+  SpecialEnemy: 0
+  WaitingKind: 0

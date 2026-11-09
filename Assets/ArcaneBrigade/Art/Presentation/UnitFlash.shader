@@ -13,6 +13,7 @@ Shader "ArcaneBrigade/UnitFlash"
         _LivingMotion ("Face mouth fabric response", Vector) = (0,0,0,0)
         _MechanicMotion ("Mechanical tension release", Vector) = (0,0,0,0)
         _Dissolve ("Species departure", Vector) = (0,0,0,0)
+        _DissolveGlow ("Burning edge of a departure (rgb, strength)", Color) = (0,0,0,0)
         _UvRect ("Sprite rectangle", Vector) = (0,0,1,1)
         _ShadeColor ("Ambient shade", Color) = (0.62,0.74,0.84,1)
         _RimColor ("Warm edge light", Color) = (1,0.88,0.62,1)
@@ -62,6 +63,7 @@ Shader "ArcaneBrigade/UnitFlash"
             float4 _WeaponCut;
             float4 _LivingMotion, _MechanicMotion;
             float4 _Dissolve;
+            fixed4 _DissolveGlow;
             fixed4 frag(v2f input) : SV_Target
             {
                 float2 sampleUV = input.texcoord;
@@ -92,12 +94,15 @@ Shader "ArcaneBrigade/UnitFlash"
                 float cut = step(_WeaponCut.x, weaponLocal.x) * step(_WeaponCut.y, weaponLocal.y) * step(weaponLocal.x, _WeaponCut.z) * step(weaponLocal.y, _WeaponCut.w);
                 color.a *= 1 - _WeaponMask * cut;
                 float2 local = saturate((input.texcoord - _UvRect.xy) / max(_UvRect.zw, 0.00001));
+                float burning = 0;
                 if (_Dissolve.x > 0)
                 {
                     float2 grain = floor(local * (58 + _Dissolve.w * 13));
                     float noise = frac(sin(dot(grain, float2(12.9898,78.233)) + _Dissolve.y) * 43758.5453);
                     float pattern = _Dissolve.z < .5 ? (1 - local.y) * .7 + noise * .3 : _Dissolve.z < 1.5 ? local.x * .6 + sin(local.y * 19 + _Dissolve.y) * .09 + noise * .3 : _Dissolve.z < 2.5 ? floor(local.y * 9) / 9 * .65 + noise * .35 : length(local - .5) * 1.2 + noise * .35;
                     color.a *= smoothstep(_Dissolve.x - .08, _Dissolve.x + .08, pattern);
+                    // the band just beyond the eaten edge glows as it burns (a body burning away, not fading)
+                    burning = (1 - smoothstep(_Dissolve.x + .02, _Dissolve.x + .17, pattern)) * _DissolveGlow.a;
                 }
                 color.rgb *= lerp(fixed3(1,1,1), _ShadeColor.rgb, (1 - local.y) * _ShadeAmount);
                 float2 neighbor = input.texcoord + float2(-2,2) * _MainTex_TexelSize.xy;
@@ -133,6 +138,7 @@ Shader "ArcaneBrigade/UnitFlash"
                 float covered = saturate((_FlashLine + sin(local.x * 17 + _FlashLine * 5) * .035 - local.y) * 16);
                 color.rgb = lerp(color.rgb, _FlashColor.rgb, _Flash * covered);
                 color.rgb *= _NightVisibility * _Exposure;
+                color.rgb = lerp(color.rgb, _DissolveGlow.rgb, saturate(burning)); // the burning edge is lit by its own fire, never by the night
                 return color;
             }
             ENDCG

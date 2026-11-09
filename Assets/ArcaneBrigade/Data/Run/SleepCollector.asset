@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: SleepCollector
   DisplayName: Sleep Collector
-  Body: {fileID: -55181743, guid: 1d9fa7e0efe61bc498762e2299091ceb, type: 3}
+  Body: {fileID: 21300000, guid: e1f1806cfe86a274fb8f8a36e73bed57, type: 3}
   AnimationFrames:
-  - {fileID: -55181743, guid: 1d9fa7e0efe61bc498762e2299091ceb, type: 3}
-  - {fileID: 1492859578, guid: 1d9fa7e0efe61bc498762e2299091ceb, type: 3}
-  - {fileID: 76265819, guid: 1d9fa7e0efe61bc498762e2299091ceb, type: 3}
-  - {fileID: 537332323, guid: 1d9fa7e0efe61bc498762e2299091ceb, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 1c42b7fd93db7ea4fa822ef61b930a68, type: 2}
+  - {fileID: 21300000, guid: e1f1806cfe86a274fb8f8a36e73bed57, type: 3}
+  - {fileID: 21300000, guid: 454c09b9794f7b84686e040b0de32075, type: 3}
+  - {fileID: 21300000, guid: 8719975a0a241ed44924f8ca4b4bfdad, type: 3}
+  - {fileID: 21300000, guid: ab2e7e9a62400a54bba725777b190a80, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 04406acca4ce9ae479724aa080fcc542, type: 2}
   Weapon: {fileID: 11400000, guid: 760bf72e211c5ed4b9c785e1b5a99e2f, type: 2}
   Health: 930
   Speed: 0.65
@@ -41,6 +41,10 @@ MonoBehaviour:
   Passive: 0
   PassiveStrength: 1
   Description: Pillow Drop. Nightmare Hop. Break organs to weaken attacks.
+  ReferenceHero: 
+  ReferenceCompanion: 
+  ExclusiveHero: 
+  GiftOnly: 0
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -50,7 +54,13 @@ MonoBehaviour:
   IsBoss: 1
   BossPattern: 2
   CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
   Behavior: 0
   Shot: 2
   Material: 5
   Motif: 2
+  EvolutionStage: 0
+  Mutation: 0
+  SpecialEnemy: 0
+  WaitingKind: 0

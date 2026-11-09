@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: SleepCollectorBigRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 21300000, guid: e1f1806cfe86a274fb8f8a36e73bed57, type: 3}
+  - {fileID: 21300000, guid: c5ec7cc1257376940aed37aa635cb7b7, type: 3}
+  - {fileID: 21300000, guid: 317aec3d9729ff94a89aa7b7845d36e5, type: 3}
+  Walk:
+  - {fileID: 21300000, guid: 454c09b9794f7b84686e040b0de32075, type: 3}
+  - {fileID: 21300000, guid: 4e0448501f699fe429c667838aa09aeb, type: 3}
+  - {fileID: 21300000, guid: 9fbf7cec7420cba449022f6ab12c1f4b, type: 3}
+  - {fileID: 21300000, guid: 83fd57dd0e9b96c459c611c020c108a9, type: 3}
+  Windup:
+  - {fileID: 21300000, guid: 8719975a0a241ed44924f8ca4b4bfdad, type: 3}
+  - {fileID: 21300000, guid: 9e12762b5fc9dfd49ac92a8bac506c20, type: 3}
+  Release:
+  - {fileID: 21300000, guid: ab2e7e9a62400a54bba725777b190a80, type: 3}
+  - {fileID: 21300000, guid: 5b1c0a4e2739b3140bc303947f7bd9ce, type: 3}
+  Recovery:
+  - {fileID: 21300000, guid: 01d37c4e40c016d4aa8ecff8f9fb7acd, type: 3}
+  - {fileID: 21300000, guid: e1f1806cfe86a274fb8f8a36e73bed57, type: 3}
+  IllustratedHeight: 0

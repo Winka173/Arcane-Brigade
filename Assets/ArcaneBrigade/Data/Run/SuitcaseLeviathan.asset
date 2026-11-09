@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: SuitcaseLeviathan
   DisplayName: Suitcase Leviathan
-  Body: {fileID: -1874538196, guid: f65becd44a166e14e8f44ce522dbfcfc, type: 3}
+  Body: {fileID: 21300000, guid: 8fc3a657924b2514f95bb1d1d402f795, type: 3}
   AnimationFrames:
-  - {fileID: -1874538196, guid: f65becd44a166e14e8f44ce522dbfcfc, type: 3}
-  - {fileID: 284873564, guid: f65becd44a166e14e8f44ce522dbfcfc, type: 3}
-  - {fileID: 1720158704, guid: f65becd44a166e14e8f44ce522dbfcfc, type: 3}
-  - {fileID: 23999741, guid: f65becd44a166e14e8f44ce522dbfcfc, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 7cf33b078bb9f6b41a9fefe67ac5f899, type: 2}
+  - {fileID: 21300000, guid: 8fc3a657924b2514f95bb1d1d402f795, type: 3}
+  - {fileID: 21300000, guid: 0b3571ad07ab784448d37761d1359373, type: 3}
+  - {fileID: 21300000, guid: a55094d60cbadd94fb61440cde64b24e, type: 3}
+  - {fileID: 21300000, guid: e54e499db63272a458b3ce07de419622, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 487d9ef709c304a4182dfe4963a56f94, type: 2}
   Weapon: {fileID: 11400000, guid: 1de88c6c424a3dc49ba353a57d685ce8, type: 2}
   Health: 1100
   Speed: 0.62
@@ -41,6 +41,10 @@ MonoBehaviour:
   Passive: 0
   PassiveStrength: 1
   Description: Lost Luggage Drop. Leviathan Landing. Break organs to weaken attacks.
+  ReferenceHero: 
+  ReferenceCompanion: 
+  ExclusiveHero: 
+  GiftOnly: 0
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -50,7 +54,13 @@ MonoBehaviour:
   IsBoss: 1
   BossPattern: 9
   CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
   Behavior: 0
   Shot: 4
   Material: 3
   Motif: 1
+  EvolutionStage: 0
+  Mutation: 0
+  SpecialEnemy: 0
+  WaitingKind: 0

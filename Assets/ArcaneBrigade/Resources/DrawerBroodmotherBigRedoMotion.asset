@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: DrawerBroodmotherBigRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 21300000, guid: 7b566b5cafd577d42972d09f175f4c79, type: 3}
+  - {fileID: 21300000, guid: f31d05ae8d77e3541bd7ad570d969696, type: 3}
+  Walk:
+  - {fileID: 21300000, guid: 58aada863eac4f24ba9c3cf5059d3c86, type: 3}
+  - {fileID: 21300000, guid: 369d6b42f6eec9f4ba2601d725ee41c3, type: 3}
+  - {fileID: 21300000, guid: fa292aed77b6c5044889e74695621be2, type: 3}
+  - {fileID: 21300000, guid: 1a25ea4efc4d5364cb88c74eede9728e, type: 3}
+  Windup:
+  - {fileID: 21300000, guid: 272f6c1ac036f4641ab7d25c96409eb4, type: 3}
+  - {fileID: 21300000, guid: 7970d58fdc57bdd4b82a10b77b5c398a, type: 3}
+  Release:
+  - {fileID: 21300000, guid: 6cab102631705ab4c8b30fa0f8205fd7, type: 3}
+  Recovery:
+  - {fileID: 21300000, guid: f2ce1b47e19849842a5b383bf6569c11, type: 3}
+  - {fileID: 21300000, guid: 7b566b5cafd577d42972d09f175f4c79, type: 3}
+  IllustratedHeight: 0

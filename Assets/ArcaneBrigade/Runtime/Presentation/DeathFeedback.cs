@@ -13,7 +13,7 @@ namespace ArcaneBrigade
         public const float PopDuration = 0.2f;
         /// <summary>When, inside the boss finale, the body goes up in its final blast.</summary>
         public const float BossBlastAt = 1.38f;
-        private static readonly int FlashId = Shader.PropertyToID("_Flash"), UvRectId = Shader.PropertyToID("_UvRect"), DissolveId = Shader.PropertyToID("_Dissolve");
+        private static readonly int FlashId = Shader.PropertyToID("_Flash"), UvRectId = Shader.PropertyToID("_UvRect"), DissolveId = Shader.PropertyToID("_Dissolve"), DissolveGlowId = Shader.PropertyToID("_DissolveGlow");
         private sealed class Remnant
         {
             public Transform Root;
@@ -141,7 +141,7 @@ namespace ArcaneBrigade
             remnant.Height = Mathf.Max(0.3f, state.Definition.BodyHeight);
             // a pop holds the struck (hurt) pose; the long painted collapse belongs to heroes and bosses
             if (remnant.Pop && remnant.DefeatFrames != null && remnant.DefeatFrames.Length > 0) remnant.DefeatFrames = new[] { remnant.DefeatFrames[0] };
-            remnant.Duration = remnant.Boss ? DurationBoss : remnant.Pop ? PopDuration * (1f + 0.15f * (remnant.Force - 1f)) : state.Faction == Faction.Champion ? 0.95f : 0.65f + 0.12f * (remnant.Force - 1f);
+            remnant.Duration = remnant.Boss ? DurationBoss : remnant.Pop ? PopDuration * (1f + 0.15f * (remnant.Force - 1f)) * (ExplosionFeedback.BodyBurn ? 1.7f : 1f) : state.Faction == Faction.Champion ? 0.95f : 0.65f + 0.12f * (remnant.Force - 1f);
             remnant.Age = 0;
             foreach (SpriteRenderer fragment in remnant.Fragments) { fragment.sprite = fragmentSprite; fragment.enabled = false; fragment.sortingOrder = remnant.Body.sortingOrder + 5; }
             if (!remnant.Pop) { remnant.Properties.Clear(); remnant.Body.SetPropertyBlock(remnant.Properties); }
@@ -261,6 +261,8 @@ namespace ArcaneBrigade
             float sx = still ? 1f : Mathf.Lerp(1f, 1f + 0.26f * punch, squash) + 0.16f * burst * punch;
             float sy = still ? 1f : Mathf.Lerp(1f, 1f - 0.3f, squash) + 0.26f * burst * punch;
             float alpha = 1f - Mathf.Pow(burst, 0.55f); // gone fast: the explosion, not a swelling white body, carries the burst
+            bool burn = ExplosionFeedback.BodyBurn && !still;
+            if (burn) alpha = 1f - Mathf.Clamp01((burst - 0.85f) / 0.15f); // the body burns away from its heart instead of fading
             float poseScale = remnant.SourceHeight / Mathf.Max(.01f, remnant.Body.sprite.bounds.size.y);
             // squash about the feet, swell about the middle as it comes apart
             float pivot = remnant.Body.sprite.pivot.y / remnant.Body.sprite.rect.height;
@@ -276,8 +278,9 @@ namespace ArcaneBrigade
             remnant.Properties.Clear();
             Rect rectangle = remnant.Body.sprite.rect; Texture texture = remnant.Body.sprite.texture;
             remnant.Properties.SetVector(UvRectId, new Vector4(rectangle.x / texture.width, rectangle.y / texture.height, rectangle.width / texture.width, rectangle.height / texture.height));
-            remnant.Properties.SetVector(DissolveId, Vector4.zero);
-            remnant.Properties.SetFloat(FlashId, flash);
+            remnant.Properties.SetVector(DissolveId, burn && burst > 0 ? new Vector4(0.02f + burst * 1.2f, remnant.Identity * 1.7f, 3, 0) : Vector4.zero);
+            remnant.Properties.SetColor(DissolveGlowId, burn ? new Color(1f, 0.62f, 0.22f, 1f) : Color.clear);
+            remnant.Properties.SetFloat(FlashId, burn ? flash * 0.6f : flash);
             remnant.Body.SetPropertyBlock(remnant.Properties);
             Color body = t < hold || PresentationSettings.ReducedFlashes ? Color.Lerp(PresentationSettings.ReducedFlashes ? remnant.BodyColor : Color.white, remnant.BodyColor, burst) : Color.Lerp(new Color(1f, 0.62f, 0.3f), remnant.BodyColor * new Color(1f, 0.5f, 0.3f), burst); body.a = alpha; remnant.Body.color = body;
             remnant.Shadow.transform.localScale = remnant.ShadowScale * (1f + 0.25f * squash - 0.6f * burst);
