@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: SofaGlutton
   DisplayName: Sofa Glutton
-  Body: {fileID: 44741929, guid: 0ea56f2806324b4c94f940e07b9c4955, type: 3}
+  Body: {fileID: 21300000, guid: 357b8bc791a86fd43bec16dc8deb90a4, type: 3}
   AnimationFrames:
-  - {fileID: 44741929, guid: 0ea56f2806324b4c94f940e07b9c4955, type: 3}
-  - {fileID: 679780642, guid: 0ea56f2806324b4c94f940e07b9c4955, type: 3}
-  - {fileID: -1585403475, guid: 0ea56f2806324b4c94f940e07b9c4955, type: 3}
-  - {fileID: 1305793422, guid: 0ea56f2806324b4c94f940e07b9c4955, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 3b6e6a14ec7cfa64a8dd690e4f40a6db, type: 2}
+  - {fileID: 21300000, guid: 357b8bc791a86fd43bec16dc8deb90a4, type: 3}
+  - {fileID: 21300000, guid: 452bf7f90e65d5f4f9152f7b37e3fcf3, type: 3}
+  - {fileID: 21300000, guid: 3787536f19939c4439149479d0cad02e, type: 3}
+  - {fileID: 21300000, guid: 8d3f3117a6ce5d746a65f90fb3ce6108, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 1284f6e8b59588e42814834fe0cb482e, type: 2}
   Weapon: {fileID: 11400000, guid: aa489bd9f9d758c4997d556180c664d1, type: 2}
   Health: 220
   Speed: 0.95

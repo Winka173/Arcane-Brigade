@@ -65,7 +65,7 @@ namespace ArcaneBrigade
         private Sprite burn;
         /// <summary>Most big death blasts started per fifth of a second (the rest go up as small ones).</summary>
         public const int BigPerWindow = 4, ReducedBigPerWindow = 2;
-        public const float MaxPopRadius = 1.0f, MaxBigPopRadius = 1.35f;
+        public const float PopRadius = 0.5f, BigPopRadius = 0.85f, MaxPopRadius = 0.7f, MaxBigPopRadius = 1.0f;
         private float bigWindow;
         private int bigInWindow;
         public int BigPopsShown { get; private set; }
@@ -173,7 +173,7 @@ namespace ArcaneBrigade
         {
             float now = Time.unscaledTime;
             Streak = now - streakAt > 1f ? 1 : Streak + 1; streakAt = now;
-            float surge = 1f + Mathf.Min(Streak, 40) * 0.008f;
+            float surge = 1f + Mathf.Min(Streak, 40) * 0.004f; // at most 16% bigger in a long run
             if (now > popWindow) { popWindow = now + 0.1f; popsInWindow = 0; }
             bool budget = ++popsInWindow <= (PresentationSettings.ReducedEffects ? ReducedPopsPerWindow : PopsPerWindow);
             bool big = elite || unit != null && (unit.Radius >= 0.4f || unit.BodyHeight >= 1.4f) || critical && overkill > 0.6f;
@@ -187,10 +187,10 @@ namespace ArcaneBrigade
             if (Streak == 10 || Streak == 25 || Streak == 50) Milestone(centre, Streak);
             // a crit or a big body always lands; when no body could be shown the burst has to carry the death on its own
             if (!budget && !critical && !big && bodyShown) return;
-            float force = (1f + (critical ? 0.45f : 0f) + Mathf.Clamp(overkill, 0f, 1.5f) * 0.35f) * (big ? 1.3f : 1f) * surge;
-            // every multiplier together still ends in a local burst: the painted fireball is 2.3 radii wide, so a big one stays about
-            // three units across and never washes over the crowd
-            float radius = Mathf.Min(Mathf.Clamp(height * 0.6f, 0.36f, big ? 1.5f : 1.15f) * force, big ? MaxBigPopRadius : MaxPopRadius);
+            // one size for every body (requirement 09/11/2026: a blast never grows with the monster, it stays a crisp local pop): small
+            // 0.5, a crit 0.6, big 0.85, nudged by overkill and a long run of kills but capped
+            float radius = (big ? BigPopRadius : critical ? 0.6f : PopRadius) * (1f + Mathf.Clamp01(overkill) * 0.1f) * surge;
+            radius = Mathf.Min(radius, big ? MaxBigPopRadius : MaxPopRadius);
             Color elementColour = Tint(element, Faction.Companion);
             if (Drifts(unit))
             {

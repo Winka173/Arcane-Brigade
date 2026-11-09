@@ -316,6 +316,8 @@ namespace ArcaneBrigade
         public void ForceVictoryForCapture() { if (HowToRecorder.Requested && Phase == RunPhase.Combat) Phase = RunPhase.Victory; }
         /// <summary>Capture-only: a toy pickup lands right at the hero's feet.</summary>
         public void DropToyForCapture(LootKind kind) { if (HowToRecorder.Requested && Phase == RunPhase.Combat) DropLoot(kind, Champion.Position, 1); }
+        /// <summary>Capture-only (feel review): a body of any kind placed in the fight, so redrawn art can be filmed beside the hero.</summary>
+        public UnitState AddForFeelCapture(UnitDefinition definition, Faction faction, Vector2 position) => FeelCapture.Requested && definition != null ? Spawn(definition, faction, position) : null;
         /// <summary>Capture-only: keeps the hero's trigger topped up until the real mechanic casts.</summary>
         public void FillGaugeForCapture()
         {

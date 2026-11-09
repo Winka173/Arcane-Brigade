@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -109,6 +110,23 @@ namespace ArcaneBrigade
             {
                 while (Time.realtimeSinceStartup - started < t) yield return null;
                 yield return Shot("E-crit-and-boss-" + Mathf.RoundToInt(t * 1000) + "ms");
+            }
+            // F: the redrawn bosses and big enemies (Art/BigRedo) standing, walking and striking beside the hero, frame by frame
+            {
+                Vector2 stand = owner.Simulation.Champion.Position + new Vector2(2.6f, 0.2f);
+                int shown = 0;
+                foreach (UnitDefinition redrawn in catalog.Enemies.Concat(catalog.Bosses))
+                {
+                    if (redrawn == null || redrawn.AuthoredMotion == null || !redrawn.AuthoredMotion.name.EndsWith("BigRedoMotion", StringComparison.Ordinal) || shown >= 3) continue;
+                    UnitState fixture = owner.Simulation.AddForFeelCapture(redrawn, Faction.Enemy, stand + new Vector2(shown * 2.4f, 0)); shown++;
+                    log.Add("redrawn fixture " + redrawn.Id + " " + (fixture != null));
+                }
+                started = Time.realtimeSinceStartup;
+                for (int i = 0; i < 12 && shown > 0; i++)
+                {
+                    while (Time.realtimeSinceStartup - started < 0.25f * i) yield return null;
+                    yield return Shot("F-redrawn-" + (i * 250).ToString("0000") + "ms");
+                }
             }
             // C: twelve seconds of the real fight: how hard and how often the screen moves and holds
             float peak = 0, sum = 0; int frames = 0, holdFrames = 0, holds = 0; bool wasHeld = false;

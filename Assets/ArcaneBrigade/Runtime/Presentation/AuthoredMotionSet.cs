@@ -46,6 +46,12 @@ namespace ArcaneBrigade
             if (time - unit.LastHit >= 0 && time - unit.LastHit < 0.12f) return Recovery[0];
             bool moving = (unit.Position - unit.PreviousPosition).sqrMagnitude > 0.000001f;
             if (moving) return Walk[Mathf.FloorToInt(time * (unit.TravelMode == CompanionTravelMode.Pursuit ? 11 : 8) + unit.Id * 0.37f) % Walk.Length];
+            if (Idle.Length > 2)
+            {
+                // a breathing loop (redrawn bosses and big enemies have three idle frames): out and back, about four beats a second
+                int span = 2 * (Idle.Length - 1), beat = Mathf.FloorToInt(time * 4f + unit.Id * 0.37f) % span;
+                return Idle[beat < Idle.Length ? beat : span - beat];
+            }
             return Mathf.Repeat(time + unit.Id * 0.73f, 4.7f) < 0.13f ? Idle[1] : Idle[0];
         }
     }
