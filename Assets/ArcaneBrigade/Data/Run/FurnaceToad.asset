@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: FurnaceToad
   DisplayName: Furnace Toad
-  Body: {fileID: 1827451333, guid: 17d1a794ab08e23468c137bd99cc0640, type: 3}
+  Body: {fileID: 21300000, guid: bbba7d6b72d8f314db01a8ee8782fc75, type: 3}
   AnimationFrames:
-  - {fileID: 1827451333, guid: 17d1a794ab08e23468c137bd99cc0640, type: 3}
-  - {fileID: -1163322605, guid: 17d1a794ab08e23468c137bd99cc0640, type: 3}
-  - {fileID: 1639347699, guid: 17d1a794ab08e23468c137bd99cc0640, type: 3}
-  - {fileID: -1694908920, guid: 17d1a794ab08e23468c137bd99cc0640, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 28c25d4af98105d4fb7104232f891751, type: 2}
+  - {fileID: 21300000, guid: bbba7d6b72d8f314db01a8ee8782fc75, type: 3}
+  - {fileID: 21300000, guid: b0edfd3635ce67341ae8713a8b6509d0, type: 3}
+  - {fileID: 21300000, guid: 433820a274424d848b5c133cdeac63cd, type: 3}
+  - {fileID: 21300000, guid: 76a6d9a08ca75074cbfe01f69ae2ea4d, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: eddece22318f503478db8acabc015e41, type: 2}
   Weapon: {fileID: 11400000, guid: 037d533351091a2428478b4b840a6099, type: 2}
   Health: 180
   Speed: 1.8
@@ -41,6 +41,10 @@ MonoBehaviour:
   Passive: 0
   PassiveStrength: 1
   Description: "Heavy spitter \xB7 resists knockback"
+  ReferenceHero: 
+  ReferenceCompanion: 
+  ExclusiveHero: 
+  GiftOnly: 0
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -50,9 +54,13 @@ MonoBehaviour:
   IsBoss: 0
   BossPattern: 0
   CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
   Behavior: 0
   Shot: 4
   Material: 2
   Motif: 0
   EvolutionStage: 0
   Mutation: 0
+  SpecialEnemy: 0
+  WaitingKind: 0

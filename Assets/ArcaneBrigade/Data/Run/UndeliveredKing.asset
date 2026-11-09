@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: UndeliveredKing
   DisplayName: Undelivered King
-  Body: {fileID: -1725290596, guid: 49f8e1ef21ba8294fa46da21fc85ac68, type: 3}
+  Body: {fileID: 21300000, guid: 747f1ee6b3d7e824c8dddc4a1d32bf0d, type: 3}
   AnimationFrames:
-  - {fileID: -1725290596, guid: 49f8e1ef21ba8294fa46da21fc85ac68, type: 3}
-  - {fileID: -1624054054, guid: 49f8e1ef21ba8294fa46da21fc85ac68, type: 3}
-  - {fileID: -662858668, guid: 49f8e1ef21ba8294fa46da21fc85ac68, type: 3}
-  - {fileID: -700579540, guid: 49f8e1ef21ba8294fa46da21fc85ac68, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: b0d1725b739068b4b8454e3c7495bfe4, type: 2}
+  - {fileID: 21300000, guid: 747f1ee6b3d7e824c8dddc4a1d32bf0d, type: 3}
+  - {fileID: 21300000, guid: e0085a6f28824bb47ba0cf8aae73064e, type: 3}
+  - {fileID: 21300000, guid: 43dad08a4ae169446be320d12f7d8345, type: 3}
+  - {fileID: 21300000, guid: ac6207cfcb8791544abcac0dc5ab064e, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: cb92be97e02ea5c439233cf2d4bc3d78, type: 2}
   Weapon: {fileID: 11400000, guid: 047722544859a9b4ab3b93a7f5cfde07, type: 2}
   Health: 650
   Speed: 0.65
@@ -41,6 +41,10 @@ MonoBehaviour:
   Passive: 0
   PassiveStrength: 1
   Description: Royal Stampede. Dead Letter Cross. Break organs to weaken attacks.
+  ReferenceHero: 
+  ReferenceCompanion: 
+  ExclusiveHero: 
+  GiftOnly: 0
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -50,7 +54,13 @@ MonoBehaviour:
   IsBoss: 1
   BossPattern: 0
   CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
   Behavior: 0
   Shot: 0
   Material: 3
   Motif: 0
+  EvolutionStage: 0
+  Mutation: 0
+  SpecialEnemy: 0
+  WaitingKind: 0

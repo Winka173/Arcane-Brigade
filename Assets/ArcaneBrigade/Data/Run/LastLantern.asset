@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: LastLantern
   DisplayName: Last Lantern
-  Body: {fileID: 652808029, guid: 46ad5fb812e7b724b9cfbaa750484552, type: 3}
+  Body: {fileID: 21300000, guid: 46241582796f0794e97d6bfe516e136f, type: 3}
   AnimationFrames:
-  - {fileID: 652808029, guid: 46ad5fb812e7b724b9cfbaa750484552, type: 3}
-  - {fileID: -1236158462, guid: 46ad5fb812e7b724b9cfbaa750484552, type: 3}
-  - {fileID: -1397476257, guid: 46ad5fb812e7b724b9cfbaa750484552, type: 3}
-  - {fileID: -1943454864, guid: 46ad5fb812e7b724b9cfbaa750484552, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 77bc9104b5983f548976ac82c41f17bb, type: 2}
+  - {fileID: 21300000, guid: 46241582796f0794e97d6bfe516e136f, type: 3}
+  - {fileID: 21300000, guid: 4f1795af51052f649a8586ad0a5e272a, type: 3}
+  - {fileID: 21300000, guid: c88933420a88c0e41bb2aa4f93edcd28, type: 3}
+  - {fileID: 21300000, guid: 3d2ec7ffeb8e1c04ca7b2b0397199afd, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 95bff2a2ddfa0b1409b1f02914e019e8, type: 2}
   Weapon: {fileID: 11400000, guid: ff8886242d47ac447b7b4c76112fbefd, type: 2}
   Health: 1210
   Speed: 0.65
@@ -41,6 +41,10 @@ MonoBehaviour:
   Passive: 0
   PassiveStrength: 1
   Description: Shutter Cage. Fuel Rain. Break organs to weaken attacks.
+  ReferenceHero: 
+  ReferenceCompanion: 
+  ExclusiveHero: 
+  GiftOnly: 0
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -50,7 +54,13 @@ MonoBehaviour:
   IsBoss: 1
   BossPattern: 4
   CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
   Behavior: 0
   Shot: 4
   Material: 0
   Motif: 1
+  EvolutionStage: 0
+  Mutation: 0
+  SpecialEnemy: 0
+  WaitingKind: 0

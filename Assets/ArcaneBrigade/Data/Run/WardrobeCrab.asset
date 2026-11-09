@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: WardrobeCrab
   DisplayName: Wardrobe Crab
-  Body: {fileID: -1192816198, guid: 483ce6c54c4e6cf41b540c678500b315, type: 3}
+  Body: {fileID: 21300000, guid: baf1358c0b55e2642a05a6eaf8a47510, type: 3}
   AnimationFrames:
-  - {fileID: -1192816198, guid: 483ce6c54c4e6cf41b540c678500b315, type: 3}
-  - {fileID: -248978268, guid: 483ce6c54c4e6cf41b540c678500b315, type: 3}
-  - {fileID: -1211718714, guid: 483ce6c54c4e6cf41b540c678500b315, type: 3}
-  - {fileID: -40947734, guid: 483ce6c54c4e6cf41b540c678500b315, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 03e2df0c9db7a7e489265c2ff307818b, type: 2}
+  - {fileID: 21300000, guid: baf1358c0b55e2642a05a6eaf8a47510, type: 3}
+  - {fileID: 21300000, guid: 62d8b646bb3d89b4eb77b967438e88e2, type: 3}
+  - {fileID: 21300000, guid: fa4eb138b9a82e541bf69cc2eee0bea3, type: 3}
+  - {fileID: 21300000, guid: bb5a80ff1f6724641b4b26534b327029, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: f7a92a71a5d96394583c0a616824100d, type: 2}
   Weapon: {fileID: 11400000, guid: aa489bd9f9d758c4997d556180c664d1, type: 2}
   Health: 240
   Speed: 2.1
@@ -41,6 +41,10 @@ MonoBehaviour:
   Passive: 0
   PassiveStrength: 1
   Description: "Heavy biter \xB7 resists knockback"
+  ReferenceHero: 
+  ReferenceCompanion: 
+  ExclusiveHero: 
+  GiftOnly: 0
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -50,9 +54,13 @@ MonoBehaviour:
   IsBoss: 0
   BossPattern: 0
   CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
   Behavior: 0
   Shot: 0
   Material: 5
   Motif: 0
   EvolutionStage: 0
   Mutation: 0
+  SpecialEnemy: 0
+  WaitingKind: 0

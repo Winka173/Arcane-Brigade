@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: MarqueeMawBigRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 21300000, guid: 33098c61dfdcf974e86dc1b70c133fbf, type: 3}
+  - {fileID: 21300000, guid: 65e2608f851192c4998a50c39170f432, type: 3}
+  - {fileID: 21300000, guid: 330d8311e64e8b044bbefd9f5cc2bf9c, type: 3}
+  Walk:
+  - {fileID: 21300000, guid: 3291f16d9aab49a439cd3797b50abded, type: 3}
+  - {fileID: 21300000, guid: e4bd252ebd31852498aab6e526dd3c74, type: 3}
+  - {fileID: 21300000, guid: 9408b5bae87771c43934e1112d972dc5, type: 3}
+  - {fileID: 21300000, guid: 8b10bfe54f4146441b193c56d07b7157, type: 3}
+  Windup:
+  - {fileID: 21300000, guid: eb391009227723c47b4268583cf38b91, type: 3}
+  - {fileID: 21300000, guid: 141cf0c0613fa6b4fb4a410c60c704f7, type: 3}
+  Release:
+  - {fileID: 21300000, guid: ecbf087660fb41343812cf3e910ddb05, type: 3}
+  - {fileID: 21300000, guid: 96b558ea4d908364aa87ced5e9444b04, type: 3}
+  Recovery:
+  - {fileID: 21300000, guid: 23707da7472f37f45b197b6e34e63c06, type: 3}
+  - {fileID: 21300000, guid: 33098c61dfdcf974e86dc1b70c133fbf, type: 3}
+  IllustratedHeight: 0

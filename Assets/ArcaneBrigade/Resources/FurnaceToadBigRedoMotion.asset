@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: FurnaceToadBigRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 21300000, guid: bbba7d6b72d8f314db01a8ee8782fc75, type: 3}
+  - {fileID: 21300000, guid: 6a8a917e67433e04ab9c89c1740cb764, type: 3}
+  Walk:
+  - {fileID: 21300000, guid: b0edfd3635ce67341ae8713a8b6509d0, type: 3}
+  - {fileID: 21300000, guid: ef0a17193e635074992001333ac9e6cb, type: 3}
+  - {fileID: 21300000, guid: df3619fb96e67ed4b9c6f7dc5e27ea8b, type: 3}
+  - {fileID: 21300000, guid: a6669a5a46de2494fb85f8d996e4abe3, type: 3}
+  Windup:
+  - {fileID: 21300000, guid: 433820a274424d848b5c133cdeac63cd, type: 3}
+  - {fileID: 21300000, guid: a2f47facad9cd6245ba89570481c646c, type: 3}
+  Release:
+  - {fileID: 21300000, guid: 76a6d9a08ca75074cbfe01f69ae2ea4d, type: 3}
+  Recovery:
+  - {fileID: 21300000, guid: 320f98bd9ffd874499f42b4a956ed40d, type: 3}
+  - {fileID: 21300000, guid: bbba7d6b72d8f314db01a8ee8782fc75, type: 3}
+  IllustratedHeight: 0

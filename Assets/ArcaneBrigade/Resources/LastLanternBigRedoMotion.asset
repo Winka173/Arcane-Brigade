@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: LastLanternBigRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 21300000, guid: 46241582796f0794e97d6bfe516e136f, type: 3}
+  - {fileID: 21300000, guid: d63c57fe64860d14795b6141ef49ec66, type: 3}
+  - {fileID: 21300000, guid: 005c38e43b20f6241953e4de5c25e4b7, type: 3}
+  Walk:
+  - {fileID: 21300000, guid: 4f1795af51052f649a8586ad0a5e272a, type: 3}
+  - {fileID: 21300000, guid: 912eca4e2df02ae44952437cdd73faac, type: 3}
+  - {fileID: 21300000, guid: c696fb1dd8deeb84db201ea15554f0ac, type: 3}
+  - {fileID: 21300000, guid: f7c309109e5d16742991cced57c5a524, type: 3}
+  Windup:
+  - {fileID: 21300000, guid: c88933420a88c0e41bb2aa4f93edcd28, type: 3}
+  - {fileID: 21300000, guid: 9eb68b28280b2634c945777726f7a4e1, type: 3}
+  Release:
+  - {fileID: 21300000, guid: 3d2ec7ffeb8e1c04ca7b2b0397199afd, type: 3}
+  - {fileID: 21300000, guid: 4236f72ea59be1243938a9e3e443cc4e, type: 3}
+  Recovery:
+  - {fileID: 21300000, guid: d727828f266c43a4cad4240df32dd071, type: 3}
+  - {fileID: 21300000, guid: 46241582796f0794e97d6bfe516e136f, type: 3}
+  IllustratedHeight: 0

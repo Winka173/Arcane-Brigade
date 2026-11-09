@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: ScarletIndexBigRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 21300000, guid: d6b28cf503fed9e4dbee26824c4d56ab, type: 3}
+  - {fileID: 21300000, guid: ac4ddafdda01b6d4ebfe73b79ca4378c, type: 3}
+  - {fileID: 21300000, guid: e7dc443ba53d907479d0f8e5b837ffd3, type: 3}
+  Walk:
+  - {fileID: 21300000, guid: 331d7b5bad39ac4488ddf926785e7f6b, type: 3}
+  - {fileID: 21300000, guid: b25b7a901be4e4a4dbba805ad1437473, type: 3}
+  - {fileID: 21300000, guid: c6f8742074669bf4787bcf7d65736022, type: 3}
+  - {fileID: 21300000, guid: b8dfb0671acb3d34abdbb775a9bbfcb9, type: 3}
+  Windup:
+  - {fileID: 21300000, guid: ec87654d6a7c60a4c99f6b7c259dbaad, type: 3}
+  - {fileID: 21300000, guid: a3a42f41e1b387148bd2fd6cf54cef3c, type: 3}
+  Release:
+  - {fileID: 21300000, guid: baaafd53049f1eb48a7a65cd89b02ca0, type: 3}
+  - {fileID: 21300000, guid: 882c278101e00dd41b9878e09f80b0e0, type: 3}
+  Recovery:
+  - {fileID: 21300000, guid: 9ae3d4180dc998a4189d086bd0e0ae8f, type: 3}
+  - {fileID: 21300000, guid: d6b28cf503fed9e4dbee26824c4d56ab, type: 3}
+  IllustratedHeight: 0

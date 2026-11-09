@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: FireScreenWarden
   DisplayName: Fire Screen Warden
-  Body: {fileID: 1482007347, guid: 2f204dde17a333a4b8e8e219ee9373e0, type: 3}
+  Body: {fileID: 21300000, guid: 2c930175ae1e79747b9c54fa6e97c9bf, type: 3}
   AnimationFrames:
-  - {fileID: 1482007347, guid: 2f204dde17a333a4b8e8e219ee9373e0, type: 3}
-  - {fileID: 157833402, guid: 2f204dde17a333a4b8e8e219ee9373e0, type: 3}
-  - {fileID: 1198962143, guid: 2f204dde17a333a4b8e8e219ee9373e0, type: 3}
-  - {fileID: 521344551, guid: 2f204dde17a333a4b8e8e219ee9373e0, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 6e44b9a354681b144a7fd29fca2f3bbb, type: 2}
+  - {fileID: 21300000, guid: 2c930175ae1e79747b9c54fa6e97c9bf, type: 3}
+  - {fileID: 21300000, guid: 834902ab2da689d4296371b44022caaf, type: 3}
+  - {fileID: 21300000, guid: 74b1ffb6cb604704381e0983a8d28f5c, type: 3}
+  - {fileID: 21300000, guid: 48177955c42df2c47b93a4d48f7aefa5, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: d1c507c65bad53e4bbb085345412c985, type: 2}
   Weapon: {fileID: 11400000, guid: aa489bd9f9d758c4997d556180c664d1, type: 2}
   Health: 160
   Speed: 0.85

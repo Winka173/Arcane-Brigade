@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: LedgerTortoiseBigRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 21300000, guid: f47e52dd03fa68f40b37670765313ca0, type: 3}
+  - {fileID: 21300000, guid: 46545b56ff606e74795b448379abc2c3, type: 3}
+  Walk:
+  - {fileID: 21300000, guid: b4e59e3b1a707bd48b5d08402a716992, type: 3}
+  - {fileID: 21300000, guid: 7c7189ee54ed1814f9dcfe16387e14ee, type: 3}
+  - {fileID: 21300000, guid: 13fcc2b4d87151948887ebc9b7807a88, type: 3}
+  - {fileID: 21300000, guid: b02e115c2b106704b9806e518b65fe81, type: 3}
+  Windup:
+  - {fileID: 21300000, guid: d74700d1706a8e74ebb89f137c65df58, type: 3}
+  - {fileID: 21300000, guid: aa0c97d101812284098d28d58f89fc9d, type: 3}
+  Release:
+  - {fileID: 21300000, guid: fc390fc43fcbaa84dac74282ba8f93ee, type: 3}
+  Recovery:
+  - {fileID: 21300000, guid: e31b67ea52f657747a44ea7c5b889a06, type: 3}
+  - {fileID: 21300000, guid: f47e52dd03fa68f40b37670765313ca0, type: 3}
+  IllustratedHeight: 0

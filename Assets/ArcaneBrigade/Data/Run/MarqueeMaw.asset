@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: MarqueeMaw
   DisplayName: The Marquee Maw
-  Body: {fileID: -268646991, guid: 46ad5fb812e7b724b9cfbaa750484552, type: 3}
+  Body: {fileID: 21300000, guid: 33098c61dfdcf974e86dc1b70c133fbf, type: 3}
   AnimationFrames:
-  - {fileID: -268646991, guid: 46ad5fb812e7b724b9cfbaa750484552, type: 3}
-  - {fileID: -893650622, guid: 46ad5fb812e7b724b9cfbaa750484552, type: 3}
-  - {fileID: -758381758, guid: 46ad5fb812e7b724b9cfbaa750484552, type: 3}
-  - {fileID: -1882011092, guid: 46ad5fb812e7b724b9cfbaa750484552, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 31be0f9b22c9b674aa0b4ba95527e7ee, type: 2}
+  - {fileID: 21300000, guid: 33098c61dfdcf974e86dc1b70c133fbf, type: 3}
+  - {fileID: 21300000, guid: 3291f16d9aab49a439cd3797b50abded, type: 3}
+  - {fileID: 21300000, guid: eb391009227723c47b4268583cf38b91, type: 3}
+  - {fileID: 21300000, guid: ecbf087660fb41343812cf3e910ddb05, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: b6eb362fb799c92459e6c68fe8ce3344, type: 2}
   Weapon: {fileID: 11400000, guid: 42a0a6ad62295b8449b669a50c046391, type: 2}
   Health: 600
   Speed: 0.62
@@ -41,6 +41,10 @@ MonoBehaviour:
   Passive: 0
   PassiveStrength: 1
   Description: Curtain Call. Stage Dive. Break organs to weaken attacks.
+  ReferenceHero: 
+  ReferenceCompanion: 
+  ExclusiveHero: 
+  GiftOnly: 0
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -50,7 +54,13 @@ MonoBehaviour:
   IsBoss: 1
   BossPattern: 5
   CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
   Behavior: 0
   Shot: 0
   Material: 3
   Motif: 0
+  EvolutionStage: 0
+  Mutation: 0
+  SpecialEnemy: 0
+  WaitingKind: 0

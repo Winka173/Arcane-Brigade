@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: RubberStampTitanBigRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 21300000, guid: 726255072424e86408b77b90766c2118, type: 3}
+  - {fileID: 21300000, guid: 86d003240a6750e44a6df20d6f906b86, type: 3}
+  Walk:
+  - {fileID: 21300000, guid: a7f02bd7d6b6b55408796465fb2bd37c, type: 3}
+  - {fileID: 21300000, guid: 13625cde07a2eae43b03d0b49d3bd4ac, type: 3}
+  - {fileID: 21300000, guid: 7fdeaad8c8c53484682a1896bb060090, type: 3}
+  - {fileID: 21300000, guid: 24ca1943db82dc34ab938da9b145e1c4, type: 3}
+  Windup:
+  - {fileID: 21300000, guid: c12eadb005486ae419e7ad6fa2627b99, type: 3}
+  - {fileID: 21300000, guid: e531448c07e95a64c9843d01ed2d5e0e, type: 3}
+  Release:
+  - {fileID: 21300000, guid: 0f1e9ae176c84ca4da9ac2d0b276c10b, type: 3}
+  Recovery:
+  - {fileID: 21300000, guid: 2f2632b4a874d4d4aa7213f97ef2679f, type: 3}
+  - {fileID: 21300000, guid: 726255072424e86408b77b90766c2118, type: 3}
+  IllustratedHeight: 0

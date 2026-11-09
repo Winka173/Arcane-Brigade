@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: LedgerTortoise
   DisplayName: Ledger Tortoise
-  Body: {fileID: -815422803, guid: bb97ea437c7355445a1af8ceb926ebe7, type: 3}
+  Body: {fileID: 21300000, guid: f47e52dd03fa68f40b37670765313ca0, type: 3}
   AnimationFrames:
-  - {fileID: -815422803, guid: bb97ea437c7355445a1af8ceb926ebe7, type: 3}
-  - {fileID: -1402060795, guid: bb97ea437c7355445a1af8ceb926ebe7, type: 3}
-  - {fileID: 1408012875, guid: bb97ea437c7355445a1af8ceb926ebe7, type: 3}
-  - {fileID: -1193418699, guid: bb97ea437c7355445a1af8ceb926ebe7, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: cf704317512c0a64abd3a40d8acc49a2, type: 2}
+  - {fileID: 21300000, guid: f47e52dd03fa68f40b37670765313ca0, type: 3}
+  - {fileID: 21300000, guid: b4e59e3b1a707bd48b5d08402a716992, type: 3}
+  - {fileID: 21300000, guid: d74700d1706a8e74ebb89f137c65df58, type: 3}
+  - {fileID: 21300000, guid: fc390fc43fcbaa84dac74282ba8f93ee, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 16eedac20deba3e4d9f18aaaf9613cd6, type: 2}
   Weapon: {fileID: 11400000, guid: 037d533351091a2428478b4b840a6099, type: 2}
   Health: 260
   Speed: 0.65

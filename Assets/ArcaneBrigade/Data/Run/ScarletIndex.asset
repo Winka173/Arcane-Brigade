@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: ScarletIndex
   DisplayName: Scarlet Index
-  Body: {fileID: -1071149938, guid: 49f8e1ef21ba8294fa46da21fc85ac68, type: 3}
+  Body: {fileID: 21300000, guid: d6b28cf503fed9e4dbee26824c4d56ab, type: 3}
   AnimationFrames:
-  - {fileID: -1071149938, guid: 49f8e1ef21ba8294fa46da21fc85ac68, type: 3}
-  - {fileID: -1698511946, guid: 49f8e1ef21ba8294fa46da21fc85ac68, type: 3}
-  - {fileID: -1084453714, guid: 49f8e1ef21ba8294fa46da21fc85ac68, type: 3}
-  - {fileID: 1356534382, guid: 49f8e1ef21ba8294fa46da21fc85ac68, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 05798aad865606a40b9788b62f820adf, type: 2}
+  - {fileID: 21300000, guid: d6b28cf503fed9e4dbee26824c4d56ab, type: 3}
+  - {fileID: 21300000, guid: 331d7b5bad39ac4488ddf926785e7f6b, type: 3}
+  - {fileID: 21300000, guid: ec87654d6a7c60a4c99f6b7c259dbaad, type: 3}
+  - {fileID: 21300000, guid: baaafd53049f1eb48a7a65cd89b02ca0, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: cb3c08ed8fe8ee64b96c2e035af0aabd, type: 2}
   Weapon: {fileID: 11400000, guid: 166ba93775526cd44a5b7af36a08fd42, type: 2}
   Health: 790
   Speed: 0.65
@@ -41,6 +41,10 @@ MonoBehaviour:
   Passive: 0
   PassiveStrength: 1
   Description: Quill Guillotine. Spilled Archive. Break organs to weaken attacks.
+  ReferenceHero: 
+  ReferenceCompanion: 
+  ExclusiveHero: 
+  GiftOnly: 0
   ChampionModifiers: []
   RecruitThemes: []
   HeroMechanic: 0
@@ -50,7 +54,13 @@ MonoBehaviour:
   IsBoss: 1
   BossPattern: 1
   CombatTier: 1
+  BuildMorph: 0
+  BuildMorphStage: 0
   Behavior: 0
   Shot: 1
   Material: 0
   Motif: 1
+  EvolutionStage: 0
+  Mutation: 0
+  SpecialEnemy: 0
+  WaitingKind: 0

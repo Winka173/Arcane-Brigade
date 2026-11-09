@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: RubberStampTitan
   DisplayName: Rubber Stamp Titan
-  Body: {fileID: 1931619905, guid: b3d862749d09af740af324de5d77d588, type: 3}
+  Body: {fileID: 21300000, guid: 726255072424e86408b77b90766c2118, type: 3}
   AnimationFrames:
-  - {fileID: 1931619905, guid: b3d862749d09af740af324de5d77d588, type: 3}
-  - {fileID: -1978059922, guid: b3d862749d09af740af324de5d77d588, type: 3}
-  - {fileID: 542034327, guid: b3d862749d09af740af324de5d77d588, type: 3}
-  - {fileID: 878404936, guid: b3d862749d09af740af324de5d77d588, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: eb616db10fbaa434fb8a5edf4470213f, type: 2}
+  - {fileID: 21300000, guid: 726255072424e86408b77b90766c2118, type: 3}
+  - {fileID: 21300000, guid: a7f02bd7d6b6b55408796465fb2bd37c, type: 3}
+  - {fileID: 21300000, guid: c12eadb005486ae419e7ad6fa2627b99, type: 3}
+  - {fileID: 21300000, guid: 0f1e9ae176c84ca4da9ac2d0b276c10b, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: e11fcbc9658e049419e201f406f9d7be, type: 2}
   Weapon: {fileID: 11400000, guid: 037d533351091a2428478b4b840a6099, type: 2}
   Health: 340
   Speed: 0.8
