@@ -336,7 +336,9 @@ namespace ArcaneBrigade
                 if (big != null && round % 2 == 1) big.Elite = true;
                 bodies.Add((big, DamageElement.Ember, false, 0.4f));
                 bodies.Add((sim.AddForFeelCapture(air, Faction.Enemy, hero + new Vector2(0.4f, 1.8f)), DamageElement.Arcane, false, 0.2f));
-                yield return Wait(0.35f);
+                yield return Wait(0.25f);
+                // two blows that land (each body catches and blinks), then the one that fells it
+                for (int blow = 0; blow < 2; blow++) { foreach (var body in bodies) sim.StrikeForCapture(body.unit, body.element, 0.25f); yield return Wait(0.18f); }
                 foreach (var body in bodies) { sim.FellForCapture(body.unit, body.element, body.crit, body.overkill); yield return Wait(0.08f); }
                 yield return Wait(0.15f);
             }
@@ -908,13 +910,23 @@ namespace ArcaneBrigade
             finally { ArenaController.CleanFrame = false; ArenaCamera.CaptureFocus = null; ArenaCamera.CaptureHeight = 0; }
             yield break; }
             IEnumerator S13() {
-            // ---- the death review: a staged fight where small, large, elite and airy bodies fall beside the hero ----
+            // ---- the death review: one staged fight in three looks (the golden blast; white flash and shatter; shatter with a small
+            // spark), with the new hit catch on the two shatter takes ----
             if (vietnamese || ffmpeg == null) yield break;
-            yield return Open(mainHero, 4, 160, 3, 13016);
-            keepAlive = true; owner.NextWave(); yield return Wait(2f);
-            ArenaCamera.CaptureHeight = 3.4f;
-            try { yield return Clip("deaths", 10f, StagedDeaths()); }
-            finally { ArenaCamera.CaptureHeight = 0; keepAlive = false; }
+            var looks = new (string name, ExplosionFeedback.DeathLook look, bool catches)[] { ("deaths-1-blast", ExplosionFeedback.DeathLook.Blast, false), ("deaths-2-shatter", ExplosionFeedback.DeathLook.Shatter, true), ("deaths-3-shatter-spark", ExplosionFeedback.DeathLook.ShatterSpark, true) };
+            try
+            {
+                foreach (var take in looks)
+                {
+                    ExplosionFeedback.Look = take.look; UnitVisual.HitCatch = take.catches;
+                    yield return Open(mainHero, 4, 160, 3, 13016);
+                    keepAlive = true; owner.NextWave(); yield return Wait(2f);
+                    ArenaCamera.CaptureHeight = 3.4f;
+                    yield return Clip(take.name, 10f, StagedDeaths());
+                    ArenaCamera.CaptureHeight = 0; keepAlive = false;
+                }
+            }
+            finally { ExplosionFeedback.Look = ExplosionFeedback.DeathLook.Blast; UnitVisual.HitCatch = true; ArenaCamera.CaptureHeight = 0; keepAlive = false; }
             yield break; }
             var sections = new (string, Func<IEnumerator>)[] { ("menus", S0), ("shop", S1), ("star-up", S2), ("dream-market", S3), ("nights", S4), ("chest", S5), ("bosses", S6), ("places", S7), ("hero-skills", S8), ("results", S9), ("hero-clips", S10), ("gameplay", S11), ("trailer", S12), ("deaths", S13) };
             int only = Array.IndexOf(args, "-website-sections"); string[] wanted = only >= 0 && only + 1 < args.Length ? args[only + 1].Split(',') : null; // re-take some parts only

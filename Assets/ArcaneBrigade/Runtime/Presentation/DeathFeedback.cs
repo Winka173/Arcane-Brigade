@@ -59,9 +59,86 @@ namespace ArcaneBrigade
             public BossPartDeathScatter[] BossDebris = System.Array.Empty<BossPartDeathScatter>();
             public bool Pop;          // an ordinary enemy: squash and burst, then gone
             public bool BossBlasted;  // the finale's closing blast has gone off
+            public bool Shatter, Shattered; // flashes white, then breaks into pieces of its own painting
             public float Height;
         }
         private readonly List<Remnant> pool = new List<Remnant>();
+
+        // ---- the shatter (review 09/11/2026): a white flash, then the painting itself in pieces flying apart ----
+        public const float ShatterFlash = 0.06f, ShardLife = 0.45f;
+        public const int ShardCapacity = 420;
+        private sealed class Shard
+        {
+            public SpriteRenderer View; public readonly MaterialPropertyBlock Block = new MaterialPropertyBlock();
+            public Vector2 Position, Velocity; public float Spin, Angle, Age = 1, Life = 1, Scale, Flip = 1; public Vector4 Uv;
+        }
+        private readonly List<Shard> shards = new List<Shard>();
+        private int shardCursor;
+        private static readonly Dictionary<(Sprite, int), Sprite[]> pieces = new Dictionary<(Sprite, int), Sprite[]>();
+        private static readonly int HostileShiftId = Shader.PropertyToID("_HostileShift"), ExposureId = Shader.PropertyToID("_Exposure");
+        /// <summary>A painting cut into a grid of pieces (cached per sprite): each piece a sprite over its own part of the texture.</summary>
+        private static Sprite[] Pieces(Sprite sprite, int grid)
+        {
+            if (pieces.TryGetValue((sprite, grid), out Sprite[] cut)) return cut;
+            Rect r = sprite.textureRect; cut = new Sprite[grid * grid];
+            float w = r.width / grid, h = r.height / grid;
+            for (int y = 0; y < grid; y++)
+                for (int x = 0; x < grid; x++)
+                    cut[y * grid + x] = Sprite.Create(sprite.texture, new Rect(r.x + x * w, r.y + y * h, w, h), new Vector2(0.5f, 0.5f), sprite.pixelsPerUnit, 0, SpriteMeshType.FullRect);
+            pieces[(sprite, grid)] = cut;
+            return cut;
+        }
+        private void Break(Remnant remnant)
+        {
+            SpriteRenderer body = remnant.Body; Sprite sprite = body.sprite;
+            if (sprite == null) return;
+            int grid = remnant.Height >= 1.3f ? 4 : 3;
+            Sprite[] cut = Pieces(sprite, grid);
+            Rect r = sprite.textureRect; Texture texture = sprite.texture;
+            Vector3 scale = body.transform.lossyScale; Vector2 middle = body.bounds.center;
+            float cw = r.width / grid, ch = r.height / grid;
+            for (int i = 0; i < cut.Length; i++)
+            {
+                int x = i % grid, y = i / grid;
+                // the piece's middle in the body's own space (pixels from the pivot), then in the world
+                Vector2 local = new Vector2((x + 0.5f) * cw - sprite.pivot.x, (y + 0.5f) * ch - sprite.pivot.y) / sprite.pixelsPerUnit;
+                Vector2 world = (Vector2)body.transform.position + new Vector2(local.x * scale.x, local.y * scale.y);
+                Shard shard = null;
+                for (int n = 0; n < shards.Count; n++) { Shard candidate = shards[(shardCursor + n) % shards.Count]; if (candidate.Age >= candidate.Life) { shard = candidate; shardCursor = (shardCursor + n + 1) % shards.Count; break; } }
+                if (shard == null)
+                {
+                    if (shards.Count >= ShardCapacity) return;
+                    shard = new Shard { View = Part("Shard" + shards.Count, transform) }; shards.Add(shard);
+                }
+                Vector2 out_ = world - middle; if (out_.sqrMagnitude < 0.0001f) out_ = Vector2.up;
+                float seed = Mathf.Abs(Mathf.Sin(remnant.Identity * 12.9f + i * 4.1f));
+                shard.Position = world; shard.Velocity = out_.normalized * (2.6f + 2.2f * seed) + remnant.Direction * 1.4f + Vector2.up * (1.8f + 1.4f * seed);
+                shard.Spin = (i % 2 == 0 ? 1 : -1) * (320 + 480 * seed); shard.Angle = 0; shard.Age = 0; shard.Life = ShardLife * (0.85f + 0.3f * seed);
+                shard.Scale = Mathf.Abs(scale.y); shard.Flip = Mathf.Sign(scale.x);
+                shard.Uv = new Vector4((r.x + x * cw) / texture.width, (r.y + y * ch) / texture.height, cw / texture.width, ch / texture.height);
+                shard.View.sprite = cut[i]; shard.View.sharedMaterial = body.sharedMaterial; shard.View.sortingOrder = body.sortingOrder + 1;
+                shard.View.color = Color.white; shard.View.enabled = true;
+            }
+        }
+        private void AdvanceShards(float delta)
+        {
+            foreach (Shard s in shards)
+            {
+                if (s.Age >= s.Life) continue;
+                s.Age += delta;
+                if (s.Age >= s.Life) { s.View.enabled = false; continue; }
+                float t = s.Age / s.Life;
+                s.Velocity.y -= 16f * delta; s.Velocity *= Mathf.Max(0, 1 - 1.4f * delta); s.Position += s.Velocity * delta; s.Angle += s.Spin * delta;
+                s.View.transform.position = s.Position; s.View.transform.rotation = Quaternion.Euler(0, 0, s.Angle);
+                float size = s.Scale * (1 - 0.5f * t); s.View.transform.localScale = new Vector3(size * s.Flip, size, 1);
+                s.Block.Clear();
+                s.Block.SetVector(UvRectId, s.Uv);
+                s.Block.SetFloat(FlashId, Mathf.Clamp01(1 - s.Age / 0.14f)); // white as it breaks, its own colours as it flies
+                s.Block.SetFloat(HostileShiftId, 1); s.Block.SetFloat(ExposureId, 0.95f);
+                s.View.SetPropertyBlock(s.Block);
+                s.View.color = new Color(1, 1, 1, 1 - Mathf.Clamp01((t - 0.6f) / 0.4f));
+            }
+        }
         private Sprite fragmentSprite;
         private Sprite payoutSprite;
         private PaintedAnimationLibrary painted;
@@ -143,11 +220,14 @@ namespace ArcaneBrigade
             remnant.SpeciesIdentity = AnimationTiming.Phase(state.Definition.Id);
             remnant.Pop = remnant.Species && !quiet;
             remnant.BossBlasted = false;
+            remnant.Shatter = remnant.Pop && ExplosionFeedback.Look != ExplosionFeedback.DeathLook.Blast && !PresentationSettings.ReducedMotion && !ExplosionFeedback.Drifts(state.Definition);
+            remnant.Shattered = false;
             remnant.Height = Mathf.Max(0.3f, state.Definition.BodyHeight);
             // a pop holds the struck (hurt) pose; the long painted collapse belongs to heroes and bosses
             bool acted = remnant.Pop && reaction != null && !PresentationSettings.ReducedMotion;
             if (remnant.Pop && !acted && remnant.DefeatFrames != null && remnant.DefeatFrames.Length > 0) remnant.DefeatFrames = new[] { remnant.DefeatFrames[0] };
             remnant.Duration = remnant.Boss ? DurationBoss : remnant.Pop ? (acted ? ActedDeathDuration : PopDuration * (1f + 0.15f * (remnant.Force - 1f))) : state.Faction == Faction.Champion ? 0.95f : 0.65f + 0.12f * (remnant.Force - 1f);
+            if (remnant.Shatter) remnant.Duration = ShatterFlash + 0.02f;
             remnant.Age = 0;
             foreach (SpriteRenderer fragment in remnant.Fragments) { fragment.sprite = fragmentSprite; fragment.enabled = false; fragment.sortingOrder = remnant.Body.sortingOrder + 5; }
             if (!remnant.Pop) { remnant.Properties.Clear(); remnant.Body.SetPropertyBlock(remnant.Properties); }
@@ -166,16 +246,19 @@ namespace ArcaneBrigade
         public void Clear()
         {
             foreach (Remnant remnant in pool) { remnant.Age = remnant.Duration; remnant.Root.gameObject.SetActive(false); }
+            foreach (Shard shard in shards) { shard.Age = shard.Life; shard.View.enabled = false; }
             ActiveCount = 0;
         }
         public void Advance(float delta)
         {
             if (delta <= 0 || !float.IsFinite(delta)) return;
             ActiveCount = 0;
+            AdvanceShards(delta);
             foreach (Remnant remnant in pool)
             {
                 if (remnant.Age >= remnant.Duration) continue;
                 remnant.Age += delta;
+                if (remnant.Shatter && !remnant.Shattered && remnant.Age >= ShatterFlash) { remnant.Shattered = true; Break(remnant); remnant.Age = remnant.Duration; remnant.Root.gameObject.SetActive(false); continue; }
                 if (remnant.Age >= remnant.Duration) { remnant.Root.gameObject.SetActive(false); continue; }
                 ActiveCount++;
                 Draw(remnant);
@@ -191,6 +274,7 @@ namespace ArcaneBrigade
         private static void Draw(Remnant remnant)
         {
             if (remnant.Boss) { remnant.Finale.Draw(remnant.Age); return; }
+            if (remnant.Shatter) { DrawShatterFlash(remnant); return; }
             if (remnant.Pop) { DrawPop(remnant); return; }
             bool authoredDefeat = !PresentationSettings.ReducedMotion && remnant.DefeatFrames != null && remnant.DefeatFrames.Length > 0;
             if (authoredDefeat)
@@ -255,6 +339,27 @@ namespace ArcaneBrigade
         }
         /// <summary>An ordinary enemy's death: struck white, squashed flat against the blow, then swelling and bursting
         /// apart while the ink burst (ExplosionFeedback.Pop) blooms over it. Done within ~0.2 s; no body is left lying.</summary>
+        /// <summary>The instant before the break: the struck pose, solid white, swelling a little.</summary>
+        private static void DrawShatterFlash(Remnant remnant)
+        {
+            if (remnant.DefeatFrames != null && remnant.DefeatFrames.Length > 0 && remnant.DefeatFrames[0] != null) remnant.Body.sprite = remnant.DefeatFrames[0];
+            float poseScale = remnant.SourceHeight / Mathf.Max(.01f, remnant.Body.sprite.bounds.size.y);
+            float swell = 1f + 0.1f * Mathf.Clamp01(remnant.Age / ShatterFlash);
+            remnant.Root.position = remnant.Position;
+            remnant.Body.transform.localPosition = remnant.BodyPosition;
+            remnant.Body.transform.localScale = Vector3.Scale(remnant.BodyScale, new Vector3(swell * poseScale, swell * poseScale, 1));
+            remnant.Body.transform.localRotation = remnant.BodyRotation;
+            remnant.Properties.Clear();
+            Rect rectangle = remnant.Body.sprite.rect; Texture texture = remnant.Body.sprite.texture;
+            remnant.Properties.SetVector(UvRectId, new Vector4(rectangle.x / texture.width, rectangle.y / texture.height, rectangle.width / texture.width, rectangle.height / texture.height));
+            remnant.Properties.SetVector(DissolveId, Vector4.zero);
+            remnant.Properties.SetFloat(FlashId, 1f);
+            remnant.Body.SetPropertyBlock(remnant.Properties);
+            remnant.Body.color = Color.white;
+            SetAlpha(remnant.Weapon, 0); SetAlpha(remnant.Hand, 0); SetAlpha(remnant.DrawHand, 0);
+            Color shadow = remnant.ShadowColor; shadow.a *= 0.5f; remnant.Shadow.color = shadow;
+            foreach (SpriteRenderer fragment in remnant.Fragments) fragment.enabled = false;
+        }
         private static void DrawPop(Remnant remnant)
         {
             bool still = PresentationSettings.ReducedMotion;

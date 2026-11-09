@@ -121,6 +121,12 @@ namespace ArcaneBrigade
         {
             return Mathf.Lerp(current, target, 1 - Mathf.Exp(-Mathf.Clamp(delta, 0, 0.05f) * (target > current ? 13 : 9)));
         }
+        /// <summary>A struck enemy catches for an instant (its picture holds its pose and place) and blinks white once (review 09/11/2026).
+        /// Only the struck body pauses, never the fight; at most one catch every HitCatchGap so steady fire never strobes.</summary>
+        public static bool HitCatch = true;
+        public const float HitCatchSeconds = 0.07f, HitCatchGap = 0.14f;
+        private float catchSeen = -100f, catchUntil = -100f, catchReady = -100f;
+        private Vector3 catchAt;
         public void HoldImpact(float time, float duration)
         {
             if (ReducedMotion || state == null || !state.Alive || time < nextHold) return;
@@ -403,6 +409,17 @@ namespace ArcaneBrigade
             float motionDelta = Mathf.Clamp(simulationTime - lastDisplayTime, 0, 0.05f);
             lastDisplayTime = simulationTime;
             if (state.AwakenArt != awakenShown) SwapAwakenWeapon();
+            bool caught = false;
+            if (HitCatch && !ReducedMotion && state.Faction == Faction.Enemy && state.Alive && state.LastHit > 0 && state.LastHit != catchSeen)
+            {
+                catchSeen = state.LastHit;
+                if (simulationTime >= catchReady)
+                {
+                    holdPose = simulationTime; holdUntil = simulationTime + (state.Definition.IsBoss ? 0.05f : HitCatchSeconds);
+                    catchUntil = holdUntil; catchReady = simulationTime + HitCatchGap; catchAt = transform.position;
+                }
+            }
+            caught = HitCatch && simulationTime < catchUntil;
             if (!ReducedMotion && simulationTime < holdUntil) simulationTime = holdPose;
             if (state.Definition.AuthoredMotion != null)
                 body.sprite = HeroPoseRepairs.Repair(state.Definition.AuthoredMotion.Select(state, simulationTime, ReducedMotion));
@@ -416,6 +433,7 @@ namespace ArcaneBrigade
             if (drawHand != null) drawHand.color = Color.white;
             if (bowString != null) bowString.startColor = bowString.endColor = new Color(1, 0.92f, 0.68f);
             transform.position = Vector2.Lerp(state.PreviousPosition, state.Position, interpolation);
+            if (caught) transform.position = catchAt; // the picture holds where the blow landed for the catch
             if (state.Faction == Faction.Enemy && !state.Definition.IsBoss && !ReducedMotion) transform.position += (Vector3)ExplosionFeedback.Shove(transform.position); // a big death blast rocks the bodies round it (the picture only)
             drawnAt[state.Id] = (transform.position, Time.frameCount); live[state.Id] = this;
             if (state.Faction == Faction.Enemy && !ReducedMotion)
@@ -663,6 +681,7 @@ namespace ArcaneBrigade
             body.GetPropertyBlock(flashProperties);
             // Capped, flickering flash: a target under constant fire never turns into a solid white silhouette.
             float flash = Mathf.Clamp01(1f - hitAge / 0.07f) * (state.Definition.IsBoss ? 0.35f : 0.55f) * (Mathf.Repeat(simulationTime * 14f, 1f) < 0.5f ? 1f : 0.3f);
+            if (HitCatch) flash = simulationTime < catchUntil ? (state.Definition.IsBoss ? 0.5f : 0.85f) : 0f; // one clean white blink per catch
             flashProperties.SetFloat("_Flash", state.Faction != Faction.Enemy || ReducedMotion || PresentationSettings.ReducedFlashes ? 0 : flash);
             SpriteLighting.Apply(body, flashProperties, state.Faction == Faction.Enemy);
             float nightVisibility = SharedLightField.Active == null ? 1 : SharedLightField.Active.Visibility(state, simulationTime);

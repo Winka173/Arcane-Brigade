@@ -18,7 +18,7 @@ namespace ArcaneBrigade
             public Vector2 Position;
             public float Radius, Age = 10, Duration;
             public Color Color;
-            public bool Important, Hostile;
+            public bool Important, Hostile, Big;
             public float Spin;
             public SpriteRenderer Flash, Ring, Rim, Core, Bloom;
             public readonly SpriteRenderer[] Chips = new SpriteRenderer[12];
@@ -29,6 +29,8 @@ namespace ArcaneBrigade
         private readonly List<Blast> pool = new List<Blast>();
         private Sprite glow, ring, chip, puff, white, spark;
         private Sprite[] deathBlast = System.Array.Empty<Sprite>();
+        /// <summary>The one big blast a large body goes up in (requirement 09/11/2026: one big explosion, never a cluster of small ones).</summary>
+        private Sprite[] bigBlast = System.Array.Empty<Sprite>();
         private Material bloom;
         private PaintedAnimationLibrary painted;
         public int ActiveCount { get; private set; }
@@ -59,13 +61,14 @@ namespace ArcaneBrigade
         private readonly List<Scorch> scorches = new List<Scorch>();
         public const int ScorchCapacity = 48;
         private int scorchCursor;
-        private readonly List<(float at, Vector2 position, float radius, Color color)> echoes = new List<(float, Vector2, float, Color)>();
         private readonly List<(Vector2 at, float radius, float strength, float born)> shoves = new List<(Vector2, float, float, float)>();
         private float clock;
         private Sprite burn;
         /// <summary>Most big death blasts started per fifth of a second (the rest go up as small ones).</summary>
         public const int BigPerWindow = 4, ReducedBigPerWindow = 2;
-        public const float PopRadius = 0.5f, BigPopRadius = 0.85f, MaxPopRadius = 0.7f, MaxBigPopRadius = 1.0f;
+        public const float PopRadius = 0.5f, BigPopRadius = 0.9f, MaxPopRadius = 0.7f, MaxBigPopRadius = 1.05f;
+        /// <summary>Share of a BigBlast frame's width its painting spans at the peak (the canvas keeps a margin).</summary>
+        public const float BigBlastInk = 0.85f;
         private float bigWindow;
         private int bigInWindow;
         public int BigPopsShown { get; private set; }
@@ -76,6 +79,10 @@ namespace ArcaneBrigade
         /// <summary>Nothing of a death outlives its blast by long (requirement 09/11/2026: when the blast is over nothing is left):
         /// every mote, burn and pillar is gone this long after it starts.</summary>
         public const float AftermathSeconds = 0.6f;
+        /// <summary>How an ordinary death looks (review 09/11/2026): the golden blast, or the body flashing white and breaking into
+        /// pieces of its own painting (DeathFeedback) with no fireball, or with a small spark of fire.</summary>
+        public enum DeathLook { Blast, Shatter, ShatterSpark }
+        public static DeathLook Look = DeathLook.Blast;
         private void OnDestroy() { if (Active == this) Active = null; }
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)] private static void ResetActive() => Active = null;
         /// <summary>A puff of floor dust where a knocked-back body skids.</summary>
@@ -100,6 +107,14 @@ namespace ArcaneBrigade
             // a hot streak: a long thin diamond, brightest along its spine, drawn along each spark's flight
             spark = Make("ExplosionSpark", 64, (d, a) => { float x = Mathf.Abs(d * Mathf.Cos(a)), y = Mathf.Abs(d * Mathf.Sin(a)); return Mathf.Clamp01((1 - x - y * 3.4f) * 1.8f); });
             deathBlast = LoadDeathBlast();
+            var big = new List<Sprite>();
+            for (int i = 1; i <= 8; i++)
+            {
+                var texture = Resources.Load<Texture2D>("Effects/BigBlast_f" + i.ToString("00"));
+                if (texture == null) break;
+                big.Add(Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), texture.width, 0, SpriteMeshType.FullRect));
+            }
+            bigBlast = big.Count == 8 ? big.ToArray() : System.Array.Empty<Sprite>();
             // a burn on the floor: an ink blot with ragged lobes, soft at its rim
             burn = Make("ExplosionBurn", 128, (d, a) => { float lobes = 1 + 0.18f * Mathf.Sin(a * 5 + 1.3f) + 0.1f * Mathf.Cos(a * 11) + 0.06f * Mathf.Sin(a * 17 + 0.4f); return Mathf.Clamp01((1 - d * lobes) * 2.4f) * (0.55f + 0.45f * Mathf.Clamp01(1 - d * 1.5f)); });
             puff = Make("ExplosionSmudge", 96, (d, a) => { float wobble = 1 + 0.12f * Mathf.Sin(a * 5) + 0.06f * Mathf.Cos(a * 9); return Mathf.Clamp01((1 - d * wobble) * 1.6f) * (0.65f + 0.35f * Mathf.Clamp01(1 - d * 1.4f)); });
@@ -138,7 +153,7 @@ namespace ArcaneBrigade
             foreach (Blast blast in pool) { blast.Age = blast.Duration; Hide(blast); }
             foreach (Mote mote in motes) { mote.Age = mote.Life; mote.View.enabled = false; }
             foreach (Scorch scorch in scorches) { scorch.Age = scorch.Life; scorch.View.enabled = false; }
-            echoes.Clear(); shoves.Clear(); Streak = 0;
+            shoves.Clear(); Streak = 0;
             ActiveCount = 0;
         }
 
@@ -202,10 +217,16 @@ namespace ArcaneBrigade
             {
                 if (Vapour(feet, centre, radius, elementColour, big)) PopsShown++;
             }
+            else if (Look != DeathLook.Blast && bodyShown && !big)
+            {
+                // the body's own pieces carry the death; a spark of fire at most
+                if (Look == DeathLook.ShatterSpark) Spawn(Kind.Pop, centre, 0.3f, critical ? new Color(1f, 0.93f, 0.7f) : Color.Lerp(new Color(1f, 0.86f, 0.62f), elementColour, 0.35f), critical);
+                PopsShown++;
+            }
             else
             {
                 Color tint = critical ? new Color(1f, 0.93f, 0.7f) : Color.Lerp(new Color(1f, 0.86f, 0.62f), elementColour, 0.35f);
-                if (!Spawn(Kind.Pop, centre, radius, tint, critical || !bodyShown || big)) return;
+                if (!Spawn(Kind.Pop, centre, radius, tint, critical || !bodyShown || big, false, big)) return;
                 PopsShown++;
                 if (big) BigAftermath(feet, centre, radius, elementColour);
                 else SmallAftermath(feet, centre, radius, elementColour, critical);
@@ -299,14 +320,6 @@ namespace ArcaneBrigade
             float root = Mathf.Sqrt(r);
             int seed = Mathf.Abs(Mathf.RoundToInt(centre.x * 53 + centre.y * 29));
             Burn(feet, r * 2.4f, 1.8f, 0.46f);
-            // the chain: three rim bursts cracking open one after another round the main blast
-            Color white = new Color(1f, 0.95f, 0.8f);
-            for (int i = 0; i < (sparse ? 1 : 3); i++)
-            {
-                float angle = (seed % 360) * Mathf.Deg2Rad + i * 2.3f;
-                Vector2 at = centre + new Vector2(Mathf.Cos(angle), Mathf.Sin(angle) * 0.75f) * r * (0.55f + 0.12f * i);
-                echoes.Add((clock + 0.07f + i * 0.065f, at, r * (0.55f - i * 0.05f), Color.Lerp(white, element, 0.25f + 0.15f * i)));
-            }
             Color hot = new Color(1f, 0.97f, 0.85f), ember = new Color(1f, 0.42f, 0.12f), smoke = new Color(0.17f, 0.12f, 0.18f), dust = new Color(0.62f, 0.53f, 0.44f);
             if (!still)
             {
@@ -411,12 +424,6 @@ namespace ArcaneBrigade
         private void AdvanceAftermath(float delta)
         {
             clock += delta;
-            for (int i = echoes.Count - 1; i >= 0; i--)
-            {
-                if (echoes[i].at > clock) continue;
-                var echo = echoes[i]; echoes.RemoveAt(i);
-                Spawn(Kind.Pop, echo.position, echo.radius, echo.color, false);
-            }
             shoves.RemoveAll(shove => clock - shove.born >= ShoveSeconds);
             foreach (Mote m in motes)
             {
@@ -546,13 +553,14 @@ namespace ArcaneBrigade
             return view;
         }
 
-        private bool Spawn(Kind kind, Vector2 position, float radius, Color color, bool important, bool hostile = false)
+        private bool Spawn(Kind kind, Vector2 position, float radius, Color color, bool important, bool hostile = false, bool bigBody = false)
         {
             Blast blast = Acquire(important);
             if (blast == null) return false;
             if (blast.Age < blast.Duration) Hide(blast); // stolen from a quieter effect: clear what it was showing
             blast.Kind = kind; blast.Position = position; blast.Radius = radius; blast.Color = color; blast.Important = important; blast.Hostile = hostile; blast.Age = 0;
-            blast.Duration = kind == Kind.Shock ? 0.75f : kind == Kind.Smudge ? 0.6f : kind == Kind.Burst ? 0.38f : kind == Kind.Pop ? PopDuration : 0.55f;
+            blast.Big = bigBody && kind == Kind.Pop;
+            blast.Duration = kind == Kind.Shock ? 0.75f : kind == Kind.Smudge ? 0.6f : kind == Kind.Burst ? 0.38f : kind == Kind.Pop ? (blast.Big ? BigPopDuration : PopDuration) : 0.55f;
             int seed = Mathf.Abs(Mathf.RoundToInt(position.x * 97 + position.y * 31)) + pool.IndexOf(blast) * 13;
             int spread = kind == Kind.Pop ? PopChips : blast.Chips.Length;
             for (int i = 0; i < blast.Chips.Length; i++)
@@ -567,7 +575,7 @@ namespace ArcaneBrigade
             Draw(blast);
             return true;
         }
-        public const float PopDuration = 0.44f;
+        public const float PopDuration = 0.44f, BigPopDuration = 0.6f;
         private const int PopChips = 8;
         /// <summary>An ordinary kill goes up in a small golden explosion: a white-hot snap, the painted blast punching past
         /// full size and settling, a snap ring, hot sparks streaking out and dragging to a stop, then one curl of smoke.
@@ -598,9 +606,10 @@ namespace ArcaneBrigade
                 blast.Bloom.color = new Color(1f, 0.78f, 0.42f, (1 - bloomT) * (blast.Important ? 0.75f : 0.5f) * flashGain);
             }
             // the fireball: four painted frames in 0.3 s, punching past full size, holding, then burning out
-            bool paintedBlast = deathBlast.Length > 0;
-            Sprite[] frames = paintedBlast ? deathBlast : painted == null ? null : painted.Death;
-            float coreT = Mathf.Clamp01(age / 0.3f);
+            bool ownBig = blast.Big && bigBlast.Length > 0;
+            bool paintedBlast = ownBig || deathBlast.Length > 0;
+            Sprite[] frames = ownBig ? bigBlast : deathBlast.Length > 0 ? deathBlast : painted == null ? null : painted.Death;
+            float coreT = Mathf.Clamp01(age / (ownBig ? 0.52f : 0.3f));
             blast.Core.enabled = frames != null && frames.Length > 0 && coreT < 1f;
             if (blast.Core.enabled)
             {
@@ -608,7 +617,7 @@ namespace ArcaneBrigade
                 blast.Core.sprite = frame;
                 blast.Core.transform.position = blast.Position;
                 float punch = still ? 1f : coreT < 0.25f ? Mathf.Lerp(0.55f, 1.18f, Ease(coreT / 0.25f)) : Mathf.Lerp(1.18f, 1.05f, (coreT - 0.25f) / 0.75f);
-                float inkWidth = paintedBlast ? 0.93f : Mathf.Max(0.01f, SpriteInkMetrics.BoundsOf(frame).width);
+                float inkWidth = ownBig ? BigBlastInk : paintedBlast ? 0.93f : Mathf.Max(0.01f, SpriteInkMetrics.BoundsOf(frame).width);
                 blast.Core.transform.localScale = Vector3.one * (2.3f * r * punch / inkWidth);
                 blast.Core.transform.rotation = Quaternion.Euler(0, 0, still ? 0 : blast.Spin % 40f - 20f);
                 float alpha = Mathf.Clamp01((1 - coreT) * 2.5f);
