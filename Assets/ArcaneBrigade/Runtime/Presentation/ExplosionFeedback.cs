@@ -82,7 +82,7 @@ namespace ArcaneBrigade
         /// <summary>How an ordinary death looks (review 09/11/2026): the golden blast, or the body flashing white and breaking into
         /// pieces of its own painting (DeathFeedback) with no fireball, or with a small spark of fire.</summary>
         public enum DeathLook { Blast, Shatter, ShatterSpark }
-        public static DeathLook Look = DeathLook.Blast;
+        public static DeathLook Look = DeathLook.Shatter; // chosen 09/11/2026: white flash and shatter, no fireball on ordinary deaths
         private void OnDestroy() { if (Active == this) Active = null; }
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)] private static void ResetActive() => Active = null;
         /// <summary>A puff of floor dust where a knocked-back body skids.</summary>

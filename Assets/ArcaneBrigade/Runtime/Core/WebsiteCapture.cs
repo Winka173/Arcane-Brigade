@@ -926,7 +926,7 @@ namespace ArcaneBrigade
                     ArenaCamera.CaptureHeight = 0; keepAlive = false;
                 }
             }
-            finally { ExplosionFeedback.Look = ExplosionFeedback.DeathLook.Blast; UnitVisual.HitCatch = true; ArenaCamera.CaptureHeight = 0; keepAlive = false; }
+            finally { ExplosionFeedback.Look = ExplosionFeedback.DeathLook.Shatter; UnitVisual.HitCatch = true; ArenaCamera.CaptureHeight = 0; keepAlive = false; }
             yield break; }
             var sections = new (string, Func<IEnumerator>)[] { ("menus", S0), ("shop", S1), ("star-up", S2), ("dream-market", S3), ("nights", S4), ("chest", S5), ("bosses", S6), ("places", S7), ("hero-skills", S8), ("results", S9), ("hero-clips", S10), ("gameplay", S11), ("trailer", S12), ("deaths", S13) };
             int only = Array.IndexOf(args, "-website-sections"); string[] wanted = only >= 0 && only + 1 < args.Length ? args[only + 1].Split(',') : null; // re-take some parts only
