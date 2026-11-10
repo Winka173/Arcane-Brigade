@@ -26,6 +26,7 @@ def kind_of(cue_id):
     if cue_id == 'enemy.die.large': return 'bigdie'
     if cue_id.startswith('enemy.die.'): return 'die'
     if cue_id.startswith(('cmb.swing.', 'wpn.cast.', 'fx.reaction.steam', 'enemy.lunge', 'enemy.spit.fire', 'wpn.launcher', 'wpn.bow.draw', 'wpn.pierce')): return 'air'
+    if cue_id.startswith(('boss.', 'hero.', 'enemy.', 'wpn.', 'fx.', 'sig.', 'plr.')): return 'auto'
     return None
 
 def band(x, sr, lo=None, hi=None, order=2):
@@ -62,6 +63,11 @@ def process(x, sr, kind, seed):
     x = x / peak0
     cent = centroid(x, sr)
     on = int(np.argmax(np.abs(x) > 0.15))
+    if kind == 'auto':
+        low = (np.abs(np.fft.rfft(x * np.hanning(n))) ** 2)[np.fft.rfftfreq(n, 1 / sr) < 150].sum() / max((np.abs(np.fft.rfft(x * np.hanning(n))) ** 2).sum(), 1e-12)
+        if cent > 2500: kind = 'air'
+        elif cent < 150 and low > 0.85: kind = 'sub'
+        else: return None            # already has a body: left as it is
     if kind == 'air':
         keep = band(x, sr, hi=3600) * 0.8
         body = band(np.random.default_rng(seed).standard_normal(n), sr, 260, 900) * envelope(x, sr) * 2.2
@@ -85,28 +91,71 @@ def process(x, sr, kind, seed):
     out = np.tanh(out / peak * 1.25) / np.tanh(1.25)   # soft limiter: the peaks squash, the body stays
     return out / (np.abs(out).max() or 1.0) * TARGET_PEAK
 
+def load(path):
+    sr, x = wavfile.read(path)
+    dtype = x.dtype
+    x = x.astype(np.float64)
+    if dtype == np.int16: x /= 32768.0
+    elif dtype == np.int32: x /= 2147483648.0
+    return sr, x
+
+def render(x, sr, kind, seed, pitch=1.0):
+    from scipy.signal import resample_poly
+    chans = [x] if x.ndim == 1 else [x[:, c] for c in range(x.shape[1])]
+    if pitch != 1.0:
+        num = int(round(pitch * 100)); chans = [resample_poly(c, 100, num) for c in chans]   # faster = higher and shorter
+    outs = [process(c, sr, kind, seed) for c in chans]
+    if any(o is None for o in outs): return None
+    return np.stack(outs, axis=1) if len(outs) > 1 else outs[0]
+
+def save(path, sr, y):
+    wavfile.write(path, sr, (np.clip(y, -1, 1) * 32767).astype(np.int16))
+
+def backup(clip):
+    path = os.path.join(ARC, clip + '.wav'); original = os.path.join(BACKUP, clip + '.wav')
+    if os.path.exists(path) and not os.path.exists(original):
+        os.makedirs(os.path.dirname(original), exist_ok=True); shutil.copy2(path, original)
+    return path, original
+
+def new_meta(source_wav, new_wav):
+    import uuid
+    text = open(source_wav + '.meta', encoding='utf-8').read()
+    import re
+    text = re.sub(r'guid: \w+', 'guid: ' + uuid.uuid4().hex, text, count=1)
+    open(new_wav + '.meta', 'w', encoding='utf-8', newline='').write(text)
+
 def main():
-    cues = json.load(open(os.path.join(ARC, 'cues.json'), encoding='utf-8'))['cues']
-    done = 0
-    for cue in cues:
+    import re
+    cue_path = os.path.join(ARC, 'cues.json')
+    raw = open(cue_path, encoding='utf-8', newline='').read()
+    m = re.match(r'\{(\r?\n)( +)', raw); nl, ind = m.group(1), len(m.group(2))
+    doc = json.loads(raw)
+    done = kept = added = 0
+    for cue in doc['cues']:
         kind = kind_of(cue['id'])
         if not kind: continue
         for index, clip in enumerate(cue['clips']):
-            path = os.path.join(ARC, clip + '.wav')
-            if not os.path.exists(path): continue
-            original = os.path.join(BACKUP, clip + '.wav')
-            if not os.path.exists(original):
-                os.makedirs(os.path.dirname(original), exist_ok=True); shutil.copy2(path, original)
-            sr, x = wavfile.read(original)
-            dtype = x.dtype
-            x = x.astype(np.float64)
-            if dtype == np.int16: x /= 32768.0
-            elif dtype == np.int32: x /= 2147483648.0
-            chans = [x] if x.ndim == 1 else [x[:, c] for c in range(x.shape[1])]
-            y = np.stack([process(c, sr, kind, index * 31 + 7) for c in chans], axis=1) if len(chans) > 1 else process(chans[0], sr, kind, index * 31 + 7)
-            wavfile.write(path, sr, (np.clip(y, -1, 1) * 32767).astype(np.int16))
-            done += 1
-    print('clips rewritten', done)
+            path, original = backup(clip)
+            if not os.path.exists(original): continue
+            sr, x = load(original)
+            y = render(x, sr, kind, index * 31 + 7)
+            if y is None: shutil.copy2(original, path); kept += 1; continue
+            save(path, sr, y); done += 1
+        # more takes, so a swarm of the same blow never repeats the same four sounds (6-8 per cue, a little different in pitch)
+        if kind in ('hit', 'die', 'bigdie', 'air') and len(cue['clips']) < 8:
+            base = [c for c in cue['clips'] if '_v' not in os.path.basename(c)]
+            for v in (1, 2):
+                name = base[0] + '_v' + str(v)
+                if name in cue['clips']: continue
+                _, source = backup(base[(v * 2) % len(base)])
+                sr, x = load(source)
+                y = render(x, sr, kind, 1000 + v * 17, 1.07 if v == 1 else 0.94)
+                if y is None: continue
+                out = os.path.join(ARC, name + '.wav'); save(out, sr, y)
+                new_meta(os.path.join(ARC, base[0] + '.wav'), out)
+                cue['clips'].append(name); added += 1
+    open(cue_path, 'w', encoding='utf-8', newline='').write(json.dumps(doc, indent=ind, ensure_ascii=False).replace('\n', nl) + (nl if raw.endswith('\n') else ''))
+    print('clips rewritten', done, 'left as they were', kept, 'new takes', added)
 
 if __name__ == '__main__':
     main()
