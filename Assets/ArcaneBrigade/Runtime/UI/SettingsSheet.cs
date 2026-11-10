@@ -100,9 +100,6 @@ namespace ArcaneBrigade
                 if (!save()) profile.Cosmetic = before;
                 PresentationSettings.Apply(profile);
             }
-            // the UI style: the painted kit, or drawn by hand in code
-            int style = Choice(label, ref y, "UI style", new[] { "Painted", "Crafted" }, profile.UiCrafted ? 1 : 0);
-            if (style >= 0) { bool before = profile.UiCrafted; profile.UiCrafted = style == 1; Changed(() => profile.UiCrafted = before); }
             // cloud save (phones, between runs): the save in the player's own Google Drive; nothing changes until they connect
             if (!inRun && CloudSync.Offered) CloudRows(label, ref y);
             // the one-time tips and the first-run coach, shown again from the next moment they apply

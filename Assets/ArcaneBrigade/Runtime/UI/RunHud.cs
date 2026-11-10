@@ -308,7 +308,7 @@ namespace ArcaneBrigade
                 button = new GUIStyle(GUI.skin.button) { fontSize = 22, font = ArcadeTypography.Heading };
                 numeric = ArcadeTypography.Style(ArcadeTypography.SizeNote, false, true); // UI standard: nothing under 28
                 numeric.alignment = TextAnchor.MiddleCenter;
-                numericLeft = new GUIStyle(numeric) { alignment = TextAnchor.MiddleLeft, fontSize = 30 };
+                numericLeft = new GUIStyle(numeric) { alignment = TextAnchor.MiddleLeft, fontSize = 28 };
                 caption = ArcadeTypography.Style(13, false, true);
                 caption.alignment = TextAnchor.MiddleCenter;
                 caption.normal.textColor = ArcadeSkin.Teal;
@@ -463,8 +463,8 @@ namespace ArcaneBrigade
             float goldPulse = LivingUI.Press(simulation.VisualElapsed - goldChanged, PresentationSettings.ReducedMotion) * 4;
             float eggPulse = LivingUI.Press(simulation.VisualElapsed - eggsChanged, PresentationSettings.ReducedMotion) * 4;
             // walnut counter plates with a round socket for the coin and the egg (UI kit)
-            Rect goldSocket = ArcadeSkin.Counter(new Rect(16, 100, 200, 44), KitCounter.Gold, out Rect goldText);
-            Rect eggSocket = ArcadeSkin.Counter(new Rect(16, 146, 200, 44), KitCounter.Egg, out Rect eggText);
+            Rect goldSocket = ArcadeSkin.Counter(new Rect(16, 98, 240, 60), KitCounter.Gold, out Rect goldText);
+            Rect eggSocket = ArcadeSkin.Counter(new Rect(16, 164, 240, 60), KitCounter.Egg, out Rect eggText);
             Sprite(new Rect(goldSocket.x - goldPulse, goldSocket.y - goldPulse, goldSocket.width + goldPulse * 2, goldSocket.height + goldPulse * 2), owner.Content.Arena.Coin); // centred in the socket
             numericLeft.normal.textColor = Color.Lerp(ArcadeSkin.Cream, ArcadeSkin.Gold, goldPulse / 4f);
             LocalizedGUI.Label(goldText, Mathf.RoundToInt(shownGold).ToString("N0"), numericLeft);
