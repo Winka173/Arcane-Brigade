@@ -13,19 +13,18 @@ MonoBehaviour:
   m_Name: ChinaMarionetteMotion
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
   Idle:
-  - {fileID: -1082056995, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
-  - {fileID: -1082056995, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
+  - {fileID: 21300000, guid: 56e81d3a4a7379f46b8c162d01ceb1a7, type: 3}
+  - {fileID: 21300000, guid: fac3fccb9be3c9c4dae35b74ee15af6a, type: 3}
   Walk:
-  - {fileID: -1082056995, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
-  - {fileID: -1101891540, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
-  - {fileID: -1082056995, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
-  - {fileID: -1101891540, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
+  - {fileID: 21300000, guid: e43723fd113d44e47a5a105c3876ca76, type: 3}
+  - {fileID: 21300000, guid: 720eab679b652d543bd014294a4c51e1, type: 3}
+  - {fileID: 21300000, guid: 04f48e90a98070944901f8976ec94e94, type: 3}
+  - {fileID: 21300000, guid: 0bd6bf1e205cbd041915b6b0c8d76c00, type: 3}
   Windup:
-  - {fileID: -1441727185, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
-  - {fileID: -1441727185, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
+  - {fileID: 21300000, guid: f081e7a62519fa34e8a4e757e3a076cd, type: 3}
   Release:
-  - {fileID: -208621334, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
-  - {fileID: -208621334, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
+  - {fileID: 21300000, guid: d307311361f468b409cbd44f83925df8, type: 3}
   Recovery:
-  - {fileID: -208621334, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
-  - {fileID: -1082056995, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
+  - {fileID: 21300000, guid: fac3fccb9be3c9c4dae35b74ee15af6a, type: 3}
+  - {fileID: 21300000, guid: 56e81d3a4a7379f46b8c162d01ceb1a7, type: 3}
+  IllustratedHeight: 0

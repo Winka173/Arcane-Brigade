@@ -707,20 +707,6 @@ MonoBehaviour:
     - {fileID: 766364640, guid: 419546a80ab87314f8e0f735f56df4fa, type: 3}
     ReferenceHeight: 1
     HurtOnly: 0
-  - Id: CometRunner
-    Kind: locomotion
-    Evolution: 0
-    Frames:
-    - {fileID: 1185872940, guid: fab8335ae380d02418d7557613bd952c, type: 3}
-    - {fileID: -171682940, guid: fab8335ae380d02418d7557613bd952c, type: 3}
-    - {fileID: 2036680448, guid: fab8335ae380d02418d7557613bd952c, type: 3}
-    - {fileID: -1935658674, guid: fab8335ae380d02418d7557613bd952c, type: 3}
-    - {fileID: 2036680448, guid: fab8335ae380d02418d7557613bd952c, type: 3}
-    - {fileID: -2008601926, guid: fab8335ae380d02418d7557613bd952c, type: 3}
-    - {fileID: 644854302, guid: fab8335ae380d02418d7557613bd952c, type: 3}
-    - {fileID: 1437718174, guid: fab8335ae380d02418d7557613bd952c, type: 3}
-    ReferenceHeight: 1
-    HurtOnly: 0
   - Id: MirrorKeeper
     Kind: locomotion
     Evolution: 0
@@ -748,62 +734,6 @@ MonoBehaviour:
     - {fileID: -1222237098, guid: 9f3caf990058f98449e7e2cef6f6e250, type: 3}
     - {fileID: 978789146, guid: 9f3caf990058f98449e7e2cef6f6e250, type: 3}
     ReferenceHeight: 1
-    HurtOnly: 0
-  - Id: VerdantMatron
-    Kind: locomotion
-    Evolution: 0
-    Frames:
-    - {fileID: 1527483434, guid: 9d808b4ae11a4b54b9af0a750c7c01d9, type: 3}
-    - {fileID: 2067299423, guid: 9d808b4ae11a4b54b9af0a750c7c01d9, type: 3}
-    - {fileID: -1414136050, guid: 9d808b4ae11a4b54b9af0a750c7c01d9, type: 3}
-    - {fileID: -2076023343, guid: 9d808b4ae11a4b54b9af0a750c7c01d9, type: 3}
-    - {fileID: 1603233391, guid: 9d808b4ae11a4b54b9af0a750c7c01d9, type: 3}
-    - {fileID: -1157012919, guid: 9d808b4ae11a4b54b9af0a750c7c01d9, type: 3}
-    - {fileID: -928537642, guid: 9d808b4ae11a4b54b9af0a750c7c01d9, type: 3}
-    - {fileID: 498380202, guid: 9d808b4ae11a4b54b9af0a750c7c01d9, type: 3}
-    ReferenceHeight: 2.2109375
-    HurtOnly: 0
-  - Id: CopperCauldron
-    Kind: locomotion
-    Evolution: 0
-    Frames:
-    - {fileID: -1827591066, guid: 9957330da54743849842ba0f5b5bb924, type: 3}
-    - {fileID: -1931861080, guid: 9957330da54743849842ba0f5b5bb924, type: 3}
-    - {fileID: 572154591, guid: 9957330da54743849842ba0f5b5bb924, type: 3}
-    - {fileID: -965308758, guid: 9957330da54743849842ba0f5b5bb924, type: 3}
-    - {fileID: 1008934790, guid: 9957330da54743849842ba0f5b5bb924, type: 3}
-    - {fileID: 494614828, guid: 9957330da54743849842ba0f5b5bb924, type: 3}
-    - {fileID: 1051272331, guid: 9957330da54743849842ba0f5b5bb924, type: 3}
-    - {fileID: -655019634, guid: 9957330da54743849842ba0f5b5bb924, type: 3}
-    ReferenceHeight: 1.96875
-    HurtOnly: 0
-  - Id: ChinaMarionette
-    Kind: locomotion
-    Evolution: 0
-    Frames:
-    - {fileID: 709348840, guid: 9957330da54743849842ba0f5b5bb924, type: 3}
-    - {fileID: -299949073, guid: 9957330da54743849842ba0f5b5bb924, type: 3}
-    - {fileID: -1894972351, guid: 9957330da54743849842ba0f5b5bb924, type: 3}
-    - {fileID: -1698664684, guid: 9957330da54743849842ba0f5b5bb924, type: 3}
-    - {fileID: -864831726, guid: 9957330da54743849842ba0f5b5bb924, type: 3}
-    - {fileID: -1451518656, guid: 9957330da54743849842ba0f5b5bb924, type: 3}
-    - {fileID: -1998341175, guid: 9957330da54743849842ba0f5b5bb924, type: 3}
-    - {fileID: -135330197, guid: 9957330da54743849842ba0f5b5bb924, type: 3}
-    ReferenceHeight: 2.328125
-    HurtOnly: 0
-  - Id: SoapSkater
-    Kind: locomotion
-    Evolution: 0
-    Frames:
-    - {fileID: -598328519, guid: 0005e08d1c9b173429dcac74a6389cc5, type: 3}
-    - {fileID: -1907941687, guid: 0005e08d1c9b173429dcac74a6389cc5, type: 3}
-    - {fileID: -2082858038, guid: 0005e08d1c9b173429dcac74a6389cc5, type: 3}
-    - {fileID: -786169061, guid: 0005e08d1c9b173429dcac74a6389cc5, type: 3}
-    - {fileID: 2133379426, guid: 0005e08d1c9b173429dcac74a6389cc5, type: 3}
-    - {fileID: -746852421, guid: 0005e08d1c9b173429dcac74a6389cc5, type: 3}
-    - {fileID: 814747307, guid: 0005e08d1c9b173429dcac74a6389cc5, type: 3}
-    - {fileID: -873532965, guid: 0005e08d1c9b173429dcac74a6389cc5, type: 3}
-    ReferenceHeight: 2.0390625
     HurtOnly: 0
   - Id: VelvetRegent
     Kind: locomotion

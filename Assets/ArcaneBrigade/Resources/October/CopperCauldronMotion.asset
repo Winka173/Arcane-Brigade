@@ -13,19 +13,18 @@ MonoBehaviour:
   m_Name: CopperCauldronMotion
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
   Idle:
-  - {fileID: -1414000344, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
-  - {fileID: -1414000344, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
+  - {fileID: 21300000, guid: 87c501c292d67a94396f90ef51f3edc2, type: 3}
+  - {fileID: 21300000, guid: cad7b2f518abbb64cbddaa1db2a246c6, type: 3}
   Walk:
-  - {fileID: -1414000344, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
-  - {fileID: -1529542446, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
-  - {fileID: -1414000344, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
-  - {fileID: -1529542446, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
+  - {fileID: 21300000, guid: 475208f69a1a4b440922fde052967528, type: 3}
+  - {fileID: 21300000, guid: fc5d47bf908cbbb40a3d1a7d59cb6d97, type: 3}
+  - {fileID: 21300000, guid: a8a8d7dfa31a1054aaf7276efd4f749b, type: 3}
+  - {fileID: 21300000, guid: bf65c222245119c47b50f13014df46a7, type: 3}
   Windup:
-  - {fileID: 1277556781, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
-  - {fileID: 1277556781, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
+  - {fileID: 21300000, guid: 73273039399192648a1be822fad7d8f2, type: 3}
   Release:
-  - {fileID: 1239441510, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
-  - {fileID: 1239441510, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
+  - {fileID: 21300000, guid: e40e112787c99a0489ec6f5906c250d1, type: 3}
   Recovery:
-  - {fileID: 1239441510, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
-  - {fileID: -1414000344, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
+  - {fileID: 21300000, guid: cad7b2f518abbb64cbddaa1db2a246c6, type: 3}
+  - {fileID: 21300000, guid: 87c501c292d67a94396f90ef51f3edc2, type: 3}
+  IllustratedHeight: 0

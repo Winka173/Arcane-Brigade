@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: CopperCauldron
   DisplayName: Copper Cauldron
-  Body: {fileID: -1414000344, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
+  Body: {fileID: 21300000, guid: 87c501c292d67a94396f90ef51f3edc2, type: 3}
   AnimationFrames:
-  - {fileID: -1414000344, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
-  - {fileID: -1529542446, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
-  - {fileID: 1277556781, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
-  - {fileID: 1239441510, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
+  - {fileID: 21300000, guid: 87c501c292d67a94396f90ef51f3edc2, type: 3}
+  - {fileID: 21300000, guid: 475208f69a1a4b440922fde052967528, type: 3}
+  - {fileID: 21300000, guid: 73273039399192648a1be822fad7d8f2, type: 3}
+  - {fileID: 21300000, guid: e40e112787c99a0489ec6f5906c250d1, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: 738f2589f71f27c41889af5c618116cc, type: 2}
   Weapon: {fileID: 11400000, guid: 3ea9665ebbfa4d34bb7e69d150469f3f, type: 2}
   Health: 125

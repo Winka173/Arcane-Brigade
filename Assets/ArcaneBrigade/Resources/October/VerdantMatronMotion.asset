@@ -13,19 +13,18 @@ MonoBehaviour:
   m_Name: VerdantMatronMotion
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
   Idle:
-  - {fileID: -289740783, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
-  - {fileID: -289740783, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
+  - {fileID: 21300000, guid: 6fd92d61edae84c4aa6cbf7465d38ef2, type: 3}
+  - {fileID: 21300000, guid: 1586c6abffcef124d8229e18874c3701, type: 3}
   Walk:
-  - {fileID: -289740783, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
-  - {fileID: -224049661, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
-  - {fileID: -289740783, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
-  - {fileID: -224049661, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
+  - {fileID: 21300000, guid: 5ec83b10e3f9207449dcebcec47dfa3a, type: 3}
+  - {fileID: 21300000, guid: 05f0ff7d6fc1a1446a067890a530a2e1, type: 3}
+  - {fileID: 21300000, guid: 7e86f8be111954e478b34d8472992168, type: 3}
+  - {fileID: 21300000, guid: 390634062cfc33e47aa8ddd7699419bc, type: 3}
   Windup:
-  - {fileID: 1292546738, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
-  - {fileID: 1292546738, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
+  - {fileID: 21300000, guid: dd7dd5d5ec53de740b4220247deb4c1c, type: 3}
   Release:
-  - {fileID: 395727167, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
-  - {fileID: 395727167, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
+  - {fileID: 21300000, guid: 52ca12a34dd040147817badff919086d, type: 3}
   Recovery:
-  - {fileID: 395727167, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
-  - {fileID: -289740783, guid: 15fae561ed9599b479d769fe12d98b42, type: 3}
+  - {fileID: 21300000, guid: 1586c6abffcef124d8229e18874c3701, type: 3}
+  - {fileID: 21300000, guid: 6fd92d61edae84c4aa6cbf7465d38ef2, type: 3}
+  IllustratedHeight: 0

@@ -12,9 +12,18 @@ HUB = os.path.join(ROOT, 'Assets', 'ArcaneBrigade', 'Resources', 'HeroHub')
 HEIGHT = 400
 
 def prepare(source, hero):
-    files = {k: sorted(glob.glob(os.path.join(source, hero, f'{hero}_{k}[0-9][0-9].png'))) for k in 'ch'}
+    files = {k: sorted(glob.glob(os.path.join(source, hero, f'{hero}_{k}[0-9][0-9].png'))) for k in 'chf'}
+    if len(files['c']) < 12 and len(files['f']) >= 8:   # a hero that had four frames: eight (idle 2, moving 4, windup 1, release 1)
+        images = [Image.open(f).convert('RGBA') for f in files['f'][:8]]
+        boxes = [im.getchannel('A').point(lambda a: 255 if a > 12 else 0).getbbox() for im in images]
+        left = min(b[0] for b in boxes); top = min(b[1] for b in boxes); right = max(b[2] for b in boxes); bottom = max(b[3] for b in boxes)
+        margin = int(0.03 * (bottom - top)); box = (max(0, left - margin), max(0, top - margin), right + margin, bottom)
+        scale = HEIGHT / (box[3] - box[1]); width = int(round((box[2] - box[0]) * scale / 2)) * 2
+        os.makedirs(os.path.join(COMBAT, hero), exist_ok=True)
+        for i, im in enumerate(images): im.crop(box).resize((width, HEIGHT), Image.LANCZOS).save(os.path.join(COMBAT, hero, f'{hero}_f{i + 1:02d}.png'), optimize=True)
+        print(hero, 'eight frames', width, 'x', HEIGHT); return True
     if len(files['c']) < 12: print(hero, 'combat frames', len(files['c']), '/ 12'); return False
-    images = {k: [Image.open(f).convert('RGBA') for f in v] for k, v in files.items()}
+    images = {k: [Image.open(f).convert('RGBA') for f in v] for k, v in files.items() if k != 'f'}
     boxes = [im.getchannel('A').point(lambda a: 255 if a > 12 else 0).getbbox() for ims in images.values() for im in ims]
     left = min(b[0] for b in boxes); top = min(b[1] for b in boxes); right = max(b[2] for b in boxes); bottom = max(b[3] for b in boxes)
     margin = int(0.03 * (bottom - top))
