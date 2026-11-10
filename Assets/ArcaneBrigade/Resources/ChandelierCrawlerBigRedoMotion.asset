@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: ChandelierCrawlerBigRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 21300000, guid: f0ba0feb672d2eb41a197206ad4b2b58, type: 3}
+  - {fileID: 21300000, guid: f0a2918b633afec4a8dab274a1b8bcd7, type: 3}
+  Walk:
+  - {fileID: 21300000, guid: b2116d68097d49b41b08d5350530f711, type: 3}
+  - {fileID: 21300000, guid: 716cfa64b439204469d8aad8a07deb0d, type: 3}
+  - {fileID: 21300000, guid: 94a406fc3a88fe1499f11f375fe3a279, type: 3}
+  - {fileID: 21300000, guid: 20e68af054e939344b2d2d7c16c02ab1, type: 3}
+  Windup:
+  - {fileID: 21300000, guid: 24097581981fff24fa38d14fbdd3a092, type: 3}
+  - {fileID: 21300000, guid: 319d9998afe1a0d408577b93f882999a, type: 3}
+  Release:
+  - {fileID: 21300000, guid: 209f22e0abb4d5c49860ad86f83f69ef, type: 3}
+  Recovery:
+  - {fileID: 21300000, guid: fae53c2d209c49149aadcf319865f874, type: 3}
+  - {fileID: 21300000, guid: f0ba0feb672d2eb41a197206ad4b2b58, type: 3}
+  IllustratedHeight: 0

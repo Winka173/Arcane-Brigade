@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: UmbrellaStalkerBigRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 21300000, guid: 9aac864d7bdffc340ad9e46b655e37e0, type: 3}
+  - {fileID: 21300000, guid: f73ea7ec7a6313b469805dfc5d773e0f, type: 3}
+  Walk:
+  - {fileID: 21300000, guid: f2373c9014645a646a8ec688fa901596, type: 3}
+  - {fileID: 21300000, guid: 871ab250e7b20e645a1d468aeb0b3769, type: 3}
+  - {fileID: 21300000, guid: 0833923ce851de84393aeab805d24299, type: 3}
+  - {fileID: 21300000, guid: c056dcf20015aae40b90fef79090b582, type: 3}
+  Windup:
+  - {fileID: 21300000, guid: 4d3837b04594932439519787974bd18b, type: 3}
+  - {fileID: 21300000, guid: 71033fade30084846ba21fe5a89ca2eb, type: 3}
+  Release:
+  - {fileID: 21300000, guid: c0b390be2a8d13748988c92b7f29311c, type: 3}
+  Recovery:
+  - {fileID: 21300000, guid: acbb5ba298df76e4d987b3cfde318e0c, type: 3}
+  - {fileID: 21300000, guid: 9aac864d7bdffc340ad9e46b655e37e0, type: 3}
+  IllustratedHeight: 0

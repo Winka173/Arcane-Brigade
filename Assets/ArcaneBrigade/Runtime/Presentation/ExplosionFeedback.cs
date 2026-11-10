@@ -68,7 +68,7 @@ namespace ArcaneBrigade
         public const int BigPerWindow = 4, ReducedBigPerWindow = 2;
         public const float PopRadius = 0.5f, BigPopRadius = 0.9f, MaxPopRadius = 0.7f, MaxBigPopRadius = 1.05f;
         /// <summary>Share of a BigBlast frame's width its painting spans at the peak (the canvas keeps a margin).</summary>
-        public const float BigBlastInk = 0.85f;
+        public const float BigBlastInk = 0.9f;
         private float bigWindow;
         private int bigInWindow;
         public int BigPopsShown { get; private set; }

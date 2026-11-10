@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: CabinetMimic
   DisplayName: Cabinet Mimic
-  Body: {fileID: -923453, guid: 6709c86bc0db4e189ecf28688937ad7f, type: 3}
+  Body: {fileID: 21300000, guid: 6571f41d4365d504891f4acddcabc82d, type: 3}
   AnimationFrames:
-  - {fileID: -923453, guid: 6709c86bc0db4e189ecf28688937ad7f, type: 3}
-  - {fileID: 1667443630, guid: 6709c86bc0db4e189ecf28688937ad7f, type: 3}
-  - {fileID: -540576965, guid: 6709c86bc0db4e189ecf28688937ad7f, type: 3}
-  - {fileID: -419891634, guid: 6709c86bc0db4e189ecf28688937ad7f, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 080a05d1d4567724c9f1edb512b49278, type: 2}
+  - {fileID: 21300000, guid: 6571f41d4365d504891f4acddcabc82d, type: 3}
+  - {fileID: 21300000, guid: d6f5f397a07b98449bc462da9da1d4ad, type: 3}
+  - {fileID: 21300000, guid: ff422535d2722a940a21abd584b3c642, type: 3}
+  - {fileID: 21300000, guid: 3f433ddcdcfd0274d8397bd9795a616c, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 7e12f9c5490c60e4fb2aca00cd44fffe, type: 2}
   Weapon: {fileID: 11400000, guid: aa489bd9f9d758c4997d556180c664d1, type: 2}
   Health: 280
   Speed: 0.9

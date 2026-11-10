@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: UmbrellaStalker
   DisplayName: Umbrella Stalker
-  Body: {fileID: -706985194, guid: 53fd272399de477c8a185c6049a702fa, type: 3}
+  Body: {fileID: 21300000, guid: 9aac864d7bdffc340ad9e46b655e37e0, type: 3}
   AnimationFrames:
-  - {fileID: -706985194, guid: 53fd272399de477c8a185c6049a702fa, type: 3}
-  - {fileID: 640042595, guid: 53fd272399de477c8a185c6049a702fa, type: 3}
-  - {fileID: -454245896, guid: 53fd272399de477c8a185c6049a702fa, type: 3}
-  - {fileID: 1266036823, guid: 53fd272399de477c8a185c6049a702fa, type: 3}
-  AuthoredMotion: {fileID: 11400000, guid: 0800c0919f2a3d749aea27585f75323c, type: 2}
+  - {fileID: 21300000, guid: 9aac864d7bdffc340ad9e46b655e37e0, type: 3}
+  - {fileID: 21300000, guid: f2373c9014645a646a8ec688fa901596, type: 3}
+  - {fileID: 21300000, guid: 4d3837b04594932439519787974bd18b, type: 3}
+  - {fileID: 21300000, guid: c0b390be2a8d13748988c92b7f29311c, type: 3}
+  AuthoredMotion: {fileID: 11400000, guid: 049b31a3158f4414eb0da2d1fafe308f, type: 2}
   Weapon: {fileID: 11400000, guid: b4be34c9c3823bb4bac832aa91595227, type: 2}
   Health: 70
   Speed: 1.1

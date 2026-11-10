@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71ef46ed9681044e9703a52e961d573, type: 3}
+  m_Name: CabinetMimicBigRedoMotion
+  m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
+  Idle:
+  - {fileID: 21300000, guid: 6571f41d4365d504891f4acddcabc82d, type: 3}
+  - {fileID: 21300000, guid: bae22da8215fbe84393a028ef5c949e4, type: 3}
+  Walk:
+  - {fileID: 21300000, guid: d6f5f397a07b98449bc462da9da1d4ad, type: 3}
+  - {fileID: 21300000, guid: e3fd77eeb978ee8448f69cb53f4f5e52, type: 3}
+  - {fileID: 21300000, guid: febae1dafce7af54c9a703c8f1c0e58e, type: 3}
+  - {fileID: 21300000, guid: f46800bcc4a9970468901958d56fbed2, type: 3}
+  Windup:
+  - {fileID: 21300000, guid: ff422535d2722a940a21abd584b3c642, type: 3}
+  - {fileID: 21300000, guid: 9e528ab0ebef68f4fbd57e339392ab5a, type: 3}
+  Release:
+  - {fileID: 21300000, guid: 3f433ddcdcfd0274d8397bd9795a616c, type: 3}
+  Recovery:
+  - {fileID: 21300000, guid: ddf985384b075614d84c454d2719b606, type: 3}
+  - {fileID: 21300000, guid: 6571f41d4365d504891f4acddcabc82d, type: 3}
+  IllustratedHeight: 0
