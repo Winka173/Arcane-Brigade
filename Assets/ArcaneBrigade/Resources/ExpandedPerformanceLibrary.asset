@@ -22,6 +22,7 @@ MonoBehaviour:
     - {fileID: 536597011, guid: 4d9419d1e1869094f8f3ee022217ebe5, type: 3}
     - {fileID: 2060187410, guid: 4d9419d1e1869094f8f3ee022217ebe5, type: 3}
     ReferenceHeight: 1.9921875
+    HurtOnly: 0
   - Id: CandleSnail
     Kind: companions
     Evolution: 0
@@ -31,6 +32,7 @@ MonoBehaviour:
     - {fileID: -59858437, guid: 4d9419d1e1869094f8f3ee022217ebe5, type: 3}
     - {fileID: -304165570, guid: 4d9419d1e1869094f8f3ee022217ebe5, type: 3}
     ReferenceHeight: 1.7734375
+    HurtOnly: 0
   - Id: MailboxImp
     Kind: companions
     Evolution: 0
@@ -40,6 +42,7 @@ MonoBehaviour:
     - {fileID: -1531002644, guid: 4d9419d1e1869094f8f3ee022217ebe5, type: 3}
     - {fileID: -294001601, guid: 4d9419d1e1869094f8f3ee022217ebe5, type: 3}
     ReferenceHeight: 1.8515625
+    HurtOnly: 0
   - Id: PillowOracle
     Kind: companions
     Evolution: 0
@@ -49,6 +52,7 @@ MonoBehaviour:
     - {fileID: -135005597, guid: 4d9419d1e1869094f8f3ee022217ebe5, type: 3}
     - {fileID: 1224337404, guid: 4d9419d1e1869094f8f3ee022217ebe5, type: 3}
     ReferenceHeight: 1.7578125
+    HurtOnly: 0
   - Id: MushroomLibrarian
     Kind: companions
     Evolution: 0
@@ -58,6 +62,7 @@ MonoBehaviour:
     - {fileID: 200762282, guid: 64e315df8db330641b3bdf28c743cb18, type: 3}
     - {fileID: 917431339, guid: 64e315df8db330641b3bdf28c743cb18, type: 3}
     ReferenceHeight: 1.9453125
+    HurtOnly: 0
   - Id: HoodWisp
     Kind: companions
     Evolution: 0
@@ -67,6 +72,7 @@ MonoBehaviour:
     - {fileID: -1028299666, guid: 64e315df8db330641b3bdf28c743cb18, type: 3}
     - {fileID: 1564827508, guid: 64e315df8db330641b3bdf28c743cb18, type: 3}
     ReferenceHeight: 1.90625
+    HurtOnly: 0
   - Id: JellySwordsman
     Kind: companions
     Evolution: 0
@@ -76,6 +82,7 @@ MonoBehaviour:
     - {fileID: 1056254714, guid: 64e315df8db330641b3bdf28c743cb18, type: 3}
     - {fileID: 366563587, guid: 64e315df8db330641b3bdf28c743cb18, type: 3}
     ReferenceHeight: 1.6875
+    HurtOnly: 0
   - Id: BreadCrab
     Kind: companions
     Evolution: 0
@@ -85,6 +92,7 @@ MonoBehaviour:
     - {fileID: 525334107, guid: 64e315df8db330641b3bdf28c743cb18, type: 3}
     - {fileID: 176357844, guid: 64e315df8db330641b3bdf28c743cb18, type: 3}
     ReferenceHeight: 1.75
+    HurtOnly: 0
   - Id: KettleBat
     Kind: companions
     Evolution: 0
@@ -94,6 +102,7 @@ MonoBehaviour:
     - {fileID: -2056417733, guid: 1b026515d228ac745ad21eacf34d5a16, type: 3}
     - {fileID: -311597736, guid: 1b026515d228ac745ad21eacf34d5a16, type: 3}
     ReferenceHeight: 1.8671875
+    HurtOnly: 0
   - Id: BookmarkGolem
     Kind: companions
     Evolution: 0
@@ -103,6 +112,7 @@ MonoBehaviour:
     - {fileID: -322301794, guid: 1b026515d228ac745ad21eacf34d5a16, type: 3}
     - {fileID: -1425290460, guid: 1b026515d228ac745ad21eacf34d5a16, type: 3}
     ReferenceHeight: 1.984375
+    HurtOnly: 0
   - Id: TinTick
     Kind: companions
     Evolution: 0
@@ -112,6 +122,7 @@ MonoBehaviour:
     - {fileID: 588039889, guid: 1b026515d228ac745ad21eacf34d5a16, type: 3}
     - {fileID: 1988805161, guid: 1b026515d228ac745ad21eacf34d5a16, type: 3}
     ReferenceHeight: 1.9921875
+    HurtOnly: 0
   - Id: SpringDuck
     Kind: companions
     Evolution: 0
@@ -121,6 +132,7 @@ MonoBehaviour:
     - {fileID: 768693104, guid: 1b026515d228ac745ad21eacf34d5a16, type: 3}
     - {fileID: 552888447, guid: 1b026515d228ac745ad21eacf34d5a16, type: 3}
     ReferenceHeight: 2.0078125
+    HurtOnly: 0
   - Id: ButtonBeetle
     Kind: companions
     Evolution: 0
@@ -130,6 +142,7 @@ MonoBehaviour:
     - {fileID: -2069944179, guid: b24276970f0667f4ebf797cfbba82abc, type: 3}
     - {fileID: -625487524, guid: b24276970f0667f4ebf797cfbba82abc, type: 3}
     ReferenceHeight: 1.8125
+    HurtOnly: 0
   - Id: StapleMole
     Kind: companions
     Evolution: 0
@@ -139,6 +152,7 @@ MonoBehaviour:
     - {fileID: 145299947, guid: b24276970f0667f4ebf797cfbba82abc, type: 3}
     - {fileID: -1736991480, guid: b24276970f0667f4ebf797cfbba82abc, type: 3}
     ReferenceHeight: 1.6328125
+    HurtOnly: 0
   - Id: SnowSpoon
     Kind: companions
     Evolution: 0
@@ -148,6 +162,7 @@ MonoBehaviour:
     - {fileID: 1856134615, guid: b24276970f0667f4ebf797cfbba82abc, type: 3}
     - {fileID: -592901958, guid: b24276970f0667f4ebf797cfbba82abc, type: 3}
     ReferenceHeight: 1.921875
+    HurtOnly: 0
   - Id: IceCreamOwl
     Kind: companions
     Evolution: 0
@@ -157,6 +172,7 @@ MonoBehaviour:
     - {fileID: -712758485, guid: b24276970f0667f4ebf797cfbba82abc, type: 3}
     - {fileID: 2009662346, guid: b24276970f0667f4ebf797cfbba82abc, type: 3}
     ReferenceHeight: 1.8515625
+    HurtOnly: 0
   - Id: FridgeWisp
     Kind: companions
     Evolution: 0
@@ -166,6 +182,7 @@ MonoBehaviour:
     - {fileID: -1563609221, guid: 30dabe78031b8cc4783f95b7abee6485, type: 3}
     - {fileID: 1118135009, guid: 30dabe78031b8cc4783f95b7abee6485, type: 3}
     ReferenceHeight: 1.703125
+    HurtOnly: 0
   - Id: PearMoth
     Kind: companions
     Evolution: 0
@@ -175,6 +192,7 @@ MonoBehaviour:
     - {fileID: -255067142, guid: 30dabe78031b8cc4783f95b7abee6485, type: 3}
     - {fileID: -320872651, guid: 30dabe78031b8cc4783f95b7abee6485, type: 3}
     ReferenceHeight: 1.9453125
+    HurtOnly: 0
   - Id: CitrusToad
     Kind: companions
     Evolution: 0
@@ -184,6 +202,7 @@ MonoBehaviour:
     - {fileID: -1089466134, guid: 30dabe78031b8cc4783f95b7abee6485, type: 3}
     - {fileID: 1659424718, guid: 30dabe78031b8cc4783f95b7abee6485, type: 3}
     ReferenceHeight: 1.46875
+    HurtOnly: 0
   - Id: RadishJester
     Kind: companions
     Evolution: 0
@@ -193,6 +212,7 @@ MonoBehaviour:
     - {fileID: 1195806966, guid: 30dabe78031b8cc4783f95b7abee6485, type: 3}
     - {fileID: 798950140, guid: 30dabe78031b8cc4783f95b7abee6485, type: 3}
     ReferenceHeight: 2.03125
+    HurtOnly: 0
   - Id: SeedHedgehog
     Kind: companions
     Evolution: 0
@@ -202,6 +222,7 @@ MonoBehaviour:
     - {fileID: 175563939, guid: 2a590fa660815bb4db4c1d2ebbfca086, type: 3}
     - {fileID: 89226962, guid: 2a590fa660815bb4db4c1d2ebbfca086, type: 3}
     ReferenceHeight: 1.8828125
+    HurtOnly: 0
   - Id: MoonJelly
     Kind: companions
     Evolution: 0
@@ -211,6 +232,7 @@ MonoBehaviour:
     - {fileID: -1287288403, guid: 2a590fa660815bb4db4c1d2ebbfca086, type: 3}
     - {fileID: 477279115, guid: 2a590fa660815bb4db4c1d2ebbfca086, type: 3}
     ReferenceHeight: 1.6875
+    HurtOnly: 0
   - Id: StarSock
     Kind: companions
     Evolution: 0
@@ -220,6 +242,7 @@ MonoBehaviour:
     - {fileID: 1728788203, guid: 2a590fa660815bb4db4c1d2ebbfca086, type: 3}
     - {fileID: -1726769751, guid: 2a590fa660815bb4db4c1d2ebbfca086, type: 3}
     ReferenceHeight: 1.828125
+    HurtOnly: 0
   - Id: EclipseEgg
     Kind: companions
     Evolution: 0
@@ -229,6 +252,7 @@ MonoBehaviour:
     - {fileID: 1519039300, guid: 2a590fa660815bb4db4c1d2ebbfca086, type: 3}
     - {fileID: -987444165, guid: 2a590fa660815bb4db4c1d2ebbfca086, type: 3}
     ReferenceHeight: 1.9609375
+    HurtOnly: 0
   - Id: OrbitMoth
     Kind: companions
     Evolution: 0
@@ -238,6 +262,7 @@ MonoBehaviour:
     - {fileID: 1547535475, guid: cc0f6bdd7d03e4f45b92cf85b546ad71, type: 3}
     - {fileID: -592393213, guid: cc0f6bdd7d03e4f45b92cf85b546ad71, type: 3}
     ReferenceHeight: 1.78125
+    HurtOnly: 0
   - Id: DreamCompass
     Kind: companions
     Evolution: 0
@@ -247,6 +272,7 @@ MonoBehaviour:
     - {fileID: -1519910479, guid: cc0f6bdd7d03e4f45b92cf85b546ad71, type: 3}
     - {fileID: 497850362, guid: cc0f6bdd7d03e4f45b92cf85b546ad71, type: 3}
     ReferenceHeight: 1.859375
+    HurtOnly: 0
   - Id: ShellPostman
     Kind: companions
     Evolution: 0
@@ -256,6 +282,7 @@ MonoBehaviour:
     - {fileID: 21079552, guid: cc0f6bdd7d03e4f45b92cf85b546ad71, type: 3}
     - {fileID: 90331399, guid: cc0f6bdd7d03e4f45b92cf85b546ad71, type: 3}
     ReferenceHeight: 1.7734375
+    HurtOnly: 0
   - Id: CoralTeacup
     Kind: companions
     Evolution: 0
@@ -265,6 +292,7 @@ MonoBehaviour:
     - {fileID: 1590584572, guid: cc0f6bdd7d03e4f45b92cf85b546ad71, type: 3}
     - {fileID: -765940820, guid: cc0f6bdd7d03e4f45b92cf85b546ad71, type: 3}
     ReferenceHeight: 1.859375
+    HurtOnly: 0
   - Id: AnchorSnail
     Kind: companions
     Evolution: 0
@@ -274,6 +302,7 @@ MonoBehaviour:
     - {fileID: 445808766, guid: e232618e1c7d32548b0e7c03599a45ec, type: 3}
     - {fileID: 2116148039, guid: e232618e1c7d32548b0e7c03599a45ec, type: 3}
     ReferenceHeight: 1.8515625
+    HurtOnly: 0
   - Id: SailSquid
     Kind: companions
     Evolution: 0
@@ -283,6 +312,7 @@ MonoBehaviour:
     - {fileID: 1514885266, guid: e232618e1c7d32548b0e7c03599a45ec, type: 3}
     - {fileID: -196787301, guid: e232618e1c7d32548b0e7c03599a45ec, type: 3}
     ReferenceHeight: 1.828125
+    HurtOnly: 0
   - Id: SockCyclops
     Kind: companions
     Evolution: 0
@@ -292,6 +322,7 @@ MonoBehaviour:
     - {fileID: -952932684, guid: e232618e1c7d32548b0e7c03599a45ec, type: 3}
     - {fileID: 532733736, guid: e232618e1c7d32548b0e7c03599a45ec, type: 3}
     ReferenceHeight: 1.78125
+    HurtOnly: 0
   - Id: MaskPepper
     Kind: companions
     Evolution: 0
@@ -301,6 +332,7 @@ MonoBehaviour:
     - {fileID: 2087899935, guid: e232618e1c7d32548b0e7c03599a45ec, type: 3}
     - {fileID: 306608686, guid: e232618e1c7d32548b0e7c03599a45ec, type: 3}
     ReferenceHeight: 1.90625
+    HurtOnly: 0
   - Id: CrayonGremlin
     Kind: companions
     Evolution: 0
@@ -310,6 +342,7 @@ MonoBehaviour:
     - {fileID: 1035819849, guid: 1a4370f6f6654e145bb1284d86de292a, type: 3}
     - {fileID: -1113420421, guid: 1a4370f6f6654e145bb1284d86de292a, type: 3}
     ReferenceHeight: 2.25
+    HurtOnly: 0
   - Id: RibbonSpider
     Kind: companions
     Evolution: 0
@@ -319,6 +352,7 @@ MonoBehaviour:
     - {fileID: 2041223640, guid: 1a4370f6f6654e145bb1284d86de292a, type: 3}
     - {fileID: -1834326513, guid: 1a4370f6f6654e145bb1284d86de292a, type: 3}
     ReferenceHeight: 2.1875
+    HurtOnly: 0
   - Id: CoilKettle
     Kind: companions
     Evolution: 0
@@ -328,6 +362,7 @@ MonoBehaviour:
     - {fileID: -435795127, guid: 1a4370f6f6654e145bb1284d86de292a, type: 3}
     - {fileID: 371044964, guid: 1a4370f6f6654e145bb1284d86de292a, type: 3}
     ReferenceHeight: 2.15625
+    HurtOnly: 0
   - Id: ThimbleMoth
     Kind: companions
     Evolution: 0
@@ -337,6 +372,7 @@ MonoBehaviour:
     - {fileID: -124676452, guid: 1a4370f6f6654e145bb1284d86de292a, type: 3}
     - {fileID: -1984269786, guid: 1a4370f6f6654e145bb1284d86de292a, type: 3}
     ReferenceHeight: 2.15625
+    HurtOnly: 0
   - Id: ReelOwl
     Kind: companions
     Evolution: 0
@@ -346,6 +382,7 @@ MonoBehaviour:
     - {fileID: -442481607, guid: 06fc7ce638d40b14bad504c89de72933, type: 3}
     - {fileID: 2034990733, guid: 06fc7ce638d40b14bad504c89de72933, type: 3}
     ReferenceHeight: 1.7890625
+    HurtOnly: 0
   - Id: RainbowTailor
     Kind: companions
     Evolution: 0
@@ -355,6 +392,7 @@ MonoBehaviour:
     - {fileID: 775221310, guid: 06fc7ce638d40b14bad504c89de72933, type: 3}
     - {fileID: 954277264, guid: 06fc7ce638d40b14bad504c89de72933, type: 3}
     ReferenceHeight: 1.8359375
+    HurtOnly: 0
   - Id: RainbowBell
     Kind: companions
     Evolution: 0
@@ -364,6 +402,7 @@ MonoBehaviour:
     - {fileID: -157208342, guid: 06fc7ce638d40b14bad504c89de72933, type: 3}
     - {fileID: -314782504, guid: 06fc7ce638d40b14bad504c89de72933, type: 3}
     ReferenceHeight: 1.9296875
+    HurtOnly: 0
   - Id: SecretPatchBear
     Kind: companions
     Evolution: 0
@@ -373,6 +412,7 @@ MonoBehaviour:
     - {fileID: -35583544, guid: 06fc7ce638d40b14bad504c89de72933, type: 3}
     - {fileID: -1203064811, guid: 06fc7ce638d40b14bad504c89de72933, type: 3}
     ReferenceHeight: 1.8359375
+    HurtOnly: 0
   - Id: SecretPaperBird
     Kind: companions
     Evolution: 0
@@ -382,6 +422,7 @@ MonoBehaviour:
     - {fileID: 419471544, guid: 5ae723a01b8428d43a2dc0109899e9e8, type: 3}
     - {fileID: -2131552785, guid: 5ae723a01b8428d43a2dc0109899e9e8, type: 3}
     ReferenceHeight: 1.8984375
+    HurtOnly: 0
   - Id: SecretDreamLamb
     Kind: companions
     Evolution: 0
@@ -391,6 +432,7 @@ MonoBehaviour:
     - {fileID: 1621717293, guid: 5ae723a01b8428d43a2dc0109899e9e8, type: 3}
     - {fileID: 1109579903, guid: 5ae723a01b8428d43a2dc0109899e9e8, type: 3}
     ReferenceHeight: 1.875
+    HurtOnly: 0
   - Id: SaffronMechanist
     Kind: companions
     Evolution: 0
@@ -400,6 +442,7 @@ MonoBehaviour:
     - {fileID: -1466123466, guid: 5ae723a01b8428d43a2dc0109899e9e8, type: 3}
     - {fileID: 210140435, guid: 5ae723a01b8428d43a2dc0109899e9e8, type: 3}
     ReferenceHeight: 1.8984375
+    HurtOnly: 0
   - Id: ClockworkPiper
     Kind: companions
     Evolution: 0
@@ -409,6 +452,7 @@ MonoBehaviour:
     - {fileID: -791131459, guid: 5ae723a01b8428d43a2dc0109899e9e8, type: 3}
     - {fileID: -634900654, guid: 5ae723a01b8428d43a2dc0109899e9e8, type: 3}
     ReferenceHeight: 1.921875
+    HurtOnly: 0
   - Id: VelvetChampion
     Kind: companions
     Evolution: 0
@@ -418,6 +462,7 @@ MonoBehaviour:
     - {fileID: 1846584288, guid: efbd7c8d0f7652d4681c399576b7ecab, type: 3}
     - {fileID: -1099708397, guid: efbd7c8d0f7652d4681c399576b7ecab, type: 3}
     ReferenceHeight: 1.7890625
+    HurtOnly: 0
   - Id: PaperInventor
     Kind: companions
     Evolution: 0
@@ -427,6 +472,7 @@ MonoBehaviour:
     - {fileID: 2045552916, guid: efbd7c8d0f7652d4681c399576b7ecab, type: 3}
     - {fileID: 609078188, guid: efbd7c8d0f7652d4681c399576b7ecab, type: 3}
     ReferenceHeight: 1.953125
+    HurtOnly: 0
   - Id: ReturnCaptain
     Kind: companions
     Evolution: 0
@@ -436,6 +482,7 @@ MonoBehaviour:
     - {fileID: -114119574, guid: efbd7c8d0f7652d4681c399576b7ecab, type: 3}
     - {fileID: -1955689456, guid: efbd7c8d0f7652d4681c399576b7ecab, type: 3}
     ReferenceHeight: 1.9140625
+    HurtOnly: 0
   - Id: DoughForeman
     Kind: companions
     Evolution: 0
@@ -445,6 +492,7 @@ MonoBehaviour:
     - {fileID: 11629020, guid: efbd7c8d0f7652d4681c399576b7ecab, type: 3}
     - {fileID: 633511573, guid: efbd7c8d0f7652d4681c399576b7ecab, type: 3}
     ReferenceHeight: 1.96875
+    HurtOnly: 0
   - Id: IronLocomotive
     Kind: companions
     Evolution: 0
@@ -454,6 +502,7 @@ MonoBehaviour:
     - {fileID: 1773158040, guid: 7987ebbe70829e64a8df88a72011471b, type: 3}
     - {fileID: 444745523, guid: 7987ebbe70829e64a8df88a72011471b, type: 3}
     ReferenceHeight: 1.78125
+    HurtOnly: 0
   - Id: VioletRemnant
     Kind: companions
     Evolution: 0
@@ -463,6 +512,7 @@ MonoBehaviour:
     - {fileID: 19009293, guid: 7987ebbe70829e64a8df88a72011471b, type: 3}
     - {fileID: 228598411, guid: 7987ebbe70829e64a8df88a72011471b, type: 3}
     ReferenceHeight: 1.8828125
+    HurtOnly: 0
   - Id: VelvetEnchantress
     Kind: companions
     Evolution: 0
@@ -472,6 +522,7 @@ MonoBehaviour:
     - {fileID: -2011053150, guid: 7987ebbe70829e64a8df88a72011471b, type: 3}
     - {fileID: -1876716094, guid: 7987ebbe70829e64a8df88a72011471b, type: 3}
     ReferenceHeight: 1.9453125
+    HurtOnly: 0
   - Id: GrandSprout
     Kind: companions
     Evolution: 0
@@ -481,6 +532,7 @@ MonoBehaviour:
     - {fileID: 1019036140, guid: 7987ebbe70829e64a8df88a72011471b, type: 3}
     - {fileID: 1069988074, guid: 7987ebbe70829e64a8df88a72011471b, type: 3}
     ReferenceHeight: 1.9296875
+    HurtOnly: 0
   - Id: BristleBall
     Kind: companions
     Evolution: 0
@@ -490,6 +542,7 @@ MonoBehaviour:
     - {fileID: -2110309572, guid: 388db26eba50c1f47901d88e69ffae80, type: 3}
     - {fileID: 1988573508, guid: 388db26eba50c1f47901d88e69ffae80, type: 3}
     ReferenceHeight: 1.859375
+    HurtOnly: 0
   - Id: PaperDevil
     Kind: companions
     Evolution: 0
@@ -499,6 +552,7 @@ MonoBehaviour:
     - {fileID: 686449974, guid: 388db26eba50c1f47901d88e69ffae80, type: 3}
     - {fileID: -125123397, guid: 388db26eba50c1f47901d88e69ffae80, type: 3}
     ReferenceHeight: 1.8203125
+    HurtOnly: 0
   - Id: BalloonMallet
     Kind: companions
     Evolution: 0
@@ -508,6 +562,7 @@ MonoBehaviour:
     - {fileID: 1856262694, guid: 388db26eba50c1f47901d88e69ffae80, type: 3}
     - {fileID: 1478126387, guid: 388db26eba50c1f47901d88e69ffae80, type: 3}
     ReferenceHeight: 1.703125
+    HurtOnly: 0
   - Id: LittleSprout
     Kind: companions
     Evolution: 0
@@ -517,6 +572,7 @@ MonoBehaviour:
     - {fileID: 1236723464, guid: 388db26eba50c1f47901d88e69ffae80, type: 3}
     - {fileID: -43667043, guid: 388db26eba50c1f47901d88e69ffae80, type: 3}
     ReferenceHeight: 2.1640625
+    HurtOnly: 0
   - Id: MonsterMarble
     Kind: companions
     Evolution: 0
@@ -526,6 +582,7 @@ MonoBehaviour:
     - {fileID: -1784014515, guid: ca0a18037026a70469f85b2b2d320df8, type: 3}
     - {fileID: -1118405392, guid: ca0a18037026a70469f85b2b2d320df8, type: 3}
     ReferenceHeight: 1.9140625
+    HurtOnly: 0
   - Id: CarouselPony
     Kind: companions
     Evolution: 0
@@ -535,6 +592,7 @@ MonoBehaviour:
     - {fileID: -1936669371, guid: ca0a18037026a70469f85b2b2d320df8, type: 3}
     - {fileID: -1474972121, guid: ca0a18037026a70469f85b2b2d320df8, type: 3}
     ReferenceHeight: 2.078125
+    HurtOnly: 0
   - Id: TeacupCricket
     Kind: companions
     Evolution: 0
@@ -544,6 +602,7 @@ MonoBehaviour:
     - {fileID: -1059675286, guid: ca0a18037026a70469f85b2b2d320df8, type: 3}
     - {fileID: 436314750, guid: ca0a18037026a70469f85b2b2d320df8, type: 3}
     ReferenceHeight: 1.9765625
+    HurtOnly: 0
   - Id: RibbonOtter
     Kind: companions
     Evolution: 0
@@ -553,6 +612,7 @@ MonoBehaviour:
     - {fileID: -1212030465, guid: ca0a18037026a70469f85b2b2d320df8, type: 3}
     - {fileID: -1224877306, guid: ca0a18037026a70469f85b2b2d320df8, type: 3}
     ReferenceHeight: 2.046875
+    HurtOnly: 0
   - Id: SpindleWren
     Kind: companions
     Evolution: 0
@@ -562,6 +622,7 @@ MonoBehaviour:
     - {fileID: -2055517811, guid: e207059c662e35f4d8dfdd19531ee9e4, type: 3}
     - {fileID: 1101847414, guid: e207059c662e35f4d8dfdd19531ee9e4, type: 3}
     ReferenceHeight: 2.4453125
+    HurtOnly: 0
   - Id: Postmaster
     Kind: locomotion
     Evolution: 0
@@ -575,6 +636,7 @@ MonoBehaviour:
     - {fileID: -1845642892, guid: accddde6b644b7c44bd43d97172ab861, type: 3}
     - {fileID: -521635844, guid: accddde6b644b7c44bd43d97172ab861, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: DrowsySeer
     Kind: locomotion
     Evolution: 0
@@ -588,6 +650,7 @@ MonoBehaviour:
     - {fileID: 903000785, guid: 0276b7efcb71be24bb5586de8b4ce80b, type: 3}
     - {fileID: 902649986, guid: 0276b7efcb71be24bb5586de8b4ce80b, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: RootOracle
     Kind: locomotion
     Evolution: 0
@@ -601,6 +664,7 @@ MonoBehaviour:
     - {fileID: -1679153432, guid: 5d374551bb405524897f97d4253485f9, type: 3}
     - {fileID: 1653639597, guid: 5d374551bb405524897f97d4253485f9, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: LoneJelly
     Kind: locomotion
     Evolution: 0
@@ -614,6 +678,7 @@ MonoBehaviour:
     - {fileID: -468324350, guid: 65ebb94c50ae6e24099b8488428056a6, type: 3}
     - {fileID: 43405401, guid: 65ebb94c50ae6e24099b8488428056a6, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: GlassDice
     Kind: locomotion
     Evolution: 0
@@ -627,6 +692,7 @@ MonoBehaviour:
     - {fileID: -390894348, guid: c330c9fa6afc02c46adc5497609950e6, type: 3}
     - {fileID: 382204127, guid: c330c9fa6afc02c46adc5497609950e6, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: TideSinger
     Kind: locomotion
     Evolution: 0
@@ -640,6 +706,7 @@ MonoBehaviour:
     - {fileID: -1045976374, guid: 419546a80ab87314f8e0f735f56df4fa, type: 3}
     - {fileID: 766364640, guid: 419546a80ab87314f8e0f735f56df4fa, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: CometRunner
     Kind: locomotion
     Evolution: 0
@@ -653,6 +720,7 @@ MonoBehaviour:
     - {fileID: 644854302, guid: fab8335ae380d02418d7557613bd952c, type: 3}
     - {fileID: 1437718174, guid: fab8335ae380d02418d7557613bd952c, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: MirrorKeeper
     Kind: locomotion
     Evolution: 0
@@ -666,6 +734,7 @@ MonoBehaviour:
     - {fileID: 263787841, guid: 5ac0bf7c96332d845abb4298150b23ff, type: 3}
     - {fileID: 1699230360, guid: 5ac0bf7c96332d845abb4298150b23ff, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: TreasureAcorn
     Kind: locomotion
     Evolution: 0
@@ -679,6 +748,7 @@ MonoBehaviour:
     - {fileID: -1222237098, guid: 9f3caf990058f98449e7e2cef6f6e250, type: 3}
     - {fileID: 978789146, guid: 9f3caf990058f98449e7e2cef6f6e250, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: VerdantMatron
     Kind: locomotion
     Evolution: 0
@@ -692,6 +762,7 @@ MonoBehaviour:
     - {fileID: -928537642, guid: 9d808b4ae11a4b54b9af0a750c7c01d9, type: 3}
     - {fileID: 498380202, guid: 9d808b4ae11a4b54b9af0a750c7c01d9, type: 3}
     ReferenceHeight: 2.2109375
+    HurtOnly: 0
   - Id: CopperCauldron
     Kind: locomotion
     Evolution: 0
@@ -705,6 +776,7 @@ MonoBehaviour:
     - {fileID: 1051272331, guid: 9957330da54743849842ba0f5b5bb924, type: 3}
     - {fileID: -655019634, guid: 9957330da54743849842ba0f5b5bb924, type: 3}
     ReferenceHeight: 1.96875
+    HurtOnly: 0
   - Id: ChinaMarionette
     Kind: locomotion
     Evolution: 0
@@ -718,6 +790,7 @@ MonoBehaviour:
     - {fileID: -1998341175, guid: 9957330da54743849842ba0f5b5bb924, type: 3}
     - {fileID: -135330197, guid: 9957330da54743849842ba0f5b5bb924, type: 3}
     ReferenceHeight: 2.328125
+    HurtOnly: 0
   - Id: SoapSkater
     Kind: locomotion
     Evolution: 0
@@ -731,6 +804,7 @@ MonoBehaviour:
     - {fileID: 814747307, guid: 0005e08d1c9b173429dcac74a6389cc5, type: 3}
     - {fileID: -873532965, guid: 0005e08d1c9b173429dcac74a6389cc5, type: 3}
     ReferenceHeight: 2.0390625
+    HurtOnly: 0
   - Id: VelvetRegent
     Kind: locomotion
     Evolution: 0
@@ -744,6 +818,7 @@ MonoBehaviour:
     - {fileID: -1491836476, guid: 0005e08d1c9b173429dcac74a6389cc5, type: 3}
     - {fileID: -2100430789, guid: 0005e08d1c9b173429dcac74a6389cc5, type: 3}
     ReferenceHeight: 2.2734375
+    HurtOnly: 0
   - Id: ButtonCavalier
     Kind: locomotion
     Evolution: 0
@@ -757,6 +832,7 @@ MonoBehaviour:
     - {fileID: 780752489, guid: 14b9d5f6de2915445a291a1fa67e86ce, type: 3}
     - {fileID: 923584746, guid: 14b9d5f6de2915445a291a1fa67e86ce, type: 3}
     ReferenceHeight: 2.125
+    HurtOnly: 0
   - Id: NightMaw
     Kind: locomotion
     Evolution: 0
@@ -770,6 +846,7 @@ MonoBehaviour:
     - {fileID: 883277223, guid: 14b9d5f6de2915445a291a1fa67e86ce, type: 3}
     - {fileID: -1429093764, guid: 14b9d5f6de2915445a291a1fa67e86ce, type: 3}
     ReferenceHeight: 2.1015625
+    HurtOnly: 0
   - Id: ThornTreasurer
     Kind: locomotion
     Evolution: 0
@@ -783,6 +860,7 @@ MonoBehaviour:
     - {fileID: -529547575, guid: 5137a1627ee73974e9f7d0722252ee06, type: 3}
     - {fileID: 1827022789, guid: 5137a1627ee73974e9f7d0722252ee06, type: 3}
     ReferenceHeight: 2.1953125
+    HurtOnly: 0
   - Id: CitrusMarshal
     Kind: locomotion
     Evolution: 0
@@ -796,6 +874,7 @@ MonoBehaviour:
     - {fileID: 1301192099, guid: 5137a1627ee73974e9f7d0722252ee06, type: 3}
     - {fileID: -1597225284, guid: 5137a1627ee73974e9f7d0722252ee06, type: 3}
     ReferenceHeight: 1.96875
+    HurtOnly: 0
   - Id: IvorySovereign
     Kind: locomotion
     Evolution: 0
@@ -809,6 +888,7 @@ MonoBehaviour:
     - {fileID: -588673632, guid: b53d2de787a8f2045a4c192e8e9372a2, type: 3}
     - {fileID: -1021182957, guid: b53d2de787a8f2045a4c192e8e9372a2, type: 3}
     ReferenceHeight: 2.1484375
+    HurtOnly: 0
   - Id: PetalCitadel
     Kind: locomotion
     Evolution: 0
@@ -822,6 +902,7 @@ MonoBehaviour:
     - {fileID: -269237596, guid: b53d2de787a8f2045a4c192e8e9372a2, type: 3}
     - {fileID: -888406283, guid: b53d2de787a8f2045a4c192e8e9372a2, type: 3}
     ReferenceHeight: 2
+    HurtOnly: 0
   - Id: PatchworkHost
     Kind: locomotion
     Evolution: 0
@@ -835,6 +916,7 @@ MonoBehaviour:
     - {fileID: 1728829434, guid: 7aa7c2156bd56724bad3e4101d7ec780, type: 3}
     - {fileID: 1370719217, guid: 7aa7c2156bd56724bad3e4101d7ec780, type: 3}
     ReferenceHeight: 2.0390625
+    HurtOnly: 0
   - Id: ArchiveCurator
     Kind: locomotion
     Evolution: 0
@@ -848,6 +930,7 @@ MonoBehaviour:
     - {fileID: -1387591829, guid: 7aa7c2156bd56724bad3e4101d7ec780, type: 3}
     - {fileID: 737292381, guid: 7aa7c2156bd56724bad3e4101d7ec780, type: 3}
     ReferenceHeight: 2.28125
+    HurtOnly: 0
   - Id: PennyBroker
     Kind: locomotion
     Evolution: 0
@@ -861,6 +944,7 @@ MonoBehaviour:
     - {fileID: 107387674, guid: a3a09703f8a08f74bb0e25542982fe0b, type: 3}
     - {fileID: -1399651563, guid: a3a09703f8a08f74bb0e25542982fe0b, type: 3}
     ReferenceHeight: 2.078125
+    HurtOnly: 0
   - Id: StormFencer
     Kind: locomotion
     Evolution: 0
@@ -874,6 +958,7 @@ MonoBehaviour:
     - {fileID: -1163485252, guid: a3a09703f8a08f74bb0e25542982fe0b, type: 3}
     - {fileID: 1283689609, guid: a3a09703f8a08f74bb0e25542982fe0b, type: 3}
     ReferenceHeight: 2.1796875
+    HurtOnly: 0
   - Id: TinVirtuoso
     Kind: locomotion
     Evolution: 0
@@ -887,6 +972,7 @@ MonoBehaviour:
     - {fileID: -1910884417, guid: fffb44d747e78464f8a113dafb53fadc, type: 3}
     - {fileID: 1476129397, guid: fffb44d747e78464f8a113dafb53fadc, type: 3}
     ReferenceHeight: 2.2578125
+    HurtOnly: 0
   - Id: MoonProwler
     Kind: locomotion
     Evolution: 0
@@ -900,6 +986,7 @@ MonoBehaviour:
     - {fileID: -628667638, guid: fffb44d747e78464f8a113dafb53fadc, type: 3}
     - {fileID: 2038328091, guid: fffb44d747e78464f8a113dafb53fadc, type: 3}
     ReferenceHeight: 2.0625
+    HurtOnly: 0
   - Id: SupperMortar
     Kind: locomotion
     Evolution: 0
@@ -913,6 +1000,7 @@ MonoBehaviour:
     - {fileID: 2075571346, guid: e868b1901f4b2fe4cadeeecb5e8456f3, type: 3}
     - {fileID: -964592914, guid: e868b1901f4b2fe4cadeeecb5e8456f3, type: 3}
     ReferenceHeight: 1.78125
+    HurtOnly: 0
   - Id: LanternWeaver
     Kind: locomotion
     Evolution: 0
@@ -926,6 +1014,7 @@ MonoBehaviour:
     - {fileID: -1106852247, guid: e868b1901f4b2fe4cadeeecb5e8456f3, type: 3}
     - {fileID: -1235140376, guid: e868b1901f4b2fe4cadeeecb5e8456f3, type: 3}
     ReferenceHeight: 1.9453125
+    HurtOnly: 0
   - Id: HourglassStag
     Kind: locomotion
     Evolution: 0
@@ -939,6 +1028,7 @@ MonoBehaviour:
     - {fileID: 300952920, guid: f78f2a610f1b42a498a78d41827f8301, type: 3}
     - {fileID: 882966187, guid: f78f2a610f1b42a498a78d41827f8301, type: 3}
     ReferenceHeight: 2.3515625
+    HurtOnly: 0
   - Id: RainArchivist
     Kind: locomotion
     Evolution: 0
@@ -952,6 +1042,7 @@ MonoBehaviour:
     - {fileID: 1902283456, guid: f78f2a610f1b42a498a78d41827f8301, type: 3}
     - {fileID: 1251513208, guid: f78f2a610f1b42a498a78d41827f8301, type: 3}
     ReferenceHeight: 2.21875
+    HurtOnly: 0
   - Id: TeapotPilgrim
     Kind: locomotion
     Evolution: 0
@@ -965,6 +1056,7 @@ MonoBehaviour:
     - {fileID: -797618748, guid: 6b3dcac6695beb74fb59d3535c7f013d, type: 3}
     - {fileID: -1183044674, guid: 6b3dcac6695beb74fb59d3535c7f013d, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: CandleSnail
     Kind: locomotion
     Evolution: 0
@@ -978,6 +1070,7 @@ MonoBehaviour:
     - {fileID: -2140762800, guid: 1d8fbdad3dc3bc948a0d4efb7eebfcbf, type: 3}
     - {fileID: 1356151109, guid: 1d8fbdad3dc3bc948a0d4efb7eebfcbf, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: MailboxImp
     Kind: locomotion
     Evolution: 0
@@ -991,6 +1084,7 @@ MonoBehaviour:
     - {fileID: -493159080, guid: 2dee04ffe3b30ae4e9be23b691c0f2d9, type: 3}
     - {fileID: -534072415, guid: 2dee04ffe3b30ae4e9be23b691c0f2d9, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: PillowOracle
     Kind: locomotion
     Evolution: 0
@@ -1004,6 +1098,7 @@ MonoBehaviour:
     - {fileID: 858793501, guid: 88417eaab7269f74782dc151f206d3f9, type: 3}
     - {fileID: -783494546, guid: 88417eaab7269f74782dc151f206d3f9, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: MushroomLibrarian
     Kind: locomotion
     Evolution: 0
@@ -1017,6 +1112,7 @@ MonoBehaviour:
     - {fileID: -1030827055, guid: 00bc2d8ff71d0804caf7286095f70c5e, type: 3}
     - {fileID: -1490248587, guid: 00bc2d8ff71d0804caf7286095f70c5e, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: HoodWisp
     Kind: locomotion
     Evolution: 0
@@ -1030,6 +1126,7 @@ MonoBehaviour:
     - {fileID: -1330183104, guid: bba2fb4de97c1e442a8f0c8b932ffc12, type: 3}
     - {fileID: -1331056685, guid: bba2fb4de97c1e442a8f0c8b932ffc12, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: JellySwordsman
     Kind: locomotion
     Evolution: 0
@@ -1043,6 +1140,7 @@ MonoBehaviour:
     - {fileID: -71187335, guid: 88fc1e870db708d4c9c52a978511eda9, type: 3}
     - {fileID: -1747371106, guid: 88fc1e870db708d4c9c52a978511eda9, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: BrassAcorn
     Kind: locomotion
     Evolution: 0
@@ -1056,6 +1154,7 @@ MonoBehaviour:
     - {fileID: 1137765605, guid: 17d3617dd7acc9b49821e241fc4f26b2, type: 3}
     - {fileID: 1343679256, guid: 17d3617dd7acc9b49821e241fc4f26b2, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: BreadCrab
     Kind: locomotion
     Evolution: 0
@@ -1069,6 +1168,7 @@ MonoBehaviour:
     - {fileID: 2101058844, guid: 718f035d2c210c14f8a36e3b2c7aef37, type: 3}
     - {fileID: 1477145086, guid: 718f035d2c210c14f8a36e3b2c7aef37, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: KettleBat
     Kind: locomotion
     Evolution: 0
@@ -1082,6 +1182,7 @@ MonoBehaviour:
     - {fileID: -855145604, guid: ec7097ea7cd298c47832ea700d42d061, type: 3}
     - {fileID: -229299314, guid: ec7097ea7cd298c47832ea700d42d061, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: BookmarkGolem
     Kind: locomotion
     Evolution: 0
@@ -1095,6 +1196,7 @@ MonoBehaviour:
     - {fileID: -138644304, guid: b3662cf05a2137e41b5be5d9fb46957b, type: 3}
     - {fileID: -412946319, guid: b3662cf05a2137e41b5be5d9fb46957b, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: TinTick
     Kind: locomotion
     Evolution: 0
@@ -1108,6 +1210,7 @@ MonoBehaviour:
     - {fileID: 906227481, guid: 3dadb83ca81db5c4fb0c284f30f5d17b, type: 3}
     - {fileID: 1234856026, guid: 3dadb83ca81db5c4fb0c284f30f5d17b, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: SpringDuck
     Kind: locomotion
     Evolution: 0
@@ -1121,6 +1224,7 @@ MonoBehaviour:
     - {fileID: -207856385, guid: bf44591fd81db6b46a8e0cb130e94500, type: 3}
     - {fileID: -1569544077, guid: bf44591fd81db6b46a8e0cb130e94500, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: ButtonBeetle
     Kind: locomotion
     Evolution: 0
@@ -1134,6 +1238,7 @@ MonoBehaviour:
     - {fileID: -1698637551, guid: 4dc318ccb5c4ae946a0aaa1e5d59c114, type: 3}
     - {fileID: 89697740, guid: 4dc318ccb5c4ae946a0aaa1e5d59c114, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: StapleMole
     Kind: locomotion
     Evolution: 0
@@ -1147,6 +1252,7 @@ MonoBehaviour:
     - {fileID: -485922694, guid: 8f319b0325c29ce47afe64bf8e43ebc3, type: 3}
     - {fileID: -21972417, guid: 8f319b0325c29ce47afe64bf8e43ebc3, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: SnowSpoon
     Kind: locomotion
     Evolution: 0
@@ -1160,6 +1266,7 @@ MonoBehaviour:
     - {fileID: 75794368, guid: 0935b7f82766522468655e65f700f0d1, type: 3}
     - {fileID: 586891568, guid: 0935b7f82766522468655e65f700f0d1, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: IceCreamOwl
     Kind: locomotion
     Evolution: 0
@@ -1173,6 +1280,7 @@ MonoBehaviour:
     - {fileID: 406074083, guid: 8b99d350fe6d4ab448c497997d500943, type: 3}
     - {fileID: -1171555084, guid: 8b99d350fe6d4ab448c497997d500943, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: FridgeWisp
     Kind: locomotion
     Evolution: 0
@@ -1186,6 +1294,7 @@ MonoBehaviour:
     - {fileID: -458452865, guid: 325ad9903cc54d44b92ac9ecdd397ae2, type: 3}
     - {fileID: 165655019, guid: 325ad9903cc54d44b92ac9ecdd397ae2, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: PearMoth
     Kind: locomotion
     Evolution: 0
@@ -1199,6 +1308,7 @@ MonoBehaviour:
     - {fileID: 1004616164, guid: c7a3c6e161b516641ac87a86a8cc39f8, type: 3}
     - {fileID: -99079168, guid: c7a3c6e161b516641ac87a86a8cc39f8, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: CitrusToad
     Kind: locomotion
     Evolution: 0
@@ -1212,6 +1322,7 @@ MonoBehaviour:
     - {fileID: -315521563, guid: 2db986917edc06444ae9efcadb33719d, type: 3}
     - {fileID: 1102322390, guid: 2db986917edc06444ae9efcadb33719d, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: RadishJester
     Kind: locomotion
     Evolution: 0
@@ -1225,6 +1336,7 @@ MonoBehaviour:
     - {fileID: -930710886, guid: 4cde09ec666ce604abb7deafc025be41, type: 3}
     - {fileID: -1148329961, guid: 4cde09ec666ce604abb7deafc025be41, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: SeedHedgehog
     Kind: locomotion
     Evolution: 0
@@ -1238,6 +1350,7 @@ MonoBehaviour:
     - {fileID: 407178125, guid: 80d1eb891525764488eb624a2174343a, type: 3}
     - {fileID: 934193590, guid: 80d1eb891525764488eb624a2174343a, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: MoonJelly
     Kind: locomotion
     Evolution: 0
@@ -1251,6 +1364,7 @@ MonoBehaviour:
     - {fileID: -201620330, guid: c4c7400b3ee0e0940ad5aae2bb472283, type: 3}
     - {fileID: -1414595905, guid: c4c7400b3ee0e0940ad5aae2bb472283, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: StarSock
     Kind: locomotion
     Evolution: 0
@@ -1264,6 +1378,7 @@ MonoBehaviour:
     - {fileID: 1900285499, guid: 7c1becc78beafcb4f99344f7b03c21d3, type: 3}
     - {fileID: -411877001, guid: 7c1becc78beafcb4f99344f7b03c21d3, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: CometKite
     Kind: locomotion
     Evolution: 0
@@ -1277,6 +1392,7 @@ MonoBehaviour:
     - {fileID: -1807485600, guid: 658500bc9a6e6a44683a3a0716d7db3d, type: 3}
     - {fileID: -1044952896, guid: 658500bc9a6e6a44683a3a0716d7db3d, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: EclipseEgg
     Kind: locomotion
     Evolution: 0
@@ -1290,6 +1406,7 @@ MonoBehaviour:
     - {fileID: -1875140392, guid: cff5c1e174ae3194fa0e1cb9fed249c9, type: 3}
     - {fileID: 788150230, guid: cff5c1e174ae3194fa0e1cb9fed249c9, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: OrbitMoth
     Kind: locomotion
     Evolution: 0
@@ -1303,6 +1420,7 @@ MonoBehaviour:
     - {fileID: 1798278505, guid: 3010804a08598dd4baa9b468930d774f, type: 3}
     - {fileID: -1299894134, guid: 3010804a08598dd4baa9b468930d774f, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: DreamCompass
     Kind: locomotion
     Evolution: 0
@@ -1316,6 +1434,7 @@ MonoBehaviour:
     - {fileID: -137811428, guid: 97fbe36edbcd7e04caacbca7e92997eb, type: 3}
     - {fileID: -1151153848, guid: 97fbe36edbcd7e04caacbca7e92997eb, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: ShellPostman
     Kind: locomotion
     Evolution: 0
@@ -1329,6 +1448,7 @@ MonoBehaviour:
     - {fileID: 775605298, guid: 7edb56ad61f1ef6499a9b9e7196ec034, type: 3}
     - {fileID: 473552317, guid: 7edb56ad61f1ef6499a9b9e7196ec034, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: CoralTeacup
     Kind: locomotion
     Evolution: 0
@@ -1342,6 +1462,7 @@ MonoBehaviour:
     - {fileID: -504764273, guid: 318a0c7a9951f0a49a7277c33a249d5c, type: 3}
     - {fileID: 46751082, guid: 318a0c7a9951f0a49a7277c33a249d5c, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: BubbleKoi
     Kind: locomotion
     Evolution: 0
@@ -1355,6 +1476,7 @@ MonoBehaviour:
     - {fileID: -477090935, guid: 3348a80ce287c3e478c067a924dbf076, type: 3}
     - {fileID: 608480937, guid: 3348a80ce287c3e478c067a924dbf076, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: AnchorSnail
     Kind: locomotion
     Evolution: 0
@@ -1368,6 +1490,7 @@ MonoBehaviour:
     - {fileID: -1886743585, guid: b35e4135fcba2e74db42e79b6d1ed355, type: 3}
     - {fileID: 1131575082, guid: b35e4135fcba2e74db42e79b6d1ed355, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: SailSquid
     Kind: locomotion
     Evolution: 0
@@ -1381,6 +1504,7 @@ MonoBehaviour:
     - {fileID: -754938253, guid: d384f8717e50f8e47b0eea141d4291c3, type: 3}
     - {fileID: -1510073492, guid: d384f8717e50f8e47b0eea141d4291c3, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: SockCyclops
     Kind: locomotion
     Evolution: 0
@@ -1394,6 +1518,7 @@ MonoBehaviour:
     - {fileID: -1091119575, guid: fa93db66613cc794594994cf3ab816af, type: 3}
     - {fileID: 1530110843, guid: fa93db66613cc794594994cf3ab816af, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: DiceCrab
     Kind: locomotion
     Evolution: 0
@@ -1407,6 +1532,7 @@ MonoBehaviour:
     - {fileID: -229585044, guid: 45e9daff0084b374e894dfcd0eae3b6e, type: 3}
     - {fileID: -1229253913, guid: 45e9daff0084b374e894dfcd0eae3b6e, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: MaskPepper
     Kind: locomotion
     Evolution: 0
@@ -1420,6 +1546,7 @@ MonoBehaviour:
     - {fileID: 1819660999, guid: 41caa1c1b27715d47955758f92680071, type: 3}
     - {fileID: -285899932, guid: 41caa1c1b27715d47955758f92680071, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: CrayonGremlin
     Kind: locomotion
     Evolution: 0
@@ -1433,6 +1560,7 @@ MonoBehaviour:
     - {fileID: 1880343678, guid: 79cda6bc3e18bf840838adce2e400423, type: 3}
     - {fileID: -856349654, guid: 79cda6bc3e18bf840838adce2e400423, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: MirrorNewt
     Kind: locomotion
     Evolution: 0
@@ -1446,6 +1574,7 @@ MonoBehaviour:
     - {fileID: -1365912223, guid: e871140e44441e2428f10945694780fa, type: 3}
     - {fileID: -1993513915, guid: e871140e44441e2428f10945694780fa, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: RibbonSpider
     Kind: locomotion
     Evolution: 0
@@ -1459,6 +1588,7 @@ MonoBehaviour:
     - {fileID: -1426658551, guid: fb3d8cc18ef1ab5448d66f9e58c825a8, type: 3}
     - {fileID: 2019944728, guid: fb3d8cc18ef1ab5448d66f9e58c825a8, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: RainbowTailor
     Kind: locomotion
     Evolution: 0
@@ -1472,6 +1602,7 @@ MonoBehaviour:
     - {fileID: 416886443, guid: 5619920f55bf1fa4c8f6f3b649d0f40f, type: 3}
     - {fileID: -224694208, guid: 5619920f55bf1fa4c8f6f3b649d0f40f, type: 3}
     ReferenceHeight: 1.8046875
+    HurtOnly: 0
   - Id: RainbowBell
     Kind: locomotion
     Evolution: 0
@@ -1485,6 +1616,7 @@ MonoBehaviour:
     - {fileID: 1166861572, guid: a713b5fe6b2264e459f563a63940dafd, type: 3}
     - {fileID: -1620538090, guid: a713b5fe6b2264e459f563a63940dafd, type: 3}
     ReferenceHeight: 1.6484375
+    HurtOnly: 0
   - Id: SecretPaperBird
     Kind: locomotion
     Evolution: 0
@@ -1498,6 +1630,7 @@ MonoBehaviour:
     - {fileID: 945719253, guid: a713b5fe6b2264e459f563a63940dafd, type: 3}
     - {fileID: -2116759501, guid: a713b5fe6b2264e459f563a63940dafd, type: 3}
     ReferenceHeight: 1.5390625
+    HurtOnly: 0
   - Id: SaffronMechanist
     Kind: locomotion
     Evolution: 0
@@ -1511,6 +1644,7 @@ MonoBehaviour:
     - {fileID: -1221728807, guid: 9f0c27884cf665440a544282269d25f4, type: 3}
     - {fileID: -1842705684, guid: 9f0c27884cf665440a544282269d25f4, type: 3}
     ReferenceHeight: 2.2109375
+    HurtOnly: 0
   - Id: ClockworkPiper
     Kind: locomotion
     Evolution: 0
@@ -1524,6 +1658,7 @@ MonoBehaviour:
     - {fileID: -610514652, guid: 9f0c27884cf665440a544282269d25f4, type: 3}
     - {fileID: -1666165152, guid: 9f0c27884cf665440a544282269d25f4, type: 3}
     ReferenceHeight: 2.1328125
+    HurtOnly: 0
   - Id: VelvetChampion
     Kind: locomotion
     Evolution: 0
@@ -1537,6 +1672,7 @@ MonoBehaviour:
     - {fileID: 237557253, guid: 57ef681758b478440899b7292f0f1be9, type: 3}
     - {fileID: 642634021, guid: 57ef681758b478440899b7292f0f1be9, type: 3}
     ReferenceHeight: 1.84375
+    HurtOnly: 0
   - Id: PaperInventor
     Kind: locomotion
     Evolution: 0
@@ -1550,6 +1686,7 @@ MonoBehaviour:
     - {fileID: 1335865557, guid: 57ef681758b478440899b7292f0f1be9, type: 3}
     - {fileID: 510721743, guid: 57ef681758b478440899b7292f0f1be9, type: 3}
     ReferenceHeight: 2.1796875
+    HurtOnly: 0
   - Id: ReturnCaptain
     Kind: locomotion
     Evolution: 0
@@ -1563,6 +1700,7 @@ MonoBehaviour:
     - {fileID: 1400784781, guid: f365f5c50ebe74f4c844748e94aeccf0, type: 3}
     - {fileID: 2026758582, guid: f365f5c50ebe74f4c844748e94aeccf0, type: 3}
     ReferenceHeight: 2.15625
+    HurtOnly: 0
   - Id: DoughForeman
     Kind: locomotion
     Evolution: 0
@@ -1576,6 +1714,7 @@ MonoBehaviour:
     - {fileID: 1412986765, guid: f365f5c50ebe74f4c844748e94aeccf0, type: 3}
     - {fileID: 1389622331, guid: f365f5c50ebe74f4c844748e94aeccf0, type: 3}
     ReferenceHeight: 2.2578125
+    HurtOnly: 0
   - Id: IronLocomotive
     Kind: locomotion
     Evolution: 0
@@ -1589,6 +1728,7 @@ MonoBehaviour:
     - {fileID: -271501429, guid: 4b0f6a31ec88f8b4a994d125831f6d40, type: 3}
     - {fileID: 788205729, guid: 4b0f6a31ec88f8b4a994d125831f6d40, type: 3}
     ReferenceHeight: 1.6953125
+    HurtOnly: 0
   - Id: VioletRemnant
     Kind: locomotion
     Evolution: 0
@@ -1602,6 +1742,7 @@ MonoBehaviour:
     - {fileID: 492556170, guid: 4b0f6a31ec88f8b4a994d125831f6d40, type: 3}
     - {fileID: 752658252, guid: 4b0f6a31ec88f8b4a994d125831f6d40, type: 3}
     ReferenceHeight: 2.0234375
+    HurtOnly: 0
   - Id: VelvetEnchantress
     Kind: locomotion
     Evolution: 0
@@ -1615,6 +1756,7 @@ MonoBehaviour:
     - {fileID: 1462379264, guid: 5dc3931bc2e384b4995a2e9de6f3b438, type: 3}
     - {fileID: 1338298786, guid: 5dc3931bc2e384b4995a2e9de6f3b438, type: 3}
     ReferenceHeight: 1.9765625
+    HurtOnly: 0
   - Id: GrandSprout
     Kind: locomotion
     Evolution: 0
@@ -1628,6 +1770,7 @@ MonoBehaviour:
     - {fileID: -905693221, guid: 5dc3931bc2e384b4995a2e9de6f3b438, type: 3}
     - {fileID: -1510616485, guid: 5dc3931bc2e384b4995a2e9de6f3b438, type: 3}
     ReferenceHeight: 2.0625
+    HurtOnly: 0
   - Id: BristleBall
     Kind: locomotion
     Evolution: 0
@@ -1641,6 +1784,7 @@ MonoBehaviour:
     - {fileID: -1314548031, guid: 50fe391c60c5ae44498909f210bb7634, type: 3}
     - {fileID: 1850575446, guid: 50fe391c60c5ae44498909f210bb7634, type: 3}
     ReferenceHeight: 1.8359375
+    HurtOnly: 0
   - Id: PaperDevil
     Kind: locomotion
     Evolution: 0
@@ -1654,6 +1798,7 @@ MonoBehaviour:
     - {fileID: 334188059, guid: 50fe391c60c5ae44498909f210bb7634, type: 3}
     - {fileID: 1481491138, guid: 50fe391c60c5ae44498909f210bb7634, type: 3}
     ReferenceHeight: 1.8828125
+    HurtOnly: 0
   - Id: BalloonMallet
     Kind: locomotion
     Evolution: 0
@@ -1667,6 +1812,7 @@ MonoBehaviour:
     - {fileID: 1008446776, guid: 86628606e40bff64bbc0a301aa1a661d, type: 3}
     - {fileID: -1919356970, guid: 86628606e40bff64bbc0a301aa1a661d, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: LittleSprout
     Kind: locomotion
     Evolution: 0
@@ -1680,6 +1826,7 @@ MonoBehaviour:
     - {fileID: 566425776, guid: 70ed34694485d8c43b40f5777320de90, type: 3}
     - {fileID: -84461610, guid: 70ed34694485d8c43b40f5777320de90, type: 3}
     ReferenceHeight: 1.953125
+    HurtOnly: 0
   - Id: MonsterMarble
     Kind: locomotion
     Evolution: 0
@@ -1693,6 +1840,7 @@ MonoBehaviour:
     - {fileID: -236185236, guid: d57d7b4339b150c49a73784da6edb009, type: 3}
     - {fileID: 898421596, guid: d57d7b4339b150c49a73784da6edb009, type: 3}
     ReferenceHeight: 1
+    HurtOnly: 0
   - Id: CarouselPony
     Kind: locomotion
     Evolution: 0
@@ -1706,6 +1854,7 @@ MonoBehaviour:
     - {fileID: -1535300752, guid: c975c6277d11e0640b26359b4625e5cd, type: 3}
     - {fileID: 1109255563, guid: c975c6277d11e0640b26359b4625e5cd, type: 3}
     ReferenceHeight: 1.90625
+    HurtOnly: 0
   - Id: TeacupCricket
     Kind: locomotion
     Evolution: 0
@@ -1719,6 +1868,7 @@ MonoBehaviour:
     - {fileID: -1761779829, guid: b7eee8944620a9a4296df0b22cef2cef, type: 3}
     - {fileID: 145964223, guid: b7eee8944620a9a4296df0b22cef2cef, type: 3}
     ReferenceHeight: 2.1953125
+    HurtOnly: 0
   - Id: RibbonOtter
     Kind: locomotion
     Evolution: 0
@@ -1732,6 +1882,7 @@ MonoBehaviour:
     - {fileID: 311821499, guid: b7eee8944620a9a4296df0b22cef2cef, type: 3}
     - {fileID: -1816375888, guid: b7eee8944620a9a4296df0b22cef2cef, type: 3}
     ReferenceHeight: 2.078125
+    HurtOnly: 0
   - Id: SpindleWren
     Kind: locomotion
     Evolution: 0
@@ -1745,6 +1896,7 @@ MonoBehaviour:
     - {fileID: -300636644, guid: 8645457b11e6c5a4c9eed8af9028bd02, type: 3}
     - {fileID: -1490336532, guid: 8645457b11e6c5a4c9eed8af9028bd02, type: 3}
     ReferenceHeight: 1.875
+    HurtOnly: 0
   - Id: HushMite
     Kind: enemies
     Evolution: 0
@@ -1754,6 +1906,7 @@ MonoBehaviour:
     - {fileID: -1355664210, guid: f238f2ab2990ac0458aa7f826ecbce98, type: 3}
     - {fileID: -1203312740, guid: f238f2ab2990ac0458aa7f826ecbce98, type: 3}
     ReferenceHeight: 1.8359375
+    HurtOnly: 0
   - Id: HushMite
     Kind: enemies
     Evolution: 1
@@ -1763,6 +1916,7 @@ MonoBehaviour:
     - {fileID: 1172340120, guid: f238f2ab2990ac0458aa7f826ecbce98, type: 3}
     - {fileID: -2040115362, guid: f238f2ab2990ac0458aa7f826ecbce98, type: 3}
     ReferenceHeight: 1.8671875
+    HurtOnly: 0
   - Id: ClockBat
     Kind: enemies
     Evolution: 0
@@ -1772,6 +1926,7 @@ MonoBehaviour:
     - {fileID: 421743212, guid: f238f2ab2990ac0458aa7f826ecbce98, type: 3}
     - {fileID: -1826676620, guid: f238f2ab2990ac0458aa7f826ecbce98, type: 3}
     ReferenceHeight: 1.5546875
+    HurtOnly: 0
   - Id: ClockBat
     Kind: enemies
     Evolution: 1
@@ -1781,6 +1936,7 @@ MonoBehaviour:
     - {fileID: -353525590, guid: f238f2ab2990ac0458aa7f826ecbce98, type: 3}
     - {fileID: 1883881768, guid: f238f2ab2990ac0458aa7f826ecbce98, type: 3}
     ReferenceHeight: 1.859375
+    HurtOnly: 0
   - Id: BristleImp
     Kind: enemies
     Evolution: 0
@@ -1790,6 +1946,7 @@ MonoBehaviour:
     - {fileID: -1072840030, guid: 3582265c85e66b746b9bedd2366de589, type: 3}
     - {fileID: -1689102321, guid: 3582265c85e66b746b9bedd2366de589, type: 3}
     ReferenceHeight: 1.8046875
+    HurtOnly: 0
   - Id: BristleImp
     Kind: enemies
     Evolution: 1
@@ -1799,6 +1956,7 @@ MonoBehaviour:
     - {fileID: 464200115, guid: 3582265c85e66b746b9bedd2366de589, type: 3}
     - {fileID: 1794952265, guid: 3582265c85e66b746b9bedd2366de589, type: 3}
     ReferenceHeight: 1.96875
+    HurtOnly: 0
   - Id: RuneWisp
     Kind: enemies
     Evolution: 0
@@ -1808,6 +1966,7 @@ MonoBehaviour:
     - {fileID: 207561049, guid: 3582265c85e66b746b9bedd2366de589, type: 3}
     - {fileID: -1564570151, guid: 3582265c85e66b746b9bedd2366de589, type: 3}
     ReferenceHeight: 1.7890625
+    HurtOnly: 0
   - Id: RuneWisp
     Kind: enemies
     Evolution: 1
@@ -1817,6 +1976,7 @@ MonoBehaviour:
     - {fileID: 1791230226, guid: 3582265c85e66b746b9bedd2366de589, type: 3}
     - {fileID: -1308353879, guid: 3582265c85e66b746b9bedd2366de589, type: 3}
     ReferenceHeight: 1.9765625
+    HurtOnly: 0
   - Id: InkMoth
     Kind: enemies
     Evolution: 0
@@ -1826,6 +1986,7 @@ MonoBehaviour:
     - {fileID: -1085849292, guid: 10a9f0d410e2a1b4aa4951fc47c150fe, type: 3}
     - {fileID: -771220248, guid: 10a9f0d410e2a1b4aa4951fc47c150fe, type: 3}
     ReferenceHeight: 1.7109375
+    HurtOnly: 0
   - Id: InkMoth
     Kind: enemies
     Evolution: 1
@@ -1835,6 +1996,7 @@ MonoBehaviour:
     - {fileID: 2142192775, guid: 10a9f0d410e2a1b4aa4951fc47c150fe, type: 3}
     - {fileID: 1278609473, guid: 10a9f0d410e2a1b4aa4951fc47c150fe, type: 3}
     ReferenceHeight: 2.0234375
+    HurtOnly: 0
   - Id: SirenSeal
     Kind: enemies
     Evolution: 0
@@ -1844,6 +2006,7 @@ MonoBehaviour:
     - {fileID: 803602276, guid: 10a9f0d410e2a1b4aa4951fc47c150fe, type: 3}
     - {fileID: 310865012, guid: 10a9f0d410e2a1b4aa4951fc47c150fe, type: 3}
     ReferenceHeight: 1.609375
+    HurtOnly: 0
   - Id: SirenSeal
     Kind: enemies
     Evolution: 1
@@ -1853,6 +2016,7 @@ MonoBehaviour:
     - {fileID: -477890394, guid: 10a9f0d410e2a1b4aa4951fc47c150fe, type: 3}
     - {fileID: -1904826417, guid: 10a9f0d410e2a1b4aa4951fc47c150fe, type: 3}
     ReferenceHeight: 1.828125
+    HurtOnly: 0
   - Id: DoorBearer
     Kind: enemies
     Evolution: 0
@@ -1862,6 +2026,7 @@ MonoBehaviour:
     - {fileID: 1357350566, guid: 7cbaaf89a998d0d4a8eec2b0fabf2a8e, type: 3}
     - {fileID: -529909402, guid: 7cbaaf89a998d0d4a8eec2b0fabf2a8e, type: 3}
     ReferenceHeight: 1.9140625
+    HurtOnly: 0
   - Id: DoorBearer
     Kind: enemies
     Evolution: 1
@@ -1871,6 +2036,7 @@ MonoBehaviour:
     - {fileID: 1786791887, guid: 7cbaaf89a998d0d4a8eec2b0fabf2a8e, type: 3}
     - {fileID: -1461245237, guid: 7cbaaf89a998d0d4a8eec2b0fabf2a8e, type: 3}
     ReferenceHeight: 1.984375
+    HurtOnly: 0
   - Id: MoonMagnet
     Kind: enemies
     Evolution: 0
@@ -1880,6 +2046,7 @@ MonoBehaviour:
     - {fileID: -1886889021, guid: 7cbaaf89a998d0d4a8eec2b0fabf2a8e, type: 3}
     - {fileID: -147297668, guid: 7cbaaf89a998d0d4a8eec2b0fabf2a8e, type: 3}
     ReferenceHeight: 1.796875
+    HurtOnly: 0
   - Id: MoonMagnet
     Kind: enemies
     Evolution: 1
@@ -1889,6 +2056,7 @@ MonoBehaviour:
     - {fileID: 1077398834, guid: 7cbaaf89a998d0d4a8eec2b0fabf2a8e, type: 3}
     - {fileID: -1314063094, guid: 7cbaaf89a998d0d4a8eec2b0fabf2a8e, type: 3}
     ReferenceHeight: 1.9296875
+    HurtOnly: 0
   - Id: SleepMimic
     Kind: enemies
     Evolution: 0
@@ -1898,6 +2066,7 @@ MonoBehaviour:
     - {fileID: 1914980118, guid: c61c4801af79d2a44bc2ddb65b3c5df6, type: 3}
     - {fileID: 1366794935, guid: c61c4801af79d2a44bc2ddb65b3c5df6, type: 3}
     ReferenceHeight: 1.609375
+    HurtOnly: 0
   - Id: SleepMimic
     Kind: enemies
     Evolution: 1
@@ -1907,6 +2076,7 @@ MonoBehaviour:
     - {fileID: 1032860878, guid: c61c4801af79d2a44bc2ddb65b3c5df6, type: 3}
     - {fileID: -1915087646, guid: c61c4801af79d2a44bc2ddb65b3c5df6, type: 3}
     ReferenceHeight: 1.7109375
+    HurtOnly: 0
   - Id: CurtainWisp
     Kind: enemies
     Evolution: 0
@@ -1916,6 +2086,7 @@ MonoBehaviour:
     - {fileID: -464032838, guid: c61c4801af79d2a44bc2ddb65b3c5df6, type: 3}
     - {fileID: 1903826913, guid: c61c4801af79d2a44bc2ddb65b3c5df6, type: 3}
     ReferenceHeight: 1.875
+    HurtOnly: 0
   - Id: CurtainWisp
     Kind: enemies
     Evolution: 1
@@ -1925,15 +2096,17 @@ MonoBehaviour:
     - {fileID: -1591721890, guid: c61c4801af79d2a44bc2ddb65b3c5df6, type: 3}
     - {fileID: 1590889414, guid: c61c4801af79d2a44bc2ddb65b3c5df6, type: 3}
     ReferenceHeight: 1.9140625
+    HurtOnly: 0
   - Id: FurnaceToad
     Kind: enemies
     Evolution: 0
     Frames:
-    - {fileID: 2120949005, guid: 8fc5d8dd96604d746b93eec456ba8b06, type: 3}
-    - {fileID: 2143698031, guid: 8fc5d8dd96604d746b93eec456ba8b06, type: 3}
-    - {fileID: -115312291, guid: 8fc5d8dd96604d746b93eec456ba8b06, type: 3}
-    - {fileID: -967555476, guid: 8fc5d8dd96604d746b93eec456ba8b06, type: 3}
-    ReferenceHeight: 1.7578125
+    - {fileID: 21300000, guid: a9924f28787c5b34b984c2759c167678, type: 3}
+    - {fileID: 21300000, guid: c86f6cea2e570fc4380473fb7d18429b, type: 3}
+    - {fileID: 21300000, guid: c86f6cea2e570fc4380473fb7d18429b, type: 3}
+    - {fileID: 21300000, guid: 2e277a5cfa687b54eb59c34b7e42740c, type: 3}
+    ReferenceHeight: 1
+    HurtOnly: 1
   - Id: FurnaceToad
     Kind: enemies
     Evolution: 1
@@ -1943,15 +2116,17 @@ MonoBehaviour:
     - {fileID: -522830166, guid: 8fc5d8dd96604d746b93eec456ba8b06, type: 3}
     - {fileID: 617461946, guid: 8fc5d8dd96604d746b93eec456ba8b06, type: 3}
     ReferenceHeight: 1.9609375
+    HurtOnly: 0
   - Id: WardrobeCrab
     Kind: enemies
     Evolution: 0
     Frames:
-    - {fileID: 67552088, guid: 8fc5d8dd96604d746b93eec456ba8b06, type: 3}
-    - {fileID: 361546067, guid: 8fc5d8dd96604d746b93eec456ba8b06, type: 3}
-    - {fileID: 154327096, guid: 8fc5d8dd96604d746b93eec456ba8b06, type: 3}
-    - {fileID: -620951012, guid: 8fc5d8dd96604d746b93eec456ba8b06, type: 3}
-    ReferenceHeight: 1.8515625
+    - {fileID: 21300000, guid: 40d412cd0b7795c4d9de99cd8998b38e, type: 3}
+    - {fileID: 21300000, guid: 439aa620914eb1646ba6555074ac1bb3, type: 3}
+    - {fileID: 21300000, guid: 439aa620914eb1646ba6555074ac1bb3, type: 3}
+    - {fileID: 21300000, guid: 3804fc3b84f97544eb13c664a6683705, type: 3}
+    ReferenceHeight: 1
+    HurtOnly: 1
   - Id: WardrobeCrab
     Kind: enemies
     Evolution: 1
@@ -1961,6 +2136,7 @@ MonoBehaviour:
     - {fileID: 540367141, guid: 8fc5d8dd96604d746b93eec456ba8b06, type: 3}
     - {fileID: 340224645, guid: 8fc5d8dd96604d746b93eec456ba8b06, type: 3}
     ReferenceHeight: 1.8671875
+    HurtOnly: 0
   - Id: HopperKeg
     Kind: enemies
     Evolution: 0
@@ -1970,6 +2146,7 @@ MonoBehaviour:
     - {fileID: 27443451, guid: a07e3c8f7fa5b7947bbb19bea6adf43b, type: 3}
     - {fileID: -2007918386, guid: a07e3c8f7fa5b7947bbb19bea6adf43b, type: 3}
     ReferenceHeight: 1.828125
+    HurtOnly: 0
   - Id: HopperKeg
     Kind: enemies
     Evolution: 1
@@ -1979,6 +2156,7 @@ MonoBehaviour:
     - {fileID: 1698163786, guid: a07e3c8f7fa5b7947bbb19bea6adf43b, type: 3}
     - {fileID: -1449578647, guid: a07e3c8f7fa5b7947bbb19bea6adf43b, type: 3}
     ReferenceHeight: 2.046875
+    HurtOnly: 0
   - Id: ChargerRam
     Kind: enemies
     Evolution: 0
@@ -1988,6 +2166,7 @@ MonoBehaviour:
     - {fileID: -2142053631, guid: a07e3c8f7fa5b7947bbb19bea6adf43b, type: 3}
     - {fileID: -220373818, guid: a07e3c8f7fa5b7947bbb19bea6adf43b, type: 3}
     ReferenceHeight: 1.796875
+    HurtOnly: 0
   - Id: ChargerRam
     Kind: enemies
     Evolution: 1
@@ -1997,6 +2176,7 @@ MonoBehaviour:
     - {fileID: -412209885, guid: a07e3c8f7fa5b7947bbb19bea6adf43b, type: 3}
     - {fileID: 920668028, guid: a07e3c8f7fa5b7947bbb19bea6adf43b, type: 3}
     ReferenceHeight: 1.9296875
+    HurtOnly: 0
   - Id: CoinLeech
     Kind: enemies
     Evolution: 0
@@ -2006,6 +2186,7 @@ MonoBehaviour:
     - {fileID: -1346643207, guid: 886eebbd65f10a549bd68e9a4bd2475f, type: 3}
     - {fileID: -1789859836, guid: 886eebbd65f10a549bd68e9a4bd2475f, type: 3}
     ReferenceHeight: 1.53125
+    HurtOnly: 0
   - Id: CoinLeech
     Kind: enemies
     Evolution: 1
@@ -2015,6 +2196,7 @@ MonoBehaviour:
     - {fileID: -1237000699, guid: 886eebbd65f10a549bd68e9a4bd2475f, type: 3}
     - {fileID: 474165087, guid: 886eebbd65f10a549bd68e9a4bd2475f, type: 3}
     ReferenceHeight: 1.9609375
+    HurtOnly: 0
   - Id: BlastPuffer
     Kind: enemies
     Evolution: 0
@@ -2024,6 +2206,7 @@ MonoBehaviour:
     - {fileID: -1899407762, guid: 886eebbd65f10a549bd68e9a4bd2475f, type: 3}
     - {fileID: -1998141234, guid: 886eebbd65f10a549bd68e9a4bd2475f, type: 3}
     ReferenceHeight: 1.703125
+    HurtOnly: 0
   - Id: BlastPuffer
     Kind: enemies
     Evolution: 1
@@ -2033,6 +2216,7 @@ MonoBehaviour:
     - {fileID: 1544563621, guid: 886eebbd65f10a549bd68e9a4bd2475f, type: 3}
     - {fileID: 980691144, guid: 886eebbd65f10a549bd68e9a4bd2475f, type: 3}
     ReferenceHeight: 1.8046875
+    HurtOnly: 0
   - Id: SporeBishop
     Kind: enemies
     Evolution: 0
@@ -2042,6 +2226,7 @@ MonoBehaviour:
     - {fileID: 228400370, guid: c8a756a402b4ad34eb1ad0eed70f2314, type: 3}
     - {fileID: 467328793, guid: c8a756a402b4ad34eb1ad0eed70f2314, type: 3}
     ReferenceHeight: 1.7734375
+    HurtOnly: 0
   - Id: SporeBishop
     Kind: enemies
     Evolution: 1
@@ -2051,6 +2236,7 @@ MonoBehaviour:
     - {fileID: -571264067, guid: c8a756a402b4ad34eb1ad0eed70f2314, type: 3}
     - {fileID: -219910818, guid: c8a756a402b4ad34eb1ad0eed70f2314, type: 3}
     ReferenceHeight: 1.9140625
+    HurtOnly: 0
   - Id: BroomSkater
     Kind: enemies
     Evolution: 0
@@ -2060,6 +2246,7 @@ MonoBehaviour:
     - {fileID: -992426515, guid: c8a756a402b4ad34eb1ad0eed70f2314, type: 3}
     - {fileID: -325349088, guid: c8a756a402b4ad34eb1ad0eed70f2314, type: 3}
     ReferenceHeight: 1.875
+    HurtOnly: 0
   - Id: BroomSkater
     Kind: enemies
     Evolution: 1
@@ -2069,6 +2256,7 @@ MonoBehaviour:
     - {fileID: 1574108260, guid: c8a756a402b4ad34eb1ad0eed70f2314, type: 3}
     - {fileID: -170720923, guid: c8a756a402b4ad34eb1ad0eed70f2314, type: 3}
     ReferenceHeight: 1.953125
+    HurtOnly: 0
   - Id: RibbonHydra
     Kind: enemies
     Evolution: 0
@@ -2078,6 +2266,7 @@ MonoBehaviour:
     - {fileID: -1378369605, guid: f643036b9ab45fe45b9aeec5c9565006, type: 3}
     - {fileID: -876542891, guid: f643036b9ab45fe45b9aeec5c9565006, type: 3}
     ReferenceHeight: 1.78125
+    HurtOnly: 0
   - Id: RibbonHydra
     Kind: enemies
     Evolution: 1
@@ -2087,6 +2276,7 @@ MonoBehaviour:
     - {fileID: 250172638, guid: f643036b9ab45fe45b9aeec5c9565006, type: 3}
     - {fileID: 2036045161, guid: f643036b9ab45fe45b9aeec5c9565006, type: 3}
     ReferenceHeight: 1.8984375
+    HurtOnly: 0
   - Id: BurrowBell
     Kind: enemies
     Evolution: 0
@@ -2096,6 +2286,7 @@ MonoBehaviour:
     - {fileID: 17162820, guid: f643036b9ab45fe45b9aeec5c9565006, type: 3}
     - {fileID: 1224881578, guid: f643036b9ab45fe45b9aeec5c9565006, type: 3}
     ReferenceHeight: 1.8515625
+    HurtOnly: 0
   - Id: BurrowBell
     Kind: enemies
     Evolution: 1
@@ -2105,6 +2296,7 @@ MonoBehaviour:
     - {fileID: 982324332, guid: f643036b9ab45fe45b9aeec5c9565006, type: 3}
     - {fileID: -382708617, guid: f643036b9ab45fe45b9aeec5c9565006, type: 3}
     ReferenceHeight: 1.9453125
+    HurtOnly: 0
   - Id: SmokeWraith
     Kind: enemies
     Evolution: 0
@@ -2114,6 +2306,7 @@ MonoBehaviour:
     - {fileID: 685123759, guid: 350998b9eedf03f43a162cbbaab510e7, type: 3}
     - {fileID: 678230302, guid: 350998b9eedf03f43a162cbbaab510e7, type: 3}
     ReferenceHeight: 1.8515625
+    HurtOnly: 0
   - Id: SmokeWraith
     Kind: enemies
     Evolution: 1
@@ -2123,6 +2316,7 @@ MonoBehaviour:
     - {fileID: 192331553, guid: 350998b9eedf03f43a162cbbaab510e7, type: 3}
     - {fileID: -327818603, guid: 350998b9eedf03f43a162cbbaab510e7, type: 3}
     ReferenceHeight: 1.7734375
+    HurtOnly: 0
   - Id: BlueFlameFiend
     Kind: enemies
     Evolution: 0
@@ -2132,6 +2326,7 @@ MonoBehaviour:
     - {fileID: -2078813834, guid: 350998b9eedf03f43a162cbbaab510e7, type: 3}
     - {fileID: 1618175962, guid: 350998b9eedf03f43a162cbbaab510e7, type: 3}
     ReferenceHeight: 1.8359375
+    HurtOnly: 0
   - Id: BlueFlameFiend
     Kind: enemies
     Evolution: 1
@@ -2141,6 +2336,7 @@ MonoBehaviour:
     - {fileID: -212249979, guid: 350998b9eedf03f43a162cbbaab510e7, type: 3}
     - {fileID: -469329708, guid: 350998b9eedf03f43a162cbbaab510e7, type: 3}
     ReferenceHeight: 1.9140625
+    HurtOnly: 0
   - Id: RedFlameBerserker
     Kind: enemies
     Evolution: 0
@@ -2150,6 +2346,7 @@ MonoBehaviour:
     - {fileID: 1751381809, guid: 5d6d6ca1ae049f942bec01348c4433ec, type: 3}
     - {fileID: 1499555880, guid: 5d6d6ca1ae049f942bec01348c4433ec, type: 3}
     ReferenceHeight: 1.5078125
+    HurtOnly: 0
   - Id: RedFlameBerserker
     Kind: enemies
     Evolution: 1
@@ -2159,6 +2356,7 @@ MonoBehaviour:
     - {fileID: -865386789, guid: 5d6d6ca1ae049f942bec01348c4433ec, type: 3}
     - {fileID: -1245537045, guid: 5d6d6ca1ae049f942bec01348c4433ec, type: 3}
     ReferenceHeight: 1.75
+    HurtOnly: 0
   - Id: TwinFlameFurnace
     Kind: enemies
     Evolution: 0
@@ -2168,6 +2366,7 @@ MonoBehaviour:
     - {fileID: -1673698165, guid: 5d6d6ca1ae049f942bec01348c4433ec, type: 3}
     - {fileID: 1195144442, guid: 5d6d6ca1ae049f942bec01348c4433ec, type: 3}
     ReferenceHeight: 1.7734375
+    HurtOnly: 0
   - Id: TwinFlameFurnace
     Kind: enemies
     Evolution: 1
@@ -2177,6 +2376,7 @@ MonoBehaviour:
     - {fileID: -2001396049, guid: 5d6d6ca1ae049f942bec01348c4433ec, type: 3}
     - {fileID: 1084649788, guid: 5d6d6ca1ae049f942bec01348c4433ec, type: 3}
     ReferenceHeight: 1.796875
+    HurtOnly: 0
   - Id: AshSwallower
     Kind: enemies
     Evolution: 0
@@ -2186,6 +2386,7 @@ MonoBehaviour:
     - {fileID: -1690794565, guid: 22c1ea75441299d47b31142e804efaca, type: 3}
     - {fileID: -384945, guid: 22c1ea75441299d47b31142e804efaca, type: 3}
     ReferenceHeight: 1.515625
+    HurtOnly: 0
   - Id: AshSwallower
     Kind: enemies
     Evolution: 1
@@ -2195,6 +2396,7 @@ MonoBehaviour:
     - {fileID: -1321585808, guid: 22c1ea75441299d47b31142e804efaca, type: 3}
     - {fileID: 335209462, guid: 22c1ea75441299d47b31142e804efaca, type: 3}
     ReferenceHeight: 1.8046875
+    HurtOnly: 0
   - Id: LostLanternSoul
     Kind: enemies
     Evolution: 0
@@ -2204,6 +2406,7 @@ MonoBehaviour:
     - {fileID: 1546782817, guid: 22c1ea75441299d47b31142e804efaca, type: 3}
     - {fileID: 1423024246, guid: 22c1ea75441299d47b31142e804efaca, type: 3}
     ReferenceHeight: 1.828125
+    HurtOnly: 0
   - Id: LostLanternSoul
     Kind: enemies
     Evolution: 1
@@ -2213,6 +2416,7 @@ MonoBehaviour:
     - {fileID: 958832979, guid: 22c1ea75441299d47b31142e804efaca, type: 3}
     - {fileID: -1511883587, guid: 22c1ea75441299d47b31142e804efaca, type: 3}
     ReferenceHeight: 1.890625
+    HurtOnly: 0
   - Id: SmokingCoffin
     Kind: enemies
     Evolution: 0
@@ -2222,6 +2426,7 @@ MonoBehaviour:
     - {fileID: 1515091210, guid: 7ba4c64736985a84bb2f3d67694d0b09, type: 3}
     - {fileID: 351056002, guid: 7ba4c64736985a84bb2f3d67694d0b09, type: 3}
     ReferenceHeight: 1.71875
+    HurtOnly: 0
   - Id: SmokingCoffin
     Kind: enemies
     Evolution: 1
@@ -2231,6 +2436,7 @@ MonoBehaviour:
     - {fileID: -1487753126, guid: 7ba4c64736985a84bb2f3d67694d0b09, type: 3}
     - {fileID: 78694800, guid: 7ba4c64736985a84bb2f3d67694d0b09, type: 3}
     ReferenceHeight: 2.0234375
+    HurtOnly: 0
   - Id: EmberProcession
     Kind: enemies
     Evolution: 0
@@ -2240,6 +2446,7 @@ MonoBehaviour:
     - {fileID: -862289205, guid: 7ba4c64736985a84bb2f3d67694d0b09, type: 3}
     - {fileID: 746271461, guid: 7ba4c64736985a84bb2f3d67694d0b09, type: 3}
     ReferenceHeight: 1.796875
+    HurtOnly: 0
   - Id: EmberProcession
     Kind: enemies
     Evolution: 1
@@ -2249,60 +2456,67 @@ MonoBehaviour:
     - {fileID: 430484496, guid: 7ba4c64736985a84bb2f3d67694d0b09, type: 3}
     - {fileID: 1274889934, guid: 7ba4c64736985a84bb2f3d67694d0b09, type: 3}
     ReferenceHeight: 1.9375
+    HurtOnly: 0
   - Id: UndeliveredKing
     Kind: bosses
     Evolution: 0
     Frames:
-    - {fileID: -2102931149, guid: 07328d87d35669940a581b838d1f4af0, type: 3}
-    - {fileID: -222946578, guid: 07328d87d35669940a581b838d1f4af0, type: 3}
-    - {fileID: 1896822648, guid: 07328d87d35669940a581b838d1f4af0, type: 3}
-    - {fileID: 1011980131, guid: 07328d87d35669940a581b838d1f4af0, type: 3}
-    ReferenceHeight: 3.7734375
+    - {fileID: 21300000, guid: 9e811f16398fad844835135ec79fbec4, type: 3}
+    - {fileID: 21300000, guid: dd9edc4bf86379b4692018aa002ce46c, type: 3}
+    - {fileID: 21300000, guid: dd9edc4bf86379b4692018aa002ce46c, type: 3}
+    - {fileID: 21300000, guid: 987a03cb6eb740a42acf630ee2277b3e, type: 3}
+    ReferenceHeight: 1
+    HurtOnly: 1
   - Id: ScarletIndex
     Kind: bosses
     Evolution: 0
     Frames:
-    - {fileID: 2110685724, guid: f48ec3d1bbe023049984b82d03bd37fe, type: 3}
-    - {fileID: -1468123927, guid: f48ec3d1bbe023049984b82d03bd37fe, type: 3}
-    - {fileID: 685240844, guid: f48ec3d1bbe023049984b82d03bd37fe, type: 3}
-    - {fileID: -1712799843, guid: f48ec3d1bbe023049984b82d03bd37fe, type: 3}
-    ReferenceHeight: 3.375
+    - {fileID: 21300000, guid: f8ad8f007cc1cca438229aa5003a1a38, type: 3}
+    - {fileID: 21300000, guid: 5971f0e5a21ad76468e54a516e16752d, type: 3}
+    - {fileID: 21300000, guid: 5971f0e5a21ad76468e54a516e16752d, type: 3}
+    - {fileID: 21300000, guid: f91a5f52e492b24459f93204a7f439b3, type: 3}
+    ReferenceHeight: 1
+    HurtOnly: 1
   - Id: SleepCollector
     Kind: bosses
     Evolution: 0
     Frames:
-    - {fileID: -1549065906, guid: 0b9039d76d5791741bf4a7975f4f4478, type: 3}
-    - {fileID: -515410625, guid: 0b9039d76d5791741bf4a7975f4f4478, type: 3}
-    - {fileID: 2022173734, guid: 0b9039d76d5791741bf4a7975f4f4478, type: 3}
-    - {fileID: -834185270, guid: 0b9039d76d5791741bf4a7975f4f4478, type: 3}
-    ReferenceHeight: 3.5546875
+    - {fileID: 21300000, guid: 51d750c9b5934eb4394e9985837e2afc, type: 3}
+    - {fileID: 21300000, guid: 20a0014be408b93469d945596044490d, type: 3}
+    - {fileID: 21300000, guid: 20a0014be408b93469d945596044490d, type: 3}
+    - {fileID: 21300000, guid: d97dcf2581f67094ead189df497640ff, type: 3}
+    ReferenceHeight: 1
+    HurtOnly: 1
   - Id: WaxAdmiral
     Kind: bosses
     Evolution: 0
     Frames:
-    - {fileID: -1759945242, guid: 940b2a8fb1aa1eb48890a7c70cce5a9d, type: 3}
-    - {fileID: 1823424548, guid: 940b2a8fb1aa1eb48890a7c70cce5a9d, type: 3}
-    - {fileID: 624156621, guid: 940b2a8fb1aa1eb48890a7c70cce5a9d, type: 3}
-    - {fileID: -281459692, guid: 940b2a8fb1aa1eb48890a7c70cce5a9d, type: 3}
-    ReferenceHeight: 3.453125
+    - {fileID: 21300000, guid: 12a14d767ab6c2e4abf6662daa43a8c9, type: 3}
+    - {fileID: 21300000, guid: 6ea73fc25abd2a84da45909e1c6793e4, type: 3}
+    - {fileID: 21300000, guid: 6ea73fc25abd2a84da45909e1c6793e4, type: 3}
+    - {fileID: 21300000, guid: 64ebbfd14be31ff4b8f87cdd60ac1e17, type: 3}
+    ReferenceHeight: 1
+    HurtOnly: 1
   - Id: LastLantern
     Kind: bosses
     Evolution: 0
     Frames:
-    - {fileID: 514728783, guid: e3fac5131beb65647a2874aae731bdec, type: 3}
-    - {fileID: -1490920028, guid: e3fac5131beb65647a2874aae731bdec, type: 3}
-    - {fileID: -1503029752, guid: e3fac5131beb65647a2874aae731bdec, type: 3}
-    - {fileID: -1904614125, guid: e3fac5131beb65647a2874aae731bdec, type: 3}
-    ReferenceHeight: 3.90625
+    - {fileID: 21300000, guid: 753e8a1544b6e3c48aeb7d2ff06587bc, type: 3}
+    - {fileID: 21300000, guid: bddaf9e0357dc4f49b7fa88444e78e5a, type: 3}
+    - {fileID: 21300000, guid: bddaf9e0357dc4f49b7fa88444e78e5a, type: 3}
+    - {fileID: 21300000, guid: 534e2751f04487c418ed0b376333f09c, type: 3}
+    ReferenceHeight: 1
+    HurtOnly: 1
   - Id: MarqueeMaw
     Kind: bosses
     Evolution: 0
     Frames:
-    - {fileID: 1640706310, guid: e20fdcdb6ac00dc44a55b7eb845bb47b, type: 3}
-    - {fileID: 1316144324, guid: e20fdcdb6ac00dc44a55b7eb845bb47b, type: 3}
-    - {fileID: -746271377, guid: e20fdcdb6ac00dc44a55b7eb845bb47b, type: 3}
-    - {fileID: -295935605, guid: e20fdcdb6ac00dc44a55b7eb845bb47b, type: 3}
-    ReferenceHeight: 3.796875
+    - {fileID: 21300000, guid: 0ab4c8df37274c94286cf5a8a97eae48, type: 3}
+    - {fileID: 21300000, guid: 8125e0b83e509fb4ab6abc3a9cd30594, type: 3}
+    - {fileID: 21300000, guid: 8125e0b83e509fb4ab6abc3a9cd30594, type: 3}
+    - {fileID: 21300000, guid: b221f1562819baa4f81f0af6a846c75b, type: 3}
+    ReferenceHeight: 1
+    HurtOnly: 1
   - Id: UmbraCradle
     Kind: bosses
     Evolution: 0
@@ -2312,6 +2526,7 @@ MonoBehaviour:
     - {fileID: 1920092958, guid: d92c5ece1277ca34c8ebe0bc347f5c8f, type: 3}
     - {fileID: -1175812995, guid: d92c5ece1277ca34c8ebe0bc347f5c8f, type: 3}
     ReferenceHeight: 3.609375
+    HurtOnly: 0
   - Id: CoinWidow
     Kind: bosses
     Evolution: 0
@@ -2321,24 +2536,27 @@ MonoBehaviour:
     - {fileID: 16789740, guid: 6729fc9cc008237438754e6752c7868a, type: 3}
     - {fileID: 870275752, guid: 6729fc9cc008237438754e6752c7868a, type: 3}
     ReferenceHeight: 3.5546875
+    HurtOnly: 0
   - Id: ChoirEngine
     Kind: bosses
     Evolution: 0
     Frames:
-    - {fileID: -1449380083, guid: 6fbe6b10f4160de41b6b5b9a02b485f2, type: 3}
-    - {fileID: -319588360, guid: 6fbe6b10f4160de41b6b5b9a02b485f2, type: 3}
-    - {fileID: -1106082879, guid: 6fbe6b10f4160de41b6b5b9a02b485f2, type: 3}
-    - {fileID: -1315723684, guid: 6fbe6b10f4160de41b6b5b9a02b485f2, type: 3}
-    ReferenceHeight: 4.0703125
+    - {fileID: 21300000, guid: c46711232efb27e45bac5ba80e28a271, type: 3}
+    - {fileID: 21300000, guid: 52f39ef8fd582e8438a26d6f839a0205, type: 3}
+    - {fileID: 21300000, guid: 52f39ef8fd582e8438a26d6f839a0205, type: 3}
+    - {fileID: 21300000, guid: bdf2292d1a2edae4f943c5941bde2a03, type: 3}
+    ReferenceHeight: 1
+    HurtOnly: 1
   - Id: SuitcaseLeviathan
     Kind: bosses
     Evolution: 0
     Frames:
-    - {fileID: -375673036, guid: 0e1a5d68d0e637c46859422f2182c7ce, type: 3}
-    - {fileID: -1440768824, guid: 0e1a5d68d0e637c46859422f2182c7ce, type: 3}
-    - {fileID: -1630134215, guid: 0e1a5d68d0e637c46859422f2182c7ce, type: 3}
-    - {fileID: 1875279165, guid: 0e1a5d68d0e637c46859422f2182c7ce, type: 3}
-    ReferenceHeight: 3.46875
+    - {fileID: 21300000, guid: 9c70c519214faa944bf750ac72df040c, type: 3}
+    - {fileID: 21300000, guid: 0d60c9c67d615784493d758f35ff3e36, type: 3}
+    - {fileID: 21300000, guid: 0d60c9c67d615784493d758f35ff3e36, type: 3}
+    - {fileID: 21300000, guid: 57b6b24efa342764489f967e9b030c41, type: 3}
+    ReferenceHeight: 1
+    HurtOnly: 1
   - Id: TheLastCustomer
     Kind: bosses
     Evolution: 0
@@ -2348,6 +2566,7 @@ MonoBehaviour:
     - {fileID: 17448783, guid: 4de5e96c3b8d5554e82a9cf8e4f50b5f, type: 3}
     - {fileID: -2070451402, guid: 4de5e96c3b8d5554e82a9cf8e4f50b5f, type: 3}
     ReferenceHeight: 3.4921875
+    HurtOnly: 0
   - Id: OutsideStageKeeper
     Kind: bosses
     Evolution: 0
@@ -2357,6 +2576,7 @@ MonoBehaviour:
     - {fileID: -392836115, guid: ae0324eab7b63fe429dc12cde0e2d9ac, type: 3}
     - {fileID: -994885412, guid: ae0324eab7b63fe429dc12cde0e2d9ac, type: 3}
     ReferenceHeight: 4.0390625
+    HurtOnly: 0
   - Id: KeyCleaver
     Kind: weapons
     Evolution: 0
@@ -2366,6 +2586,7 @@ MonoBehaviour:
     - {fileID: -951552684, guid: 4574e91a89d1275478a1f511def00f91, type: 3}
     - {fileID: -285707899, guid: 4574e91a89d1275478a1f511def00f91, type: 3}
     ReferenceHeight: 0.875
+    HurtOnly: 0
   - Id: TeapotPopgun
     Kind: weapons
     Evolution: 0
@@ -2375,6 +2596,7 @@ MonoBehaviour:
     - {fileID: -930520095, guid: 4574e91a89d1275478a1f511def00f91, type: 3}
     - {fileID: 1044581456, guid: 4574e91a89d1275478a1f511def00f91, type: 3}
     ReferenceHeight: 1.53125
+    HurtOnly: 0
   - Id: UmbrellaLance
     Kind: weapons
     Evolution: 0
@@ -2384,6 +2606,7 @@ MonoBehaviour:
     - {fileID: -119222611, guid: 4574e91a89d1275478a1f511def00f91, type: 3}
     - {fileID: 1423537702, guid: 4574e91a89d1275478a1f511def00f91, type: 3}
     ReferenceHeight: 0.890625
+    HurtOnly: 0
   - Id: MailboxLauncher
     Kind: weapons
     Evolution: 0
@@ -2393,6 +2616,7 @@ MonoBehaviour:
     - {fileID: -890900401, guid: 4574e91a89d1275478a1f511def00f91, type: 3}
     - {fileID: -646191231, guid: 4574e91a89d1275478a1f511def00f91, type: 3}
     ReferenceHeight: 1.5546875
+    HurtOnly: 0
   - Id: BellFork
     Kind: weapons
     Evolution: 0
@@ -2402,6 +2626,7 @@ MonoBehaviour:
     - {fileID: -1277332274, guid: adda2257423e8d04e8d8926f8d19d27d, type: 3}
     - {fileID: 1874527766, guid: adda2257423e8d04e8d8926f8d19d27d, type: 3}
     ReferenceHeight: 0.9375
+    HurtOnly: 0
   - Id: BookPaddle
     Kind: weapons
     Evolution: 0
@@ -2411,6 +2636,7 @@ MonoBehaviour:
     - {fileID: -1089730456, guid: adda2257423e8d04e8d8926f8d19d27d, type: 3}
     - {fileID: -1279753866, guid: adda2257423e8d04e8d8926f8d19d27d, type: 3}
     ReferenceHeight: 1.28125
+    HurtOnly: 0
   - Id: CrescentBow
     Kind: weapons
     Evolution: 0
@@ -2420,6 +2646,7 @@ MonoBehaviour:
     - {fileID: -93332739, guid: adda2257423e8d04e8d8926f8d19d27d, type: 3}
     - {fileID: 160333986, guid: adda2257423e8d04e8d8926f8d19d27d, type: 3}
     ReferenceHeight: 2.2578125
+    HurtOnly: 0
   - Id: RuneStaff
     Kind: weapons
     Evolution: 0
@@ -2429,6 +2656,7 @@ MonoBehaviour:
     - {fileID: -1788634540, guid: adda2257423e8d04e8d8926f8d19d27d, type: 3}
     - {fileID: 1893062536, guid: adda2257423e8d04e8d8926f8d19d27d, type: 3}
     ReferenceHeight: 1.2890625
+    HurtOnly: 0
   - Id: DreamStamp
     Kind: weapons
     Evolution: 0
@@ -2438,6 +2666,7 @@ MonoBehaviour:
     - {fileID: -1047688149, guid: c4bb0169dc71534488a1e85771a76fbf, type: 3}
     - {fileID: 1162883396, guid: c4bb0169dc71534488a1e85771a76fbf, type: 3}
     ReferenceHeight: 1.078125
+    HurtOnly: 0
   - Id: CloudScissors
     Kind: weapons
     Evolution: 0
@@ -2447,6 +2676,7 @@ MonoBehaviour:
     - {fileID: 7816047, guid: c4bb0169dc71534488a1e85771a76fbf, type: 3}
     - {fileID: 1246916966, guid: c4bb0169dc71534488a1e85771a76fbf, type: 3}
     ReferenceHeight: 1.46875
+    HurtOnly: 0
   - Id: SleepCamera
     Kind: weapons
     Evolution: 0
@@ -2456,6 +2686,7 @@ MonoBehaviour:
     - {fileID: 188104457, guid: c4bb0169dc71534488a1e85771a76fbf, type: 3}
     - {fileID: 473653651, guid: c4bb0169dc71534488a1e85771a76fbf, type: 3}
     ReferenceHeight: 1.5703125
+    HurtOnly: 0
   - Id: TinFish
     Kind: weapons
     Evolution: 0
@@ -2465,6 +2696,7 @@ MonoBehaviour:
     - {fileID: 1105496821, guid: c4bb0169dc71534488a1e85771a76fbf, type: 3}
     - {fileID: -794550601, guid: c4bb0169dc71534488a1e85771a76fbf, type: 3}
     ReferenceHeight: 1.4453125
+    HurtOnly: 0
   - Id: DreamIron
     Kind: weapons
     Evolution: 0
@@ -2474,6 +2706,7 @@ MonoBehaviour:
     - {fileID: 408786773, guid: cc98239013efaa14c9e2b26573c03d18, type: 3}
     - {fileID: -1125790120, guid: cc98239013efaa14c9e2b26573c03d18, type: 3}
     ReferenceHeight: 1.296875
+    HurtOnly: 0
   - Id: RubberHammer
     Kind: weapons
     Evolution: 0
@@ -2483,6 +2716,7 @@ MonoBehaviour:
     - {fileID: 709970726, guid: cc98239013efaa14c9e2b26573c03d18, type: 3}
     - {fileID: -496665587, guid: cc98239013efaa14c9e2b26573c03d18, type: 3}
     ReferenceHeight: 1.390625
+    HurtOnly: 0
   - Id: AlarmMortar
     Kind: weapons
     Evolution: 0
@@ -2492,6 +2726,7 @@ MonoBehaviour:
     - {fileID: 230506743, guid: cc98239013efaa14c9e2b26573c03d18, type: 3}
     - {fileID: -263402959, guid: cc98239013efaa14c9e2b26573c03d18, type: 3}
     ReferenceHeight: 1.4375
+    HurtOnly: 0
   - Id: MusicBox
     Kind: weapons
     Evolution: 0
@@ -2501,6 +2736,7 @@ MonoBehaviour:
     - {fileID: 789400854, guid: cc98239013efaa14c9e2b26573c03d18, type: 3}
     - {fileID: -1521698008, guid: cc98239013efaa14c9e2b26573c03d18, type: 3}
     ReferenceHeight: 1.1875
+    HurtOnly: 0
   - Id: SpoonSabre
     Kind: weapons
     Evolution: 0
@@ -2510,6 +2746,7 @@ MonoBehaviour:
     - {fileID: 320418991, guid: 4b3ba3dc52b57d74ea7327c586fee828, type: 3}
     - {fileID: 1266055978, guid: 4b3ba3dc52b57d74ea7327c586fee828, type: 3}
     ReferenceHeight: 0.6328125
+    HurtOnly: 0
   - Id: ToastCleaver
     Kind: weapons
     Evolution: 0
@@ -2519,6 +2756,7 @@ MonoBehaviour:
     - {fileID: -101687508, guid: 4b3ba3dc52b57d74ea7327c586fee828, type: 3}
     - {fileID: 999456882, guid: 4b3ba3dc52b57d74ea7327c586fee828, type: 3}
     ReferenceHeight: 1.109375
+    HurtOnly: 0
   - Id: LollipopLance
     Kind: weapons
     Evolution: 0
@@ -2528,6 +2766,7 @@ MonoBehaviour:
     - {fileID: -1407867164, guid: 4b3ba3dc52b57d74ea7327c586fee828, type: 3}
     - {fileID: 97165475, guid: 4b3ba3dc52b57d74ea7327c586fee828, type: 3}
     ReferenceHeight: 0.8125
+    HurtOnly: 0
   - Id: CorkscrewRapier
     Kind: weapons
     Evolution: 0
@@ -2537,6 +2776,7 @@ MonoBehaviour:
     - {fileID: -1486145283, guid: 4b3ba3dc52b57d74ea7327c586fee828, type: 3}
     - {fileID: 767133847, guid: 4b3ba3dc52b57d74ea7327c586fee828, type: 3}
     ReferenceHeight: 0.984375
+    HurtOnly: 0
   - Id: TeabagFlail
     Kind: weapons
     Evolution: 0
@@ -2546,6 +2786,7 @@ MonoBehaviour:
     - {fileID: 308637592, guid: 799f74704066eb44084923cd95b6a186, type: 3}
     - {fileID: -1482751725, guid: 799f74704066eb44084923cd95b6a186, type: 3}
     ReferenceHeight: 0.8046875
+    HurtOnly: 0
   - Id: UmbrellaHook
     Kind: weapons
     Evolution: 0
@@ -2555,6 +2796,7 @@ MonoBehaviour:
     - {fileID: 943748263, guid: 799f74704066eb44084923cd95b6a186, type: 3}
     - {fileID: 1488673563, guid: 799f74704066eb44084923cd95b6a186, type: 3}
     ReferenceHeight: 0.828125
+    HurtOnly: 0
   - Id: PizzaWheel
     Kind: weapons
     Evolution: 0
@@ -2564,6 +2806,7 @@ MonoBehaviour:
     - {fileID: -813647259, guid: 799f74704066eb44084923cd95b6a186, type: 3}
     - {fileID: -1159272822, guid: 799f74704066eb44084923cd95b6a186, type: 3}
     ReferenceHeight: 1.1015625
+    HurtOnly: 0
   - Id: MoonScythe
     Kind: weapons
     Evolution: 0
@@ -2573,6 +2816,7 @@ MonoBehaviour:
     - {fileID: -228562303, guid: 799f74704066eb44084923cd95b6a186, type: 3}
     - {fileID: 1746850561, guid: 799f74704066eb44084923cd95b6a186, type: 3}
     ReferenceHeight: 1.5078125
+    HurtOnly: 0
   - Id: ForkTrident
     Kind: weapons
     Evolution: 0
@@ -2582,6 +2826,7 @@ MonoBehaviour:
     - {fileID: 925390688, guid: 1a66741f086025442aeedeee14d06d07, type: 3}
     - {fileID: -55561714, guid: 1a66741f086025442aeedeee14d06d07, type: 3}
     ReferenceHeight: 0.84375
+    HurtOnly: 0
   - Id: MaracaHammer
     Kind: weapons
     Evolution: 0
@@ -2591,6 +2836,7 @@ MonoBehaviour:
     - {fileID: -452117932, guid: 1a66741f086025442aeedeee14d06d07, type: 3}
     - {fileID: -1706463499, guid: 1a66741f086025442aeedeee14d06d07, type: 3}
     ReferenceHeight: 1.03125
+    HurtOnly: 0
   - Id: TapeWhip
     Kind: weapons
     Evolution: 0
@@ -2600,6 +2846,7 @@ MonoBehaviour:
     - {fileID: -2076111683, guid: 1a66741f086025442aeedeee14d06d07, type: 3}
     - {fileID: 656503953, guid: 1a66741f086025442aeedeee14d06d07, type: 3}
     ReferenceHeight: 0.5859375
+    HurtOnly: 0
   - Id: ButtonBow
     Kind: weapons
     Evolution: 0
@@ -2609,6 +2856,7 @@ MonoBehaviour:
     - {fileID: 482234805, guid: 1a66741f086025442aeedeee14d06d07, type: 3}
     - {fileID: 510539458, guid: 1a66741f086025442aeedeee14d06d07, type: 3}
     ReferenceHeight: 1.9921875
+    HurtOnly: 0
   - Id: LeafCrossbow
     Kind: weapons
     Evolution: 0
@@ -2618,6 +2866,7 @@ MonoBehaviour:
     - {fileID: -1574405832, guid: b881e2ac2e7b42944b501ad6ee904a37, type: 3}
     - {fileID: -1707408591, guid: b881e2ac2e7b42944b501ad6ee904a37, type: 3}
     ReferenceHeight: 1.8046875
+    HurtOnly: 0
   - Id: BubbleWand
     Kind: weapons
     Evolution: 0
@@ -2627,6 +2876,7 @@ MonoBehaviour:
     - {fileID: 1187599749, guid: b881e2ac2e7b42944b501ad6ee904a37, type: 3}
     - {fileID: 312400406, guid: b881e2ac2e7b42944b501ad6ee904a37, type: 3}
     ReferenceHeight: 0.75
+    HurtOnly: 0
   - Id: StarKazoo
     Kind: weapons
     Evolution: 0
@@ -2636,6 +2886,7 @@ MonoBehaviour:
     - {fileID: -2111620622, guid: b881e2ac2e7b42944b501ad6ee904a37, type: 3}
     - {fileID: -373776474, guid: b881e2ac2e7b42944b501ad6ee904a37, type: 3}
     ReferenceHeight: 0.9921875
+    HurtOnly: 0
   - Id: AcornSling
     Kind: weapons
     Evolution: 0
@@ -2645,6 +2896,7 @@ MonoBehaviour:
     - {fileID: -503973708, guid: b881e2ac2e7b42944b501ad6ee904a37, type: 3}
     - {fileID: -937722834, guid: b881e2ac2e7b42944b501ad6ee904a37, type: 3}
     ReferenceHeight: 1.28125
+    HurtOnly: 0
   - Id: CrescentBoomerang
     Kind: weapons
     Evolution: 0
@@ -2654,6 +2906,7 @@ MonoBehaviour:
     - {fileID: -416996222, guid: 0afe70545a0fa8a4298e12e0183415b7, type: 3}
     - {fileID: -1370152539, guid: 0afe70545a0fa8a4298e12e0183415b7, type: 3}
     ReferenceHeight: 1.3046875
+    HurtOnly: 0
   - Id: DartCompass
     Kind: weapons
     Evolution: 0
@@ -2663,6 +2916,7 @@ MonoBehaviour:
     - {fileID: -454300080, guid: 0afe70545a0fa8a4298e12e0183415b7, type: 3}
     - {fileID: -38569153, guid: 0afe70545a0fa8a4298e12e0183415b7, type: 3}
     ReferenceHeight: 1.4609375
+    HurtOnly: 0
   - Id: LanternStaff
     Kind: weapons
     Evolution: 0
@@ -2672,6 +2926,7 @@ MonoBehaviour:
     - {fileID: 2124633999, guid: 0afe70545a0fa8a4298e12e0183415b7, type: 3}
     - {fileID: 991435108, guid: 0afe70545a0fa8a4298e12e0183415b7, type: 3}
     ReferenceHeight: 0.875
+    HurtOnly: 0
   - Id: SnowGlobeOrb
     Kind: weapons
     Evolution: 0
@@ -2681,6 +2936,7 @@ MonoBehaviour:
     - {fileID: -514147943, guid: 0afe70545a0fa8a4298e12e0183415b7, type: 3}
     - {fileID: 520756338, guid: 0afe70545a0fa8a4298e12e0183415b7, type: 3}
     ReferenceHeight: 1.03125
+    HurtOnly: 0
   - Id: RibbonHarp
     Kind: weapons
     Evolution: 0
@@ -2690,6 +2946,7 @@ MonoBehaviour:
     - {fileID: -1783986264, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
     - {fileID: 1740296008, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
     ReferenceHeight: 1.4609375
+    HurtOnly: 0
   - Id: DreamOrbStaff
     Kind: weapons
     Evolution: 0
@@ -2699,6 +2956,7 @@ MonoBehaviour:
     - {fileID: -586228137, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
     - {fileID: 1724085292, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
     ReferenceHeight: 1.203125
+    HurtOnly: 0
   - Id: TwinSabres
     Kind: weapons
     Evolution: 0
@@ -2708,6 +2966,7 @@ MonoBehaviour:
     - {fileID: 1128223341, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
     - {fileID: -315709024, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
     ReferenceHeight: 1.234375
+    HurtOnly: 0
   - Id: ClockCrescent
     Kind: weapons
     Evolution: 0
@@ -2717,6 +2976,7 @@ MonoBehaviour:
     - {fileID: 94087612, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
     - {fileID: 1834885858, guid: 39523001256dad24b9d48da5c6fac1f8, type: 3}
     ReferenceHeight: 1.71875
+    HurtOnly: 0
   - Id: StampHammer
     Kind: weapons
     Evolution: 0
@@ -2726,6 +2986,7 @@ MonoBehaviour:
     - {fileID: 789109847, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}
     - {fileID: 1585977116, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}
     ReferenceHeight: 1.3515625
+    HurtOnly: 0
   - Id: ClockworkYoYo
     Kind: weapons
     Evolution: 0
@@ -2735,6 +2996,7 @@ MonoBehaviour:
     - {fileID: -1281295340, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}
     - {fileID: -205667836, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}
     ReferenceHeight: 1.5625
+    HurtOnly: 0
   - Id: ScrapMagnet
     Kind: weapons
     Evolution: 0
@@ -2744,6 +3006,7 @@ MonoBehaviour:
     - {fileID: -2008502740, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}
     - {fileID: -85175867, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}
     ReferenceHeight: 1.984375
+    HurtOnly: 0
   - Id: NeedleSinger
     Kind: weapons
     Evolution: 0
@@ -2753,6 +3016,7 @@ MonoBehaviour:
     - {fileID: 830886519, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}
     - {fileID: 199733135, guid: 6b2668bbf2bd2344d81e57314be3d59e, type: 3}
     ReferenceHeight: 1.984375
+    HurtOnly: 0
   - Id: SpringKnocker
     Kind: weapons
     Evolution: 0
@@ -2762,6 +3026,7 @@ MonoBehaviour:
     - {fileID: 575232817, guid: 709c2c75aecfa6a4eab0ff1754ab2561, type: 3}
     - {fileID: -39770346, guid: 709c2c75aecfa6a4eab0ff1754ab2561, type: 3}
     ReferenceHeight: 1.578125
+    HurtOnly: 0
   - Id: DreamProjector
     Kind: weapons
     Evolution: 0
@@ -2771,6 +3036,7 @@ MonoBehaviour:
     - {fileID: -1401205377, guid: 709c2c75aecfa6a4eab0ff1754ab2561, type: 3}
     - {fileID: 1104582212, guid: 709c2c75aecfa6a4eab0ff1754ab2561, type: 3}
     ReferenceHeight: 2.03125
+    HurtOnly: 0
   - Id: RibbonWheel
     Kind: weapons
     Evolution: 0
@@ -2780,6 +3046,7 @@ MonoBehaviour:
     - {fileID: -592128520, guid: 709c2c75aecfa6a4eab0ff1754ab2561, type: 3}
     - {fileID: 263988162, guid: 709c2c75aecfa6a4eab0ff1754ab2561, type: 3}
     ReferenceHeight: 1.9765625
+    HurtOnly: 0
   - Id: MoonseedOrb
     Kind: weapons
     Evolution: 0
@@ -2789,6 +3056,7 @@ MonoBehaviour:
     - {fileID: -302949123, guid: 709c2c75aecfa6a4eab0ff1754ab2561, type: 3}
     - {fileID: -1556830310, guid: 709c2c75aecfa6a4eab0ff1754ab2561, type: 3}
     ReferenceHeight: 1.1875
+    HurtOnly: 0
   - Id: AfterimageSabre
     Kind: weapons
     Evolution: 0
@@ -2798,6 +3066,7 @@ MonoBehaviour:
     - {fileID: 1530282098, guid: 48aa49e882bf1b74dbab280251dc104a, type: 3}
     - {fileID: -1897870185, guid: 48aa49e882bf1b74dbab280251dc104a, type: 3}
     ReferenceHeight: 0.6640625
+    HurtOnly: 0
   - Id: SatelliteDisc
     Kind: weapons
     Evolution: 0
@@ -2807,3 +3076,4 @@ MonoBehaviour:
     - {fileID: 874950487, guid: 48aa49e882bf1b74dbab280251dc104a, type: 3}
     - {fileID: -1350357020, guid: 48aa49e882bf1b74dbab280251dc104a, type: 3}
     ReferenceHeight: 1.4453125
+    HurtOnly: 0

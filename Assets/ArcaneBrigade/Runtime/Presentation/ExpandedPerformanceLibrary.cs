@@ -12,6 +12,9 @@ namespace ArcaneBrigade
         public int Evolution;
         public Sprite[] Frames = Array.Empty<Sprite>();
         public float ReferenceHeight = 1;
+        /// <summary>A redrawn body keeps its own windup, release and recovery frames; its reaction sheet only shows the struck
+        /// pose when it is hit (and the struck and slumped poses when it dies), so no older painting flashes over the new one.</summary>
+        public bool HurtOnly;
         public Sprite Select(UnitState unit, float time, bool reduced)
         {
             if (reduced || Frames.Length < 4) return null;
@@ -28,6 +31,7 @@ namespace ArcaneBrigade
             }
             float hurt = time - unit.LastHit;
             if (hurt >= 0 && hurt < .14f) return Frames[2];
+            if (HurtOnly) return null;
             if (unit.PendingAttack || unit.Definition.IsBoss && (unit.TelegraphUntil > time || unit.EncoreWindupUntil > time) || unit.EvolutionReleaseAt > time || unit.Variant != null && unit.Variant.ReleaseAt > time) return Frames[0];
             if (unit.Definition.IsBoss && (unit.BossRecoveryUntil > time || unit.EncoreRecoveryUntil > time) || unit.EvolutionRecoveryUntil > time || unit.Variant != null && unit.Variant.TravelEnd > time) return Frames[1];
             float attackAge = time - unit.AttackStarted;

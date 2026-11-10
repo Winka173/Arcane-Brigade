@@ -25,7 +25,7 @@ namespace ArcaneBrigade.Editor
                 var unit = AssetDatabase.LoadAssetAtPath<UnitDefinition>(AssetDatabase.GUIDToAssetPath(guid));
                 if (unit != null && !string.IsNullOrEmpty(unit.Id)) units.Add(unit);
             }
-            int done = 0;
+            int done = 0, reactions = 0;
             foreach (string directory in Directory.GetDirectories(Folder).Select(d => d.Replace('\\', '/')).OrderBy(d => d, System.StringComparer.Ordinal))
             {
                 string id = Path.GetFileName(directory);
@@ -63,15 +63,48 @@ namespace ArcaneBrigade.Editor
                     unit.AnimationFrames = new[] { frames[0], motion.Walk[0], motion.Windup[0], motion.Release[0] };
                     EditorUtility.SetDirty(unit);
                 }
+                if (Reactions(directory, id, boss, frames[0])) reactions++;
                 done++;
             }
             AssetDatabase.SaveAssets();
             SpriteInkMetricsBuilder.Build();
-            Debug.Log("BIG_REDO creatures " + done);
+            ExpandedPerformanceLibrary.Invalidate();
+            Debug.Log("BIG_REDO creatures " + done + " reactions " + reactions);
         }
 
-        /// <summary>One frame: a single sprite, pivot at the feet, one canvas height to one unit (the game sizes bodies by their ink).</summary>
-        private static Sprite Frame(string path)
+        /// <summary>The redrawn struck, rearing and slumped poses (<c>&lt;Id&gt;_r1..r3.png</c>, on the frames' pixel scale) replace
+        /// the creature's old reaction sheet, which no longer matched its new body: struck when hit, struck then slumped when it
+        /// dies. The evolved form keeps its own sheet because it keeps its own body.</summary>
+        private static bool Reactions(string directory, string id, bool boss, Sprite calm)
+        {
+            var poses = new Sprite[3];
+            for (int i = 0; i < 3; i++)
+            {
+                string path = directory + "/" + id + "_r" + (i + 1) + ".png";
+                if (!File.Exists(path)) return false;
+                poses[i] = Frame(path, calm.pixelsPerUnit);
+                if (poses[i] == null) return false;
+            }
+            const string libraryPath = "Assets/ArcaneBrigade/Resources/ExpandedPerformanceLibrary.asset";
+            var library = AssetDatabase.LoadAssetAtPath<ExpandedPerformanceLibrary>(libraryPath);
+            if (library == null) return false;
+            string kind = boss ? "bosses" : "enemies";
+            ExpandedPerformanceEntry entry = library.Entries.FirstOrDefault(e => e.Kind == kind && e.Id == id && e.Evolution == 0);
+            if (entry == null)
+            {
+                entry = new ExpandedPerformanceEntry { Id = id, Kind = kind, Evolution = 0 };
+                library.Entries = library.Entries.Append(entry).ToArray();
+            }
+            entry.Frames = new[] { poses[1], poses[0], poses[0], poses[2] }; // rearing, struck, struck, slumped
+            entry.ReferenceHeight = calm.bounds.size.y;
+            entry.HurtOnly = true;
+            EditorUtility.SetDirty(library);
+            return true;
+        }
+
+        /// <summary>One frame: a single sprite, pivot at the feet, one canvas height to one unit (the game sizes bodies by their ink).
+        /// The height is read from the file itself: before the first import Unity scales a texture to a power of two.</summary>
+        private static Sprite Frame(string path, float pixelsPerUnit = 0)
         {
             AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport);
             var importer = (TextureImporter)AssetImporter.GetAtPath(path);
@@ -79,8 +112,8 @@ namespace ArcaneBrigade.Editor
             importer.alphaIsTransparency = true; importer.mipmapEnabled = false; importer.npotScale = TextureImporterNPOTScale.None;
             importer.maxTextureSize = 1024; importer.filterMode = FilterMode.Bilinear; importer.wrapMode = TextureWrapMode.Clamp;
             importer.textureCompression = TextureImporterCompression.CompressedHQ; importer.compressionQuality = 80;
-            var probe = AssetDatabase.LoadAssetAtPath<Texture2D>(path);
-            importer.spritePixelsPerUnit = probe != null ? probe.height : 640;
+            importer.GetSourceTextureWidthAndHeight(out int _, out int height);
+            importer.spritePixelsPerUnit = pixelsPerUnit > 0 ? pixelsPerUnit : height;
             var settings = new TextureImporterSettings(); importer.ReadTextureSettings(settings);
             settings.spriteAlignment = (int)SpriteAlignment.BottomCenter; settings.spritePivot = new Vector2(.5f, 0); importer.SetTextureSettings(settings);
             importer.SaveAndReimport();

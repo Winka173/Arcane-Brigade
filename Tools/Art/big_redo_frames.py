@@ -30,6 +30,24 @@ def prepare(source, creature):
     for i, im in enumerate(images):
         im.crop(box).resize((width, height), Image.LANCZOS).save(os.path.join(OUT, creature, f'{creature}_f{i + 1:02d}.png'), optimize=True)
     print(creature, want, 'frames', width, 'x', height)
+    reactions(source, creature, scale * images[0].height)
+    return True
+
+
+def reactions(source, creature, canvas_pixels):
+    """The struck, rearing and slumped poses (r1-r3), drawn on their own canvas with the body at the same share of it as
+    the frames: scaled so one canvas matches the frames' canvas, cropped to the body with its lowest point on the floor."""
+    poses = [os.path.join(source, creature, f'{creature}_r{i}.png') for i in (1, 2, 3)]
+    if not all(os.path.exists(p) for p in poses): return
+    for i, path in enumerate(poses):
+        im = Image.open(path).convert('RGBA')
+        box = im.getchannel('A').point(lambda a: 255 if a > 12 else 0).getbbox()
+        margin = int(0.03 * (box[3] - box[1]))
+        box = (max(0, box[0] - margin), max(0, box[1] - margin), min(im.width, box[2] + margin), box[3])
+        scale = canvas_pixels / im.height
+        size = (max(2, int(round((box[2] - box[0]) * scale / 2)) * 2), max(2, int(round((box[3] - box[1]) * scale))))
+        im.crop(box).resize(size, Image.LANCZOS).save(os.path.join(OUT, creature, f'{creature}_r{i + 1}.png'), optimize=True)
+    print(creature, 'reactions')
     return True
 
 if __name__ == '__main__':

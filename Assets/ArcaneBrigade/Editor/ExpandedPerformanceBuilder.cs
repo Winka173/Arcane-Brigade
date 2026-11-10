@@ -94,7 +94,8 @@ namespace ArcaneBrigade.Editor
                 var state = new UnitState { Definition = definition, Alive = true, AttackStarted = -100, LastHit = -100, Position = Vector2.zero, PreviousPosition = Vector2.zero };
                 Require(entry.Select(state, 5, true) == null, "Reduced motion retains stable existing animation " + entry.Id);
                 state.PendingAttack = true;
-                Require(entry.Select(state, 5, false) == entry.Frames[entry.Kind == "locomotion" ? 5 : 0], "Actual windup selects painted anticipation " + entry.Id);
+                if (entry.HurtOnly) Require(entry.Select(state, 5, false) == null, "Redrawn body keeps its own windup " + entry.Id);
+                else Require(entry.Select(state, 5, false) == entry.Frames[entry.Kind == "locomotion" ? 5 : 0], "Actual windup selects painted anticipation " + entry.Id);
                 state.PendingAttack = false;
                 if (entry.Kind != "locomotion")
                 {
