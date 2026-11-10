@@ -104,7 +104,7 @@ namespace ArcaneBrigade.Editor
 
         /// <summary>One frame: a single sprite, pivot at the feet, one canvas height to one unit (the game sizes bodies by their ink).
         /// The height is read from the file itself: before the first import Unity scales a texture to a power of two.</summary>
-        private static Sprite Frame(string path, float pixelsPerUnit = 0)
+        internal static Sprite Frame(string path, float pixelsPerUnit = 0)
         {
             AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport);
             var importer = (TextureImporter)AssetImporter.GetAtPath(path);

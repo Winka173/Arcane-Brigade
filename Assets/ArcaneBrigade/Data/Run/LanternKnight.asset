@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: LanternKnight
   DisplayName: Lantern Knight
-  Body: {fileID: -1427603070, guid: a149a34c8ff2e4a49b9c3fee6caf486b, type: 3}
+  Body: {fileID: 21300000, guid: 84bba9d67d7c2374badfbd4bd2f8f93d, type: 3}
   AnimationFrames:
-  - {fileID: -1427603070, guid: a149a34c8ff2e4a49b9c3fee6caf486b, type: 3}
-  - {fileID: 141353646, guid: a149a34c8ff2e4a49b9c3fee6caf486b, type: 3}
-  - {fileID: -1636774938, guid: a149a34c8ff2e4a49b9c3fee6caf486b, type: 3}
-  - {fileID: -465296689, guid: a149a34c8ff2e4a49b9c3fee6caf486b, type: 3}
+  - {fileID: 21300000, guid: 84bba9d67d7c2374badfbd4bd2f8f93d, type: 3}
+  - {fileID: 21300000, guid: 0cf91a2ac3333ce438849f3b2ebd135e, type: 3}
+  - {fileID: 21300000, guid: 2d9fd5ed07d86c94382f465cd363abac, type: 3}
+  - {fileID: 21300000, guid: 4a5eb4652e845184ba23c16507444c64, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: e5e55d9066e05ce44acace04a2e18044, type: 2}
   Weapon: {fileID: 11400000, guid: 41da94cf5ac5f4746a1b762c4d7ecd63, type: 2}
   Health: 110

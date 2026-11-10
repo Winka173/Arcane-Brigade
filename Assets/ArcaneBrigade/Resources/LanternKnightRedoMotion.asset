@@ -13,20 +13,21 @@ MonoBehaviour:
   m_Name: LanternKnightRedoMotion
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
   Idle:
-  - {fileID: -1427603070, guid: a149a34c8ff2e4a49b9c3fee6caf486b, type: 3}
-  - {fileID: 141353646, guid: a149a34c8ff2e4a49b9c3fee6caf486b, type: 3}
+  - {fileID: 21300000, guid: 84bba9d67d7c2374badfbd4bd2f8f93d, type: 3}
+  - {fileID: 21300000, guid: 2e8f4613f74a92344befc6143196d3ee, type: 3}
+  - {fileID: 21300000, guid: 1914455bef68ced4e865fb45f96a74fe, type: 3}
   Walk:
-  - {fileID: -1636774938, guid: a149a34c8ff2e4a49b9c3fee6caf486b, type: 3}
-  - {fileID: -465296689, guid: a149a34c8ff2e4a49b9c3fee6caf486b, type: 3}
-  - {fileID: -1636774938, guid: a149a34c8ff2e4a49b9c3fee6caf486b, type: 3}
-  - {fileID: -465296689, guid: a149a34c8ff2e4a49b9c3fee6caf486b, type: 3}
+  - {fileID: 21300000, guid: 0cf91a2ac3333ce438849f3b2ebd135e, type: 3}
+  - {fileID: 21300000, guid: 2236cb975b453fc409f274fdddd71a09, type: 3}
+  - {fileID: 21300000, guid: c4c4b4136a3d71248bc611e44654dfc2, type: 3}
+  - {fileID: 21300000, guid: 6c3460f7d378bb4448503f04efef61d6, type: 3}
   Windup:
-  - {fileID: -430871379, guid: a149a34c8ff2e4a49b9c3fee6caf486b, type: 3}
-  - {fileID: 1137666850, guid: a149a34c8ff2e4a49b9c3fee6caf486b, type: 3}
+  - {fileID: 21300000, guid: 2d9fd5ed07d86c94382f465cd363abac, type: 3}
+  - {fileID: 21300000, guid: 2306e3de66fa11344ba702ba86bcd66a, type: 3}
   Release:
-  - {fileID: -1887905741, guid: a149a34c8ff2e4a49b9c3fee6caf486b, type: 3}
-  - {fileID: -1887905741, guid: a149a34c8ff2e4a49b9c3fee6caf486b, type: 3}
+  - {fileID: 21300000, guid: 4a5eb4652e845184ba23c16507444c64, type: 3}
+  - {fileID: 21300000, guid: 56f3b5b377848d24b9799d03b44e09f2, type: 3}
   Recovery:
-  - {fileID: 1208261070, guid: a149a34c8ff2e4a49b9c3fee6caf486b, type: 3}
-  - {fileID: -1427603070, guid: a149a34c8ff2e4a49b9c3fee6caf486b, type: 3}
+  - {fileID: 21300000, guid: 87d137974e07fe94d979073084c9d8f9, type: 3}
+  - {fileID: 21300000, guid: 84bba9d67d7c2374badfbd4bd2f8f93d, type: 3}
   IllustratedHeight: 0

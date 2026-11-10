@@ -67,6 +67,7 @@ namespace ArcaneBrigade
         private Vector2? target;
         private int targetSpot = -1;
         private bool targetDoor, walking, facingLeft;
+        private HeroHubClips travellerClips;
         private Vector2 scroll;
         private int wardrobeHero = -1;
         private string notice = ""; private float noticeAt = -10;
@@ -491,9 +492,11 @@ namespace ArcaneBrigade
 
         private void DrawTraveller(UnitDefinition unit, int identity, bool reduced)
         {
-            Sprite pose = unit.AnimationFrames != null && unit.AnimationFrames.Length >= 4 ? unit.AnimationFrames[UnitVisual.Frame(unit, UnitVisual.AnimationFrame(Time.unscaledTime, identity, walking, reduced))] ?? unit.Body : unit.Body;
+            Sprite[] room = HeroHubClips.For(unit.Id);
+            if (room != null) travellerClips ??= new HeroHubClips();
+            Sprite pose = room != null ? travellerClips.Pose(room, walking, Time.unscaledTime, reduced) : unit.AnimationFrames != null && unit.AnimationFrames.Length >= 4 ? unit.AnimationFrames[UnitVisual.Frame(unit, UnitVisual.AnimationFrame(Time.unscaledTime, identity, walking, reduced))] ?? unit.Body : unit.Body;
             ArcadeSkin.Glow(new Rect(hero.x - 120, hero.y - 150, 240, 190), new Color(ArcadeSkin.Accent.r, ArcadeSkin.Accent.g, ArcadeSkin.Accent.b, .18f));
-            OnFloor(pose, hero, 104, facingLeft, walking && !reduced ? Mathf.Abs(Mathf.Sin(Time.unscaledTime * 7f)) * 2 : 0);
+            OnFloor(pose, hero, 104, facingLeft, walking && !reduced ? Mathf.Abs(Mathf.Sin(room != null ? Time.unscaledTime * 3f * Mathf.PI : Time.unscaledTime * 7f)) * (room != null ? 2.5f : 2f) : 0); // the room's own stride bounces twice a cycle (9 frames a second, 6 a cycle)
         }
 
         /// <summary>Stands a sprite on the floor (review 31/10/2026: the room's characters looked to float): the rect is worked out from
