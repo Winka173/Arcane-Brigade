@@ -13,19 +13,18 @@ MonoBehaviour:
   m_Name: IvorySovereignMotion
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
   Idle:
-  - {fileID: -603948728, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
-  - {fileID: -603948728, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
+  - {fileID: 21300000, guid: 82852384775d03246b9f5ac1e97a3083, type: 3}
+  - {fileID: 21300000, guid: c11bac6b71a0c574bad455d16f1bd32e, type: 3}
   Walk:
-  - {fileID: -603948728, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
-  - {fileID: 314947417, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
-  - {fileID: -603948728, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
-  - {fileID: 314947417, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
+  - {fileID: 21300000, guid: 2a665737f7eacca459f530d0167944e3, type: 3}
+  - {fileID: 21300000, guid: e3ef968c48b9a86469f08002ff24c435, type: 3}
+  - {fileID: 21300000, guid: 6cb29e28ce3413a41930df5f22c2837c, type: 3}
+  - {fileID: 21300000, guid: e2f76c2bd474bf3428b75a12e2b1eaf7, type: 3}
   Windup:
-  - {fileID: 840323804, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
-  - {fileID: 840323804, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
+  - {fileID: 21300000, guid: d1a29e04f1c692a4cab36774c6ee4c14, type: 3}
   Release:
-  - {fileID: 825139822, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
-  - {fileID: 825139822, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
+  - {fileID: 21300000, guid: ff078440333f34a449ad1d7090f90ae4, type: 3}
   Recovery:
-  - {fileID: 825139822, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
-  - {fileID: -603948728, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
+  - {fileID: 21300000, guid: c11bac6b71a0c574bad455d16f1bd32e, type: 3}
+  - {fileID: 21300000, guid: 82852384775d03246b9f5ac1e97a3083, type: 3}
+  IllustratedHeight: 0

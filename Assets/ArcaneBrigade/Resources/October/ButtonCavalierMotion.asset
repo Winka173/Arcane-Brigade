@@ -13,19 +13,18 @@ MonoBehaviour:
   m_Name: ButtonCavalierMotion
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
   Idle:
-  - {fileID: -1547173810, guid: 473546161f57cdf4292fa0c1a02ce5a2, type: 3}
-  - {fileID: -1547173810, guid: 473546161f57cdf4292fa0c1a02ce5a2, type: 3}
+  - {fileID: 21300000, guid: 7654d59ac4325e949975c07cf8ce6810, type: 3}
+  - {fileID: 21300000, guid: ed71984400ebcec4f8e3641d1aad2dca, type: 3}
   Walk:
-  - {fileID: -1547173810, guid: 473546161f57cdf4292fa0c1a02ce5a2, type: 3}
-  - {fileID: -284215737, guid: 473546161f57cdf4292fa0c1a02ce5a2, type: 3}
-  - {fileID: -1547173810, guid: 473546161f57cdf4292fa0c1a02ce5a2, type: 3}
-  - {fileID: -284215737, guid: 473546161f57cdf4292fa0c1a02ce5a2, type: 3}
+  - {fileID: 21300000, guid: 07ae7df41028c47488e815e7f93e7c10, type: 3}
+  - {fileID: 21300000, guid: 94e3d7823e0a3be48a26de094274eaa4, type: 3}
+  - {fileID: 21300000, guid: 22df42c977cdf0a4eae3126c1202d049, type: 3}
+  - {fileID: 21300000, guid: cea1c4193bea8b04dabd030a54f1375b, type: 3}
   Windup:
-  - {fileID: -891447779, guid: 473546161f57cdf4292fa0c1a02ce5a2, type: 3}
-  - {fileID: -891447779, guid: 473546161f57cdf4292fa0c1a02ce5a2, type: 3}
+  - {fileID: 21300000, guid: da6e84bd2b22b1449aca5ca48ff3cc0b, type: 3}
   Release:
-  - {fileID: -270958745, guid: 473546161f57cdf4292fa0c1a02ce5a2, type: 3}
-  - {fileID: -270958745, guid: 473546161f57cdf4292fa0c1a02ce5a2, type: 3}
+  - {fileID: 21300000, guid: ee649033f99ed434bbd9875aafc7317f, type: 3}
   Recovery:
-  - {fileID: -270958745, guid: 473546161f57cdf4292fa0c1a02ce5a2, type: 3}
-  - {fileID: -1547173810, guid: 473546161f57cdf4292fa0c1a02ce5a2, type: 3}
+  - {fileID: 21300000, guid: ed71984400ebcec4f8e3641d1aad2dca, type: 3}
+  - {fileID: 21300000, guid: 7654d59ac4325e949975c07cf8ce6810, type: 3}
+  IllustratedHeight: 0

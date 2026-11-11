@@ -13,19 +13,18 @@ MonoBehaviour:
   m_Name: CitrusMarshalMotion
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
   Idle:
-  - {fileID: -409992344, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
-  - {fileID: -409992344, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
+  - {fileID: 21300000, guid: ff518a83d6f57c449a1a319b89e25b86, type: 3}
+  - {fileID: 21300000, guid: d91e594b91c2fa24da8be4b3e874d7d9, type: 3}
   Walk:
-  - {fileID: -409992344, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
-  - {fileID: 1200378617, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
-  - {fileID: -409992344, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
-  - {fileID: 1200378617, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
+  - {fileID: 21300000, guid: 48ec8fc680f1cd34e87d2a4623d17c7c, type: 3}
+  - {fileID: 21300000, guid: c19867bcdd9f4fd459085d34c103a6fe, type: 3}
+  - {fileID: 21300000, guid: 4cc75e38d37ae1545bf53679dc0a1a62, type: 3}
+  - {fileID: 21300000, guid: 70e5f9522c33fd0439ff643277a1fdfa, type: 3}
   Windup:
-  - {fileID: 108422136, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
-  - {fileID: 108422136, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
+  - {fileID: 21300000, guid: 3e897aa967fc89f4bb9bf23fe10015b7, type: 3}
   Release:
-  - {fileID: -314030904, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
-  - {fileID: -314030904, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
+  - {fileID: 21300000, guid: 284f3ffd3714c9444b9535fdcb107400, type: 3}
   Recovery:
-  - {fileID: -314030904, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
-  - {fileID: -409992344, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
+  - {fileID: 21300000, guid: d91e594b91c2fa24da8be4b3e874d7d9, type: 3}
+  - {fileID: 21300000, guid: ff518a83d6f57c449a1a319b89e25b86, type: 3}
+  IllustratedHeight: 0

@@ -13,19 +13,18 @@ MonoBehaviour:
   m_Name: NightMawMotion
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
   Idle:
-  - {fileID: -440348682, guid: 473546161f57cdf4292fa0c1a02ce5a2, type: 3}
-  - {fileID: -440348682, guid: 473546161f57cdf4292fa0c1a02ce5a2, type: 3}
+  - {fileID: 21300000, guid: c22e35df10aceb64ca166f94edc4f46b, type: 3}
+  - {fileID: 21300000, guid: 08be40480b7f3eb4ba938265f5027174, type: 3}
   Walk:
-  - {fileID: -440348682, guid: 473546161f57cdf4292fa0c1a02ce5a2, type: 3}
-  - {fileID: -444771751, guid: 473546161f57cdf4292fa0c1a02ce5a2, type: 3}
-  - {fileID: -440348682, guid: 473546161f57cdf4292fa0c1a02ce5a2, type: 3}
-  - {fileID: -444771751, guid: 473546161f57cdf4292fa0c1a02ce5a2, type: 3}
+  - {fileID: 21300000, guid: 642bbac334e37704882afc272b1f51a0, type: 3}
+  - {fileID: 21300000, guid: 60eab68f7c0c06f4195fd7ae1492a254, type: 3}
+  - {fileID: 21300000, guid: db12255cf286c7c4092902509f7ec478, type: 3}
+  - {fileID: 21300000, guid: bba3ecd695577534c9f6cf0468e40e73, type: 3}
   Windup:
-  - {fileID: -2125917027, guid: 473546161f57cdf4292fa0c1a02ce5a2, type: 3}
-  - {fileID: -2125917027, guid: 473546161f57cdf4292fa0c1a02ce5a2, type: 3}
+  - {fileID: 21300000, guid: 9db6f0a7d41935942a0d9a861af9fe24, type: 3}
   Release:
-  - {fileID: -1979135181, guid: 473546161f57cdf4292fa0c1a02ce5a2, type: 3}
-  - {fileID: -1979135181, guid: 473546161f57cdf4292fa0c1a02ce5a2, type: 3}
+  - {fileID: 21300000, guid: e9d9dc7e215e46548b622e4871e50189, type: 3}
   Recovery:
-  - {fileID: -1979135181, guid: 473546161f57cdf4292fa0c1a02ce5a2, type: 3}
-  - {fileID: -440348682, guid: 473546161f57cdf4292fa0c1a02ce5a2, type: 3}
+  - {fileID: 21300000, guid: 08be40480b7f3eb4ba938265f5027174, type: 3}
+  - {fileID: 21300000, guid: c22e35df10aceb64ca166f94edc4f46b, type: 3}
+  IllustratedHeight: 0

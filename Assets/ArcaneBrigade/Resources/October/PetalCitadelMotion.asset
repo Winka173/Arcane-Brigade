@@ -13,19 +13,18 @@ MonoBehaviour:
   m_Name: PetalCitadelMotion
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
   Idle:
-  - {fileID: 640875359, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
-  - {fileID: 640875359, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
+  - {fileID: 21300000, guid: 39274efc93121eb44bb483ef33060420, type: 3}
+  - {fileID: 21300000, guid: 76f4d1a18b3d0f64abed847f3e54987f, type: 3}
   Walk:
-  - {fileID: 640875359, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
-  - {fileID: 826277808, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
-  - {fileID: 640875359, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
-  - {fileID: 826277808, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
+  - {fileID: 21300000, guid: 9d346536c023ebc45a092b0a092d0fa8, type: 3}
+  - {fileID: 21300000, guid: 07deb69c0b87c5742844be55570c0644, type: 3}
+  - {fileID: 21300000, guid: 6bcd256250104794ba388b3da54c17f0, type: 3}
+  - {fileID: 21300000, guid: 0a4f72629b4b7c448a9fa4fd27a6064d, type: 3}
   Windup:
-  - {fileID: -452241988, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
-  - {fileID: -452241988, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
+  - {fileID: 21300000, guid: b439de48e15c38b489f472bf2f70b71b, type: 3}
   Release:
-  - {fileID: 279495155, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
-  - {fileID: 279495155, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
+  - {fileID: 21300000, guid: 974595349cf779c41a95d298efdf2319, type: 3}
   Recovery:
-  - {fileID: 279495155, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
-  - {fileID: 640875359, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
+  - {fileID: 21300000, guid: 76f4d1a18b3d0f64abed847f3e54987f, type: 3}
+  - {fileID: 21300000, guid: 39274efc93121eb44bb483ef33060420, type: 3}
+  IllustratedHeight: 0

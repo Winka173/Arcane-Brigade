@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: NightMaw
   DisplayName: Night Maw
-  Body: {fileID: -440348682, guid: 473546161f57cdf4292fa0c1a02ce5a2, type: 3}
+  Body: {fileID: 21300000, guid: c22e35df10aceb64ca166f94edc4f46b, type: 3}
   AnimationFrames:
-  - {fileID: -440348682, guid: 473546161f57cdf4292fa0c1a02ce5a2, type: 3}
-  - {fileID: -444771751, guid: 473546161f57cdf4292fa0c1a02ce5a2, type: 3}
-  - {fileID: -2125917027, guid: 473546161f57cdf4292fa0c1a02ce5a2, type: 3}
-  - {fileID: -1979135181, guid: 473546161f57cdf4292fa0c1a02ce5a2, type: 3}
+  - {fileID: 21300000, guid: c22e35df10aceb64ca166f94edc4f46b, type: 3}
+  - {fileID: 21300000, guid: 642bbac334e37704882afc272b1f51a0, type: 3}
+  - {fileID: 21300000, guid: 9db6f0a7d41935942a0d9a861af9fe24, type: 3}
+  - {fileID: 21300000, guid: e9d9dc7e215e46548b622e4871e50189, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: dfe49f12155ab984ab499545a3d4f1ed, type: 2}
   Weapon: {fileID: 11400000, guid: 541aa0ae0656e134e9f975088cb63ec8, type: 2}
   Health: 95

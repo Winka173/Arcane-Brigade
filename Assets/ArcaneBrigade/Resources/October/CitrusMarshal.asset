@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: CitrusMarshal
   DisplayName: Citrus Marshal
-  Body: {fileID: -409992344, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
+  Body: {fileID: 21300000, guid: ff518a83d6f57c449a1a319b89e25b86, type: 3}
   AnimationFrames:
-  - {fileID: -409992344, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
-  - {fileID: 1200378617, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
-  - {fileID: 108422136, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
-  - {fileID: -314030904, guid: 56dc201f62e116d4d973367d2686e3c0, type: 3}
+  - {fileID: 21300000, guid: ff518a83d6f57c449a1a319b89e25b86, type: 3}
+  - {fileID: 21300000, guid: 48ec8fc680f1cd34e87d2a4623d17c7c, type: 3}
+  - {fileID: 21300000, guid: 3e897aa967fc89f4bb9bf23fe10015b7, type: 3}
+  - {fileID: 21300000, guid: 284f3ffd3714c9444b9535fdcb107400, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: ec9ffdfc09780e242a12ba7e2113e753, type: 2}
   Weapon: {fileID: 11400000, guid: 5260211271a30d44cbbe7d4d0ae85bb9, type: 2}
   Health: 110
