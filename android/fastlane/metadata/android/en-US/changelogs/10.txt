@@ -1,0 +1,6 @@
+- All heroes redrawn sharper with smoother animation; Lantern Knight greets you in the waiting room
+- Bosses and big monsters redrawn, with new hit and defeat poses
+- Enemies flash and shatter when they fall; big ones go up in one large blast
+- Heavier hit, death and spell sounds
+- Enemies stay visible in the dark
+- Roomier gold and Dreamsand counters

@@ -1,0 +1,6 @@
+- Toàn bộ hero được vẽ lại sắc nét, chuyển động mượt hơn; Lantern Knight chào bạn trong phòng chờ
+- Boss và quái lớn được vẽ lại, có tư thế trúng đòn và gục mới
+- Quái chớp trắng và vỡ vụn khi chết; quái lớn nổ một vụ lớn
+- Âm thanh đánh, chết và phép có lực hơn
+- Quái vẫn nhìn rõ trong bóng tối
+- Ô vàng và Dreamsand rộng rãi hơn
