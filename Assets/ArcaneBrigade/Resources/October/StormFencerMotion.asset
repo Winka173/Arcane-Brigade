@@ -13,19 +13,18 @@ MonoBehaviour:
   m_Name: StormFencerMotion
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
   Idle:
-  - {fileID: 1946506187, guid: 5934892e01bd3fb4587822539cefb2c5, type: 3}
-  - {fileID: 1946506187, guid: 5934892e01bd3fb4587822539cefb2c5, type: 3}
+  - {fileID: 21300000, guid: 9acce6ca700c19e4eadf3d79f3898701, type: 3}
+  - {fileID: 21300000, guid: ab961c60559ed474b9d1340cb6d2599e, type: 3}
   Walk:
-  - {fileID: 1946506187, guid: 5934892e01bd3fb4587822539cefb2c5, type: 3}
-  - {fileID: -358364918, guid: 5934892e01bd3fb4587822539cefb2c5, type: 3}
-  - {fileID: 1946506187, guid: 5934892e01bd3fb4587822539cefb2c5, type: 3}
-  - {fileID: -358364918, guid: 5934892e01bd3fb4587822539cefb2c5, type: 3}
+  - {fileID: 21300000, guid: 9c7afe9df9d3bb94ba47f398d6ec84c2, type: 3}
+  - {fileID: 21300000, guid: ec56e6e402cb2ae47b1b09829ab7727a, type: 3}
+  - {fileID: 21300000, guid: e7171e51f74d7f84490f41c05b57fb68, type: 3}
+  - {fileID: 21300000, guid: d6b2057e62156ed48a0954da3afd6079, type: 3}
   Windup:
-  - {fileID: 1451024881, guid: 5934892e01bd3fb4587822539cefb2c5, type: 3}
-  - {fileID: 1451024881, guid: 5934892e01bd3fb4587822539cefb2c5, type: 3}
+  - {fileID: 21300000, guid: 2b9f3ec41d2154c449819fdce6124367, type: 3}
   Release:
-  - {fileID: 1753783539, guid: 5934892e01bd3fb4587822539cefb2c5, type: 3}
-  - {fileID: 1753783539, guid: 5934892e01bd3fb4587822539cefb2c5, type: 3}
+  - {fileID: 21300000, guid: 2119f97265fc6d349ab1dc0efec52701, type: 3}
   Recovery:
-  - {fileID: 1753783539, guid: 5934892e01bd3fb4587822539cefb2c5, type: 3}
-  - {fileID: 1946506187, guid: 5934892e01bd3fb4587822539cefb2c5, type: 3}
+  - {fileID: 21300000, guid: ab961c60559ed474b9d1340cb6d2599e, type: 3}
+  - {fileID: 21300000, guid: 9acce6ca700c19e4eadf3d79f3898701, type: 3}
+  IllustratedHeight: 0

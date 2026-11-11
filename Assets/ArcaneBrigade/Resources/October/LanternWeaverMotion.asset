@@ -13,19 +13,18 @@ MonoBehaviour:
   m_Name: LanternWeaverMotion
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
   Idle:
-  - {fileID: -1135852393, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
-  - {fileID: -1135852393, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
+  - {fileID: 21300000, guid: 4964fe111a0a9a64cb8f98d77b6c3858, type: 3}
+  - {fileID: 21300000, guid: deb7fe60613a5ce48a4b50fd257e9626, type: 3}
   Walk:
-  - {fileID: -1135852393, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
-  - {fileID: 959876839, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
-  - {fileID: -1135852393, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
-  - {fileID: 959876839, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
+  - {fileID: 21300000, guid: 3cb1e9fb5a51c8d46a647be622e5b1fa, type: 3}
+  - {fileID: 21300000, guid: a360fa82b8f32c24da2dba30c0ad4514, type: 3}
+  - {fileID: 21300000, guid: bf39bef6ab9179e4b8e204c798d967e0, type: 3}
+  - {fileID: 21300000, guid: bc8fdd4481b0c9b43bbb2c87e5e72bbe, type: 3}
   Windup:
-  - {fileID: 1073908477, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
-  - {fileID: 1073908477, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
+  - {fileID: 21300000, guid: 5a22aab9a9160df4abc3bd3044904888, type: 3}
   Release:
-  - {fileID: -1749668450, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
-  - {fileID: -1749668450, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
+  - {fileID: 21300000, guid: 0e676da9855683d41a3e795b0e24bc11, type: 3}
   Recovery:
-  - {fileID: -1749668450, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
-  - {fileID: -1135852393, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
+  - {fileID: 21300000, guid: deb7fe60613a5ce48a4b50fd257e9626, type: 3}
+  - {fileID: 21300000, guid: 4964fe111a0a9a64cb8f98d77b6c3858, type: 3}
+  IllustratedHeight: 0

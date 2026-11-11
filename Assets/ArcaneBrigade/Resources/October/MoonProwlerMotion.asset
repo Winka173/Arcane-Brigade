@@ -13,19 +13,18 @@ MonoBehaviour:
   m_Name: MoonProwlerMotion
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
   Idle:
-  - {fileID: -1498466126, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
-  - {fileID: -1498466126, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
+  - {fileID: 21300000, guid: eeae0869336043a40873de555477babf, type: 3}
+  - {fileID: 21300000, guid: b62ca93bddb8d3b43af247768dd47615, type: 3}
   Walk:
-  - {fileID: -1498466126, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
-  - {fileID: -438072472, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
-  - {fileID: -1498466126, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
-  - {fileID: -438072472, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
+  - {fileID: 21300000, guid: 77ba1086400fcb742ba0b358d3957087, type: 3}
+  - {fileID: 21300000, guid: 642be1d05328e274ba414f23e785bcce, type: 3}
+  - {fileID: 21300000, guid: 3ae4c1c8872553d4eb345dec0eef1a25, type: 3}
+  - {fileID: 21300000, guid: 7fd0576f8cee8074ca05b41ee8b6ca81, type: 3}
   Windup:
-  - {fileID: 759011126, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
-  - {fileID: 759011126, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
+  - {fileID: 21300000, guid: de1e21fa5ed546e4793de5d45472cab7, type: 3}
   Release:
-  - {fileID: 1433808218, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
-  - {fileID: 1433808218, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
+  - {fileID: 21300000, guid: 50840f8ae799a3b42a1c8c4dd0613190, type: 3}
   Recovery:
-  - {fileID: 1433808218, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
-  - {fileID: -1498466126, guid: a8fafca1bccd61c46af413f78006371f, type: 3}
+  - {fileID: 21300000, guid: b62ca93bddb8d3b43af247768dd47615, type: 3}
+  - {fileID: 21300000, guid: eeae0869336043a40873de555477babf, type: 3}
+  IllustratedHeight: 0

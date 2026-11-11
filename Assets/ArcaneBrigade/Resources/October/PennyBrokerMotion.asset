@@ -13,19 +13,18 @@ MonoBehaviour:
   m_Name: PennyBrokerMotion
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
   Idle:
-  - {fileID: -926013754, guid: 5934892e01bd3fb4587822539cefb2c5, type: 3}
-  - {fileID: -926013754, guid: 5934892e01bd3fb4587822539cefb2c5, type: 3}
+  - {fileID: 21300000, guid: 6d849bd9e7c9e954a869b60d27ded470, type: 3}
+  - {fileID: 21300000, guid: 1d9dfa5edb5981d489f3044705f94f06, type: 3}
   Walk:
-  - {fileID: -926013754, guid: 5934892e01bd3fb4587822539cefb2c5, type: 3}
-  - {fileID: -1753582538, guid: 5934892e01bd3fb4587822539cefb2c5, type: 3}
-  - {fileID: -926013754, guid: 5934892e01bd3fb4587822539cefb2c5, type: 3}
-  - {fileID: -1753582538, guid: 5934892e01bd3fb4587822539cefb2c5, type: 3}
+  - {fileID: 21300000, guid: 18611ff0f78ed4f49a73971983023231, type: 3}
+  - {fileID: 21300000, guid: 681d397261b1c8e45b9e84620cd904a6, type: 3}
+  - {fileID: 21300000, guid: 16566eae71862e14ebde0d72f1b0b6c6, type: 3}
+  - {fileID: 21300000, guid: a9f557e1f8197554abf9e4291aaa44cb, type: 3}
   Windup:
-  - {fileID: 2040041727, guid: 5934892e01bd3fb4587822539cefb2c5, type: 3}
-  - {fileID: 2040041727, guid: 5934892e01bd3fb4587822539cefb2c5, type: 3}
+  - {fileID: 21300000, guid: eddb07d5368ac4344b2abe1b3d3d40bf, type: 3}
   Release:
-  - {fileID: -1916300572, guid: 5934892e01bd3fb4587822539cefb2c5, type: 3}
-  - {fileID: -1916300572, guid: 5934892e01bd3fb4587822539cefb2c5, type: 3}
+  - {fileID: 21300000, guid: 6dbc3dc63af5da54d8b22fa09b99f9ea, type: 3}
   Recovery:
-  - {fileID: -1916300572, guid: 5934892e01bd3fb4587822539cefb2c5, type: 3}
-  - {fileID: -926013754, guid: 5934892e01bd3fb4587822539cefb2c5, type: 3}
+  - {fileID: 21300000, guid: 1d9dfa5edb5981d489f3044705f94f06, type: 3}
+  - {fileID: 21300000, guid: 6d849bd9e7c9e954a869b60d27ded470, type: 3}
+  IllustratedHeight: 0
