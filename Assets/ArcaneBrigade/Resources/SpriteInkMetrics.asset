@@ -3737,6 +3737,62 @@ MonoBehaviour:
       y: 0.125
       width: 0.43359375
       height: 0.70703125
+  - Sprite: {fileID: 21300000, guid: 10dc7f844adba064191486e7cb732dab, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: -0.335
+      y: 0
+      width: 0.6325
+      height: 0.9675
+  - Sprite: {fileID: 21300000, guid: 00b2cf3b341f03544855fb27af3ef812, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: -0.335
+      y: 0
+      width: 0.6325
+      height: 0.97
+  - Sprite: {fileID: 21300000, guid: fc97417815aead94f931d94dbae9aadb, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: -0.46
+      y: 0.01
+      width: 0.865
+      height: 0.895
+  - Sprite: {fileID: 21300000, guid: 009f4be1897ffeb43b7a987a2aee8bd5, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: -0.3225
+      y: 0.015
+      width: 0.62
+      height: 0.955
+  - Sprite: {fileID: 21300000, guid: 9c7f405ee8182c7408eded7236ff4c8a, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: -0.43
+      y: 0.025
+      width: 0.785
+      height: 0.9425
+  - Sprite: {fileID: 21300000, guid: 1f7219a8a3cbd8542a4daf283cf09d57, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: -0.3775
+      y: 0.0075
+      width: 0.675
+      height: 0.965
+  - Sprite: {fileID: 21300000, guid: 230494370855f4043b3320cb5b216d68, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: -0.42
+      y: 0.0025
+      width: 0.7925
+      height: 0.9075
+  - Sprite: {fileID: 21300000, guid: 06c7b6c743f3b35409d225e896f09999, type: 3}
+    Ink:
+      serializedVersion: 2
+      x: -0.5225
+      y: 0.015
+      width: 1.0425
+      height: 0.95
   - Sprite: {fileID: 1238138786, guid: 8b99d350fe6d4ab448c497997d500943, type: 3}
     Ink:
       serializedVersion: 2

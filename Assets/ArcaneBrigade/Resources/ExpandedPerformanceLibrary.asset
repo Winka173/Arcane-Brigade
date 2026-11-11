@@ -735,20 +735,6 @@ MonoBehaviour:
     - {fileID: 978789146, guid: 9f3caf990058f98449e7e2cef6f6e250, type: 3}
     ReferenceHeight: 1
     HurtOnly: 0
-  - Id: HourglassStag
-    Kind: locomotion
-    Evolution: 0
-    Frames:
-    - {fileID: -1887247100, guid: f78f2a610f1b42a498a78d41827f8301, type: 3}
-    - {fileID: 303027794, guid: f78f2a610f1b42a498a78d41827f8301, type: 3}
-    - {fileID: 1992534948, guid: f78f2a610f1b42a498a78d41827f8301, type: 3}
-    - {fileID: 1625195119, guid: f78f2a610f1b42a498a78d41827f8301, type: 3}
-    - {fileID: 878970329, guid: f78f2a610f1b42a498a78d41827f8301, type: 3}
-    - {fileID: 846062054, guid: f78f2a610f1b42a498a78d41827f8301, type: 3}
-    - {fileID: 300952920, guid: f78f2a610f1b42a498a78d41827f8301, type: 3}
-    - {fileID: 882966187, guid: f78f2a610f1b42a498a78d41827f8301, type: 3}
-    ReferenceHeight: 2.3515625
-    HurtOnly: 0
   - Id: RainArchivist
     Kind: locomotion
     Evolution: 0
