@@ -61,7 +61,7 @@ namespace ArcaneBrigade.Editor
                     unit.AnimationFrames = new[] { frames[0], motion.Walk[0], motion.Windup[0], motion.Release[0] };
                     EditorUtility.SetDirty(unit);
                 }
-                DropOldWalk(id);
+                DropOldWalk(id); DropOldActing(id);
                 string hub = HubFolder + "/" + id;
                 if (AssetDatabase.IsValidFolder(hub))
                 {
@@ -87,6 +87,17 @@ namespace ArcaneBrigade.Editor
                 if (frames[i] == null) return null;
             }
             return frames;
+        }
+
+        /// <summary>The hero's old acting poses (curious, cheer, hurt, defeat) were drawn from the old picture and flashed over the
+        /// new body on the title screen, in the hero list and in a fight (requirement 11/11/2026: the old helmet with its notch came
+        /// back every few seconds); a redrawn hero keeps to its own frames.</summary>
+        private static void DropOldActing(string id)
+        {
+            var library = AssetDatabase.LoadAssetAtPath<CharacterActingLibrary>("Assets/ArcaneBrigade/Resources/CharacterActingLibrary.asset");
+            if (library == null || !library.Entries.Any(e => e.Id == id || e.Alias == id)) return;
+            library.Entries = library.Entries.Where(e => e.Id != id && e.Alias != id).ToArray();
+            EditorUtility.SetDirty(library);
         }
 
         /// <summary>The hero's old painted walk (the library's "locomotion" clip) would override its new frames while it moves.</summary>

@@ -661,6 +661,7 @@ namespace ArcaneBrigade
             GUI.DrawTextureWithTexCoords(at, t, uv);
         }
 
+        private HeroHubClips titleClips;
         private void DrawWaitingBrigade(bool reduced, float breathe)
         {
             // the Lantern Knight alone at the door (review 31/10/2026: one emblem, standing on the carpet, not floating): its feet on
@@ -671,7 +672,10 @@ namespace ArcaneBrigade
             float height = ActOneDone ? 300 : 280, now = Time.unscaledTime;
             float flicker = reduced ? .8f : .75f + .15f * Mathf.Sin(now * 9.1f) + .1f * Mathf.Sin(now * 23.3f);
             ArcadeSkin.Glow(new Rect(foot.x - 300, foot.y - 120, 600, 200), new Color(1f, .74f, .38f, .22f * flicker)); // its light on the carpet
-            Sprite pose = RosterPortrait(hero, now, 3, true, reduced);
+            // a redrawn hero plays its own room clips here too: breathing, looking round, a wave, warming at the flame
+            Sprite[] room = HeroHubClips.For(hero.Id);
+            if (room != null) titleClips ??= new HeroHubClips();
+            Sprite pose = room != null ? titleClips.Pose(room, false, now, reduced) : RosterPortrait(hero, now, 3, true, reduced);
             if (pose == null) return;
             // the drawn picture's own transparent rows under the feet are taken off, so the feet touch the floor
             Rect ink = SpriteInkMetrics.BoundsOf(pose);
