@@ -735,20 +735,6 @@ MonoBehaviour:
     - {fileID: 978789146, guid: 9f3caf990058f98449e7e2cef6f6e250, type: 3}
     ReferenceHeight: 1
     HurtOnly: 0
-  - Id: RainArchivist
-    Kind: locomotion
-    Evolution: 0
-    Frames:
-    - {fileID: 44607237, guid: f78f2a610f1b42a498a78d41827f8301, type: 3}
-    - {fileID: 1919349782, guid: f78f2a610f1b42a498a78d41827f8301, type: 3}
-    - {fileID: -588384546, guid: f78f2a610f1b42a498a78d41827f8301, type: 3}
-    - {fileID: -69577587, guid: f78f2a610f1b42a498a78d41827f8301, type: 3}
-    - {fileID: 970214557, guid: f78f2a610f1b42a498a78d41827f8301, type: 3}
-    - {fileID: 1397817634, guid: f78f2a610f1b42a498a78d41827f8301, type: 3}
-    - {fileID: 1902283456, guid: f78f2a610f1b42a498a78d41827f8301, type: 3}
-    - {fileID: 1251513208, guid: f78f2a610f1b42a498a78d41827f8301, type: 3}
-    ReferenceHeight: 2.21875
-    HurtOnly: 0
   - Id: TeapotPilgrim
     Kind: locomotion
     Evolution: 0

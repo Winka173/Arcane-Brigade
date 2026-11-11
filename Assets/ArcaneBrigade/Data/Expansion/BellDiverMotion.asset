@@ -13,20 +13,18 @@ MonoBehaviour:
   m_Name: BellDiverMotion
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
   Idle:
-  - {fileID: -1878002184, guid: 7f7653dd7b072d445b448bdd03c2a131, type: 3}
-  - {fileID: -1878002184, guid: 7f7653dd7b072d445b448bdd03c2a131, type: 3}
+  - {fileID: 21300000, guid: 8384e2ad8f989f844b8c99d71a5df534, type: 3}
+  - {fileID: 21300000, guid: 9b2c873fed513f740b1117396b0f1625, type: 3}
   Walk:
-  - {fileID: -1878002184, guid: 7f7653dd7b072d445b448bdd03c2a131, type: 3}
-  - {fileID: 1258514703, guid: 7f7653dd7b072d445b448bdd03c2a131, type: 3}
-  - {fileID: -1878002184, guid: 7f7653dd7b072d445b448bdd03c2a131, type: 3}
-  - {fileID: 1258514703, guid: 7f7653dd7b072d445b448bdd03c2a131, type: 3}
+  - {fileID: 21300000, guid: 4d0a678ef174f2448b846c96c65bcc52, type: 3}
+  - {fileID: 21300000, guid: 9b84b21514bef52499845b864645bc61, type: 3}
+  - {fileID: 21300000, guid: 8982a483091b8864cb2b19eec0ec30b5, type: 3}
+  - {fileID: 21300000, guid: 901961760e12bd1429f8d8de7036eb81, type: 3}
   Windup:
-  - {fileID: 1365316754, guid: 7f7653dd7b072d445b448bdd03c2a131, type: 3}
-  - {fileID: 1365316754, guid: 7f7653dd7b072d445b448bdd03c2a131, type: 3}
+  - {fileID: 21300000, guid: 5a3a45fad1dea0b4aa6ac24090718d61, type: 3}
   Release:
-  - {fileID: -1712603620, guid: 7f7653dd7b072d445b448bdd03c2a131, type: 3}
-  - {fileID: -1712603620, guid: 7f7653dd7b072d445b448bdd03c2a131, type: 3}
+  - {fileID: 21300000, guid: 734f16f2a79757e43a5ded958b4e2598, type: 3}
   Recovery:
-  - {fileID: -1712603620, guid: 7f7653dd7b072d445b448bdd03c2a131, type: 3}
-  - {fileID: -1878002184, guid: 7f7653dd7b072d445b448bdd03c2a131, type: 3}
+  - {fileID: 21300000, guid: 9b2c873fed513f740b1117396b0f1625, type: 3}
+  - {fileID: 21300000, guid: 8384e2ad8f989f844b8c99d71a5df534, type: 3}
   IllustratedHeight: 0

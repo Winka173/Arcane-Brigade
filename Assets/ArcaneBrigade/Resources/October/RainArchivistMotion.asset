@@ -13,19 +13,18 @@ MonoBehaviour:
   m_Name: RainArchivistMotion
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
   Idle:
-  - {fileID: -1891516997, guid: e8ee253455175ba4a81217b0b563bc98, type: 3}
-  - {fileID: -1891516997, guid: e8ee253455175ba4a81217b0b563bc98, type: 3}
+  - {fileID: 21300000, guid: 8ba5b3b5d2cd04f47ade1467f00063d8, type: 3}
+  - {fileID: 21300000, guid: 23cefa742efcd6f47be54a1e8627057e, type: 3}
   Walk:
-  - {fileID: -1891516997, guid: e8ee253455175ba4a81217b0b563bc98, type: 3}
-  - {fileID: 957715060, guid: e8ee253455175ba4a81217b0b563bc98, type: 3}
-  - {fileID: -1891516997, guid: e8ee253455175ba4a81217b0b563bc98, type: 3}
-  - {fileID: 957715060, guid: e8ee253455175ba4a81217b0b563bc98, type: 3}
+  - {fileID: 21300000, guid: 14e70495a230ac14b9b96056fa036ee5, type: 3}
+  - {fileID: 21300000, guid: f38bc405833909a4b99b49f48c194df0, type: 3}
+  - {fileID: 21300000, guid: de86625f966c309449e9b70e3a9d28bf, type: 3}
+  - {fileID: 21300000, guid: 7329bffd54e975e4794d984e91eb7a2f, type: 3}
   Windup:
-  - {fileID: -185823708, guid: e8ee253455175ba4a81217b0b563bc98, type: 3}
-  - {fileID: -185823708, guid: e8ee253455175ba4a81217b0b563bc98, type: 3}
+  - {fileID: 21300000, guid: 6523fd3be686212449440bb6b7615c9e, type: 3}
   Release:
-  - {fileID: 1035011213, guid: e8ee253455175ba4a81217b0b563bc98, type: 3}
-  - {fileID: 1035011213, guid: e8ee253455175ba4a81217b0b563bc98, type: 3}
+  - {fileID: 21300000, guid: 20e2196242853c641b3e7dee2121058b, type: 3}
   Recovery:
-  - {fileID: 1035011213, guid: e8ee253455175ba4a81217b0b563bc98, type: 3}
-  - {fileID: -1891516997, guid: e8ee253455175ba4a81217b0b563bc98, type: 3}
+  - {fileID: 21300000, guid: 23cefa742efcd6f47be54a1e8627057e, type: 3}
+  - {fileID: 21300000, guid: 8ba5b3b5d2cd04f47ade1467f00063d8, type: 3}
+  IllustratedHeight: 0

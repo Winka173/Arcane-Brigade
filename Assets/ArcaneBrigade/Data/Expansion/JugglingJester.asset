@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: JugglingJester
   DisplayName: Juggling Jester
-  Body: {fileID: 437682748, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
+  Body: {fileID: 21300000, guid: e838c528aaaec6644bcbd1a623f43774, type: 3}
   AnimationFrames:
-  - {fileID: 437682748, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
-  - {fileID: -2056537474, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
-  - {fileID: -1481157145, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
-  - {fileID: -137992737, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
+  - {fileID: 21300000, guid: e838c528aaaec6644bcbd1a623f43774, type: 3}
+  - {fileID: 21300000, guid: 2caa59039a2b03b42a0f5a6dfec0dfed, type: 3}
+  - {fileID: 21300000, guid: 6a1d0618d62cf6243ae2ebbedad9c433, type: 3}
+  - {fileID: 21300000, guid: 2ba5f9a3f2fa7e943bd57a2f80328546, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: 17fe7e5add3e41549b33b609aa2b9805, type: 2}
   Weapon: {fileID: 11400000, guid: 19bffc21738982342b00cb3beeed02a9, type: 2}
   Health: 80

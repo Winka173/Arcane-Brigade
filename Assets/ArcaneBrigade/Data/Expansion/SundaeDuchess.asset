@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: SundaeDuchess
   DisplayName: Sundae Duchess
-  Body: {fileID: -330785506, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
+  Body: {fileID: 21300000, guid: 0cdea980f758a7c4fb49f25ab2f35e10, type: 3}
   AnimationFrames:
-  - {fileID: -330785506, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
-  - {fileID: 205590692, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
-  - {fileID: 682571485, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
-  - {fileID: -1923777708, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
+  - {fileID: 21300000, guid: 0cdea980f758a7c4fb49f25ab2f35e10, type: 3}
+  - {fileID: 21300000, guid: 0fdd1b596b377174bb04b35afd6eca46, type: 3}
+  - {fileID: 21300000, guid: 87fe1a9067da5e04a8ccd96eb7511856, type: 3}
+  - {fileID: 21300000, guid: a397da2e9aa34f04f84a84e002d3c7a3, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: 6d0d85912b2248a428e7107651ced3c9, type: 2}
   Weapon: {fileID: 11400000, guid: 03d588634d2758943b243653942704d2, type: 2}
   Health: 80

@@ -13,20 +13,18 @@ MonoBehaviour:
   m_Name: JugglingJesterMotion
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
   Idle:
-  - {fileID: 437682748, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
-  - {fileID: 437682748, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
+  - {fileID: 21300000, guid: e838c528aaaec6644bcbd1a623f43774, type: 3}
+  - {fileID: 21300000, guid: ee1823b64b481224f8009f511a38961a, type: 3}
   Walk:
-  - {fileID: 437682748, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
-  - {fileID: -2056537474, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
-  - {fileID: 437682748, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
-  - {fileID: -2056537474, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
+  - {fileID: 21300000, guid: 2caa59039a2b03b42a0f5a6dfec0dfed, type: 3}
+  - {fileID: 21300000, guid: 64ed2465c25dbc54ba2aa48d6015c05b, type: 3}
+  - {fileID: 21300000, guid: 794c3a8cb958a244292bbae678c93008, type: 3}
+  - {fileID: 21300000, guid: 726d7c6d431b0d443b5b78b23a7a3761, type: 3}
   Windup:
-  - {fileID: -1481157145, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
-  - {fileID: -1481157145, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
+  - {fileID: 21300000, guid: 6a1d0618d62cf6243ae2ebbedad9c433, type: 3}
   Release:
-  - {fileID: -137992737, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
-  - {fileID: -137992737, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
+  - {fileID: 21300000, guid: 2ba5f9a3f2fa7e943bd57a2f80328546, type: 3}
   Recovery:
-  - {fileID: -137992737, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
-  - {fileID: 437682748, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
+  - {fileID: 21300000, guid: ee1823b64b481224f8009f511a38961a, type: 3}
+  - {fileID: 21300000, guid: e838c528aaaec6644bcbd1a623f43774, type: 3}
   IllustratedHeight: 0

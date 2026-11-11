@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.UnitDefinition
   Id: BonsaiClocksmith
   DisplayName: Bonsai Clocksmith
-  Body: {fileID: 1347521035, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
+  Body: {fileID: 21300000, guid: 90f9162880baa69438a00055c5d97bbb, type: 3}
   AnimationFrames:
-  - {fileID: 1347521035, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
-  - {fileID: 415905189, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
-  - {fileID: 1173027975, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
-  - {fileID: 539737053, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
+  - {fileID: 21300000, guid: 90f9162880baa69438a00055c5d97bbb, type: 3}
+  - {fileID: 21300000, guid: c813d83135574ed489e7149ac444aef1, type: 3}
+  - {fileID: 21300000, guid: f5fd0787afcc4f949b1748311e06a3ab, type: 3}
+  - {fileID: 21300000, guid: 8e05434fef65f464798cd393ea5fd6ee, type: 3}
   AuthoredMotion: {fileID: 11400000, guid: eee38a7068ce2f6459a756e82b813d90, type: 2}
   Weapon: {fileID: 11400000, guid: 090f13df3c13d43408c5238a72803f77, type: 2}
   Health: 80

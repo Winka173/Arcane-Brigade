@@ -13,20 +13,18 @@ MonoBehaviour:
   m_Name: KiteAdmiralMotion
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
   Idle:
-  - {fileID: 977858691, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
-  - {fileID: 977858691, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
+  - {fileID: 21300000, guid: 94e82067a3417bd48a7ccc50ac369be5, type: 3}
+  - {fileID: 21300000, guid: 6bbbdecec5d424f46a8c2df3a1e8e156, type: 3}
   Walk:
-  - {fileID: 977858691, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
-  - {fileID: -129306102, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
-  - {fileID: 977858691, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
-  - {fileID: -129306102, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
+  - {fileID: 21300000, guid: 173a58bb26d01a042ba1db7cb05db839, type: 3}
+  - {fileID: 21300000, guid: 8e5e5b910badeef42a6a6d63293a5a6f, type: 3}
+  - {fileID: 21300000, guid: de5fa63dfc0613c45a6821b4daab5b36, type: 3}
+  - {fileID: 21300000, guid: 91b018011151d0f46b8a272c221fe6ab, type: 3}
   Windup:
-  - {fileID: -426866675, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
-  - {fileID: -426866675, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
+  - {fileID: 21300000, guid: b85ccb7725be81342ac38e839e93bd7f, type: 3}
   Release:
-  - {fileID: -305756245, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
-  - {fileID: -305756245, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
+  - {fileID: 21300000, guid: c8bc0fa4810c21244970296d6cc021d8, type: 3}
   Recovery:
-  - {fileID: -305756245, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
-  - {fileID: 977858691, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
+  - {fileID: 21300000, guid: 6bbbdecec5d424f46a8c2df3a1e8e156, type: 3}
+  - {fileID: 21300000, guid: 94e82067a3417bd48a7ccc50ac369be5, type: 3}
   IllustratedHeight: 0

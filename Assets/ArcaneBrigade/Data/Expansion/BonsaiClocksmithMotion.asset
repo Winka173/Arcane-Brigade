@@ -13,20 +13,18 @@ MonoBehaviour:
   m_Name: BonsaiClocksmithMotion
   m_EditorClassIdentifier: ArcaneBrigade.Runtime::ArcaneBrigade.AuthoredMotionSet
   Idle:
-  - {fileID: 1347521035, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
-  - {fileID: 1347521035, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
+  - {fileID: 21300000, guid: 90f9162880baa69438a00055c5d97bbb, type: 3}
+  - {fileID: 21300000, guid: fb1321d12c0ca664295eab1702eaee2a, type: 3}
   Walk:
-  - {fileID: 1347521035, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
-  - {fileID: 415905189, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
-  - {fileID: 1347521035, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
-  - {fileID: 415905189, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
+  - {fileID: 21300000, guid: c813d83135574ed489e7149ac444aef1, type: 3}
+  - {fileID: 21300000, guid: 8b8828611b09c354391353f9760a4223, type: 3}
+  - {fileID: 21300000, guid: e3f59095f750b1a449ae6e281e5d45ad, type: 3}
+  - {fileID: 21300000, guid: cd5b407ed8f452e45b4d0fa5741e1678, type: 3}
   Windup:
-  - {fileID: 1173027975, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
-  - {fileID: 1173027975, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
+  - {fileID: 21300000, guid: f5fd0787afcc4f949b1748311e06a3ab, type: 3}
   Release:
-  - {fileID: 539737053, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
-  - {fileID: 539737053, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
+  - {fileID: 21300000, guid: 8e05434fef65f464798cd393ea5fd6ee, type: 3}
   Recovery:
-  - {fileID: 539737053, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
-  - {fileID: 1347521035, guid: 0ac383c7df1b1af4bb55842bf41e58b3, type: 3}
+  - {fileID: 21300000, guid: fb1321d12c0ca664295eab1702eaee2a, type: 3}
+  - {fileID: 21300000, guid: 90f9162880baa69438a00055c5d97bbb, type: 3}
   IllustratedHeight: 0
